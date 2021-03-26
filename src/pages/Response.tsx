@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import {
   IonContent, IonHeader, IonMenuButton, IonIcon,
   IonPage, IonTitle, IonToolbar, IonSplitPane,
@@ -7,8 +7,10 @@ import {
 } from '@ionic/react';
 import { addOutline } from 'ionicons/icons';
 import ResponseMenu from '../components/response/ResponseMenu';
+import { useTranslation } from "react-i18next";
 
 const Response: React.FC = () => {
+  const { t } = useTranslation();
   return (
     <IonSplitPane contentId="response">
       <ResponseMenu />
@@ -18,7 +20,7 @@ const Response: React.FC = () => {
             <IonButtons slot="start">
               <IonMenuButton />
             </IonButtons>
-            <IonTitle>Response</IonTitle>
+            <IonTitle>{t("tabs.Response")}</IonTitle>
             <IonButtons slot="end">
               <IonButton>
                 <IonIcon icon={addOutline} />

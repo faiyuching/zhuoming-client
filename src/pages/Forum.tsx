@@ -6,13 +6,15 @@ import {
   IonButtons, IonButton, IonIcon
 } from '@ionic/react';
 import { addOutline } from 'ionicons/icons';
+import { useTranslation } from "react-i18next";
 
 const Forum: React.FC = () => {
+  const { t } = useTranslation();
   return (
     <IonPage>
       <IonHeader>
         <IonToolbar>
-          <IonTitle>Forum</IonTitle>
+          <IonTitle>{t("tabs.Forum")}</IonTitle>
           <IonButtons slot="end">
             <IonButton>
               <IonIcon icon={addOutline} />

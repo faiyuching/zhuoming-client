@@ -7,8 +7,10 @@ import {
 } from '@ionic/react';
 import { addOutline, arrowForwardOutline } from 'ionicons/icons';
 import LibraryMenu from '../components/library/LibraryMenu';
+import { useTranslation } from "react-i18next";
 
 const Library: React.FC = () => {
+  const { t } = useTranslation();
   return (
     <IonSplitPane contentId="library">
       <LibraryMenu />
@@ -20,7 +22,7 @@ const Library: React.FC = () => {
                 <IonMenuButton />Sort
               </IonButton>
             </IonButtons>
-            <IonTitle>Library</IonTitle>
+            <IonTitle>{t("tabs.Library")}</IonTitle>
             <IonButtons slot="end">
               <IonButton>
                 <IonIcon icon={addOutline} />

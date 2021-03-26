@@ -8,8 +8,10 @@ import {
   IonCardContent
 } from '@ionic/react';
 import UserMenu from '../components/user/UserMenu';
+import { useTranslation } from "react-i18next";
 
 const User: React.FC = () => {
+  const { t } = useTranslation();
   return (
     <IonSplitPane contentId="user">
       <UserMenu />
@@ -21,7 +23,7 @@ const User: React.FC = () => {
                 <IonMenuButton />
               </IonButton>
             </IonButtons>
-            <IonTitle>User</IonTitle>
+            <IonTitle>{t("tabs.User")}</IonTitle>
           </IonToolbar>
           <IonToolbar>
             <IonTitle size="large">My Tasks</IonTitle>

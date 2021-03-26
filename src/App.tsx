@@ -1,21 +1,19 @@
 import React from 'react';
 import { Redirect, Route } from 'react-router-dom';
 import {
-  IonApp,
-  IonIcon,
-  IonLabel,
-  IonRouterOutlet,
-  IonTabBar,
-  IonTabButton,
-  IonTabs
+  IonApp, IonIcon, IonRouterOutlet, IonTabBar, IonTabButton, IonTabs
 } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
-import { volumeHighOutline, folderOutline, notificationsOutline, chatbubblesOutline, personOutline } from 'ionicons/icons';
+import {
+  volumeHighOutline, libraryOutline, notificationsOutline,
+  chatbubblesOutline, personOutline
+} from 'ionicons/icons';
 import Response from './pages/Response';
 import Library from './pages/Library';
 import Notice from './pages/Notice';
 import Forum from './pages/Forum';
 import User from './pages/User';
+import UserSettings from './pages/user/UserSettings';
 
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css';
@@ -46,28 +44,24 @@ const App: React.FC = () => (
           <Route path="/notice" component={Notice} />
           <Route path="/forum" component={Forum} />
           <Route path="/user" component={User} />
+          <Route path="/user/settings" component={UserSettings} exact={true} />
           <Route path="/" render={() => <Redirect to="/response" />} exact={true} />
         </IonRouterOutlet>
         <IonTabBar slot="bottom">
           <IonTabButton tab="response" href="/response">
-            <IonIcon icon={volumeHighOutline} size="small" />
-            <IonLabel>Response</IonLabel>
+            <IonIcon icon={volumeHighOutline} />
           </IonTabButton>
           <IonTabButton tab="library" href="/library">
-            <IonIcon icon={folderOutline} size="small" />
-            <IonLabel>Library</IonLabel>
+            <IonIcon icon={libraryOutline} />
           </IonTabButton>
           <IonTabButton tab="notice" href="/notice">
-            <IonIcon icon={notificationsOutline} size="small" />
-            <IonLabel>Notice</IonLabel>
+            <IonIcon icon={notificationsOutline} />
           </IonTabButton>
           <IonTabButton tab="forum" href="/forum">
-            <IonIcon icon={chatbubblesOutline} size="small" />
-            <IonLabel>Forum</IonLabel>
+            <IonIcon icon={chatbubblesOutline} />
           </IonTabButton>
           <IonTabButton tab="user" href="/user">
-            <IonIcon icon={personOutline} size="small" />
-            <IonLabel>User</IonLabel>
+            <IonIcon icon={personOutline} />
           </IonTabButton>
         </IonTabBar>
       </IonTabs>

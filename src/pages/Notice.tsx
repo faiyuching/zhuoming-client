@@ -3,15 +3,17 @@ import {
   IonContent, IonHeader, IonPage, IonTitle, IonToolbar,
   IonSegment, IonSegmentButton, IonLabel,
   IonList, IonItemSliding, IonItem, IonItemOptions,
-  IonItemOption, IonAvatar, IonImg
+  IonItemOption, IonAvatar, IonImg,
 } from '@ionic/react';
+import { useTranslation } from "react-i18next";
 
 const Notice: React.FC = () => {
+  const { t } = useTranslation();
   return (
     <IonPage>
       <IonHeader>
         <IonToolbar>
-          <IonTitle>Notice</IonTitle>
+          <IonTitle>{t("tabs.Notice")}</IonTitle>
         </IonToolbar>
         <IonToolbar>
           <IonSegment value="unread" onIonChange={e => console.log('Segment selected', e.detail.value)}>
@@ -33,7 +35,7 @@ const Notice: React.FC = () => {
               </IonAvatar>
               <IonLabel>
                 <h2>Finn</h2>
-                <p>Listen, I've had a pretty messed up day...</p>
+                <p>{t("tabs.Response")}</p>
               </IonLabel>
             </IonItem>
             <IonItemOptions side="end">
