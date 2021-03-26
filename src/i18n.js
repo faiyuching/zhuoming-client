@@ -6,35 +6,113 @@ import { initReactI18next } from "react-i18next";
 const resources = {
     en: {
         translation: {
-            label: {},
-            error: {},
-            message: {},
-            text: { hello: "hello" },
-            content: {},
-            tabs: {
-                Response: "Response",
-                Library: "Library",
-                Notice: "Notice",
-                Forum: "Forum",
-                User: "Me",
-                Settings: "Settings"
+            response: {
+                response: "Response",
+                about: "About",
+                groups: "Groups",
+                timeline: "Timeline",
+                resources: "Resources",
+                discussion: "Discussion",
+                settings: "Settings",
+                history: "History Responses",
+                more: "More",
+                tasks: "Tasks",
+                unFinished: "UnFinished",
+                finished: "Finished"
+            },
+            library: {
+                library: "Library",
+                sort: "Sort",
+                geological: "geological",
+                hydrological: "hydrological",
+                meteorological: "meteorological",
+                wildfires: "wildfires",
+                epidemic: "epidemic",
+                others: "others",
+                history: "History",
+                more: "More",
+                recent: "Recent",
+                topics: "Topics",
+                videos: "Videos",
+                audio: "Audio",
+                articles: "Articles",
+                books: "Books"
+            },
+            notice: {
+                notice: "Notice",
+                unRead: "UnRead",
+                read: "Read"
+            },
+            forum: {
+                forum: "Forum"
+            },
+            user: {
+                user: "Me",
+                profile: "Profile",
+                moments: "Moments",
+                follow: "Follow",
+                bookmarks: "Bookmarks",
+                settings: "Settings",
+                tasks: "Tasks",
+                unFinished: "UnFinished",
+                finished: "Finished",
+                language: "Language"
             }
         }
     },
     zh: {
         translation: {
-            label: {},
-            error: {},
-            message: {},
-            text: { hello: "স্বাগতম" },
-            content: {},
-            tabs: {
-                Response: "响应",
-                Library: "知识库",
-                Notice: "通知",
-                Forum: "论坛",
-                User: "我的",
-                Settings: "设置"
+            response: {
+                response: "响应",
+                about: "关于",
+                groups: "组别",
+                timeline: "时间线",
+                resources: "资源",
+                discussion: "讨论",
+                settings: "设置",
+                history: "历史响应",
+                more: "更多",
+                tasks: "任务",
+                unFinished: "未完成",
+                finished: "已完成"
+            },
+            library: {
+                library: "知识库",
+                sort: "分类",
+                geological: "地质灾害",
+                hydrological: "水文灾害",
+                meteorological: "气象灾害",
+                wildfires: "野火",
+                epidemic: "大流行",
+                others: "其他",
+                history: "历史阅读",
+                more: "更多",
+                recent: "最新推荐",
+                topics: "专题",
+                videos: "视频",
+                audio: "音频",
+                articles: "文章",
+                books: "书籍"
+            },
+            notice: {
+                notice: "通知",
+                unRead: "未读",
+                read: "已读"
+            },
+            forum: {
+                forum: "论坛"
+            },
+            user: {
+                user: "我的",
+                profile: "个人资料",
+                tasks: "我的任务",
+                moments: "帖子",
+                follow: "关注",
+                bookmarks: "收藏",
+                settings: "设置",
+                unFinished: "未完成",
+                finished: "已完成",
+                language: "语言"
             }
         }
     }

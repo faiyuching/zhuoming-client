@@ -12,13 +12,13 @@ const UserSettings: React.FC = () => {
     <IonPage>
       <IonHeader>
         <IonToolbar>
-          <IonTitle>{t("tabs.Settings")}</IonTitle>
+          <IonTitle>{t("user.settings")}</IonTitle>
         </IonToolbar>
       </IonHeader>
       <IonContent fullscreen>
         <IonList>
           <IonItem>
-            <IonLabel>语言</IonLabel>
+            <IonLabel>{t("user.language")}</IonLabel>
             <IonButtons slot="end">
               <IonSegment value={i18n.language} onIonChange={e => console.log('Segment selected', e.detail.value)}>
                 <IonSegmentButton value="zh" onClick={() => { i18n.changeLanguage("zh"); }}>

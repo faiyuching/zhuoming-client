@@ -13,15 +13,15 @@ const Notice: React.FC = () => {
     <IonPage>
       <IonHeader>
         <IonToolbar>
-          <IonTitle>{t("tabs.Notice")}</IonTitle>
+          <IonTitle>{t("notice.notice")}</IonTitle>
         </IonToolbar>
         <IonToolbar>
           <IonSegment value="unread" onIonChange={e => console.log('Segment selected', e.detail.value)}>
             <IonSegmentButton value="unread">
-              <IonLabel>UnRead</IonLabel>
+              <IonLabel>{t("notice.unRead")}</IonLabel>
             </IonSegmentButton>
             <IonSegmentButton value="read">
-              <IonLabel>Read</IonLabel>
+              <IonLabel>{t("notice.read")}</IonLabel>
             </IonSegmentButton>
           </IonSegment>
         </IonToolbar>
@@ -35,11 +35,11 @@ const Notice: React.FC = () => {
               </IonAvatar>
               <IonLabel>
                 <h2>Finn</h2>
-                <p>{t("tabs.Response")}</p>
+                <p>asjdhaskjdhasd...</p>
               </IonLabel>
             </IonItem>
             <IonItemOptions side="end">
-              <IonItemOption onClick={() => { }}>Unread</IonItemOption>
+              <IonItemOption onClick={() => { }}>{t("notice.read")}</IonItemOption>
             </IonItemOptions>
           </IonItemSliding>
           <IonItemSliding>
@@ -53,7 +53,7 @@ const Notice: React.FC = () => {
               </IonLabel>
             </IonItem>
             <IonItemOptions side="end">
-              <IonItemOption onClick={() => { }}>Unread</IonItemOption>
+              <IonItemOption onClick={() => { }}>{t("notice.read")}</IonItemOption>
             </IonItemOptions>
           </IonItemSliding>
         </IonList>

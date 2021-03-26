@@ -1,16 +1,6 @@
 import {
-  IonButton,
-  IonButtons,
-  IonContent,
-  IonIcon,
-  IonItem,
-  IonLabel,
-  IonList,
-  IonListHeader,
-  IonMenu,
-  IonMenuToggle,
-  IonNote,
-  IonToolbar,
+  IonButton, IonButtons, IonContent, IonIcon, IonItem, IonLabel,
+  IonList, IonListHeader, IonMenu, IonMenuToggle, IonNote, IonToolbar,
 } from '@ionic/react';
 
 import React from 'react';
@@ -23,6 +13,7 @@ import {
 } from 'ionicons/icons';
 import { arrowForwardOutline } from 'ionicons/icons';
 import './ResponseMenu.css';
+import { useTranslation } from "react-i18next";
 
 interface page {
   url: string;
@@ -31,55 +22,57 @@ interface page {
   title: string;
 }
 
-const responsePages: page[] = [
-  {
-    title: 'About',
-    url: '/response/:id/about',
-    iosIcon: documentTextOutline,
-    mdIcon: documentTextSharp
-  },
-  {
-    title: 'Groups',
-    url: '/response/:id/groups',
-    iosIcon: peopleOutline,
-    mdIcon: peopleSharp
-  },
-  {
-    title: 'Timeline',
-    url: '/response/:id/timeline',
-    iosIcon: timeOutline,
-    mdIcon: timeSharp
-  },
-  {
-    title: 'Resources',
-    url: '/response/:id/resources',
-    iosIcon: libraryOutline,
-    mdIcon: librarySharp
-  },
-  {
-    title: 'Discussion',
-    url: '/response/:id/discussion',
-    iosIcon: chatbubblesOutline,
-    mdIcon: chatbubblesSharp
-  },
-  {
-    title: 'Settings',
-    url: '/response/:id/settings',
-    iosIcon: settingsOutline,
-    mdIcon: settingsSharp
-  }
-];
+
 
 const labels = ['Family', 'Friends', 'Notes'];
 
 const ResponseMenu: React.FC = () => {
   const location = useLocation();
+  const { t } = useTranslation();
+  const responsePages: page[] = [
+    {
+      title: t("response.about"),
+      url: '/response/:id/about',
+      iosIcon: documentTextOutline,
+      mdIcon: documentTextSharp
+    },
+    {
+      title: t("response.groups"),
+      url: '/response/:id/groups',
+      iosIcon: peopleOutline,
+      mdIcon: peopleSharp
+    },
+    {
+      title: t("response.timeline"),
+      url: '/response/:id/timeline',
+      iosIcon: timeOutline,
+      mdIcon: timeSharp
+    },
+    {
+      title: t("response.resources"),
+      url: '/response/:id/resources',
+      iosIcon: libraryOutline,
+      mdIcon: librarySharp
+    },
+    {
+      title: t("response.discussion"),
+      url: '/response/:id/discussion',
+      iosIcon: chatbubblesOutline,
+      mdIcon: chatbubblesSharp
+    },
+    {
+      title: t("response.settings"),
+      url: '/response/:id/settings',
+      iosIcon: settingsOutline,
+      mdIcon: settingsSharp
+    }
+  ];
 
   return (
     <IonMenu contentId="response" type="overlay" side="start">
       <IonContent>
         <IonList id="inbox-list">
-          <IonListHeader>Response</IonListHeader>
+          <IonListHeader>{t("response.response")}</IonListHeader>
           <IonNote>slogan</IonNote>
           {responsePages.map((page, index) => {
             return (
@@ -94,7 +87,7 @@ const ResponseMenu: React.FC = () => {
         </IonList>
 
         <IonList id="labels-list">
-          <IonListHeader>History</IonListHeader>
+          <IonListHeader>{t("response.history")}</IonListHeader>
           {labels.map((label, index) => (
             <IonItem lines="none" key={index}>
               <IonIcon slot="start" icon={bookmarkOutline} />
@@ -103,7 +96,7 @@ const ResponseMenu: React.FC = () => {
           ))}
           <IonItem lines="none">
             <IonButtons slot="start">
-              <IonButton>more<IonIcon icon={arrowForwardOutline} size="small" /></IonButton>
+              <IonButton>{t("response.more")}<IonIcon icon={arrowForwardOutline} size="small" color="primary"/></IonButton>
             </IonButtons>
           </IonItem>
           <IonToolbar>

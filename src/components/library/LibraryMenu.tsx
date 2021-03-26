@@ -1,13 +1,6 @@
 import {
-  IonContent,
-  IonIcon,
-  IonItem,
-  IonLabel,
-  IonList,
-  IonListHeader,
-  IonMenu,
-  IonMenuToggle,
-  IonNote,
+  IonContent, IonIcon, IonItem, IonLabel,
+  IonList, IonListHeader, IonMenu, IonMenuToggle, IonNote,
 } from '@ionic/react';
 
 import React from 'react';
@@ -19,6 +12,7 @@ import {
   settingsOutline, settingsSharp
 } from 'ionicons/icons';
 import './LibraryMenu.css';
+import { useTranslation } from "react-i18next";
 
 interface page {
   url: string;
@@ -27,55 +21,55 @@ interface page {
   title: string;
 }
 
-const libraryPages: page[] = [
-  {
-    title: 'Geological',
-    url: '/library/geological',
-    iosIcon: documentTextOutline,
-    mdIcon: documentTextSharp
-  },
-  {
-    title: 'Hydrological',
-    url: '/library/hydrological',
-    iosIcon: peopleOutline,
-    mdIcon: peopleSharp
-  },
-  {
-    title: 'Meteorological',
-    url: '/library/meteorological',
-    iosIcon: timeOutline,
-    mdIcon: timeSharp
-  },
-  {
-    title: 'Wildfires',
-    url: '/library/wildfires',
-    iosIcon: libraryOutline,
-    mdIcon: librarySharp
-  },
-  {
-    title: 'Epidemic',
-    url: '/library/epidemic',
-    iosIcon: chatbubblesOutline,
-    mdIcon: chatbubblesSharp
-  },
-  {
-    title: 'Others',
-    url: '/library/others',
-    iosIcon: settingsOutline,
-    mdIcon: settingsSharp
-  }
-];
-
 const labels = ['Family', 'Friends', 'Notes', 'Work', 'Travel', 'Reminders'];
 
 const LibraryMenu: React.FC = () => {
   const location = useLocation();
+  const { t } = useTranslation();
+  const libraryPages: page[] = [
+    {
+      title: t("library.geological"),
+      url: '/library/geological',
+      iosIcon: documentTextOutline,
+      mdIcon: documentTextSharp
+    },
+    {
+      title: t("library.hydrological"),
+      url: '/library/hydrological',
+      iosIcon: peopleOutline,
+      mdIcon: peopleSharp
+    },
+    {
+      title: t("library.meteorological"),
+      url: '/library/meteorological',
+      iosIcon: timeOutline,
+      mdIcon: timeSharp
+    },
+    {
+      title: t("library.wildfires"),
+      url: '/library/wildfires',
+      iosIcon: libraryOutline,
+      mdIcon: librarySharp
+    },
+    {
+      title: t("library.epidemic"),
+      url: '/library/epidemic',
+      iosIcon: chatbubblesOutline,
+      mdIcon: chatbubblesSharp
+    },
+    {
+      title: t("library.others"),
+      url: '/library/others',
+      iosIcon: settingsOutline,
+      mdIcon: settingsSharp
+    }
+  ];
 
   return (
     <IonMenu contentId="library" type="overlay" side="start">
       <IonContent>
         <IonList id="inbox-list">
-          <IonListHeader>Sort</IonListHeader>
+          <IonListHeader>{t("library.sort")}</IonListHeader>
           <IonNote>slogan</IonNote>
           {libraryPages.map((page, index) => {
             return (
@@ -89,7 +83,7 @@ const LibraryMenu: React.FC = () => {
         </IonList>
 
         <IonList id="labels-list">
-          <IonListHeader>Reading History</IonListHeader>
+          <IonListHeader>{t("library.history")}</IonListHeader>
           {labels.map((label, index) => (
             <IonItem lines="none" key={index}>
               <IonIcon slot="start" icon={bookmarkOutline} />

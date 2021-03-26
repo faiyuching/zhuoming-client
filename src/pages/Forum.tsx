@@ -14,7 +14,7 @@ const Forum: React.FC = () => {
     <IonPage>
       <IonHeader>
         <IonToolbar>
-          <IonTitle>{t("tabs.Forum")}</IonTitle>
+          <IonTitle>{t("forum.forum")}</IonTitle>
           <IonButtons slot="end">
             <IonButton>
               <IonIcon icon={addOutline} />

@@ -20,7 +20,7 @@ const Response: React.FC = () => {
             <IonButtons slot="start">
               <IonMenuButton />
             </IonButtons>
-            <IonTitle>{t("tabs.Response")}</IonTitle>
+            <IonTitle>{t("response.response")}</IonTitle>
             <IonButtons slot="end">
               <IonButton>
                 <IonIcon icon={addOutline} />
@@ -28,14 +28,14 @@ const Response: React.FC = () => {
             </IonButtons>
           </IonToolbar>
           <IonToolbar>
-            <IonTitle size="large">Tasks</IonTitle>
+            <IonTitle size="large">{t("response.tasks")}</IonTitle>
             <IonButtons slot="end">
               <IonSegment value="unfinished" onIonChange={e => console.log('Segment selected', e.detail.value)}>
                 <IonSegmentButton value="unfinished">
-                  <IonLabel>UnFinished</IonLabel>
+                  <IonLabel>{t("response.unFinished")}</IonLabel>
                 </IonSegmentButton>
                 <IonSegmentButton value="finished">
-                  <IonLabel>finished</IonLabel>
+                  <IonLabel>{t("response.finished")}</IonLabel>
                 </IonSegmentButton>
               </IonSegment>
             </IonButtons>

@@ -19,10 +19,10 @@ const Library: React.FC = () => {
           <IonToolbar>
             <IonButtons slot="start">
               <IonButton>
-                <IonMenuButton />Sort
+                <IonMenuButton />{t("library.sort")}
               </IonButton>
             </IonButtons>
-            <IonTitle>{t("tabs.Library")}</IonTitle>
+            <IonTitle>{t("library.library")}</IonTitle>
             <IonButtons slot="end">
               <IonButton>
                 <IonIcon icon={addOutline} />
@@ -30,14 +30,14 @@ const Library: React.FC = () => {
             </IonButtons>
           </IonToolbar>
           <IonToolbar>
-            <IonTitle size="large">Recent</IonTitle>
+            <IonTitle size="large">{t("library.recent")}</IonTitle>
           </IonToolbar>
         </IonHeader>
         <IonContent fullscreen>
           <IonItem lines="none">
-            <IonTitle slot="start">Topics</IonTitle>
+            <IonTitle slot="start">{t("library.topics")}</IonTitle>
             <IonButtons slot="end">
-              <IonButton>more<IonIcon icon={arrowForwardOutline} size="small" /></IonButton>
+              <IonButton>{t("library.more")}<IonIcon icon={arrowForwardOutline} size="small" /></IonButton>
             </IonButtons>
           </IonItem>
           <IonCard>
@@ -51,9 +51,9 @@ const Library: React.FC = () => {
           </IonCardContent>
           </IonCard>
           <IonItem lines="none">
-            <IonTitle slot="start">Videos</IonTitle>
+            <IonTitle slot="start">{t("library.videos")}</IonTitle>
             <IonButtons slot="end">
-              <IonButton>more<IonIcon icon={arrowForwardOutline} size="small" /></IonButton>
+              <IonButton>{t("library.more")}<IonIcon icon={arrowForwardOutline} size="small" /></IonButton>
             </IonButtons>
           </IonItem>
           <IonCard href="https://www.bilibili.com/video/BV1rV411y7Pa?p=4" target="blank">
@@ -64,9 +64,9 @@ const Library: React.FC = () => {
             <IonCardContent>推荐理由</IonCardContent>
           </IonCard>
           <IonItem lines="none">
-            <IonTitle slot="start">Audio</IonTitle>
+            <IonTitle slot="start">{t("library.audio")}</IonTitle>
             <IonButtons slot="end">
-              <IonButton>more<IonIcon icon={arrowForwardOutline} size="small" /></IonButton>
+              <IonButton>{t("library.more")}<IonIcon icon={arrowForwardOutline} size="small" /></IonButton>
             </IonButtons>
           </IonItem>
           <IonCard href="https://podcasts.google.com/feed/aHR0cHM6Ly9qdXN0cG9kbWVkaWEuY29tL3Jzcy9sZWZ0LXJpZ2h0LnhtbA/episode/aHR0cHM6Ly9kdHMucG9kdHJhYy5jb20vcmVkaXJlY3QubXAzL2p1c3Rwb2RtZWRpYS5jb20vYXVkaW8vbGVmdC1yaWdodC9sZWZ0cmlnaHQtd2hwajAwNC0yMDIxMDMxOS5tcDM" target="blank">
@@ -78,9 +78,9 @@ const Library: React.FC = () => {
             <IonCardContent>推荐理由</IonCardContent>
           </IonCard>
           <IonItem lines="none">
-            <IonTitle slot="start">Articles</IonTitle>
+            <IonTitle slot="start">{t("library.articles")}</IonTitle>
             <IonButtons slot="end">
-              <IonButton>more<IonIcon icon={arrowForwardOutline} size="small" /></IonButton>
+              <IonButton>{t("library.more")}<IonIcon icon={arrowForwardOutline} size="small" /></IonButton>
             </IonButtons>
           </IonItem>
           <IonCard href="https://mp.weixin.qq.com/s/7E3sxm9MlHs5or6q5f_7jw" target="blank">
@@ -91,9 +91,9 @@ const Library: React.FC = () => {
             <IonCardContent>推荐理由</IonCardContent>
           </IonCard>
           <IonItem lines="none">
-            <IonTitle slot="start">Books</IonTitle>
+            <IonTitle slot="start">{t("library.books")}</IonTitle>
             <IonButtons slot="end">
-              <IonButton>more<IonIcon icon={arrowForwardOutline} size="small" /></IonButton>
+              <IonButton>{t("library.more")}<IonIcon icon={arrowForwardOutline} size="small" /></IonButton>
             </IonButtons>
           </IonItem>
           <IonCard href="https://book.douban.com/subject/34820857/" target="blank">

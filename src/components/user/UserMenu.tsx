@@ -1,15 +1,6 @@
 import {
-  IonContent,
-  IonIcon,
-  IonItem,
-  IonLabel,
-  IonList,
-  IonListHeader,
-  IonMenu,
-  IonMenuToggle,
-  IonNote,
-  IonAvatar,
-  IonImg
+  IonContent, IonIcon, IonItem, IonLabel, IonAvatar, IonImg,
+  IonList, IonListHeader, IonMenu, IonMenuToggle, IonNote,
 } from '@ionic/react';
 
 import React from 'react';
@@ -20,6 +11,7 @@ import {
   peopleOutline, peopleSharp, settingsOutline, settingsSharp
 } from 'ionicons/icons';
 import './UserMenu.css';
+import { useTranslation } from "react-i18next";
 
 interface page {
   url: string;
@@ -28,47 +20,49 @@ interface page {
   title: string;
 }
 
-const userPages: page[] = [
-  {
-    title: 'Profile',
-    url: '/user/profile',
-    iosIcon: personOutline,
-    mdIcon: personSharp
-  },
-  {
-    title: 'Tasks',
-    url: '/user/tasks',
-    iosIcon: documentTextOutline,
-    mdIcon: documentSharp
-  },
-  {
-    title: 'Moments',
-    url: '/user/resources',
-    iosIcon: flashOutline,
-    mdIcon: flashSharp
-  },
-  {
-    title: 'Follow',
-    url: '/user/follow',
-    iosIcon: peopleOutline,
-    mdIcon: peopleSharp
-  },
-  {
-    title: 'Bookmarks',
-    url: '/user/timeline',
-    iosIcon: bookmarkOutline,
-    mdIcon: bookmarkSharp
-  },
-  {
-    title: 'Settings',
-    url: '/user/settings',
-    iosIcon: settingsOutline,
-    mdIcon: settingsSharp
-  }
-];
+
 
 const UserMenu: React.FC = () => {
   const location = useLocation();
+  const { t } = useTranslation();
+  const userPages: page[] = [
+    {
+      title: t("user.profile"),
+      url: '/user/profile',
+      iosIcon: personOutline,
+      mdIcon: personSharp
+    },
+    {
+      title: t("user.tasks"),
+      url: '/user/tasks',
+      iosIcon: documentTextOutline,
+      mdIcon: documentSharp
+    },
+    {
+      title: t("user.moments"),
+      url: '/user/resources',
+      iosIcon: flashOutline,
+      mdIcon: flashSharp
+    },
+    {
+      title: t("user.follow"),
+      url: '/user/follow',
+      iosIcon: peopleOutline,
+      mdIcon: peopleSharp
+    },
+    {
+      title: t("user.bookmarks"),
+      url: '/user/timeline',
+      iosIcon: bookmarkOutline,
+      mdIcon: bookmarkSharp
+    },
+    {
+      title: t("user.settings"),
+      url: '/user/settings',
+      iosIcon: settingsOutline,
+      mdIcon: settingsSharp
+    }
+  ];
 
   return (
     <IonMenu contentId="user" type="overlay" side="start">

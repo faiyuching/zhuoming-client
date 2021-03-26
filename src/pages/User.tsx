@@ -23,17 +23,17 @@ const User: React.FC = () => {
                 <IonMenuButton />
               </IonButton>
             </IonButtons>
-            <IonTitle>{t("tabs.User")}</IonTitle>
+            <IonTitle>{t("user.user")}</IonTitle>
           </IonToolbar>
           <IonToolbar>
-            <IonTitle size="large">My Tasks</IonTitle>
+            <IonTitle size="large">{t("user.tasks")}</IonTitle>
             <IonButtons slot="end">
               <IonSegment value="unfinished" onIonChange={e => console.log('Segment selected', e.detail.value)}>
                 <IonSegmentButton value="unfinished">
-                  <IonLabel>UnFinished</IonLabel>
+                  <IonLabel>{t("user.unFinished")}</IonLabel>
                 </IonSegmentButton>
                 <IonSegmentButton value="finished">
-                  <IonLabel>finished</IonLabel>
+                  <IonLabel>{t("user.finished")}</IonLabel>
                 </IonSegmentButton>
               </IonSegment>
             </IonButtons>
