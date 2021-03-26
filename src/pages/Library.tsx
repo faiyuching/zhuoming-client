@@ -3,8 +3,7 @@ import {
   IonContent, IonHeader, IonPage, IonTitle, IonToolbar,
   IonButtons, IonButton, IonIcon, IonCard, IonCardHeader,
   IonCardSubtitle, IonCardTitle, IonCardContent, IonImg,
-  IonListHeader, IonGrid, IonRow, IonCol, IonSplitPane,
-  IonMenuButton, IonItem,
+  IonSplitPane, IonMenuButton, IonItem,
 } from '@ionic/react';
 import { addOutline, arrowForwardOutline } from 'ionicons/icons';
 import LibraryMenu from '../components/library/LibraryMenu';
@@ -94,7 +93,7 @@ const Library: React.FC = () => {
             </IonButtons>
           </IonItem>
           <IonCard href="https://book.douban.com/subject/34820857/" target="blank">
-            <IonImg src="" />
+            <IonImg src="/assets/s33496763.jpg" />
             <IonCardHeader>
               <IonCardSubtitle>海啸</IonCardSubtitle>
               <IonCardTitle>巨浪下的小学</IonCardTitle>

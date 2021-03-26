@@ -1,7 +1,7 @@
 import React from 'react';
 import {
   IonContent, IonHeader, IonPage, IonTitle,
-  IonToolbar, IonIcon, IonButtons, IonButton,
+  IonToolbar, IonButtons, IonButton,
   IonSegment, IonSegmentButton, IonLabel,
   IonSplitPane, IonMenuButton, IonCard,
   IonCardHeader, IonCardSubtitle, IonCardTitle,
