@@ -104,8 +104,8 @@ const resources = {
             },
             user: {
                 user: "我的",
-                profile: "个人资料",
-                tasks: "我的任务",
+                profile: "资料",
+                tasks: "任务",
                 moments: "帖子",
                 follow: "关注",
                 bookmarks: "收藏",
