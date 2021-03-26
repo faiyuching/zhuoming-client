@@ -17,7 +17,7 @@ const Library: React.FC = () => {
           <IonToolbar>
             <IonButtons slot="start">
               <IonButton>
-                <IonMenuButton />
+                <IonMenuButton />Sort
               </IonButton>
             </IonButtons>
             <IonTitle>Library</IonTitle>
@@ -26,6 +26,9 @@ const Library: React.FC = () => {
                 <IonIcon icon={addOutline} />
               </IonButton>
             </IonButtons>
+          </IonToolbar>
+          <IonToolbar>
+            <IonTitle size="large">Recent</IonTitle>
           </IonToolbar>
         </IonHeader>
         <IonContent fullscreen>
@@ -79,7 +82,6 @@ const Library: React.FC = () => {
             </IonButtons>
           </IonItem>
           <IonCard href="https://mp.weixin.qq.com/s/7E3sxm9MlHs5or6q5f_7jw" target="blank">
-            <IonImg src="https://mmbiz.qpic.cn/mmbiz_jpg/eVgFJeI3G7XoGMUYKBYosAESk3ezlINrxH5h86ETP8H72ZEbPEkibuH4iaVRqm9TokcaWcHd8QicvlicvQZ8NQkqtw/640?wx_fmt=jpeg&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" />
             <IonCardHeader>
               <IonCardSubtitle>地震｜心理学</IonCardSubtitle>
               <IonCardTitle>震后灾区的灵异传说，是巨大心理创伤后的一种病症吗？| 日本3·11大地震十周年</IonCardTitle>
