@@ -77,11 +77,16 @@ const LibraryMenu: React.FC = () => {
         <IonList id="inbox-list">
           <IonListHeader>{t("library.sort")}</IonListHeader>
           <IonNote></IonNote>
+          <IonMenuToggle autoHide={false}>
+            <IonItem className={location.pathname + location.search === '/library' ? 'selected' : ''} routerLink={'/library'} routerDirection="none" lines="none" detail={false}>
+              <IonLabel>资料库首页</IonLabel>
+            </IonItem>
+          </IonMenuToggle>
           <IonItemDivider>{t("library.disaster")}</IonItemDivider>
           {libraryPages.map((page, index) => {
             return (
               <IonMenuToggle key={index} autoHide={false}>
-                <IonItem className={location.pathname === page.url ? 'selected' : ''} routerLink={page.url} routerDirection="none" lines="none" detail={false}>
+                <IonItem className={location.pathname + location.search === page.url ? 'selected' : ''} routerLink={page.url} routerDirection="none" lines="none" detail={false}>
                   <IonLabel>{page.title}</IonLabel>
                 </IonItem>
               </IonMenuToggle>

@@ -105,7 +105,7 @@ const resources = {
                 statement: "发起声明："
             },
             library: {
-                library: "知识库",
+                library: "资料库",
                 sort: "分类",
                 geological: "地质灾害",
                 hydrological: "水文灾害",
