@@ -67,10 +67,21 @@ const resources = {
       notice: {
         notice: "Notifications",
         unread: "Unread",
-        archive: "Archive"
+        archive: "Archive",
+        system: "System Notification",
+        task: "Task Notification",
+        group: "Group Notice"
       },
       forum: {
-        forum: "Forum"
+        forum: "Forum",
+        question: "Q&A",
+        disaster: "Disaster",
+        zhuoming: "Zhuoming",
+        charity: "Charity",
+        development: "Development",
+        response: "Response",
+        opinion: "Opinion",
+        moments: "Moments"
       },
       user: {
         user: "Me",
@@ -152,10 +163,21 @@ const resources = {
       notice: {
         notice: "通知",
         unread: "未读",
-        archive: "已读"
+        archive: "已读",
+        system: "系统通知",
+        task: "任务通知",
+        group: "小组通知"
       },
       forum: {
-        forum: "论坛"
+        forum: "论坛",
+        question: "提问",
+        disaster: "灾害",
+        zhuoming: "卓明",
+        charity: "公益",
+        development: "开发",
+        response: "响应",
+        opinion: "观点/意见",
+        moments: "此刻"
       },
       user: {
         user: "我的",

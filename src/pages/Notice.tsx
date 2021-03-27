@@ -34,7 +34,7 @@ const Notice: React.FC = () => {
                 <IonImg src="/assets/notice.png" />
               </IonAvatar>
               <IonLabel>
-                <h2>系统通知</h2>
+                <h2>{t("notice.system")}</h2>
                 <p>卓明开源社长期招募开发者，设计师，新媒体编辑，新媒体运营...</p>
               </IonLabel>
             </IonItem>
@@ -48,7 +48,7 @@ const Notice: React.FC = () => {
                 <IonImg src="/assets/task.png" />
               </IonAvatar>
               <IonLabel>
-                <h2>任务通知</h2>
+                <h2>{t("notice.task")}</h2>
                 <p>卓明开源社长期招募开发者，设计师，新媒体编辑，新媒体运营...</p>
               </IonLabel>
             </IonItem>
@@ -62,7 +62,7 @@ const Notice: React.FC = () => {
                 <IonImg src="/assets/group.png" />
               </IonAvatar>
               <IonLabel>
-                <h2>小组通知</h2>
+                <h2>{t("notice.group")}</h2>
                 <p>卓明开源社长期招募开发者，设计师，新媒体编辑，新媒体运营...</p>
               </IonLabel>
             </IonItem>

@@ -27,28 +27,28 @@ const Forum: React.FC = () => {
           <IonRow>
             <IonCol>
               <IonChip color="danger" outline>
-                <IonLabel>Q&A</IonLabel>
+                <IonLabel>{t("forum.question")}</IonLabel>
               </IonChip>
               <IonChip color="warning" outline>
-                <IonLabel>disaster</IonLabel>
+                <IonLabel>{t("forum.disaster")}</IonLabel>
               </IonChip>
               <IonChip color="success" outline>
-                <IonLabel>zhuoming</IonLabel>
+                <IonLabel>{t("forum.zhuoming")}</IonLabel>
               </IonChip>
               <IonChip color="tertiary" outline>
-                <IonLabel>Charity</IonLabel>
+                <IonLabel>{t("forum.charity")}</IonLabel>
               </IonChip>
               <IonChip color="primary" outline>
-                <IonLabel>Development</IonLabel>
+                <IonLabel>{t("forum.development")}</IonLabel>
               </IonChip>
               <IonChip color="secondary" outline>
-                <IonLabel>response</IonLabel>
+                <IonLabel>{t("forum.response")}</IonLabel>
               </IonChip>
               <IonChip color="dark" outline>
-                <IonLabel>Whine</IonLabel>
+                <IonLabel>{t("forum.opinion")}</IonLabel>
               </IonChip>
               <IonChip color="medium" outline>
-                <IonLabel>moments</IonLabel>
+                <IonLabel>{t("forum.moments")}</IonLabel>
               </IonChip>
             </IonCol>
           </IonRow>
