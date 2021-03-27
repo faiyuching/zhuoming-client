@@ -9,7 +9,7 @@ import {
   libraryOutline, librarySharp, bookmarkOutline,
   timeOutline, timeSharp, documentTextOutline, documentTextSharp,
   peopleOutline, peopleSharp, chatbubblesOutline, chatbubblesSharp,
-  settingsOutline, settingsSharp
+  settingsOutline, settingsSharp, listOutline, listSharp
 } from 'ionicons/icons';
 import { arrowForwardOutline } from 'ionicons/icons';
 import './ResponseMenu.css';
@@ -35,6 +35,12 @@ const ResponseMenu: React.FC = () => {
       url: '/response/about',
       iosIcon: documentTextOutline,
       mdIcon: documentTextSharp
+    },
+    {
+      title: t("response.tasks"),
+      url: '/response/tasks',
+      iosIcon: listOutline,
+      mdIcon: listSharp
     },
     {
       title: t("response.member"),
@@ -96,7 +102,7 @@ const ResponseMenu: React.FC = () => {
           ))}
           <IonItem lines="none">
             <IonButtons slot="start">
-              <IonButton>{t("response.more")}<IonIcon icon={arrowForwardOutline} size="small" /></IonButton>
+              <IonButton routerLink="/response/history">{t("response.more")}<IonIcon icon={arrowForwardOutline} size="small" /></IonButton>
             </IonButtons>
           </IonItem>
           <IonToolbar>

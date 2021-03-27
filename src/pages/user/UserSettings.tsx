@@ -17,7 +17,7 @@ const UserSettings: React.FC = () => {
       </IonHeader>
       <IonContent fullscreen>
         <IonList>
-          <IonItem lines="full">
+          <IonItem>
             <IonLabel>{t("user.language")}</IonLabel>
             <IonButtons slot="end">
               <IonSegment value={i18n.language} onIonChange={e => console.log('Segment selected', e.detail.value)}>

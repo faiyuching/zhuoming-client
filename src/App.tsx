@@ -10,8 +10,11 @@ import {
 } from 'ionicons/icons';
 import Response from './pages/Response';
 import ResponseAbout from './pages/response/ResponseAbout';
+import ResponseTasks from './pages/response/ResponseTasks';
 import ResponseMember from './pages/response/ResponseMember';
 import ResponseTimeline from './pages/response/ResponseTimeline';
+import ResponseSettings from './pages/response/ResponseSettings';
+import ResponseHistory from './pages/response/ResponseHistory';
 import Library from './pages/Library';
 import Notice from './pages/Notice';
 import Forum from './pages/Forum';
@@ -44,8 +47,11 @@ const App: React.FC = () => (
         <IonRouterOutlet>
           <Route path="/response" component={Response} exact={true} />
           <Route path="/response/about" component={ResponseAbout} exact={true} />
+          <Route path="/response/tasks" component={ResponseTasks} exact={true} />
           <Route path="/response/member" component={ResponseMember} exact={true} />
           <Route path="/response/timeline" component={ResponseTimeline} exact={true} />
+          <Route path="/response/settings" component={ResponseSettings} exact={true} />
+          <Route path="/response/history" component={ResponseHistory} exact={true} />
           <Route path="/library" component={Library} exact={true} />
           <Route path="/notice" component={Notice} exact={true} />
           <Route path="/forum" component={Forum} exact={true} />
