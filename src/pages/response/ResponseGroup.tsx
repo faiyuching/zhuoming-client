@@ -2,7 +2,7 @@ import React from 'react';
 import {
   IonContent, IonHeader, IonMenuButton, IonIcon,
   IonPage, IonTitle, IonToolbar, IonSplitPane,
-  IonButton, IonButtons
+  IonButton, IonButtons, IonItem, IonLabel, IonInput
 } from '@ionic/react';
 import { addOutline } from 'ionicons/icons';
 import ResponseMenu from '../../components/response/ResponseMenu';
@@ -20,18 +20,20 @@ const ResponseGroup: React.FC = () => {
               <IonMenuButton />
             </IonButtons>
             <IonTitle>{t("response.response")}</IonTitle>
-            <IonButtons slot="end">
-              <IonButton>
-                <IonIcon icon={addOutline} />
-              </IonButton>
-            </IonButtons>
           </IonToolbar>
           <IonToolbar>
             <IonTitle size="large">{t("response.group")}</IonTitle>
+            <IonButtons slot="end">
+              <IonButton>添加</IonButton>
+              <IonButton>编辑</IonButton>
+            </IonButtons>
           </IonToolbar>
         </IonHeader>
         <IonContent fullscreen>
-          group
+          <IonItem detail>
+            <IonLabel position="stacked">信息组</IonLabel>
+            introduction
+          </IonItem>
         </IonContent>
       </IonPage>
     </IonSplitPane>

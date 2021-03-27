@@ -38,7 +38,7 @@ const Library: React.FC = () => {
           <IonItem lines="none">
             <IonTitle slot="start">{t("library.topics")}</IonTitle>
             <IonButtons slot="end">
-              <IonButton>{t("library.more")}<IonIcon icon={arrowForwardOutline} size="small" /></IonButton>
+              <IonButton>{t("library.more")}<IonIcon icon={arrowForwardOutline} /></IonButton>
             </IonButtons>
           </IonItem>
           <IonGrid>
