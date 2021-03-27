@@ -1,12 +1,9 @@
 import React from 'react';
 import {
-  IonContent, IonHeader, IonMenuButton, IonIcon,
+  IonContent, IonHeader, IonMenuButton, IonTextarea,
   IonPage, IonTitle, IonToolbar, IonSplitPane,
-  IonButton, IonButtons, IonItem, IonLabel,
-  IonInput,
-  IonTextarea
+  IonButton, IonButtons, IonItem, IonLabel, IonInput,
 } from '@ionic/react';
-import { addOutline } from 'ionicons/icons';
 import ResponseMenu from '../../components/response/ResponseMenu';
 import { useTranslation } from "react-i18next";
 
