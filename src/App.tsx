@@ -11,7 +11,7 @@ import {
 import Response from './pages/Response';
 import ResponseAbout from './pages/response/ResponseAbout';
 import ResponseTasks from './pages/response/ResponseTasks';
-import ResponseMember from './pages/response/ResponseMember';
+import ResponseMembers from './pages/response/ResponseMembers';
 import ResponseTimeline from './pages/response/ResponseTimeline';
 import ResponseSettings from './pages/response/ResponseSettings';
 import ResponseHistory from './pages/response/ResponseHistory';
@@ -48,7 +48,7 @@ const App: React.FC = () => (
           <Route path="/response" component={Response} exact={true} />
           <Route path="/response/about" component={ResponseAbout} exact={true} />
           <Route path="/response/tasks" component={ResponseTasks} exact={true} />
-          <Route path="/response/member" component={ResponseMember} exact={true} />
+          <Route path="/response/members" component={ResponseMembers} exact={true} />
           <Route path="/response/timeline" component={ResponseTimeline} exact={true} />
           <Route path="/response/settings" component={ResponseSettings} exact={true} />
           <Route path="/response/history" component={ResponseHistory} exact={true} />

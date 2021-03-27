@@ -18,6 +18,7 @@ const LibraryPicker: React.FC<_Props> = ({ onSave, onCancel, isOpen }) => {
   const DayColumn = {
     name: "Day",
     options: [
+      { text: t("library.all_disaster_types"), value: "all_disaster_types" },
       { text: t("library.meteoro_hydro"), value: "meteoro_hydro" },
       { text: t("library.geological"), value: "geological" },
       { text: t("library.marine"), value: "marine" },
@@ -30,6 +31,8 @@ const LibraryPicker: React.FC<_Props> = ({ onSave, onCancel, isOpen }) => {
   const SessionTimeColumn = {
     name: "SessionTime",
     options: [
+      { text: t("library.all_resource_types"), value: "all_resource_types" },
+      { text: t("library.topic"), value: "all" },
       { text: t("library.topic"), value: "topic" },
       { text: t("library.video"), value: "video" },
       { text: t("library.audio"), value: "audio" },

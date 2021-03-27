@@ -44,7 +44,7 @@ const Library: React.FC = () => {
             {sessionTime ? (
               <IonLabel>{sessionTime?.weekday} - {sessionTime?.period}</IonLabel>
             ) : (
-              <IonLabel className="placeHolder">{t("library.all_categories")}</IonLabel>
+              <IonLabel className="placeHolder">{t("library.all_disaster_types")} - {t("library.all_resource_types")}</IonLabel>
             )}
           </IonItem>
           <IonButtons slot="end">

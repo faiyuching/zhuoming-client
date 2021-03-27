@@ -43,8 +43,8 @@ const ResponseMenu: React.FC = () => {
       mdIcon: listSharp
     },
     {
-      title: t("response.member"),
-      url: '/response/member',
+      title: t("response.members"),
+      url: '/response/members',
       iosIcon: peopleOutline,
       mdIcon: peopleSharp
     },

@@ -1,15 +1,27 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   IonContent, IonHeader, IonMenuButton, IonIcon, IonItemOptions,
   IonPage, IonTitle, IonToolbar, IonSplitPane, IonItemGroup, IonItemOption,
   IonButton, IonButtons, IonItem, IonLabel, IonItemSliding,
 } from '@ionic/react';
-import { trashOutline, pencilOutline } from 'ionicons/icons';
+import { addOutline, trashOutline, pencilOutline } from 'ionicons/icons';
 import ResponseMenu from '../../components/response/ResponseMenu';
 import { useTranslation } from "react-i18next";
+import ResponseMembersPicker from "../../components/response/ResponseMembersPicker"
 
-const ResponseMember: React.FC = () => {
+export interface ISessionTime {
+  weekday: string;
+  period: string;
+}
+
+const ResponseMembers: React.FC = () => {
   const { t } = useTranslation();
+
+  const [pickerIsOpen, setPickerIsOpen] = useState(false);
+  const [sessionTime, setSessionTime] = useState<ISessionTime | undefined>(
+    undefined
+  );
+
   return (
     <IonSplitPane contentId="response">
       <ResponseMenu />
@@ -20,15 +32,42 @@ const ResponseMember: React.FC = () => {
               <IonMenuButton />
             </IonButtons>
             <IonTitle>{t("response.response")}</IonTitle>
+            <IonButtons slot="end">
+              <IonButton>
+                <IonIcon icon={addOutline} />
+              </IonButton>
+            </IonButtons>
           </IonToolbar>
           <IonToolbar>
-            <IonTitle size="large">{t("response.member")}</IonTitle>
+            <IonTitle size="large">{t("response.members")}</IonTitle>
+          </IonToolbar>
+          <IonToolbar>
+            <IonItem onClick={() => { setPickerIsOpen(true); }} lines="none">
+              {sessionTime ? (
+                <IonLabel>{sessionTime?.weekday} - {sessionTime?.period}</IonLabel>
+              ) : (
+                <IonLabel className="placeHolder">{t("response.all_groups")} - {t("response.all_jobs")}</IonLabel>
+              )}
+            </IonItem>
             <IonButtons slot="end">
-              <IonButton>{t("response.add_group")}</IonButton>
+              <IonButton onClick={() => { setPickerIsOpen(true); }}>{t("response.filter")}</IonButton>
+              <IonButton onClick={() => { setSessionTime(undefined); }}>{t("response.clear")}</IonButton>
             </IonButtons>
           </IonToolbar>
         </IonHeader>
         <IonContent fullscreen>
+          <ResponseMembersPicker
+            isOpen={pickerIsOpen}
+            onCancel={() => {
+              setPickerIsOpen(false);
+            }}
+            onSave={(_value: any) => {
+              console.log(_value);
+              let { Day, SessionTime } = _value;
+              setSessionTime({ weekday: Day.text, period: SessionTime.text });
+              setPickerIsOpen(false);
+            }}
+          />
           <IonItemGroup>
             <IonItemSliding>
               <IonItem button lines="full">
@@ -88,4 +127,4 @@ const ResponseMember: React.FC = () => {
   );
 };
 
-export default ResponseMember;
+export default ResponseMembers;
