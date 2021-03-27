@@ -28,38 +28,32 @@ const LibraryMenu: React.FC = () => {
   const { t } = useTranslation();
   const libraryPages: page[] = [
     {
-      title: t("library.geological"),
-      url: '/library?sort=geological',
+      title: t("library.meteoro_hydro"),
+      url: '/library?sort=meteoro_hydro',
       iosIcon: documentTextOutline,
       mdIcon: documentTextSharp
     },
     {
-      title: t("library.hydrological"),
-      url: '/library?sort=hydrological',
+      title: t("library.geological"),
+      url: '/library?sort=geological',
       iosIcon: peopleOutline,
       mdIcon: peopleSharp
     },
     {
-      title: t("library.meteorological"),
-      url: '/library?sort=meteorological',
+      title: t("library.marine"),
+      url: '/library?sort=marine',
       iosIcon: timeOutline,
       mdIcon: timeSharp
     },
     {
-      title: t("library.climate"),
-      url: '/library?sort=climate',
+      title: t("library.biological"),
+      url: '/library?sort=biological',
       iosIcon: libraryOutline,
       mdIcon: librarySharp
     },
     {
       title: t("library.ecological"),
       url: '/library?sort=ecological',
-      iosIcon: chatbubblesOutline,
-      mdIcon: chatbubblesSharp
-    },
-    {
-      title: t("library.space"),
-      url: '/library?sort=space',
       iosIcon: chatbubblesOutline,
       mdIcon: chatbubblesSharp
     },
