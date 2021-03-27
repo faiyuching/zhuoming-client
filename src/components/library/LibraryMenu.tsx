@@ -29,37 +29,43 @@ const LibraryMenu: React.FC = () => {
   const libraryPages: page[] = [
     {
       title: t("library.geological"),
-      url: '/library/geological',
+      url: '/library?sort=geological',
       iosIcon: documentTextOutline,
       mdIcon: documentTextSharp
     },
     {
       title: t("library.hydrological"),
-      url: '/library/hydrological',
+      url: '/library?sort=hydrological',
       iosIcon: peopleOutline,
       mdIcon: peopleSharp
     },
     {
       title: t("library.meteorological"),
-      url: '/library/meteorological',
+      url: '/library?sort=meteorological',
       iosIcon: timeOutline,
       mdIcon: timeSharp
     },
     {
-      title: t("library.wildfires"),
-      url: '/library/wildfires',
+      title: t("library.climate"),
+      url: '/library?sort=climate',
       iosIcon: libraryOutline,
       mdIcon: librarySharp
     },
     {
-      title: t("library.epidemic"),
-      url: '/library/epidemic',
+      title: t("library.ecological"),
+      url: '/library?sort=ecological',
+      iosIcon: chatbubblesOutline,
+      mdIcon: chatbubblesSharp
+    },
+    {
+      title: t("library.space"),
+      url: '/library?sort=space',
       iosIcon: chatbubblesOutline,
       mdIcon: chatbubblesSharp
     },
     {
       title: t("library.others"),
-      url: '/library/others',
+      url: '/library?sort=others',
       iosIcon: settingsOutline,
       mdIcon: settingsSharp
     }

@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import {
-  IonContent, IonHeader, IonPage, IonTitle, IonToolbar,
-  IonButtons, IonButton, IonIcon, IonCard, IonCardHeader,
-  IonCardSubtitle, IonCardTitle, IonCardContent, IonImg,
-  IonSplitPane, IonMenuButton, IonItem, IonGrid, IonRow, IonCol, IonSearchbar,
+  IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonButtons,
+  IonButton, IonIcon, IonCard, IonCardHeader, IonCardSubtitle,
+  IonCardTitle, IonCardContent, IonImg, IonSplitPane, IonMenuButton,
+  IonItem, IonGrid, IonRow, IonCol, IonSearchbar,
 } from '@ionic/react';
 import { addOutline, arrowForwardOutline } from 'ionicons/icons';
 import LibraryMenu from '../components/library/LibraryMenu';
@@ -11,13 +11,10 @@ import { useTranslation } from "react-i18next";
 import { useLocation } from 'react-router';
 import queryString from 'querystring'
 
-
-
 const Library: React.FC = () => {
   const { t } = useTranslation();
   const sort = queryString.parse(useLocation().search.split('?')[1]).sort
   const [searchText, setSearchText] = useState('');
-
   return (
     <IonSplitPane contentId="library">
       <LibraryMenu />
@@ -29,7 +26,7 @@ const Library: React.FC = () => {
                 <IonMenuButton />{t("library.sort")}
               </IonButton>
             </IonButtons>
-            <IonTitle>{t("library.library") || sort}</IonTitle>
+            <IonTitle>{sort ? t(`library.${sort}`) : t("library.library")}</IonTitle>
             <IonButtons slot="end">
               <IonButton>
                 <IonIcon icon={addOutline} />
