@@ -62,7 +62,7 @@ const Library: React.FC = () => {
           onSave={(_value: any) => {
             console.log(_value);
             let { Day, SessionTime } = _value;
-            setSessionTime({ weekday: Day.value, period: SessionTime.value });
+            setSessionTime({ weekday: Day.text, period: SessionTime.text });
             setPickerIsOpen(false);
           }}
         />
