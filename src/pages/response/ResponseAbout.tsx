@@ -2,7 +2,8 @@ import React from 'react';
 import {
   IonContent, IonHeader, IonMenuButton, IonIcon,
   IonPage, IonTitle, IonToolbar, IonSplitPane,
-  IonButton, IonButtons
+  IonButton, IonButtons, IonItem, IonLabel,
+  IonInput
 } from '@ionic/react';
 import { addOutline } from 'ionicons/icons';
 import ResponseMenu from '../../components/response/ResponseMenu';
@@ -20,7 +21,7 @@ const ResponseAbout: React.FC = () => {
               <IonMenuButton />
             </IonButtons>
             <IonTitle>{t("response.response")}</IonTitle>
-            <IonButtons slot="end">
+            <IonButtons slot="start">
               <IonButton>
                 <IonIcon icon={addOutline} />
               </IonButton>
@@ -28,10 +29,48 @@ const ResponseAbout: React.FC = () => {
           </IonToolbar>
           <IonToolbar>
             <IonTitle size="large">{t("response.about")}</IonTitle>
+            <IonButtons slot="end">
+              <IonButton>{t("response.edit")}</IonButton>
+            </IonButtons>
           </IonToolbar>
         </IonHeader>
         <IonContent fullscreen>
-          about
+          <IonItem>
+            <IonLabel position="stacked">{t("response.response_name")}</IonLabel>
+            <IonInput value={"text"}> </IonInput>
+          </IonItem>
+          <IonItem>
+            <IonLabel position="stacked">{t("response.organizer")}</IonLabel>
+            <IonInput value={"text"}> </IonInput>
+          </IonItem>
+          <IonItem>
+            <IonLabel position="stacked">{t("response.disaster_type")}</IonLabel>
+            <IonInput value={"text"}> </IonInput>
+          </IonItem>
+          <IonItem>
+            <IonLabel position="stacked">{t("response.disaster_level")}</IonLabel>
+            <IonInput value={"text"}> </IonInput>
+          </IonItem>
+          <IonItem>
+            <IonLabel position="stacked">{t("response.begin_time")}</IonLabel>
+            <IonInput value={"text"}> </IonInput>
+          </IonItem>
+          <IonItem>
+            <IonLabel position="stacked">{t("response.needs_time")}</IonLabel>
+            <IonInput value={"text"}> </IonInput>
+          </IonItem>
+          <IonItem>
+            <IonLabel position="stacked">{t("response.end_time")}</IonLabel>
+            <IonInput value={"text"}> </IonInput>
+          </IonItem>
+          <IonItem>
+            <IonLabel position="stacked">{t("response.need_people")}</IonLabel>
+            <IonInput value={"text"}> </IonInput>
+          </IonItem>
+          <IonItem>
+            <IonLabel position="stacked">{t("response.statement")}</IonLabel>
+            <IonInput value={"text"}> </IonInput>
+          </IonItem>
         </IonContent>
       </IonPage>
     </IonSplitPane>

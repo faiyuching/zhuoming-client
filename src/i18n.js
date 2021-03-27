@@ -18,7 +18,17 @@ const resources = {
                 more: "More",
                 tasks: "Tasks",
                 unFinished: "UnFinished",
-                finished: "Finished"
+                finished: "Finished",
+                edit: "Edit",
+                response_name: "Response Name:",
+                organizer: "Organizer:",
+                disaster_type: "Disaster Type:",
+                disaster_level: "Disaster Level:",
+                begin_time: "Begin Time:",
+                needs_time: "Needs Time:",
+                end_time: "End Time:",
+                need_people: "People Needed:",
+                statement: "statement:"
             },
             library: {
                 library: "Library",
@@ -75,7 +85,17 @@ const resources = {
                 more: "更多",
                 tasks: "任务",
                 unFinished: "未完成",
-                finished: "已完成"
+                finished: "已完成",
+                edit: "编辑",
+                response_name: "响应名称：",
+                organizer: "发起人：",
+                disaster_type: "灾害类型：",
+                disaster_level: "灾害级别：",
+                begin_time: "开始时间：",
+                needs_time: "持续时间：",
+                end_time: "结束时间：",
+                need_people: "需要人数：",
+                statement: "发起声明："
             },
             library: {
                 library: "知识库",
