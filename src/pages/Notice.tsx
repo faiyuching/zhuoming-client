@@ -29,7 +29,7 @@ const Notice: React.FC = () => {
       <IonContent fullscreen>
         <IonList>
           <IonItemSliding>
-            <IonItem>
+            <IonItem button>
               <IonAvatar slot="start">
                 <IonImg src="/assets/notice.png" />
               </IonAvatar>
@@ -43,7 +43,7 @@ const Notice: React.FC = () => {
             </IonItemOptions>
           </IonItemSliding>
           <IonItemSliding>
-            <IonItem>
+            <IonItem button>
               <IonAvatar slot="start">
                 <IonImg src="/assets/task.png" />
               </IonAvatar>
@@ -57,7 +57,7 @@ const Notice: React.FC = () => {
             </IonItemOptions>
           </IonItemSliding>
           <IonItemSliding>
-            <IonItem>
+            <IonItem button>
               <IonAvatar slot="start">
                 <IonImg src="/assets/group.png" />
               </IonAvatar>
@@ -71,7 +71,7 @@ const Notice: React.FC = () => {
             </IonItemOptions>
           </IonItemSliding>
           <IonItemSliding>
-            <IonItem>
+            <IonItem button>
               <IonAvatar slot="start">
                 <IonImg src="/assets/avatar.png" />
               </IonAvatar>

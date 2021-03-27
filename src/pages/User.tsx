@@ -1,15 +1,16 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   IonContent, IonHeader, IonPage, IonTitle,
   IonToolbar, IonButtons, IonButton,
   IonSegment, IonSegmentButton, IonLabel,
   IonCard, IonCardHeader, IonCardSubtitle,
   IonCardTitle, IonCardContent, IonItem,
-  IonImg, IonText, IonThumbnail
+  IonImg, IonText, IonThumbnail, IonPopover, IonList
 } from '@ionic/react';
 import { useTranslation } from "react-i18next";
 
 const User: React.FC = () => {
+  const [popoverState, setShowPopover] = useState({ showPopover: false, event: undefined });
   const { t } = useTranslation();
   return (
     <IonPage>
@@ -17,7 +18,13 @@ const User: React.FC = () => {
         <IonToolbar>
           <IonTitle>{t("user.user")}</IonTitle>
           <IonButtons slot="end">
-            <IonButton>更多</IonButton>
+            <IonButton routerLink={'/user/settings'}
+            // onClick={
+            //   (e: any) => {
+            //     e.persist();
+            //     setShowPopover({ showPopover: true, event: e })
+            //   }}
+            >{t("user.settings")}</IonButton>
           </IonButtons>
         </IonToolbar>
         <IonToolbar>
@@ -39,8 +46,19 @@ const User: React.FC = () => {
         </IonToolbar>
       </IonHeader>
       <IonContent fullscreen>
-        <IonTitle size="large">{t("user.tasks")}</IonTitle>
-        <IonButtons slot="end">
+        <IonPopover
+          cssClass='my-custom-class'
+          event={popoverState.event}
+          isOpen={popoverState.showPopover}
+          onDidDismiss={() => setShowPopover({ showPopover: false, event: undefined })}
+        >
+          <IonList>
+            <IonItem button>{t("user.moments")}</IonItem>
+            <IonItem button>{t("user.bookmarks")}</IonItem>
+            <IonItem button routerLink={'/user/settings'}>{t("user.settings")}</IonItem>
+          </IonList>
+        </IonPopover>
+        <IonItem lines="none">
           <IonSegment value="unfinished" onIonChange={e => console.log('Segment selected', e.detail.value)}>
             <IonSegmentButton value="unfinished">
               <IonLabel>{t("user.unfinished")}</IonLabel>
@@ -49,10 +67,10 @@ const User: React.FC = () => {
               <IonLabel>{t("user.finished")}</IonLabel>
             </IonSegmentButton>
           </IonSegment>
-        </IonButtons>
+        </IonItem>
         <IonCard>
           <IonCardHeader>
-            <IonCardSubtitle>Group Name｜Job Name</IonCardSubtitle>
+            <IonCardSubtitle>Response Name｜Group Name｜Job Name</IonCardSubtitle>
             <IonCardTitle>Task Name</IonCardTitle>
           </IonCardHeader>
           <IonCardContent>
@@ -61,7 +79,7 @@ const User: React.FC = () => {
         </IonCard>
         <IonCard>
           <IonCardHeader>
-            <IonCardSubtitle>Group Name｜Job Name</IonCardSubtitle>
+            <IonCardSubtitle>Response Name｜Group Name｜Job Name</IonCardSubtitle>
             <IonCardTitle>Task Name</IonCardTitle>
           </IonCardHeader>
           <IonCardContent>

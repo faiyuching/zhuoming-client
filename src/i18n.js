@@ -65,7 +65,7 @@ const resources = {
         search: "Search"
       },
       notice: {
-        notice: "Notice",
+        notice: "Notifications",
         unread: "Unread",
         archive: "Archive"
       },
@@ -80,11 +80,12 @@ const resources = {
         bookmarks: "Bookmarks",
         settings: "Settings",
         tasks: "My Tasks",
-        unfinished: "Unfinished",
+        unfinished: "In progress",
         finished: "Finished",
         language: "Language",
         followers: "Followers",
-        following: "Following"
+        following: "Following",
+        back: "Back"
       }
     }
   },
@@ -164,11 +165,12 @@ const resources = {
         follow: "关注",
         bookmarks: "收藏",
         settings: "设置",
-        unfinished: "未完成",
-        finished: "已完成",
+        unfinished: "正在进行中的任务",
+        finished: "已完成的任务",
         language: "语言",
         followers: "关注者",
-        following: "正在关注"
+        following: "正在关注",
+        back: "返回"
       }
     }
   }
