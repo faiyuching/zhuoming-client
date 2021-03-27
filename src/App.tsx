@@ -41,9 +41,9 @@ const App: React.FC = () => (
         <IonRouterOutlet>
           <Route path="/response" component={Response} exact={true} />
           <Route path="/library" component={Library} exact={true} />
-          <Route path="/notice" component={Notice} />
-          <Route path="/forum" component={Forum} />
-          <Route path="/user" component={User} />
+          <Route path="/notice" component={Notice} exact={true} />
+          <Route path="/forum" component={Forum} exact={true} />
+          <Route path="/user" component={User} exact={true} />
           <Route path="/user/settings" component={UserSettings} exact={true} />
           <Route path="/" render={() => <Redirect to="/response" />} exact={true} />
         </IonRouterOutlet>
