@@ -32,7 +32,7 @@ const ResponseTasks: React.FC = () => {
             <IonButtons slot="end">
               <IonSegment value="unfinished" onIonChange={e => console.log('Segment selected', e.detail.value)}>
                 <IonSegmentButton value="unfinished">
-                  <IonLabel>{t("response.unFinished")}</IonLabel>
+                  <IonLabel>{t("response.unfinished")}</IonLabel>
                 </IonSegmentButton>
                 <IonSegmentButton value="finished">
                   <IonLabel>{t("response.finished")}</IonLabel>

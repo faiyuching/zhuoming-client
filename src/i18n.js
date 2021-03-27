@@ -18,7 +18,7 @@ const resources = {
         history: "History Responses",
         more: "More",
         tasks: "Tasks",
-        unFinished: "UnFinished",
+        unfinished: "Unfinished",
         finished: "Finished",
         add_group: "Add Group",
         edit: "Edit",
@@ -66,8 +66,8 @@ const resources = {
       },
       notice: {
         notice: "Notice",
-        unRead: "UnRead",
-        read: "Read"
+        unread: "Unread",
+        archive: "Archive"
       },
       forum: {
         forum: "Forum"
@@ -80,9 +80,11 @@ const resources = {
         bookmarks: "Bookmarks",
         settings: "Settings",
         tasks: "My Tasks",
-        unFinished: "UnFinished",
+        unfinished: "Unfinished",
         finished: "Finished",
-        language: "Language"
+        language: "Language",
+        followers: "Followers",
+        following: "Following"
       }
     }
   },
@@ -100,7 +102,7 @@ const resources = {
         history: "历史响应",
         more: "更多",
         tasks: "任务",
-        unFinished: "未完成",
+        unfinished: "未完成",
         finished: "已完成",
         add_group: "添加分组",
         edit: "编辑",
@@ -148,8 +150,8 @@ const resources = {
       },
       notice: {
         notice: "通知",
-        unRead: "未读",
-        read: "已读"
+        unread: "未读",
+        archive: "已读"
       },
       forum: {
         forum: "论坛"
@@ -162,9 +164,11 @@ const resources = {
         follow: "关注",
         bookmarks: "收藏",
         settings: "设置",
-        unFinished: "未完成",
+        unfinished: "未完成",
         finished: "已完成",
-        language: "语言"
+        language: "语言",
+        followers: "关注者",
+        following: "正在关注"
       }
     }
   }

@@ -18,10 +18,10 @@ const Notice: React.FC = () => {
         <IonToolbar>
           <IonSegment value="unread" onIonChange={e => console.log('Segment selected', e.detail.value)}>
             <IonSegmentButton value="unread">
-              <IonLabel>{t("notice.unRead")}</IonLabel>
+              <IonLabel>{t("notice.unread")}</IonLabel>
             </IonSegmentButton>
             <IonSegmentButton value="read">
-              <IonLabel>{t("notice.read")}</IonLabel>
+              <IonLabel>{t("notice.archive")}</IonLabel>
             </IonSegmentButton>
           </IonSegment>
         </IonToolbar>
@@ -39,7 +39,7 @@ const Notice: React.FC = () => {
               </IonLabel>
             </IonItem>
             <IonItemOptions side="end">
-              <IonItemOption onClick={() => { }}>{t("notice.read")}</IonItemOption>
+              <IonItemOption onClick={() => { }}>{t("notice.archive")}</IonItemOption>
             </IonItemOptions>
           </IonItemSliding>
           <IonItemSliding>
@@ -53,7 +53,7 @@ const Notice: React.FC = () => {
               </IonLabel>
             </IonItem>
             <IonItemOptions side="end">
-              <IonItemOption onClick={() => { }}>{t("notice.read")}</IonItemOption>
+              <IonItemOption onClick={() => { }}>{t("notice.archive")}</IonItemOption>
             </IonItemOptions>
           </IonItemSliding>
         </IonList>

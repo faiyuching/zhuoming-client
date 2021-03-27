@@ -13,7 +13,7 @@ interface _Props {
   onCancel: Function
 }
 
-const MyPicker: React.FC<_Props> = ({ onSave, onCancel, isOpen }) => {
+const LibraryPicker: React.FC<_Props> = ({ onSave, onCancel, isOpen }) => {
   const { t } = useTranslation();
   const DayColumn = {
     name: "Day",
@@ -67,4 +67,4 @@ const MyPicker: React.FC<_Props> = ({ onSave, onCancel, isOpen }) => {
   );
 };
 
-export default MyPicker;
+export default LibraryPicker;

@@ -9,7 +9,7 @@ import { addOutline } from 'ionicons/icons';
 import { useTranslation } from "react-i18next";
 import { useLocation } from 'react-router';
 import queryString from 'querystring'
-import MyPicker from "../components/library/MyPicker";
+import LibraryPicker from "../components/library/LibraryPicker";
 
 export interface ISessionTime {
   weekday: string;
@@ -26,7 +26,7 @@ const Library: React.FC = () => {
     undefined
   );
   return (
-    <IonPage id="library">
+    <IonPage>
       <IonHeader>
         <IonToolbar>
           <IonTitle>{sort ? t(`library.${sort}`) : t("library.library")}</IonTitle>
@@ -54,7 +54,7 @@ const Library: React.FC = () => {
         </IonToolbar>
       </IonHeader>
       <IonContent fullscreen>
-        <MyPicker
+        <LibraryPicker
           isOpen={pickerIsOpen}
           onCancel={() => {
             setPickerIsOpen(false);
