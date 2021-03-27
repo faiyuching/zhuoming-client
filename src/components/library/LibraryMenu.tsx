@@ -70,7 +70,7 @@ const LibraryMenu: React.FC = () => {
       <IonContent>
         <IonList id="inbox-list">
           <IonListHeader>{t("library.sort")}</IonListHeader>
-          <IonNote>slogan</IonNote>
+          <IonNote></IonNote>
           <IonItemDivider>{t("library.disaster")}</IonItemDivider>
           {libraryPages.map((page, index) => {
             return (
