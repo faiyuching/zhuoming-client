@@ -3,7 +3,8 @@ import {
   IonContent, IonHeader, IonMenuButton, IonIcon,
   IonPage, IonTitle, IonToolbar, IonSplitPane,
   IonButton, IonButtons, IonItem, IonLabel,
-  IonInput
+  IonInput,
+  IonTextarea
 } from '@ionic/react';
 import { addOutline } from 'ionicons/icons';
 import ResponseMenu from '../../components/response/ResponseMenu';
@@ -21,11 +22,6 @@ const ResponseAbout: React.FC = () => {
               <IonMenuButton />
             </IonButtons>
             <IonTitle>{t("response.response")}</IonTitle>
-            <IonButtons slot="start">
-              <IonButton>
-                <IonIcon icon={addOutline} />
-              </IonButton>
-            </IonButtons>
           </IonToolbar>
           <IonToolbar>
             <IonTitle size="large">{t("response.about")}</IonTitle>
@@ -69,7 +65,7 @@ const ResponseAbout: React.FC = () => {
           </IonItem>
           <IonItem>
             <IonLabel position="stacked">{t("response.statement")}</IonLabel>
-            <IonInput value={"text"}> </IonInput>
+            <IonTextarea autoGrow value={"text"}> </IonTextarea>
           </IonItem>
         </IonContent>
       </IonPage>
