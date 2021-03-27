@@ -1,14 +1,16 @@
 import React from 'react';
 import {
-  IonContent, IonHeader, IonMenuButton, IonIcon, IonItemOptions,
-  IonPage, IonTitle, IonToolbar, IonSplitPane, IonItemGroup, IonItemOption,
-  IonButton, IonButtons, IonItem, IonLabel, IonItemSliding,
+  IonContent, IonHeader, IonMenuButton,
+  IonPage, IonTitle, IonToolbar, IonSplitPane, IonIcon,
+  IonButtons, IonItem, IonLabel, IonItemGroup,
+  IonSegment, IonSegmentButton, IonItemOption,
+  IonItemOptions, IonItemSliding
 } from '@ionic/react';
-import { trashOutline, pencilOutline } from 'ionicons/icons';
+import { trashOutline } from 'ionicons/icons';
 import ResponseMenu from '../../components/response/ResponseMenu';
 import { useTranslation } from "react-i18next";
 
-const ResponseGroup: React.FC = () => {
+const ResponseTimeline: React.FC = () => {
   const { t } = useTranslation();
   return (
     <IonSplitPane contentId="response">
@@ -22,9 +24,16 @@ const ResponseGroup: React.FC = () => {
             <IonTitle>{t("response.response")}</IonTitle>
           </IonToolbar>
           <IonToolbar>
-            <IonTitle size="large">{t("response.group")}</IonTitle>
+            <IonTitle size="large">{t("response.timeline")}</IonTitle>
             <IonButtons slot="end">
-              <IonButton>添加</IonButton>
+              <IonSegment value="unfinished" onIonChange={e => console.log('Segment selected', e.detail.value)}>
+                <IonSegmentButton value="unfinished">
+                  <IonLabel>{t("response.response")}</IonLabel>
+                </IonSegmentButton>
+                <IonSegmentButton value="finished">
+                  <IonLabel>{t("response.disaster")}</IonLabel>
+                </IonSegmentButton>
+              </IonSegment>
             </IonButtons>
           </IonToolbar>
         </IonHeader>
@@ -32,8 +41,8 @@ const ResponseGroup: React.FC = () => {
           <IonItemGroup>
             <IonItemSliding>
               <IonItem button lines="full">
-                <IonLabel className="ion-text-wrap">
-                  <h2>信息组</h2>
+                <IonLabel>
+                  <h2>事件名称｜事件时间</h2>
                   <p>Multiline text that should wrap when it is too long
                   to fit on one line in the item...</p>
                 </IonLabel>
@@ -41,16 +50,13 @@ const ResponseGroup: React.FC = () => {
               <IonItemOptions side="end">
                 <IonItemOption color="danger">
                   <IonIcon slot="icon-only" icon={trashOutline} />
-                </IonItemOption>
-                <IonItemOption>
-                  <IonIcon slot="icon-only" icon={pencilOutline} />
                 </IonItemOption>
               </IonItemOptions>
             </IonItemSliding>
             <IonItemSliding>
               <IonItem button lines="full">
-                <IonLabel className="ion-text-wrap">
-                  <h2>行动组</h2>
+                <IonLabel>
+                  <h2>事件名称｜事件时间</h2>
                   <p>Multiline text that should wrap when it is too long
                   to fit on one line in the item...</p>
                 </IonLabel>
@@ -58,26 +64,6 @@ const ResponseGroup: React.FC = () => {
               <IonItemOptions side="end">
                 <IonItemOption color="danger">
                   <IonIcon slot="icon-only" icon={trashOutline} />
-                </IonItemOption>
-                <IonItemOption>
-                  <IonIcon slot="icon-only" icon={pencilOutline} />
-                </IonItemOption>
-              </IonItemOptions>
-            </IonItemSliding>
-            <IonItemSliding>
-              <IonItem button lines="full">
-                <IonLabel className="ion-text-wrap">
-                  <h2>产品组</h2>
-                  <p>Multiline text that should wrap when it is too long
-                  to fit on one line in the item...</p>
-                </IonLabel>
-              </IonItem>
-              <IonItemOptions side="end">
-                <IonItemOption color="danger">
-                  <IonIcon slot="icon-only" icon={trashOutline} />
-                </IonItemOption>
-                <IonItemOption>
-                  <IonIcon slot="icon-only" icon={pencilOutline} />
                 </IonItemOption>
               </IonItemOptions>
             </IonItemSliding>
@@ -88,4 +74,4 @@ const ResponseGroup: React.FC = () => {
   );
 };
 
-export default ResponseGroup;
+export default ResponseTimeline;

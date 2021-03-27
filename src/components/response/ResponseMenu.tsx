@@ -37,8 +37,8 @@ const ResponseMenu: React.FC = () => {
       mdIcon: documentTextSharp
     },
     {
-      title: t("response.group"),
-      url: '/response/group',
+      title: t("response.member"),
+      url: '/response/member',
       iosIcon: peopleOutline,
       mdIcon: peopleSharp
     },

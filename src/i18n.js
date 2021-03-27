@@ -8,8 +8,9 @@ const resources = {
         translation: {
             response: {
                 response: "Response",
+                disaster: "Disaster",
                 about: "About",
-                group: "Group",
+                member: "Member",
                 timeline: "Timeline",
                 resources: "Resources",
                 discussion: "Discussion",
@@ -19,6 +20,7 @@ const resources = {
                 tasks: "Tasks",
                 unFinished: "UnFinished",
                 finished: "Finished",
+                add_group: "Add Group",
                 edit: "Edit",
                 delete: "Delete",
                 response_name: "Response Name:",
@@ -76,8 +78,9 @@ const resources = {
         translation: {
             response: {
                 response: "响应",
+                disaster: "灾害",
                 about: "基本信息",
-                group: "组别",
+                member: "成员",
                 timeline: "时间线",
                 resources: "资源",
                 discussion: "讨论",
@@ -87,6 +90,7 @@ const resources = {
                 tasks: "任务",
                 unFinished: "未完成",
                 finished: "已完成",
+                add_group: "添加分组",
                 edit: "编辑",
                 delete: "删除",
                 response_name: "响应名称：",

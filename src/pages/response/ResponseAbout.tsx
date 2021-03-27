@@ -123,7 +123,7 @@ const ResponseAbout: React.FC = () => {
               <IonItem lines="full">
                 <IonLabel className="ion-text-wrap">
                   <h2>{t("response.need_people")}</h2>
-                  <p>text</p>
+                  <p>text（现有人数）</p>
                 </IonLabel>
               </IonItem>
               <IonItemOptions side="end">
