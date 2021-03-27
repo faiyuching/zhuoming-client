@@ -48,8 +48,8 @@ const Library: React.FC = () => {
             )}
           </IonItem>
           <IonButtons slot="end">
-            <IonButton onClick={() => { setPickerIsOpen(true); }}>筛选</IonButton>
-            <IonButton onClick={() => { setSessionTime(undefined); }}>清空</IonButton>
+            <IonButton onClick={() => { setPickerIsOpen(true); }}>{t("library.filter")}</IonButton>
+            <IonButton onClick={() => { setSessionTime(undefined); }}>{t("library.clear")}</IonButton>
           </IonButtons>
         </IonToolbar>
       </IonHeader>

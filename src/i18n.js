@@ -59,7 +59,9 @@ const resources = {
         excel: "Excel",
         ppt: "PPT",
         cancel: "Cancel",
-        confirm: "confirm"
+        confirm: "confirm",
+        filter: "Filter",
+        clear: "Clear"
       },
       notice: {
         notice: "Notice",
@@ -138,7 +140,9 @@ const resources = {
         excel: "Excel",
         ppt: "PPT",
         cancel: "取消",
-        confirm: "确定"
+        confirm: "确定",
+        filter: "筛选",
+        clear: "清空"
       },
       notice: {
         notice: "通知",
