@@ -1,7 +1,7 @@
 import React from 'react';
 import { Redirect, Route } from 'react-router-dom';
 import {
-  IonApp, IonIcon, IonRouterOutlet, IonTabBar, IonTabButton, IonTabs
+  IonApp, IonIcon, IonLabel, IonRouterOutlet, IonTabBar, IonTabButton, IonTabs
 } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
 import {
@@ -53,19 +53,24 @@ const App: React.FC = () => (
         </IonRouterOutlet>
         <IonTabBar slot="bottom">
           <IonTabButton tab="response" href="/response">
-            <IonIcon icon={volumeHighOutline} />
+            <IonIcon icon={volumeHighOutline} size="small" />
+            <IonLabel>响应</IonLabel>
           </IonTabButton>
           <IonTabButton tab="library" href="/library">
-            <IonIcon icon={libraryOutline} />
+            <IonIcon icon={libraryOutline} size="small" />
+            <IonLabel>资料库</IonLabel>
           </IonTabButton>
           <IonTabButton tab="notice" href="/notice">
-            <IonIcon icon={notificationsOutline} />
+            <IonIcon icon={notificationsOutline} size="small" />
+            <IonLabel>通知</IonLabel>
           </IonTabButton>
           <IonTabButton tab="forum" href="/forum">
-            <IonIcon icon={chatbubblesOutline} />
+            <IonIcon icon={chatbubblesOutline} size="small" />
+            <IonLabel>论坛</IonLabel>
           </IonTabButton>
           <IonTabButton tab="user" href="/user">
-            <IonIcon icon={personOutline} />
+            <IonIcon icon={personOutline} size="small" />
+            <IonLabel>我的</IonLabel>
           </IonTabButton>
         </IonTabBar>
       </IonTabs>
