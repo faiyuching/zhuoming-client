@@ -96,7 +96,7 @@ const ResponseMenu: React.FC = () => {
           ))}
           <IonItem lines="none">
             <IonButtons slot="start">
-              <IonButton>{t("response.more")}<IonIcon icon={arrowForwardOutline} size="small" color="primary"/></IonButton>
+              <IonButton>{t("response.more")}<IonIcon icon={arrowForwardOutline} size="small" /></IonButton>
             </IonButtons>
           </IonItem>
           <IonToolbar>

@@ -23,12 +23,12 @@ const resources = {
             library: {
                 library: "Library",
                 sort: "Sort",
-                geological: "geological",
-                hydrological: "hydrological",
-                meteorological: "meteorological",
-                wildfires: "wildfires",
-                epidemic: "epidemic",
-                others: "others",
+                geological: "Geological Disasters",
+                hydrological: "Hydrological Disasters",
+                meteorological: "Meteorological Disasters",
+                wildfires: "Wildfires",
+                epidemic: "Epidemic",
+                others: "Other Disasters",
                 history: "History",
                 more: "More",
                 recent: "Recent",
@@ -54,7 +54,7 @@ const resources = {
                 follow: "Follow",
                 bookmarks: "Bookmarks",
                 settings: "Settings",
-                tasks: "Tasks",
+                tasks: "My Tasks",
                 unFinished: "UnFinished",
                 finished: "Finished",
                 language: "Language"
@@ -65,7 +65,7 @@ const resources = {
         translation: {
             response: {
                 response: "响应",
-                about: "关于",
+                about: "基本信息",
                 groups: "组别",
                 timeline: "时间线",
                 resources: "资源",
