@@ -9,7 +9,7 @@ const resources = {
             response: {
                 response: "Response",
                 about: "About",
-                groups: "Groups",
+                group: "Group",
                 timeline: "Timeline",
                 resources: "Resources",
                 discussion: "Discussion",
@@ -66,7 +66,7 @@ const resources = {
             response: {
                 response: "响应",
                 about: "基本信息",
-                groups: "组别",
+                group: "组别",
                 timeline: "时间线",
                 resources: "资源",
                 discussion: "讨论",

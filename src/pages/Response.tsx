@@ -1,9 +1,9 @@
 import React from 'react';
 import {
-  IonContent, IonHeader, IonMenuButton, IonIcon,
-  IonPage, IonTitle, IonToolbar, IonSplitPane,
-  IonButton, IonButtons, IonSegment, IonSegmentButton,
-  IonLabel, IonCard, IonCardHeader, IonCardSubtitle, IonCardTitle, IonCardContent
+  IonContent, IonHeader, IonMenuButton, IonIcon, IonPage,
+  IonTitle, IonToolbar, IonSplitPane, IonButton, IonButtons,
+  IonSegment, IonSegmentButton, IonLabel, IonCard, IonCardHeader,
+  IonCardSubtitle, IonCardTitle, IonCardContent
 } from '@ionic/react';
 import { addOutline } from 'ionicons/icons';
 import ResponseMenu from '../components/response/ResponseMenu';

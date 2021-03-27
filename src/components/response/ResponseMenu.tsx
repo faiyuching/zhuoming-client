@@ -32,37 +32,37 @@ const ResponseMenu: React.FC = () => {
   const responsePages: page[] = [
     {
       title: t("response.about"),
-      url: '/response/:id/about',
+      url: '/response/about',
       iosIcon: documentTextOutline,
       mdIcon: documentTextSharp
     },
     {
-      title: t("response.groups"),
-      url: '/response/:id/groups',
+      title: t("response.group"),
+      url: '/response/group',
       iosIcon: peopleOutline,
       mdIcon: peopleSharp
     },
     {
       title: t("response.timeline"),
-      url: '/response/:id/timeline',
+      url: '/response/timeline',
       iosIcon: timeOutline,
       mdIcon: timeSharp
     },
     {
       title: t("response.resources"),
-      url: '/response/:id/resources',
+      url: '/response/resources',
       iosIcon: libraryOutline,
       mdIcon: librarySharp
     },
     {
       title: t("response.discussion"),
-      url: '/response/:id/discussion',
+      url: '/response/discussion',
       iosIcon: chatbubblesOutline,
       mdIcon: chatbubblesSharp
     },
     {
       title: t("response.settings"),
-      url: '/response/:id/settings',
+      url: '/response/settings',
       iosIcon: settingsOutline,
       mdIcon: settingsSharp
     }
