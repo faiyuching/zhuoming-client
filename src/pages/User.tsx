@@ -3,9 +3,9 @@ import {
   IonContent, IonHeader, IonPage, IonTitle,
   IonToolbar, IonButtons, IonButton,
   IonSegment, IonSegmentButton, IonLabel,
-  IonMenuButton, IonCard, IonCardHeader,
-  IonCardSubtitle, IonCardTitle, IonCardContent,
-  IonItem, IonAvatar, IonImg, IonText
+  IonCard, IonCardHeader, IonCardSubtitle,
+  IonCardTitle, IonCardContent, IonItem, IonAvatar,
+  IonImg, IonText, IonThumbnail
 } from '@ionic/react';
 import { useTranslation } from "react-i18next";
 
@@ -15,11 +15,6 @@ const User: React.FC = () => {
     <IonPage>
       <IonHeader>
         <IonToolbar>
-          <IonButtons slot="start">
-            <IonButton>
-              <IonMenuButton />
-            </IonButton>
-          </IonButtons>
           <IonTitle>{t("user.user")}</IonTitle>
           <IonButtons slot="end">
             <IonButton>更多</IonButton>
@@ -27,11 +22,11 @@ const User: React.FC = () => {
         </IonToolbar>
         <IonToolbar>
           <IonItem lines="none">
-            <IonAvatar slot="start">
-              <IonImg src="/assets/avatar.png" />
-            </IonAvatar>
+            <IonThumbnail slot="start">
+              <IonImg style={{ borderRadius: "50%" }} src="/assets/avatar.png" />
+            </IonThumbnail>
             <IonLabel>
-              <h1>Faiyuching</h1>
+              <h1><strong>Faiyuching</strong></h1>
               <p>@faiyuching</p>
             </IonLabel>
           </IonItem>
