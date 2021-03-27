@@ -61,7 +61,8 @@ const resources = {
         cancel: "Cancel",
         confirm: "confirm",
         filter: "Filter",
-        clear: "Clear"
+        clear: "Clear",
+        search: "Search"
       },
       notice: {
         notice: "Notice",
@@ -142,7 +143,8 @@ const resources = {
         cancel: "取消",
         confirm: "确定",
         filter: "筛选",
-        clear: "清空"
+        clear: "清空",
+        search: "搜索"
       },
       notice: {
         notice: "通知",

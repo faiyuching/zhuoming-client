@@ -37,7 +37,7 @@ const Library: React.FC = () => {
           </IonButtons>
         </IonToolbar>
         <IonToolbar>
-          <IonSearchbar value={searchText} onIonChange={e => setSearchText(e.detail.value!)}></IonSearchbar>
+          <IonSearchbar placeholder={t("library.search")} value={searchText} onIonChange={e => setSearchText(e.detail.value!)}></IonSearchbar>
         </IonToolbar>
         <IonToolbar>
           <IonItem onClick={() => { setPickerIsOpen(true); }} lines="none">
