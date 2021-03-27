@@ -13,9 +13,8 @@ const ResponseHistory: React.FC = () => {
   return (
     <IonPage>
       <IonHeader>
-        <IonToolbar></IonToolbar>
         <IonToolbar>
-          <IonTitle size="large">{t("response.history")}</IonTitle>
+          <IonTitle>{t("response.history")}</IonTitle>
           <IonButtons slot="end">
             <IonButton>
               <IonIcon icon={addOutline} />

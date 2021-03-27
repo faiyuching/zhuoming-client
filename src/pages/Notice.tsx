@@ -31,11 +31,11 @@ const Notice: React.FC = () => {
           <IonItemSliding>
             <IonItem>
               <IonAvatar slot="start">
-                <IonImg src="https://ionicframework.com/docs/demos/api/list/avatar-leia.png" />
+                <IonImg src="/assets/notice.png" />
               </IonAvatar>
               <IonLabel>
-                <h2>Finn</h2>
-                <p>asjdhaskjdhasd...</p>
+                <h2>系统通知</h2>
+                <p>卓明开源社长期招募开发者，设计师，新媒体编辑，新媒体运营...</p>
               </IonLabel>
             </IonItem>
             <IonItemOptions side="end">
@@ -45,11 +45,39 @@ const Notice: React.FC = () => {
           <IonItemSliding>
             <IonItem>
               <IonAvatar slot="start">
-                <IonImg src="https://ionicframework.com/docs/demos/api/list/avatar-leia.png" />
+                <IonImg src="/assets/task.png" />
               </IonAvatar>
               <IonLabel>
-                <h2>Finn</h2>
-                <p>Listen, I've had a pretty messed up day...</p>
+                <h2>任务通知</h2>
+                <p>卓明开源社长期招募开发者，设计师，新媒体编辑，新媒体运营...</p>
+              </IonLabel>
+            </IonItem>
+            <IonItemOptions side="end">
+              <IonItemOption onClick={() => { }}>{t("notice.archive")}</IonItemOption>
+            </IonItemOptions>
+          </IonItemSliding>
+          <IonItemSliding>
+            <IonItem>
+              <IonAvatar slot="start">
+                <IonImg src="/assets/group.png" />
+              </IonAvatar>
+              <IonLabel>
+                <h2>小组通知</h2>
+                <p>卓明开源社长期招募开发者，设计师，新媒体编辑，新媒体运营...</p>
+              </IonLabel>
+            </IonItem>
+            <IonItemOptions side="end">
+              <IonItemOption onClick={() => { }}>{t("notice.archive")}</IonItemOption>
+            </IonItemOptions>
+          </IonItemSliding>
+          <IonItemSliding>
+            <IonItem>
+              <IonAvatar slot="start">
+                <IonImg src="/assets/avatar.png" />
+              </IonAvatar>
+              <IonLabel>
+                <h2>Faiyuching</h2>
+                <p>卓明开源社长期招募开发者，设计师，新媒体编辑，新媒体运营...</p>
               </IonLabel>
             </IonItem>
             <IonItemOptions side="end">

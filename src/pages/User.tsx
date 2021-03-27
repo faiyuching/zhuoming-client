@@ -4,7 +4,7 @@ import {
   IonToolbar, IonButtons, IonButton,
   IonSegment, IonSegmentButton, IonLabel,
   IonCard, IonCardHeader, IonCardSubtitle,
-  IonCardTitle, IonCardContent, IonItem, IonAvatar,
+  IonCardTitle, IonCardContent, IonItem,
   IonImg, IonText, IonThumbnail
 } from '@ionic/react';
 import { useTranslation } from "react-i18next";
