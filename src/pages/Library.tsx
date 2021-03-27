@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   IonContent, IonHeader, IonPage, IonTitle, IonToolbar,
   IonButtons, IonButton, IonIcon, IonCard, IonCardHeader,
   IonCardSubtitle, IonCardTitle, IonCardContent, IonImg,
-  IonSplitPane, IonMenuButton, IonItem, IonGrid, IonRow, IonCol,
+  IonSplitPane, IonMenuButton, IonItem, IonGrid, IonRow, IonCol, IonSearchbar,
 } from '@ionic/react';
 import { addOutline, arrowForwardOutline } from 'ionicons/icons';
 import LibraryMenu from '../components/library/LibraryMenu';
@@ -11,6 +11,7 @@ import { useTranslation } from "react-i18next";
 
 const Library: React.FC = () => {
   const { t } = useTranslation();
+  const [searchText, setSearchText] = useState('');
   return (
     <IonSplitPane contentId="library">
       <LibraryMenu />
@@ -30,7 +31,7 @@ const Library: React.FC = () => {
             </IonButtons>
           </IonToolbar>
           <IonToolbar>
-            <IonTitle size="large">{t("library.recent")}</IonTitle>
+            <IonSearchbar value={searchText} onIonChange={e => setSearchText(e.detail.value!)}></IonSearchbar>
           </IonToolbar>
         </IonHeader>
         <IonContent fullscreen>
