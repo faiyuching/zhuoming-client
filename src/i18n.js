@@ -36,7 +36,8 @@ const resources = {
                 videos: "Videos",
                 audio: "Audio",
                 articles: "Articles",
-                books: "Books"
+                books: "Books",
+                disaster: "Disaster"
             },
             notice: {
                 notice: "Notice",
@@ -92,7 +93,8 @@ const resources = {
                 videos: "视频",
                 audio: "音频",
                 articles: "文章",
-                books: "书籍"
+                books: "书籍",
+                disaster: "灾害"
             },
             notice: {
                 notice: "通知",

@@ -1,5 +1,5 @@
 import {
-  IonContent, IonIcon, IonItem, IonLabel,
+  IonContent, IonIcon, IonItem, IonItemDivider, IonLabel,
   IonList, IonListHeader, IonMenu, IonMenuToggle, IonNote,
 } from '@ionic/react';
 
@@ -71,6 +71,7 @@ const LibraryMenu: React.FC = () => {
         <IonList id="inbox-list">
           <IonListHeader>{t("library.sort")}</IonListHeader>
           <IonNote>slogan</IonNote>
+          <IonItemDivider>{t("library.disaster")}</IonItemDivider>
           {libraryPages.map((page, index) => {
             return (
               <IonMenuToggle key={index} autoHide={false}>
