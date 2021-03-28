@@ -29,6 +29,9 @@ const TaskPage: React.FC = () => {
           </IonToolbar>
           <IonToolbar>
             <IonTitle size="large">{t("response.task_detail")}</IonTitle>
+            <IonButtons slot="end">
+              <IonButton>{t("response.receive")}</IonButton>
+            </IonButtons>
           </IonToolbar>
         </IonHeader>
         <IonContent fullscreen>

@@ -53,7 +53,8 @@ const resources = {
         task_talk: "Talk",
         task_recipient: "Recipients",
         task_submit: "Task Submit",
-        apply_list: "Apply List"
+        apply_list: "Apply List",
+        receive: "Receive"
       },
       library: {
         library: "Library",
@@ -172,7 +173,8 @@ const resources = {
         task_talk: "讨论",
         task_recipient: "领取人",
         task_submit: "提交页面",
-        apply_list: "报名列表"
+        apply_list: "报名列表",
+        receive: "领取"
       },
       library: {
         library: "资料库",
