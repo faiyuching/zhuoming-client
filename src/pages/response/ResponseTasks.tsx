@@ -32,8 +32,10 @@ const ResponseTasks: React.FC = () => {
             </IonButtons>
             <IonTitle>{t("response.response")}</IonTitle>
             <IonButtons slot="end">
-              <IonIcon icon={addOutline} />
-              {/* <IonButton>{t("response.create_task")}</IonButton> */}
+              <IonButton>
+                <IonIcon icon={addOutline} />
+                {/* {t("response.create_task")} */}
+              </IonButton>
             </IonButtons>
           </IonToolbar>
           <IonToolbar>
