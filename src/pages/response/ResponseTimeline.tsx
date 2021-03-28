@@ -6,7 +6,7 @@ import {
   IonSegment, IonSegmentButton, IonItemOption,
   IonItemOptions, IonItemSliding, IonButton
 } from '@ionic/react';
-import { addOutline, trashOutline, pencilOutline } from 'ionicons/icons';
+import { addOutline } from 'ionicons/icons';
 import ResponseMenu from '../../components/response/ResponseMenu';
 import { useTranslation } from "react-i18next";
 
@@ -53,12 +53,8 @@ const ResponseTimeline: React.FC = () => {
                 </IonLabel>
               </IonItem>
               <IonItemOptions side="end">
-                <IonItemOption color="danger">
-                  <IonIcon slot="icon-only" icon={trashOutline} />
-                </IonItemOption>
-                <IonItemOption>
-                  <IonIcon slot="icon-only" icon={pencilOutline} />
-                </IonItemOption>
+                <IonItemOption color="danger">删除</IonItemOption>
+                <IonItemOption>编辑</IonItemOption>
               </IonItemOptions>
             </IonItemSliding>
             <IonItemSliding>
@@ -70,12 +66,8 @@ const ResponseTimeline: React.FC = () => {
                 </IonLabel>
               </IonItem>
               <IonItemOptions side="end">
-                <IonItemOption color="danger">
-                  <IonIcon slot="icon-only" icon={trashOutline} />
-                </IonItemOption>
-                <IonItemOption>
-                  <IonIcon slot="icon-only" icon={pencilOutline} />
-                </IonItemOption>
+                <IonItemOption color="danger">删除</IonItemOption>
+                <IonItemOption>编辑</IonItemOption>
               </IonItemOptions>
             </IonItemSliding>
           </IonItemGroup>

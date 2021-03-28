@@ -1,9 +1,8 @@
 import React from 'react';
 import {
-  IonIcon, IonItem, IonLabel, IonItemGroup,
+  IonItem, IonLabel, IonItemGroup,
   IonItemSliding, IonItemOptions, IonItemOption,
 } from '@ionic/react';
-import { pencilOutline } from 'ionicons/icons';
 import { useTranslation } from "react-i18next";
 
 const ResponseBaseInfo: React.FC = () => {
@@ -19,7 +18,7 @@ const ResponseBaseInfo: React.FC = () => {
         </IonItem>
         <IonItemOptions side="end">
           <IonItemOption>
-            <IonIcon slot="icon-only" icon={pencilOutline} />
+            编辑
           </IonItemOption>
         </IonItemOptions>
       </IonItemSliding>
@@ -31,9 +30,7 @@ const ResponseBaseInfo: React.FC = () => {
           </IonLabel>
         </IonItem>
         <IonItemOptions side="end">
-          <IonItemOption>
-            <IonIcon slot="icon-only" icon={pencilOutline} />
-          </IonItemOption>
+          <IonItemOption>编辑</IonItemOption>
         </IonItemOptions>
       </IonItemSliding>
       <IonItemSliding>
@@ -44,9 +41,7 @@ const ResponseBaseInfo: React.FC = () => {
           </IonLabel>
         </IonItem>
         <IonItemOptions side="end">
-          <IonItemOption>
-            <IonIcon slot="icon-only" icon={pencilOutline} />
-          </IonItemOption>
+          <IonItemOption>编辑</IonItemOption>
         </IonItemOptions>
       </IonItemSliding>
       <IonItemSliding>
@@ -57,9 +52,7 @@ const ResponseBaseInfo: React.FC = () => {
           </IonLabel>
         </IonItem>
         <IonItemOptions side="end">
-          <IonItemOption>
-            <IonIcon slot="icon-only" icon={pencilOutline} />
-          </IonItemOption>
+          <IonItemOption>编辑</IonItemOption>
         </IonItemOptions>
       </IonItemSliding>
       <IonItemSliding>
@@ -70,9 +63,7 @@ const ResponseBaseInfo: React.FC = () => {
           </IonLabel>
         </IonItem>
         <IonItemOptions side="end">
-          <IonItemOption>
-            <IonIcon slot="icon-only" icon={pencilOutline} />
-          </IonItemOption>
+          <IonItemOption>编辑</IonItemOption>
         </IonItemOptions>
       </IonItemSliding>
       <IonItemSliding>
@@ -83,9 +74,7 @@ const ResponseBaseInfo: React.FC = () => {
           </IonLabel>
         </IonItem>
         <IonItemOptions side="end">
-          <IonItemOption>
-            <IonIcon slot="icon-only" icon={pencilOutline} />
-          </IonItemOption>
+          <IonItemOption>编辑</IonItemOption>
         </IonItemOptions>
       </IonItemSliding>
       <IonItemSliding>
@@ -96,9 +85,7 @@ const ResponseBaseInfo: React.FC = () => {
           </IonLabel>
         </IonItem>
         <IonItemOptions side="end">
-          <IonItemOption>
-            <IonIcon slot="icon-only" icon={pencilOutline} />
-          </IonItemOption>
+          <IonItemOption>编辑</IonItemOption>
         </IonItemOptions>
       </IonItemSliding>
       <IonItemSliding>
@@ -109,9 +96,7 @@ const ResponseBaseInfo: React.FC = () => {
           </IonLabel>
         </IonItem>
         <IonItemOptions side="end">
-          <IonItemOption>
-            <IonIcon slot="icon-only" icon={pencilOutline} />
-          </IonItemOption>
+          <IonItemOption>编辑</IonItemOption>
         </IonItemOptions>
       </IonItemSliding>
       <IonItemSliding>
@@ -123,9 +108,7 @@ const ResponseBaseInfo: React.FC = () => {
           </IonLabel>
         </IonItem>
         <IonItemOptions side="end">
-          <IonItemOption>
-            <IonIcon slot="icon-only" icon={pencilOutline} />
-          </IonItemOption>
+          <IonItemOption>编辑</IonItemOption>
         </IonItemOptions>
       </IonItemSliding>
     </IonItemGroup>

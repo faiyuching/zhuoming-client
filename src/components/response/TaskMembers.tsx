@@ -1,34 +1,64 @@
 import React from 'react';
 import {
-  IonIcon, IonItemOptions, IonItemOption,
-  IonItem, IonLabel, IonItemSliding, IonAvatar, IonImg
+  IonItemOptions, IonItemOption, IonItem, IonLabel,
+  IonItemSliding, IonAvatar, IonImg, IonItemGroup
 } from '@ionic/react';
-import { trashOutline, pencilOutline } from 'ionicons/icons';
 import { useTranslation } from "react-i18next";
 
 const TaskMembers: React.FC = () => {
   const { t } = useTranslation();
 
   return (
-    <IonItemSliding>
-      <IonItem button routerLink={'/user'}>
-        <IonAvatar slot="start">
-          <IonImg src="/assets/avatar.png" />
-        </IonAvatar>
-        <IonLabel>
-          <h2>Faiyuching</h2>
-          <p>正在进行中的任务：x个</p>
-        </IonLabel>
-      </IonItem>
-      <IonItemOptions side="end">
-        <IonItemOption color="danger">
-          <IonIcon slot="icon-only" icon={trashOutline} />
-        </IonItemOption>
-        <IonItemOption>
-          <IonIcon slot="icon-only" icon={pencilOutline} />
-        </IonItemOption>
-      </IonItemOptions>
-    </IonItemSliding>
+    <IonItemGroup>
+      <IonItemSliding>
+        <IonItem button routerLink={'/user'}>
+          <IonAvatar slot="start">
+            <IonImg src="/assets/avatar.png" />
+          </IonAvatar>
+          <IonLabel>
+            <h2>Faiyuching</h2>
+            <p>状态：已提交</p>
+          </IonLabel>
+        </IonItem>
+        <IonItemOptions side="end">
+          <IonItemOptions side="end">
+            <IonItemOption color="danger">移出</IonItemOption>
+          </IonItemOptions>
+        </IonItemOptions>
+      </IonItemSliding>
+      <IonItemSliding>
+        <IonItem button routerLink={'/user'}>
+          <IonAvatar slot="start">
+            <IonImg src="/assets/avatar.png" />
+          </IonAvatar>
+          <IonLabel>
+            <h2>Faiyuching</h2>
+            <p>状态：进行中</p>
+          </IonLabel>
+        </IonItem>
+        <IonItemOptions side="end">
+          <IonItemOptions side="end">
+            <IonItemOption color="danger">移出</IonItemOption>
+          </IonItemOptions>
+        </IonItemOptions>
+      </IonItemSliding>
+      <IonItemSliding>
+        <IonItem button routerLink={'/user'}>
+          <IonAvatar slot="start">
+            <IonImg src="/assets/avatar.png" />
+          </IonAvatar>
+          <IonLabel>
+            <h2>Faiyuching</h2>
+            <p>状态：待审核</p>
+          </IonLabel>
+        </IonItem>
+        <IonItemOptions side="end">
+          <IonItemOption color="danger">拒绝</IonItemOption>
+          <IonItemOption color="primary">同意</IonItemOption>
+        </IonItemOptions>
+      </IonItemSliding>
+    </IonItemGroup>
+
   );
 };
 

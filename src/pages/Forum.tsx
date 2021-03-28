@@ -55,31 +55,31 @@ const Forum: React.FC = () => {
         </IonGrid>
         <IonCard>
           <IonCardHeader>
-            <IonCardSubtitle>topic</IonCardSubtitle>
-            <IonCardTitle>Title</IonCardTitle>
+            <IonCardSubtitle>标签</IonCardSubtitle>
+            <IonCardTitle>标题</IonCardTitle>
           </IonCardHeader>
-          <IonCardContent>Content</IonCardContent>
+          <IonCardContent>内容</IonCardContent>
         </IonCard>
         <IonCard>
           <IonCardHeader>
-            <IonCardSubtitle>topic</IonCardSubtitle>
-            <IonCardTitle>Title</IonCardTitle>
+            <IonCardSubtitle>标签</IonCardSubtitle>
+            <IonCardTitle>标题</IonCardTitle>
           </IonCardHeader>
-          <IonCardContent>Content</IonCardContent>
+          <IonCardContent>内容</IonCardContent>
         </IonCard>
         <IonCard>
           <IonCardHeader>
-            <IonCardSubtitle>topic</IonCardSubtitle>
-            <IonCardTitle>Title</IonCardTitle>
+            <IonCardSubtitle>标签</IonCardSubtitle>
+            <IonCardTitle>标题</IonCardTitle>
           </IonCardHeader>
-          <IonCardContent>Content</IonCardContent>
+          <IonCardContent>内容</IonCardContent>
         </IonCard>
         <IonCard>
           <IonCardHeader>
-            <IonCardSubtitle>topic</IonCardSubtitle>
-            <IonCardTitle>Title</IonCardTitle>
+            <IonCardSubtitle>标签</IonCardSubtitle>
+            <IonCardTitle>标题</IonCardTitle>
           </IonCardHeader>
-          <IonCardContent>Content</IonCardContent>
+          <IonCardContent>内容</IonCardContent>
         </IonCard>
       </IonContent>
     </IonPage>

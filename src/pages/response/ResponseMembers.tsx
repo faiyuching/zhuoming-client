@@ -4,7 +4,7 @@ import {
   IonPage, IonTitle, IonToolbar, IonSplitPane, IonItemOption,
   IonButton, IonButtons, IonItem, IonLabel, IonItemSliding, IonAvatar, IonImg
 } from '@ionic/react';
-import { addOutline, trashOutline, pencilOutline } from 'ionicons/icons';
+import { addOutline } from 'ionicons/icons';
 import ResponseMenu from '../../components/response/ResponseMenu';
 import { useTranslation } from "react-i18next";
 import ResponseMembersPicker from "../../components/response/ResponseMembersPicker"
@@ -79,12 +79,7 @@ const ResponseMembers: React.FC = () => {
               </IonLabel>
             </IonItem>
             <IonItemOptions side="end">
-              <IonItemOption color="danger">
-                <IonIcon slot="icon-only" icon={trashOutline} />
-              </IonItemOption>
-              <IonItemOption>
-                <IonIcon slot="icon-only" icon={pencilOutline} />
-              </IonItemOption>
+              <IonItemOption color="danger">移出</IonItemOption>
             </IonItemOptions>
           </IonItemSliding>
         </IonContent>

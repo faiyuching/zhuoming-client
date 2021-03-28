@@ -1,9 +1,8 @@
 import React from 'react';
 import {
-  IonIcon, IonItem, IonLabel, IonItemGroup,
+  IonItem, IonLabel, IonItemGroup,
   IonItemSliding, IonItemOptions, IonItemOption,
 } from '@ionic/react';
-import { trashOutline, pencilOutline } from 'ionicons/icons';
 import { useTranslation } from "react-i18next";
 
 const ResponseGroups: React.FC = () => {
@@ -19,12 +18,8 @@ const ResponseGroups: React.FC = () => {
           </IonLabel>
         </IonItem>
         <IonItemOptions side="end">
-          <IonItemOption color="danger">
-            <IonIcon slot="icon-only" icon={trashOutline} />
-          </IonItemOption>
-          <IonItemOption>
-            <IonIcon slot="icon-only" icon={pencilOutline} />
-          </IonItemOption>
+          <IonItemOption color="danger">删除</IonItemOption>
+          <IonItemOption>编辑</IonItemOption>
         </IonItemOptions>
       </IonItemSliding>
       <IonItemSliding>
@@ -36,12 +31,8 @@ const ResponseGroups: React.FC = () => {
           </IonLabel>
         </IonItem>
         <IonItemOptions side="end">
-          <IonItemOption color="danger">
-            <IonIcon slot="icon-only" icon={trashOutline} />
-          </IonItemOption>
-          <IonItemOption>
-            <IonIcon slot="icon-only" icon={pencilOutline} />
-          </IonItemOption>
+          <IonItemOption color="danger">删除</IonItemOption>
+          <IonItemOption>编辑</IonItemOption>
         </IonItemOptions>
       </IonItemSliding>
       <IonItemSliding>
@@ -53,12 +44,8 @@ const ResponseGroups: React.FC = () => {
           </IonLabel>
         </IonItem>
         <IonItemOptions side="end">
-          <IonItemOption color="danger">
-            <IonIcon slot="icon-only" icon={trashOutline} />
-          </IonItemOption>
-          <IonItemOption>
-            <IonIcon slot="icon-only" icon={pencilOutline} />
-          </IonItemOption>
+          <IonItemOption color="danger">删除</IonItemOption>
+          <IonItemOption>编辑</IonItemOption>
         </IonItemOptions>
       </IonItemSliding>
     </IonItemGroup>

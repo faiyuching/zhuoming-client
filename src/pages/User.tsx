@@ -68,31 +68,31 @@ const User: React.FC = () => {
             </IonSegmentButton>
           </IonSegment>
         </IonItem>
-        <IonCard>
+        <IonCard routerLink={'/response/task/1'}>
           <IonCardHeader>
-            <IonCardSubtitle>Response Name｜Group Name｜Job Name</IonCardSubtitle>
-            <IonCardTitle>Task Name</IonCardTitle>
+            <IonCardSubtitle>组名｜岗位名</IonCardSubtitle>
+            <IonCardTitle>任务标题</IonCardTitle>
           </IonCardHeader>
           <IonCardContent>
-            Task Content
+            任务内容
             </IonCardContent>
         </IonCard>
-        <IonCard>
+        <IonCard routerLink={'/response/task/2'}>
           <IonCardHeader>
-            <IonCardSubtitle>Response Name｜Group Name｜Job Name</IonCardSubtitle>
-            <IonCardTitle>Task Name</IonCardTitle>
+            <IonCardSubtitle>组名｜岗位名</IonCardSubtitle>
+            <IonCardTitle>任务标题</IonCardTitle>
           </IonCardHeader>
           <IonCardContent>
-            Task Content
+            任务内容
             </IonCardContent>
         </IonCard>
-        <IonCard>
+        <IonCard routerLink={'/response/task/3'}>
           <IonCardHeader>
-            <IonCardSubtitle>Group Name｜Job Name</IonCardSubtitle>
-            <IonCardTitle>Task Name</IonCardTitle>
+            <IonCardSubtitle>组名｜岗位名</IonCardSubtitle>
+            <IonCardTitle>任务标题</IonCardTitle>
           </IonCardHeader>
           <IonCardContent>
-            Task Content
+            任务内容
             </IonCardContent>
         </IonCard>
       </IonContent>
