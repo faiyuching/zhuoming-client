@@ -15,6 +15,8 @@ import ResponseMembers from './pages/response/ResponseMembers';
 import ResponseTimeline from './pages/response/ResponseTimeline';
 import ResponseSettings from './pages/response/ResponseSettings';
 import ResponseHistory from './pages/response/ResponseHistory';
+import ApplyList from './pages/response/ApplyList';
+import TaskPage from './pages/response/TaskPage';
 import Library from './pages/Library';
 import Notice from './pages/Notice';
 import Forum from './pages/Forum';
@@ -52,6 +54,8 @@ const App: React.FC = () => (
           <Route path="/response/timeline" component={ResponseTimeline} exact={true} />
           <Route path="/response/settings" component={ResponseSettings} exact={true} />
           <Route path="/response/history" component={ResponseHistory} exact={true} />
+          <Route path="/response/task/:id" component={TaskPage} exact={true} />
+          <Route path="/response/applylist" component={ApplyList} exact={true} />
           <Route path="/library" component={Library} exact={true} />
           <Route path="/notice" component={Notice} exact={true} />
           <Route path="/forum" component={Forum} exact={true} />

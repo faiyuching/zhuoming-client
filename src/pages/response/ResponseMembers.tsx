@@ -69,7 +69,7 @@ const ResponseMembers: React.FC = () => {
             }}
           />
           <IonItemSliding>
-            <IonItem button>
+            <IonItem button routerLink={'/user'}>
               <IonAvatar slot="start">
                 <IonImg src="/assets/avatar.png" />
               </IonAvatar>

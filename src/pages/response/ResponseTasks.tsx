@@ -77,7 +77,7 @@ const ResponseTasks: React.FC = () => {
               setPickerIsOpen(false);
             }}
           />
-          <IonCard>
+          <IonCard routerLink={'/response/task/1'}>
             <IonCardHeader>
               <IonCardSubtitle>Group Name｜Job Name</IonCardSubtitle>
               <IonCardTitle>Task Name</IonCardTitle>
@@ -86,7 +86,7 @@ const ResponseTasks: React.FC = () => {
               Task Content
             </IonCardContent>
           </IonCard>
-          <IonCard>
+          <IonCard routerLink={'/response/task/2'}>
             <IonCardHeader>
               <IonCardSubtitle>Group Name｜Job Name</IonCardSubtitle>
               <IonCardTitle>Task Name</IonCardTitle>
@@ -95,7 +95,7 @@ const ResponseTasks: React.FC = () => {
               Task Content
             </IonCardContent>
           </IonCard>
-          <IonCard>
+          <IonCard routerLink={'/response/task/3'}>
             <IonCardHeader>
               <IonCardSubtitle>Group Name｜Job Name</IonCardSubtitle>
               <IonCardTitle>Task Name</IonCardTitle>

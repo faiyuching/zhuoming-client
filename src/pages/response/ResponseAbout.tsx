@@ -7,9 +7,9 @@ import {
 import { addOutline } from 'ionicons/icons';
 import ResponseMenu from '../../components/response/ResponseMenu';
 import { useTranslation } from "react-i18next";
-import ResponseBaseInfo from "./ResponseBaseInfo"
-import ResponseGroups from "./ResponseGroups"
-import ResponseJobs from "./ResponseJobs"
+import ResponseBaseInfo from "../../components/response/ResponseBaseInfo"
+import ResponseGroups from "../../components/response/ResponseGroups"
+import ResponseJobs from "../../components/response/ResponseJobs"
 
 const ResponseAbout: React.FC = () => {
   const [popoverState, setShowPopover] = useState({ showPopover: false, event: undefined });

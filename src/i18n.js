@@ -9,6 +9,7 @@ const resources = {
       response: {
         response: "Response",
         disaster: "Disaster",
+        menu: "Menu",
         about: "About",
         base_info: "Base Information",
         groups: "Groups",
@@ -33,7 +34,7 @@ const resources = {
         begin_time: "Begin Time",
         needs_time: "Needs Time",
         end_time: "End Time",
-        need_people: "People Needed",
+        need_people: "Need People",
         statement: "statement",
         all_groups: "All Groups",
         all_jobs: "All Jobs",
@@ -41,6 +42,17 @@ const resources = {
         confirm: "confirm",
         filter: "Filter",
         clear: "Clear",
+        invite: "Invite",
+        task_detail: "Task Detail",
+        task_name: "Task Name",
+        task_creator: "Creator",
+        task_principal: "Pincipal",
+        task_content: "Content",
+        task_resources: "Resources",
+        task_tool: "Tools",
+        task_talk: "Talk",
+        task_recipient: "Recipients",
+        apply_list: "Apply List"
       },
       library: {
         library: "Library",
@@ -114,6 +126,7 @@ const resources = {
     translation: {
       response: {
         response: "响应名称",
+        menu: "菜单",
         disaster: "灾害",
         about: "关于",
         base_info: "基本信息",
@@ -147,6 +160,17 @@ const resources = {
         confirm: "确定",
         filter: "筛选",
         clear: "清空",
+        invite: "邀请",
+        task_detail: "任务详情",
+        task_name: "任务标题",
+        task_creator: "创建人",
+        task_principal: "负责人",
+        task_content: "任务内容",
+        task_resources: "资源",
+        task_tool: "工具",
+        task_talk: "讨论",
+        task_recipient: "领取人",
+        apply_list: "报名列表"
       },
       library: {
         library: "资料库",
