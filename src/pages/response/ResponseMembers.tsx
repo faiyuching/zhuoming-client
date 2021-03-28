@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import {
-  IonContent, IonHeader, IonMenuButton, IonItemOptions,IonItemDivider,
+  IonContent, IonHeader, IonMenuButton, IonItemOptions, IonItemDivider,
   IonPage, IonTitle, IonToolbar, IonSplitPane, IonItemOption,
   IonButton, IonButtons, IonItem, IonLabel, IonItemSliding, IonAvatar, IonImg
 } from '@ionic/react';
@@ -66,6 +66,62 @@ const ResponseMembers: React.FC = () => {
             }}
           />
           <IonItemDivider>50{t("response.members")}</IonItemDivider>
+          <IonItemSliding>
+            <IonItem button routerLink={'/user'}>
+              <IonAvatar slot="start">
+                <IonImg src="/assets/avatar.png" />
+              </IonAvatar>
+              <IonLabel>
+                <h2>Faiyuching</h2>
+                <p>正在进行中的任务：x个</p>
+              </IonLabel>
+            </IonItem>
+            <IonItemOptions side="end">
+              <IonItemOption color="danger">{t("response.remove")}</IonItemOption>
+            </IonItemOptions>
+          </IonItemSliding>
+          <IonItemSliding>
+            <IonItem button routerLink={'/user'}>
+              <IonAvatar slot="start">
+                <IonImg src="/assets/avatar.png" />
+              </IonAvatar>
+              <IonLabel>
+                <h2>Faiyuching</h2>
+                <p>正在进行中的任务：x个</p>
+              </IonLabel>
+            </IonItem>
+            <IonItemOptions side="end">
+              <IonItemOption color="danger">{t("response.remove")}</IonItemOption>
+            </IonItemOptions>
+          </IonItemSliding>
+          <IonItemSliding>
+            <IonItem button routerLink={'/user'}>
+              <IonAvatar slot="start">
+                <IonImg src="/assets/avatar.png" />
+              </IonAvatar>
+              <IonLabel>
+                <h2>Faiyuching</h2>
+                <p>正在进行中的任务：x个</p>
+              </IonLabel>
+            </IonItem>
+            <IonItemOptions side="end">
+              <IonItemOption color="danger">{t("response.remove")}</IonItemOption>
+            </IonItemOptions>
+          </IonItemSliding>
+          <IonItemSliding>
+            <IonItem button routerLink={'/user'}>
+              <IonAvatar slot="start">
+                <IonImg src="/assets/avatar.png" />
+              </IonAvatar>
+              <IonLabel>
+                <h2>Faiyuching</h2>
+                <p>正在进行中的任务：x个</p>
+              </IonLabel>
+            </IonItem>
+            <IonItemOptions side="end">
+              <IonItemOption color="danger">{t("response.remove")}</IonItemOption>
+            </IonItemOptions>
+          </IonItemSliding>
           <IonItemSliding>
             <IonItem button routerLink={'/user'}>
               <IonAvatar slot="start">
