@@ -7,6 +7,7 @@ const resources = {
   en: {
     translation: {
       back: "Back",
+      remove: "Remove",
       response: {
         response: "Response",
         disaster: "Disaster",
@@ -176,6 +177,7 @@ const resources = {
   zh: {
     translation: {
       back: "返回",
+      remove: "移除",
       response: {
         response: "响应名称",
         menu: "菜单",

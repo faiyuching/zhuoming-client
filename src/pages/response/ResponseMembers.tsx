@@ -77,7 +77,7 @@ const ResponseMembers: React.FC = () => {
               </IonLabel>
             </IonItem>
             <IonItemOptions side="end">
-              <IonItemOption color="danger">{t("response.remove")}</IonItemOption>
+              <IonItemOption color="danger">{t("remove")}</IonItemOption>
             </IonItemOptions>
           </IonItemSliding>
           <IonItemSliding>
@@ -91,7 +91,7 @@ const ResponseMembers: React.FC = () => {
               </IonLabel>
             </IonItem>
             <IonItemOptions side="end">
-              <IonItemOption color="danger">{t("response.remove")}</IonItemOption>
+              <IonItemOption color="danger">{t("remove")}</IonItemOption>
             </IonItemOptions>
           </IonItemSliding>
           <IonItemSliding>
@@ -105,7 +105,7 @@ const ResponseMembers: React.FC = () => {
               </IonLabel>
             </IonItem>
             <IonItemOptions side="end">
-              <IonItemOption color="danger">{t("response.remove")}</IonItemOption>
+              <IonItemOption color="danger">{t("remove")}</IonItemOption>
             </IonItemOptions>
           </IonItemSliding>
           <IonItemSliding>
@@ -119,7 +119,7 @@ const ResponseMembers: React.FC = () => {
               </IonLabel>
             </IonItem>
             <IonItemOptions side="end">
-              <IonItemOption color="danger">{t("response.remove")}</IonItemOption>
+              <IonItemOption color="danger">{t("remove")}</IonItemOption>
             </IonItemOptions>
           </IonItemSliding>
           <IonItemSliding>
@@ -133,7 +133,21 @@ const ResponseMembers: React.FC = () => {
               </IonLabel>
             </IonItem>
             <IonItemOptions side="end">
-              <IonItemOption color="danger">{t("response.remove")}</IonItemOption>
+              <IonItemOption color="danger">{t("remove")}</IonItemOption>
+            </IonItemOptions>
+          </IonItemSliding>
+          <IonItemSliding>
+            <IonItem button routerLink={'/user'}>
+              <IonAvatar slot="start">
+                <IonImg src="/assets/avatar.png" />
+              </IonAvatar>
+              <IonLabel>
+                <h2>Faiyuching</h2>
+                <p>正在进行中的任务：x个</p>
+              </IonLabel>
+            </IonItem>
+            <IonItemOptions side="end">
+              <IonItemOption color="danger">{t("remove")}</IonItemOption>
             </IonItemOptions>
           </IonItemSliding>
         </IonContent>
