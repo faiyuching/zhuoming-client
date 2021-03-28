@@ -3,9 +3,10 @@ import {
   IonContent, IonHeader, IonPage, IonTitle, IonToolbar,
   IonChip, IonLabel, IonGrid, IonRow, IonCol, IonCard,
   IonCardHeader, IonCardSubtitle, IonCardTitle, IonCardContent,
-  IonButtons, IonButton, IonSearchbar
+  IonButtons, IonButton, IonSearchbar, IonItem, IonIcon
 } from '@ionic/react';
 import { useTranslation } from "react-i18next";
+import { chatbubblesOutline, heartOutline } from 'ionicons/icons';
 
 const Forum: React.FC = () => {
   const [searchText, setSearchText] = useState('');
@@ -16,7 +17,7 @@ const Forum: React.FC = () => {
         <IonToolbar>
           <IonTitle>{t("forum.forum")}</IonTitle>
           <IonButtons slot="end">
-            <IonButton>发布</IonButton>
+            <IonButton routerLink={"/forum/post/new"}>发布</IonButton>
           </IonButtons>
         </IonToolbar>
         <IonToolbar>
@@ -54,33 +55,75 @@ const Forum: React.FC = () => {
             </IonCol>
           </IonRow>
         </IonGrid>
-        <IonCard>
+        <IonCard routerLink={"/forum/post/:id"}>
           <IonCardHeader>
             <IonCardSubtitle>标签</IonCardSubtitle>
             <IonCardTitle>标题</IonCardTitle>
           </IonCardHeader>
-          <IonCardContent>内容</IonCardContent>
+          <IonCardContent>
+            内容
+          </IonCardContent>
+          <IonItem lines="none">
+            <IonButtons slot="end">
+              <IonButton color="medium">
+                <IonIcon icon={heartOutline} />123
+                </IonButton>
+              <IonButton color="medium">
+                <IonIcon icon={chatbubblesOutline} />123
+                </IonButton>
+            </IonButtons>
+          </IonItem>
         </IonCard>
-        <IonCard>
+        <IonCard routerLink={"/forum/post/:id"}>
           <IonCardHeader>
             <IonCardSubtitle>标签</IonCardSubtitle>
             <IonCardTitle>标题</IonCardTitle>
           </IonCardHeader>
           <IonCardContent>内容</IonCardContent>
+          <IonItem lines="none">
+            <IonButtons slot="end">
+              <IonButton color="medium">
+                <IonIcon icon={heartOutline} />123
+                </IonButton>
+              <IonButton color="medium">
+                <IonIcon icon={chatbubblesOutline} />123
+                </IonButton>
+            </IonButtons>
+          </IonItem>
         </IonCard>
-        <IonCard>
+        <IonCard routerLink={"/forum/post/:id"}>
           <IonCardHeader>
             <IonCardSubtitle>标签</IonCardSubtitle>
             <IonCardTitle>标题</IonCardTitle>
           </IonCardHeader>
           <IonCardContent>内容</IonCardContent>
+          <IonItem lines="none">
+            <IonButtons slot="end">
+              <IonButton color="medium">
+                <IonIcon icon={heartOutline} />123
+                </IonButton>
+              <IonButton color="medium">
+                <IonIcon icon={chatbubblesOutline} />123
+                </IonButton>
+            </IonButtons>
+          </IonItem>
         </IonCard>
-        <IonCard>
+        <IonCard routerLink={"/forum/post/:id"}>
           <IonCardHeader>
             <IonCardSubtitle>标签</IonCardSubtitle>
             <IonCardTitle>标题</IonCardTitle>
           </IonCardHeader>
           <IonCardContent>内容</IonCardContent>
+          <IonItem lines="none">
+            <IonButtons slot="end">
+              <IonButton color="medium">
+                <IonIcon icon={heartOutline} />123
+                </IonButton>
+              <IonButton color="medium">
+                <IonIcon icon={chatbubblesOutline} />123
+                </IonButton>
+            </IonButtons>
+          </IonItem>
         </IonCard>
       </IonContent>
     </IonPage>

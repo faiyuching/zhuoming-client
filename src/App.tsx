@@ -8,7 +8,7 @@ import {
   volumeHighOutline, libraryOutline, notificationsOutline,
   chatbubblesOutline, personOutline
 } from 'ionicons/icons';
-import Response from './pages/Response';
+import Response from './pages/response/Response';
 import ResponseAbout from './pages/response/ResponseAbout';
 import ResponseTasks from './pages/response/ResponseTasks';
 import ResponseMembers from './pages/response/ResponseMembers';
@@ -17,13 +17,18 @@ import ResponseSettings from './pages/response/ResponseSettings';
 import ResponseHistory from './pages/response/ResponseHistory';
 import ApplyList from './pages/response/ApplyList';
 import TaskPage from './pages/response/TaskPage';
-import Library from './pages/Library';
+import Library from './pages/library/Library';
 import TopicPage from './pages/library/TopicPage';
 import TopicNew from './pages/library/TopicNew';
 import Recommend from './pages/library/Recommend';
-import Notice from './pages/Notice';
-import Forum from './pages/Forum';
-import User from './pages/User';
+import Notice from './pages/notice/Notice';
+import NoticeDetail from './pages/notice/NoticeDetail';
+import Forum from './pages/forum/Forum';
+import PostDetail from './pages/forum/PostDetail';
+import PostNew from './pages/forum/PostNew';
+import User from './pages/user/User';
+import UserProfile from './pages/user/UserProfile';
+import UserFollow from './pages/user/UserFollow';
 import UserSettings from './pages/user/UserSettings';
 
 /* Core CSS required for Ionic components to work properly */
@@ -64,8 +69,13 @@ const App: React.FC = () => (
           <Route path="/library/topic/new" component={TopicNew} exact={true} />
           <Route path="/library/recommend" component={Recommend} exact={true} />
           <Route path="/notice" component={Notice} exact={true} />
+          <Route path="/notice/:id" component={NoticeDetail} exact={true} />
           <Route path="/forum" component={Forum} exact={true} />
+          <Route path="/forum/post/:id" component={PostDetail} exact={true} />
+          <Route path="/forum/post/new" component={PostNew} exact={true} />
           <Route path="/user" component={User} exact={true} />
+          <Route path="/user/profile" component={UserProfile} exact={true} />
+          <Route path="/user/follow" component={UserFollow} exact={true} />
           <Route path="/user/settings" component={UserSettings} exact={true} />
           <Route path="/" render={() => <Redirect to="/response" />} exact={true} />
         </IonRouterOutlet>

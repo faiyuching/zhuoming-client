@@ -28,7 +28,7 @@ const User: React.FC = () => {
           </IonButtons>
         </IonToolbar>
         <IonToolbar>
-          <IonItem lines="none">
+          <IonItem lines="none" button routerLink={"/user/profile"}>
             <IonThumbnail slot="start">
               <IonImg style={{ borderRadius: "50%" }} src="/assets/avatar.png" />
             </IonThumbnail>
@@ -39,8 +39,8 @@ const User: React.FC = () => {
           </IonItem>
           <IonItem lines="none">
             <IonButtons slot="start">
-              <IonButton size="small" color="medium"><IonText color="dark">{"123"}</IonText>{t("user.following")}</IonButton>
-              <IonButton size="small" color="medium"><IonText color="dark">{"123"}</IonText>{t("user.followers")}</IonButton>
+              <IonButton size="small" color="medium" routerLink={"/user/follow"}><IonText color="dark">{"123"}</IonText>{t("user.following")}</IonButton>
+              <IonButton size="small" color="medium" routerLink={"/user/follow"}><IonText color="dark">{"123"}</IonText>{t("user.followers")}</IonButton>
             </IonButtons>
           </IonItem>
         </IonToolbar>

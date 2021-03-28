@@ -9,7 +9,7 @@ import { addOutline } from 'ionicons/icons';
 import { useTranslation } from "react-i18next";
 import { useLocation } from 'react-router';
 import queryString from 'querystring'
-import LibraryPicker from "../components/library/LibraryPicker";
+import LibraryPicker from "../../components/library/LibraryPicker";
 
 export interface ISessionTime {
   weekday: string;

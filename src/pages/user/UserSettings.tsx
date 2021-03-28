@@ -2,7 +2,7 @@ import React from 'react';
 import {
   IonContent, IonHeader, IonPage, IonTitle, IonToolbar,
   IonSegment, IonSegmentButton, IonLabel, IonButtons,
-  IonList, IonItem, IonButton
+  IonList, IonItem, IonBackButton
 } from '@ionic/react';
 import { useTranslation } from "react-i18next";
 
@@ -13,7 +13,7 @@ const UserSettings: React.FC = () => {
       <IonHeader>
         <IonToolbar>
           <IonButtons slot="start">
-            <IonButton routerLink={"/user"}>{t("user.back")}</IonButton>
+            <IonBackButton text="" defaultHref="/user" />
           </IonButtons>
           <IonTitle>{t("user.settings")}</IonTitle>
         </IonToolbar>

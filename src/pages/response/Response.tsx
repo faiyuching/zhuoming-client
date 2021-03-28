@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import ResponseTasks from './response/ResponseTasks';
-import ResponseHistory from './response/ResponseHistory';
+import ResponseTasks from './ResponseTasks';
+import ResponseHistory from './ResponseHistory';
 
 const Response: React.FC = () => {
   const [responsing, setResponsing] = useState(true)
