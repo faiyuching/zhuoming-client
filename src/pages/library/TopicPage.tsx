@@ -18,7 +18,7 @@ const TopicPage: React.FC = () => {
           <IonTitle>{t("library.library")}</IonTitle>
         </IonToolbar>
         <IonToolbar>
-          <IonTitle size="large">上传</IonTitle>
+          <IonTitle size="large">专题名称</IonTitle>
         </IonToolbar>
       </IonHeader>
       <IonContent fullscreen>

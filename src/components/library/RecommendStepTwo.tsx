@@ -4,7 +4,7 @@ import {
 } from '@ionic/react';
 import { useTranslation } from "react-i18next";
 
-const StepTwo: React.FC = () => {
+const RecommendStepTwo: React.FC = () => {
   const { t } = useTranslation();
 
   return (
@@ -41,4 +41,4 @@ const StepTwo: React.FC = () => {
   );
 };
 
-export default StepTwo;
+export default RecommendStepTwo;

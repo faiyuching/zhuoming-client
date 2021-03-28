@@ -4,11 +4,11 @@ import {
   IonSegment, IonSegmentButton, IonBackButton, IonLabel, IonButton
 } from '@ionic/react';
 import { useTranslation } from "react-i18next";
-import RecommendStepOne from "../../components/library/RecommendStepOne"
-import RecommendStepTwo from "../../components/library/RecommendStepTwo"
-import RecommendStepThree from "../../components/library/RecommendStepThree"
+import TopicStepOne from "../../components/library/TopicStepOne"
+import TopicStepTwo from "../../components/library/TopicStepTwo"
+import TopicStepThree from "../../components/library/TopicStepThree"
 
-const Recommend: React.FC = () => {
+const TopicNew: React.FC = () => {
   const [value, setValue] = useState('1')
   const { t } = useTranslation();
   return (
@@ -21,7 +21,7 @@ const Recommend: React.FC = () => {
           <IonTitle>{t("library.library")}</IonTitle>
         </IonToolbar>
         <IonToolbar>
-          <IonTitle size="large">推荐</IonTitle>
+          <IonTitle size="large">新建专题</IonTitle>
           <IonButtons slot="end">
             {value !== "1" && <IonButton onClick={() => { setValue(value.slice(1)) }}>上一步</IonButton>}
             {value === "111" ?
@@ -43,13 +43,13 @@ const Recommend: React.FC = () => {
             <IonLabel>第三步</IonLabel>
           </IonSegmentButton>
         </IonSegment>
-        {value === "1" && <RecommendStepOne />}
-        {value === "11" && <RecommendStepTwo />}
-        {value === "111" && <RecommendStepThree />}
+        {value === "1" && <TopicStepOne />}
+        {value === "11" && <TopicStepTwo />}
+        {value === "111" && <TopicStepThree />}
       </IonContent>
     </IonPage>
 
   );
 };
 
-export default Recommend;
+export default TopicNew;

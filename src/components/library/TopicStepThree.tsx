@@ -4,7 +4,7 @@ import {
 } from '@ionic/react';
 import { useTranslation } from "react-i18next";
 
-const StepThree: React.FC = () => {
+const TopicStepThree: React.FC = () => {
   const { t } = useTranslation();
 
   return (
@@ -19,4 +19,4 @@ const StepThree: React.FC = () => {
   );
 };
 
-export default StepThree;
+export default TopicStepThree;
