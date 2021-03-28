@@ -3,7 +3,7 @@ import {
   IonContent, IonHeader, IonPage, IonTitle, IonToolbar,
   IonSegment, IonSegmentButton, IonLabel,
   IonList, IonItemSliding, IonItem, IonItemOptions,
-  IonItemOption, IonAvatar, IonImg,
+  IonItemOption, IonAvatar, IonImg, IonButtons, IonButton, IonBadge,
 } from '@ionic/react';
 import { useTranslation } from "react-i18next";
 
@@ -14,6 +14,9 @@ const Notice: React.FC = () => {
       <IonHeader>
         <IonToolbar>
           <IonTitle>{t("notice.notice")}</IonTitle>
+          <IonButtons slot="end">
+            <IonButton routerLink={"/notice/new"}>发布</IonButton>
+          </IonButtons>
         </IonToolbar>
         <IonToolbar>
           <IonSegment value="unread" onIonChange={e => console.log('Segment selected', e.detail.value)}>
@@ -29,7 +32,7 @@ const Notice: React.FC = () => {
       <IonContent fullscreen>
         <IonList>
           <IonItemSliding>
-            <IonItem button routerLink={"/notice/detail"}>
+            <IonItem button routerLink={"/notice/detail/:id"}>
               <IonAvatar slot="start">
                 <IonImg src="/assets/notice.png" />
               </IonAvatar>
@@ -37,13 +40,14 @@ const Notice: React.FC = () => {
                 <h2>{t("notice.system")}</h2>
                 <p>卓明开源社长期招募开发者，设计师，新媒体编辑，新媒体运营...</p>
               </IonLabel>
+              <IonBadge color="danger">1</IonBadge>
             </IonItem>
             <IonItemOptions side="end">
               <IonItemOption onClick={() => { }}>{t("notice.archive")}</IonItemOption>
             </IonItemOptions>
           </IonItemSliding>
           <IonItemSliding>
-            <IonItem button routerLink={"/notice/detail"}>
+            <IonItem button routerLink={"/notice/detail/:id"}>
               <IonAvatar slot="start">
                 <IonImg src="/assets/task.png" />
               </IonAvatar>
@@ -57,7 +61,7 @@ const Notice: React.FC = () => {
             </IonItemOptions>
           </IonItemSliding>
           <IonItemSliding>
-            <IonItem button routerLink={"/notice/detail"}>
+            <IonItem button routerLink={"/notice/detail/:id"}>
               <IonAvatar slot="start">
                 <IonImg src="/assets/group.png" />
               </IonAvatar>
@@ -71,7 +75,7 @@ const Notice: React.FC = () => {
             </IonItemOptions>
           </IonItemSliding>
           <IonItemSliding>
-            <IonItem button routerLink={"/notice/detail"}>
+            <IonItem button routerLink={"/notice/detail/:id"}>
               <IonAvatar slot="start">
                 <IonImg src="/assets/avatar.png" />
               </IonAvatar>

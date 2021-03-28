@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import {
-  IonContent, IonHeader, IonMenuButton, IonItemOptions,
+  IonContent, IonHeader, IonMenuButton, IonItemOptions,IonItemDivider,
   IonPage, IonTitle, IonToolbar, IonSplitPane, IonItemOption,
   IonButton, IonButtons, IonItem, IonLabel, IonItemSliding, IonAvatar, IonImg
 } from '@ionic/react';
@@ -65,6 +65,7 @@ const ResponseMembers: React.FC = () => {
               setPickerIsOpen(false);
             }}
           />
+          <IonItemDivider>50个成员</IonItemDivider>
           <IonItemSliding>
             <IonItem button routerLink={'/user'}>
               <IonAvatar slot="start">

@@ -23,6 +23,7 @@ import TopicNew from './pages/library/TopicNew';
 import Recommend from './pages/library/Recommend';
 import Notice from './pages/notice/Notice';
 import NoticeDetail from './pages/notice/NoticeDetail';
+import NoticeNew from './pages/notice/NoticeNew';
 import Forum from './pages/forum/Forum';
 import PostDetail from './pages/forum/PostDetail';
 import PostNew from './pages/forum/PostNew';
@@ -69,7 +70,8 @@ const App: React.FC = () => (
           <Route path="/library/topic/new" component={TopicNew} exact={true} />
           <Route path="/library/recommend" component={Recommend} exact={true} />
           <Route path="/notice" component={Notice} exact={true} />
-          <Route path="/notice/:id" component={NoticeDetail} exact={true} />
+          <Route path="/notice/new" component={NoticeNew} exact={true} />
+          <Route path="/notice/detail/:id" component={NoticeDetail} exact={true} />
           <Route path="/forum" component={Forum} exact={true} />
           <Route path="/forum/post/:id" component={PostDetail} exact={true} />
           <Route path="/forum/post/new" component={PostNew} exact={true} />

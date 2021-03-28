@@ -3,7 +3,7 @@ import {
   IonContent, IonHeader, IonMenuButton, IonPage,
   IonTitle, IonToolbar, IonSplitPane, IonButton, IonButtons,
   IonSegment, IonSegmentButton, IonLabel, IonCard, IonCardHeader,
-  IonCardSubtitle, IonCardTitle, IonCardContent, IonItem
+  IonCardSubtitle, IonCardTitle, IonCardContent, IonItem, IonItemDivider
 } from '@ionic/react';
 import ResponseMenu from '../../components/response/ResponseMenu';
 import { useTranslation } from "react-i18next";
@@ -74,6 +74,7 @@ const ResponseTasks: React.FC = () => {
               setPickerIsOpen(false);
             }}
           />
+          <IonItemDivider>45个任务</IonItemDivider>
           <IonCard routerLink={'/response/task/1'}>
             <IonCardHeader>
               <IonCardSubtitle>组名｜岗位名</IonCardSubtitle>
