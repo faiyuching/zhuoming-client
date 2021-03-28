@@ -1,6 +1,6 @@
 import {
   IonButton, IonButtons, IonContent, IonIcon, IonItem, IonLabel,
-  IonList, IonListHeader, IonMenu, IonMenuToggle, IonNote, IonToolbar,
+  IonList, IonListHeader, IonMenu, IonMenuToggle, IonNote,
 } from '@ionic/react';
 
 import React from 'react';
@@ -100,13 +100,13 @@ const ResponseMenu: React.FC = () => {
               <IonLabel>{label}</IonLabel>
             </IonItem>
           ))}
-          <IonItem lines="none">
-            <IonButtons slot="start">
-              <IonButton routerLink="/response/history">{t("response.more")}<IonIcon icon={arrowForwardOutline} size="small" /></IonButton>
-            </IonButtons>
-          </IonItem>
-          <IonToolbar>
-          </IonToolbar>
+          <IonMenuToggle autoHide>
+            <IonItem lines="none">
+              <IonButtons slot="start">
+                <IonButton routerLink="/response/history">{t("response.more")}<IonIcon icon={arrowForwardOutline} size="small" /></IonButton>
+              </IonButtons>
+            </IonItem>
+          </IonMenuToggle>
         </IonList>
       </IonContent>
     </IonMenu>

@@ -10,7 +10,7 @@ import { useTranslation } from "react-i18next";
 const ResponseSettings: React.FC = () => {
   const { t } = useTranslation();
   const [checked1, setChecked1] = useState(true);
-  const [checked2, setChecked2] = useState(true);
+  const [checked2, setChecked2] = useState(false);
   return (
     <IonSplitPane contentId="response">
       <ResponseMenu />
