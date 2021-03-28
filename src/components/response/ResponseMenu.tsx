@@ -56,7 +56,7 @@ const ResponseMenu: React.FC = () => {
     },
     {
       title: t("response.resources"),
-      url: '/library',
+      url: '/library/topic',
       iosIcon: libraryOutline,
       mdIcon: librarySharp
     },
