@@ -1,13 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   IonContent, IonHeader, IonPage, IonTitle, IonToolbar,
   IonChip, IonLabel, IonGrid, IonRow, IonCol, IonCard,
   IonCardHeader, IonCardSubtitle, IonCardTitle, IonCardContent,
-  IonButtons, IonButton
+  IonButtons, IonButton, IonSearchbar
 } from '@ionic/react';
 import { useTranslation } from "react-i18next";
 
 const Forum: React.FC = () => {
+  const [searchText, setSearchText] = useState('');
   const { t } = useTranslation();
   return (
     <IonPage>
@@ -17,6 +18,9 @@ const Forum: React.FC = () => {
           <IonButtons slot="end">
             <IonButton>发布</IonButton>
           </IonButtons>
+        </IonToolbar>
+        <IonToolbar>
+          <IonSearchbar placeholder={t("library.search")} value={searchText} onIonChange={e => setSearchText(e.detail.value!)}></IonSearchbar>
         </IonToolbar>
       </IonHeader>
       <IonContent fullscreen>
