@@ -113,7 +113,7 @@ const resources = {
   zh: {
     translation: {
       response: {
-        response: "响应",
+        response: "响应名称",
         disaster: "灾害",
         about: "关于",
         base_info: "基本信息",

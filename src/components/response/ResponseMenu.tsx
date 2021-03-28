@@ -56,13 +56,13 @@ const ResponseMenu: React.FC = () => {
     },
     {
       title: t("response.resources"),
-      url: '/response/resources',
+      url: '/library',
       iosIcon: libraryOutline,
       mdIcon: librarySharp
     },
     {
       title: t("response.discussion"),
-      url: '/response/discussion',
+      url: '/forum',
       iosIcon: chatbubblesOutline,
       mdIcon: chatbubblesSharp
     },

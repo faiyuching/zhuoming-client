@@ -9,7 +9,8 @@ import { useTranslation } from "react-i18next";
 
 const ResponseSettings: React.FC = () => {
   const { t } = useTranslation();
-  const [checked, setChecked] = useState(true);
+  const [checked1, setChecked1] = useState(true);
+  const [checked2, setChecked2] = useState(true);
   return (
     <IonSplitPane contentId="response">
       <ResponseMenu />
@@ -28,11 +29,11 @@ const ResponseSettings: React.FC = () => {
         <IonContent fullscreen>
           <IonItem>
             <IonLabel>有新任务时通知我</IonLabel>
-            <IonToggle checked={checked} onIonChange={e => setChecked(e.detail.checked)} />
+            <IonToggle checked={checked1} onIonChange={e => setChecked1(e.detail.checked)} />
           </IonItem>
           <IonItem>
             <IonLabel>结束响应</IonLabel>
-            <IonToggle checked={false} onIonChange={e => setChecked(e.detail.checked)} />
+            <IonToggle checked={checked2} onIonChange={e => setChecked2(e.detail.checked)} />
           </IonItem>
         </IonContent>
       </IonPage>

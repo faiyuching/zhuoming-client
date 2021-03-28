@@ -51,19 +51,17 @@ const ResponseTasks: React.FC = () => {
             </IonButtons>
           </IonToolbar>
           <IonToolbar>
-            <IonToolbar>
-              <IonItem onClick={() => { setPickerIsOpen(true); }} lines="none">
-                {sessionTime ? (
-                  <IonLabel>{sessionTime?.weekday} - {sessionTime?.period}</IonLabel>
-                ) : (
-                  <IonLabel className="placeHolder">{t("response.all_groups")} - {t("response.all_jobs")}</IonLabel>
-                )}
-              </IonItem>
-              <IonButtons slot="end">
-                <IonButton onClick={() => { setPickerIsOpen(true); }}>{t("response.filter")}</IonButton>
-                <IonButton onClick={() => { setSessionTime(undefined); }}>{t("response.clear")}</IonButton>
-              </IonButtons>
-            </IonToolbar>
+            <IonItem onClick={() => { setPickerIsOpen(true); }} lines="none">
+              {sessionTime ? (
+                <IonLabel>{sessionTime?.weekday} - {sessionTime?.period}</IonLabel>
+              ) : (
+                <IonLabel className="placeHolder">{t("response.all_groups")} - {t("response.all_jobs")}</IonLabel>
+              )}
+            </IonItem>
+            <IonButtons slot="end">
+              <IonButton onClick={() => { setPickerIsOpen(true); }}>{t("response.filter")}</IonButton>
+              <IonButton onClick={() => { setSessionTime(undefined); }}>{t("response.clear")}</IonButton>
+            </IonButtons>
           </IonToolbar>
         </IonHeader>
         <IonContent fullscreen>
