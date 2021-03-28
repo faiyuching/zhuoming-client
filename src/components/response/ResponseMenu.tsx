@@ -24,7 +24,7 @@ interface page {
 
 
 
-const labels = ['Family', 'Friends', 'Notes'];
+const labels = ['history1', 'history2', 'history3'];
 
 const ResponseMenu: React.FC = () => {
   const location = useLocation();
