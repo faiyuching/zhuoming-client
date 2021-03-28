@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
 import {
-  IonContent, IonHeader, IonMenuButton, IonIcon, IonItemOptions,
+  IonContent, IonHeader, IonMenuButton, IonItemOptions,
   IonPage, IonTitle, IonToolbar, IonSplitPane, IonItemOption,
   IonButton, IonButtons, IonItem, IonLabel, IonItemSliding, IonAvatar, IonImg
 } from '@ionic/react';
-import { addOutline } from 'ionicons/icons';
 import ResponseMenu from '../../components/response/ResponseMenu';
 import { useTranslation } from "react-i18next";
 import ResponseMembersPicker from "../../components/response/ResponseMembersPicker"
@@ -33,9 +32,7 @@ const ResponseMembers: React.FC = () => {
             </IonButtons>
             <IonTitle>{t("response.response")}</IonTitle>
             <IonButtons slot="end">
-              <IonButton>
-                <IonIcon icon={addOutline} />
-              </IonButton>
+              <IonButton>邀请好友</IonButton>
             </IonButtons>
           </IonToolbar>
           <IonToolbar>

@@ -1,12 +1,11 @@
 import React from 'react';
 import {
   IonContent, IonHeader, IonMenuButton,
-  IonPage, IonTitle, IonToolbar, IonSplitPane, IonIcon,
+  IonPage, IonTitle, IonToolbar, IonSplitPane,
   IonButtons, IonItem, IonLabel, IonItemGroup,
   IonSegment, IonSegmentButton, IonItemOption,
   IonItemOptions, IonItemSliding, IonButton
 } from '@ionic/react';
-import { addOutline } from 'ionicons/icons';
 import ResponseMenu from '../../components/response/ResponseMenu';
 import { useTranslation } from "react-i18next";
 
@@ -23,9 +22,7 @@ const ResponseTimeline: React.FC = () => {
             </IonButtons>
             <IonTitle>{t("response.response")}</IonTitle>
             <IonButtons slot="end">
-              <IonButton>
-                <IonIcon icon={addOutline} />
-              </IonButton>
+              <IonButton>添加事件</IonButton>
             </IonButtons>
           </IonToolbar>
           <IonToolbar>

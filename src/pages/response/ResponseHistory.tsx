@@ -1,11 +1,10 @@
 import React from 'react';
 import {
-  IonContent, IonHeader, IonIcon, IonPage,
+  IonContent, IonHeader, IonPage,
   IonTitle, IonToolbar, IonButton, IonButtons,
   IonCard, IonCardHeader, IonCardSubtitle,
   IonCardTitle, IonCardContent,
 } from '@ionic/react';
-import { addOutline } from 'ionicons/icons';
 import { useTranslation } from "react-i18next";
 
 const ResponseHistory: React.FC = () => {
@@ -16,9 +15,7 @@ const ResponseHistory: React.FC = () => {
         <IonToolbar>
           <IonTitle>{t("response.history")}</IonTitle>
           <IonButtons slot="end">
-            <IonButton>
-              <IonIcon icon={addOutline} />
-            </IonButton>
+            <IonButton>发起响应</IonButton>
           </IonButtons>
         </IonToolbar>
       </IonHeader>

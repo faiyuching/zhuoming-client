@@ -3,9 +3,8 @@ import {
   IonContent, IonHeader, IonPage, IonTitle, IonToolbar,
   IonChip, IonLabel, IonGrid, IonRow, IonCol, IonCard,
   IonCardHeader, IonCardSubtitle, IonCardTitle, IonCardContent,
-  IonButtons, IonButton, IonIcon
+  IonButtons, IonButton
 } from '@ionic/react';
-import { addOutline } from 'ionicons/icons';
 import { useTranslation } from "react-i18next";
 
 const Forum: React.FC = () => {
@@ -16,9 +15,7 @@ const Forum: React.FC = () => {
         <IonToolbar>
           <IonTitle>{t("forum.forum")}</IonTitle>
           <IonButtons slot="end">
-            <IonButton>
-              <IonIcon icon={addOutline} />
-            </IonButton>
+            <IonButton>发布</IonButton>
           </IonButtons>
         </IonToolbar>
       </IonHeader>
