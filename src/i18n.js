@@ -98,14 +98,14 @@ const resources = {
       },
       forum: {
         forum: "Forum",
-        question: "Q&A",
-        disaster: "Disaster",
-        zhuoming: "Zhuoming",
-        charity: "Charity",
-        development: "Development",
-        response: "Response",
-        opinion: "Opinion",
-        moments: "Moments"
+        question: "#Q&A",
+        disaster: "#Disaster",
+        zhuoming: "#Zhuoming",
+        charity: "#Charity",
+        development: "#Development",
+        response: "#Response",
+        opinion: "#Opinion",
+        moments: "#Moments"
       },
       user: {
         user: "Me",
@@ -120,7 +120,20 @@ const resources = {
         language: "Language",
         followers: "Followers",
         following: "Following",
-        back: "Back"
+        back: "Back",
+        username: "Username",
+        nickname: "Nickname",
+        password: "Password",
+        wechat: "Wechat",
+        shimo: "Shimo",
+        phone: "Phone",
+        email: "Email",
+        role: "Role",
+        gender: "Gender",
+        location: "Location",
+        job: "Job",
+        skill: "Skill",
+        introduction: "Introduction"
       }
     }
   },
@@ -218,18 +231,18 @@ const resources = {
       },
       forum: {
         forum: "论坛",
-        question: "提问",
-        disaster: "灾害",
-        zhuoming: "卓明",
-        charity: "公益",
-        development: "开发",
-        response: "响应",
-        opinion: "观点/意见",
-        moments: "此刻"
+        question: "#提问",
+        disaster: "#灾害",
+        zhuoming: "#卓明",
+        charity: "#公益",
+        development: "#开发",
+        response: "#响应",
+        opinion: "#观点/意见",
+        moments: "#此时此刻"
       },
       user: {
         user: "我的",
-        profile: "资料",
+        profile: "个人资料",
         tasks: "任务",
         moments: "帖子",
         follow: "关注",
@@ -240,7 +253,20 @@ const resources = {
         language: "语言",
         followers: "关注者",
         following: "正在关注",
-        back: "返回"
+        back: "返回",
+        username: "用户名",
+        nickname: "昵称",
+        password: "密码",
+        wechat: "微信账号",
+        shimo: "石墨账号",
+        phone: "手机号",
+        email: "邮箱",
+        role: "角色",
+        gender: "性别",
+        location: "所在地",
+        job: "职业",
+        skill: "技能",
+        introduction: "一句话介绍"
       }
     }
   }

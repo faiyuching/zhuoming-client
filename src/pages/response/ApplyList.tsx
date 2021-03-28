@@ -13,15 +13,15 @@ const ApplyList: React.FC = () => {
       <IonHeader>
         <IonToolbar>
           <IonButtons slot="start">
-            <IonBackButton text=""/>
+            <IonBackButton text="" />
           </IonButtons>
           <IonTitle>{t("response.response")}</IonTitle>
-          <IonButtons slot="end">
-            <IonButton>{t("response.invite")}</IonButton>
-          </IonButtons>
         </IonToolbar>
         <IonToolbar>
           <IonTitle size="large">{t("response.apply_list")}</IonTitle>
+          <IonButtons slot="end">
+            <IonButton>{t("response.invite")}</IonButton>
+          </IonButtons>
         </IonToolbar>
       </IonHeader>
       <IonContent fullscreen>
