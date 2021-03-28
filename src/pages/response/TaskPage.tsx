@@ -20,7 +20,7 @@ const TaskPage: React.FC = () => {
         <IonHeader>
           <IonToolbar>
             <IonButtons slot="start">
-              <IonBackButton text="" defaultHref="/response/tasks" />
+              <IonBackButton text={t("back")} defaultHref="/response/tasks" />
             </IonButtons>
             <IonTitle>{t("response.response")}</IonTitle>
             <IonButtons slot="end">

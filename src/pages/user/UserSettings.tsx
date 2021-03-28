@@ -14,7 +14,7 @@ const UserSettings: React.FC = () => {
       <IonHeader>
         <IonToolbar>
           <IonButtons slot="start">
-            <IonBackButton text="" defaultHref="/user" />
+            <IonBackButton text={t("back")} defaultHref="/user" />
           </IonButtons>
           <IonTitle>{t("user.settings")}</IonTitle>
         </IonToolbar>

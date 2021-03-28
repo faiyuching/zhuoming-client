@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import {
-  IonContent, IonHeader, IonMenuButton, IonPage,
+  IonContent, IonHeader, IonMenuButton, IonPage, IonIcon,
   IonTitle, IonToolbar, IonSplitPane, IonButton, IonButtons,
   IonSegment, IonSegmentButton, IonLabel, IonCard, IonCardHeader,
   IonCardSubtitle, IonCardTitle, IonCardContent, IonItem, IonItemDivider
@@ -8,6 +8,7 @@ import {
 import ResponseMenu from '../../components/response/ResponseMenu';
 import { useTranslation } from "react-i18next";
 import ResponseMembersPicker from "../../components/response/ResponseMembersPicker"
+import { addOutline } from 'ionicons/icons';
 
 export interface ISessionTime {
   weekday: string;
@@ -31,7 +32,8 @@ const ResponseTasks: React.FC = () => {
             </IonButtons>
             <IonTitle>{t("response.response")}</IonTitle>
             <IonButtons slot="end">
-              <IonButton>{t("response.create_task")}</IonButton>
+              <IonIcon icon={addOutline} />
+              {/* <IonButton>{t("response.create_task")}</IonButton> */}
             </IonButtons>
           </IonToolbar>
           <IonToolbar>

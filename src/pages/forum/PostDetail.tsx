@@ -14,7 +14,7 @@ const PostDetail: React.FC = () => {
         <IonToolbar>
           <IonButtons slot="start">
             <IonButton>
-              <IonBackButton defaultHref="/forum" text="" />
+              <IonBackButton defaultHref="/forum" text={t("back")} />
             </IonButton>
           </IonButtons>
           <IonTitle>{t("forum.forum")}</IonTitle>

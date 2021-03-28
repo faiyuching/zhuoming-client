@@ -6,6 +6,7 @@ import { initReactI18next } from "react-i18next";
 const resources = {
   en: {
     translation: {
+      back: "Back",
       response: {
         response: "Response",
         disaster: "Disaster",
@@ -96,7 +97,7 @@ const resources = {
         filter: "Filter",
         clear: "Clear",
         search: "Search",
-        recommend: "Recommend",
+        recommend: "Recommend & Upload",
         create_topic: "Create Topic",
         base_settings: "Base Settings",
         topic_name: "Topic Title",
@@ -174,6 +175,7 @@ const resources = {
   },
   zh: {
     translation: {
+      back: "返回",
       response: {
         response: "响应名称",
         menu: "菜单",
@@ -263,7 +265,7 @@ const resources = {
         filter: "筛选",
         clear: "清空",
         search: "搜索",
-        recommend: "推荐",
+        recommend: "推荐或上传资源",
         create_topic: "新建主题",
         base_settings: "基本设置",
         topic_name: "主题名称",

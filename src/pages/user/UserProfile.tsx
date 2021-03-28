@@ -15,7 +15,7 @@ const UserProfile: React.FC = () => {
         <IonToolbar>
           <IonButtons>
             <IonButton>
-              <IonBackButton text="" defaultHref="/user" />
+              <IonBackButton text={t("back")} defaultHref="/user" />
             </IonButton>
           </IonButtons>
           <IonTitle>{t("user.user")}</IonTitle>

@@ -1,7 +1,7 @@
 import React from 'react';
 import {
   IonContent, IonHeader, IonPage, IonTitle, IonToolbar,
-  IonList, IonItem, IonButtons, IonButton, IonBackButton, 
+  IonList, IonItem, IonButtons, IonButton, IonBackButton,
   IonLabel, IonInput, IonTextarea,
 } from '@ionic/react';
 import { useTranslation } from "react-i18next";
@@ -14,7 +14,7 @@ const PostNew: React.FC = () => {
         <IonToolbar>
           <IonButtons slot="start">
             <IonButton>
-              <IonBackButton defaultHref="/forum" text="" />
+              <IonBackButton defaultHref="/forum" text={t("back")} />
             </IonButton>
           </IonButtons>
           <IonTitle>{t("forum.forum")}</IonTitle>

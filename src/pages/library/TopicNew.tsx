@@ -17,7 +17,7 @@ const TopicNew: React.FC = () => {
       <IonHeader>
         <IonToolbar>
           <IonButtons slot="start">
-            <IonBackButton defaultHref={"/library"} text="" />
+            <IonBackButton defaultHref={"/library"} text={t("back")} />
           </IonButtons>
           <IonTitle>{t("library.library")}</IonTitle>
         </IonToolbar>

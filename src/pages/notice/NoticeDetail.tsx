@@ -13,7 +13,7 @@ const NoticeDetail: React.FC = () => {
         <IonToolbar>
           <IonButtons slot="start">
             <IonButton>
-              <IonBackButton defaultHref="/notice" text="" />
+              <IonBackButton defaultHref="/notice" text={t("back")} />
             </IonButton>
           </IonButtons>
           <IonTitle>{t("notice.notice")}</IonTitle>

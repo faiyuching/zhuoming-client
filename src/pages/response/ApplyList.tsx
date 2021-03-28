@@ -13,7 +13,7 @@ const ApplyList: React.FC = () => {
       <IonHeader>
         <IonToolbar>
           <IonButtons slot="start">
-            <IonBackButton text="" />
+            <IonBackButton text={t("back")} />
           </IonButtons>
           <IonTitle>{t("response.response")}</IonTitle>
         </IonToolbar>
