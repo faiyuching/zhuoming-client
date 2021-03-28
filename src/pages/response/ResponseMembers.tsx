@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import {
   IonContent, IonHeader, IonMenuButton, IonIcon, IonItemOptions,
-  IonPage, IonTitle, IonToolbar, IonSplitPane, IonItemGroup, IonItemOption,
-  IonButton, IonButtons, IonItem, IonLabel, IonItemSliding,
+  IonPage, IonTitle, IonToolbar, IonSplitPane, IonItemOption,
+  IonButton, IonButtons, IonItem, IonLabel, IonItemSliding, IonAvatar, IonImg
 } from '@ionic/react';
 import { addOutline, trashOutline, pencilOutline } from 'ionicons/icons';
 import ResponseMenu from '../../components/response/ResponseMenu';
@@ -68,59 +68,25 @@ const ResponseMembers: React.FC = () => {
               setPickerIsOpen(false);
             }}
           />
-          <IonItemGroup>
-            <IonItemSliding>
-              <IonItem button lines="full">
-                <IonLabel className="ion-text-wrap">
-                  <h2>信息组</h2>
-                  <p>Multiline text that should wrap when it is too long
-                  to fit on one line in the item...</p>
-                </IonLabel>
-              </IonItem>
-              <IonItemOptions side="end">
-                <IonItemOption color="danger">
-                  <IonIcon slot="icon-only" icon={trashOutline} />
-                </IonItemOption>
-                <IonItemOption>
-                  <IonIcon slot="icon-only" icon={pencilOutline} />
-                </IonItemOption>
-              </IonItemOptions>
-            </IonItemSliding>
-            <IonItemSliding>
-              <IonItem button lines="full">
-                <IonLabel className="ion-text-wrap">
-                  <h2>行动组</h2>
-                  <p>Multiline text that should wrap when it is too long
-                  to fit on one line in the item...</p>
-                </IonLabel>
-              </IonItem>
-              <IonItemOptions side="end">
-                <IonItemOption color="danger">
-                  <IonIcon slot="icon-only" icon={trashOutline} />
-                </IonItemOption>
-                <IonItemOption>
-                  <IonIcon slot="icon-only" icon={pencilOutline} />
-                </IonItemOption>
-              </IonItemOptions>
-            </IonItemSliding>
-            <IonItemSliding>
-              <IonItem button lines="full">
-                <IonLabel className="ion-text-wrap">
-                  <h2>产品组</h2>
-                  <p>Multiline text that should wrap when it is too long
-                  to fit on one line in the item...</p>
-                </IonLabel>
-              </IonItem>
-              <IonItemOptions side="end">
-                <IonItemOption color="danger">
-                  <IonIcon slot="icon-only" icon={trashOutline} />
-                </IonItemOption>
-                <IonItemOption>
-                  <IonIcon slot="icon-only" icon={pencilOutline} />
-                </IonItemOption>
-              </IonItemOptions>
-            </IonItemSliding>
-          </IonItemGroup>
+          <IonItemSliding>
+            <IonItem button>
+              <IonAvatar slot="start">
+                <IonImg src="/assets/avatar.png" />
+              </IonAvatar>
+              <IonLabel>
+                <h2>Faiyuching</h2>
+                <p>正在进行中的任务：x个</p>
+              </IonLabel>
+            </IonItem>
+            <IonItemOptions side="end">
+              <IonItemOption color="danger">
+                <IonIcon slot="icon-only" icon={trashOutline} />
+              </IonItemOption>
+              <IonItemOption>
+                <IonIcon slot="icon-only" icon={pencilOutline} />
+              </IonItemOption>
+            </IonItemOptions>
+          </IonItemSliding>
         </IonContent>
       </IonPage>
     </IonSplitPane>

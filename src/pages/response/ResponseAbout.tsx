@@ -1,15 +1,19 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
-  IonContent, IonHeader, IonMenuButton,
-  IonPage, IonTitle, IonToolbar, IonSplitPane, IonIcon,
-  IonButtons, IonItem, IonLabel, IonItemGroup,
-  IonItemSliding, IonItemOptions, IonItemOption,
+  IonContent, IonHeader, IonMenuButton, IonPage, IonTitle,
+  IonToolbar, IonSplitPane, IonButtons, IonLabel, IonSegment,
+  IonSegmentButton, IonButton, IonIcon, IonPopover, IonList, IonItem
 } from '@ionic/react';
-import { pencilOutline } from 'ionicons/icons';
+import { addOutline } from 'ionicons/icons';
 import ResponseMenu from '../../components/response/ResponseMenu';
 import { useTranslation } from "react-i18next";
+import ResponseBaseInfo from "./ResponseBaseInfo"
+import ResponseGroups from "./ResponseGroups"
+import ResponseJobs from "./ResponseJobs"
 
 const ResponseAbout: React.FC = () => {
+  const [popoverState, setShowPopover] = useState({ showPopover: false, event: undefined });
+  const [value, setValue] = useState('base_info')
   const { t } = useTranslation();
   return (
     <IonSplitPane contentId="response">
@@ -21,132 +25,48 @@ const ResponseAbout: React.FC = () => {
               <IonMenuButton />
             </IonButtons>
             <IonTitle>{t("response.response")}</IonTitle>
+            <IonButtons slot="end">
+              <IonButton
+                onClick={
+                  (e: any) => {
+                    e.persist();
+                    setShowPopover({ showPopover: true, event: e })
+                  }}
+              >
+                <IonIcon icon={addOutline} />
+              </IonButton>
+            </IonButtons>
           </IonToolbar>
           <IonToolbar>
             <IonTitle size="large">{t("response.about")}</IonTitle>
           </IonToolbar>
         </IonHeader>
         <IonContent fullscreen>
-          <IonItemGroup>
-            <IonItemSliding>
-              <IonItem lines="full">
-                <IonLabel className="ion-text-wrap">
-                  <h2>{t("response.response_name")}</h2>
-                  <p>text</p>
-                </IonLabel>
-              </IonItem>
-              <IonItemOptions side="end">
-                <IonItemOption>
-                  <IonIcon slot="icon-only" icon={pencilOutline} />
-                </IonItemOption>
-              </IonItemOptions>
-            </IonItemSliding>
-            <IonItemSliding>
-              <IonItem lines="full">
-                <IonLabel className="ion-text-wrap">
-                  <h2>{t("response.organizer")}</h2>
-                  <p>text</p>
-                </IonLabel>
-              </IonItem>
-              <IonItemOptions side="end">
-                <IonItemOption>
-                  <IonIcon slot="icon-only" icon={pencilOutline} />
-                </IonItemOption>
-              </IonItemOptions>
-            </IonItemSliding>
-            <IonItemSliding>
-              <IonItem lines="full">
-                <IonLabel className="ion-text-wrap">
-                  <h2>{t("response.disaster_type")}</h2>
-                  <p>text</p>
-                </IonLabel>
-              </IonItem>
-              <IonItemOptions side="end">
-                <IonItemOption>
-                  <IonIcon slot="icon-only" icon={pencilOutline} />
-                </IonItemOption>
-              </IonItemOptions>
-            </IonItemSliding>
-            <IonItemSliding>
-              <IonItem lines="full">
-                <IonLabel className="ion-text-wrap">
-                  <h2>{t("response.disaster_level")}</h2>
-                  <p>text</p>
-                </IonLabel>
-              </IonItem>
-              <IonItemOptions side="end">
-                <IonItemOption>
-                  <IonIcon slot="icon-only" icon={pencilOutline} />
-                </IonItemOption>
-              </IonItemOptions>
-            </IonItemSliding>
-            <IonItemSliding>
-              <IonItem lines="full">
-                <IonLabel className="ion-text-wrap">
-                  <h2>{t("response.begin_time")}</h2>
-                  <p>text</p>
-                </IonLabel>
-              </IonItem>
-              <IonItemOptions side="end">
-                <IonItemOption>
-                  <IonIcon slot="icon-only" icon={pencilOutline} />
-                </IonItemOption>
-              </IonItemOptions>
-            </IonItemSliding>
-            <IonItemSliding>
-              <IonItem lines="full">
-                <IonLabel className="ion-text-wrap">
-                  <h2>{t("response.needs_time")}</h2>
-                  <p>text</p>
-                </IonLabel>
-              </IonItem>
-              <IonItemOptions side="end">
-                <IonItemOption>
-                  <IonIcon slot="icon-only" icon={pencilOutline} />
-                </IonItemOption>
-              </IonItemOptions>
-            </IonItemSliding>
-            <IonItemSliding>
-              <IonItem lines="full">
-                <IonLabel className="ion-text-wrap">
-                  <h2>{t("response.end_time")}</h2>
-                  <p>text</p>
-                </IonLabel>
-              </IonItem>
-              <IonItemOptions side="end">
-                <IonItemOption>
-                  <IonIcon slot="icon-only" icon={pencilOutline} />
-                </IonItemOption>
-              </IonItemOptions>
-            </IonItemSliding>
-            <IonItemSliding>
-              <IonItem lines="full">
-                <IonLabel className="ion-text-wrap">
-                  <h2>{t("response.need_people")}</h2>
-                  <p>text（现有人数）</p>
-                </IonLabel>
-              </IonItem>
-              <IonItemOptions side="end">
-                <IonItemOption>
-                  <IonIcon slot="icon-only" icon={pencilOutline} />
-                </IonItemOption>
-              </IonItemOptions>
-            </IonItemSliding>
-            <IonItemSliding>
-              <IonItem lines="full">
-                <IonLabel className="ion-text-wrap">
-                  <h2>{t("response.statement")}</h2>
-                  <p>Multiline text that should wrap when it is too long
-                  to fit on one line in the item...</p>
-                </IonLabel>
-              </IonItem>
-              <IonItemOptions side="end">
-                <IonItemOption>
-                  <IonIcon slot="icon-only" icon={pencilOutline} />
-                </IonItemOption>
-              </IonItemOptions>
-            </IonItemSliding>
-          </IonItemGroup>
+          <IonPopover
+            cssClass='my-custom-class'
+            event={popoverState.event}
+            isOpen={popoverState.showPopover}
+            onDidDismiss={() => setShowPopover({ showPopover: false, event: undefined })}
+          >
+            <IonList>
+              <IonItem button>添加分组</IonItem>
+              <IonItem button>添加岗位</IonItem>
+            </IonList>
+          </IonPopover>
+          <IonSegment value={value} onIonChange={e => setValue(e.detail.value!)}>
+            <IonSegmentButton value="base_info">
+              <IonLabel>{t("response.base_info")}</IonLabel>
+            </IonSegmentButton>
+            <IonSegmentButton value="groups">
+              <IonLabel>{t("response.groups")}</IonLabel>
+            </IonSegmentButton>
+            <IonSegmentButton value="jobs">
+              <IonLabel>{t("response.jobs")}</IonLabel>
+            </IonSegmentButton>
+          </IonSegment>
+          {value === "base_info" && <ResponseBaseInfo />}
+          {value === "groups" && <ResponseGroups />}
+          {value === "jobs" && <ResponseJobs />}
         </IonContent>
       </IonPage>
     </IonSplitPane>

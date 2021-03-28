@@ -30,6 +30,10 @@ const ResponseSettings: React.FC = () => {
             <IonLabel>有新任务时通知我</IonLabel>
             <IonToggle checked={checked} onIonChange={e => setChecked(e.detail.checked)} />
           </IonItem>
+          <IonItem>
+            <IonLabel>结束响应</IonLabel>
+            <IonToggle checked={false} onIonChange={e => setChecked(e.detail.checked)} />
+          </IonItem>
         </IonContent>
       </IonPage>
     </IonSplitPane>
