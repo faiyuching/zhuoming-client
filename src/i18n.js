@@ -179,7 +179,7 @@ const resources = {
       back: "返回",
       remove: "移除",
       response: {
-        response: "响应名称",
+        response: "响应",
         menu: "菜单",
         disaster: "灾害",
         about: "关于",
