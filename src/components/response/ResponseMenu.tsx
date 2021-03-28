@@ -7,8 +7,8 @@ import React from 'react';
 import { useLocation } from 'react-router-dom';
 import {
   libraryOutline, librarySharp, bookmarkOutline,
-  timeOutline, timeSharp, documentTextOutline, documentTextSharp,
-  peopleOutline, peopleSharp, chatbubblesOutline, chatbubblesSharp,
+  timeOutline, timeSharp, peopleOutline, peopleSharp,
+  chatbubblesOutline, chatbubblesSharp,
   settingsOutline, settingsSharp, listOutline, listSharp
 } from 'ionicons/icons';
 import { arrowForwardOutline } from 'ionicons/icons';
@@ -31,10 +31,10 @@ const ResponseMenu: React.FC = () => {
   const { t } = useTranslation();
   const responsePages: page[] = [
     {
-      title: t("response.about"),
-      url: '/response/about',
-      iosIcon: documentTextOutline,
-      mdIcon: documentTextSharp
+      title: t("response.settings"),
+      url: '/response/settings',
+      iosIcon: settingsOutline,
+      mdIcon: settingsSharp
     },
     {
       title: t("response.tasks"),
@@ -66,12 +66,6 @@ const ResponseMenu: React.FC = () => {
       iosIcon: chatbubblesOutline,
       mdIcon: chatbubblesSharp
     },
-    {
-      title: t("response.settings"),
-      url: '/response/settings',
-      iosIcon: settingsOutline,
-      mdIcon: settingsSharp
-    }
   ];
 
   return (

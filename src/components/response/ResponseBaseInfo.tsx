@@ -1,7 +1,7 @@
 import React from 'react';
 import {
   IonItem, IonLabel, IonItemGroup,
-  IonItemSliding, IonItemOptions, IonItemOption,
+  IonItemSliding, IonItemOptions, IonItemOption, IonButton,
 } from '@ionic/react';
 import { useTranslation } from "react-i18next";
 
@@ -91,6 +91,17 @@ const ResponseBaseInfo: React.FC = () => {
       <IonItemSliding>
         <IonItem lines="full">
           <IonLabel className="ion-text-wrap">
+            <h2>{t("response.join_mode")}</h2>
+            <p>所有人可申请加入</p>
+          </IonLabel>
+        </IonItem>
+        <IonItemOptions side="end">
+          <IonItemOption>编辑</IonItemOption>
+        </IonItemOptions>
+      </IonItemSliding>
+      <IonItemSliding>
+        <IonItem lines="full">
+          <IonLabel className="ion-text-wrap">
             <h2>{t("response.need_people")}</h2>
             <p>text（现有人数）</p>
           </IonLabel>
@@ -111,6 +122,7 @@ const ResponseBaseInfo: React.FC = () => {
           <IonItemOption>编辑</IonItemOption>
         </IonItemOptions>
       </IonItemSliding>
+      <IonButton fill="outline" expand="block" color="danger">结束响应</IonButton>
     </IonItemGroup>
   );
 };

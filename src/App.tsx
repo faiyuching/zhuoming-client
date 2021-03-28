@@ -9,11 +9,10 @@ import {
   chatbubblesOutline, personOutline
 } from 'ionicons/icons';
 import Response from './pages/response/Response';
-import ResponseAbout from './pages/response/ResponseAbout';
+import ResponseSettings from './pages/response/ResponseSettings';
 import ResponseTasks from './pages/response/ResponseTasks';
 import ResponseMembers from './pages/response/ResponseMembers';
 import ResponseTimeline from './pages/response/ResponseTimeline';
-import ResponseSettings from './pages/response/ResponseSettings';
 import ResponseHistory from './pages/response/ResponseHistory';
 import ApplyList from './pages/response/ApplyList';
 import TaskPage from './pages/response/TaskPage';
@@ -57,7 +56,6 @@ const App: React.FC = () => (
       <IonTabs>
         <IonRouterOutlet>
           <Route path="/response" component={Response} exact={true} />
-          <Route path="/response/about" component={ResponseAbout} exact={true} />
           <Route path="/response/tasks" component={ResponseTasks} exact={true} />
           <Route path="/response/members" component={ResponseMembers} exact={true} />
           <Route path="/response/timeline" component={ResponseTimeline} exact={true} />
