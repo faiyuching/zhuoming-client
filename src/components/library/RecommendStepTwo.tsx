@@ -10,7 +10,7 @@ const RecommendStepTwo: React.FC = () => {
   return (
     <IonList>
       <IonRadioGroup>
-        <IonListHeader>二、请选择灾害类型</IonListHeader>
+        <IonListHeader>{t("library.choose_category")}</IonListHeader>
         <IonItem>
           <IonLabel>{t("library.meteoro_hydro")}</IonLabel>
           <IonRadio value="meteoro_hydro" />

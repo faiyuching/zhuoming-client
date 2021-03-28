@@ -69,8 +69,8 @@ const Library: React.FC = () => {
           onDidDismiss={() => setShowPopover({ showPopover: false, event: undefined })}
         >
           <IonList>
-            <IonItem button routerLink={"/library/recommend"} onClick={() => setShowPopover({ showPopover: false, event: undefined })}>推荐</IonItem>
-            <IonItem button routerLink={"/library/topic/new"} >新建专题</IonItem>
+            <IonItem button routerLink={"/library/recommend"} onClick={() => setShowPopover({ showPopover: false, event: undefined })}>{t("library.recommend")}</IonItem>
+            <IonItem button routerLink={"/library/topic/new"} >{t("library.create_topic")}</IonItem>
           </IonList>
         </IonPopover>
         <LibraryPicker

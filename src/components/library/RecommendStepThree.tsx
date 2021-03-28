@@ -9,9 +9,9 @@ const RecommendStepThree: React.FC = () => {
 
   return (
     <IonList>
-      <IonListHeader>三、上传链接或文件</IonListHeader>
+      <IonListHeader>{t("library.upload_link_file")}</IonListHeader>
       <IonItem>
-        <IonLabel>上传链接</IonLabel>
+        <IonLabel>{t("library.upload_link")}</IonLabel>
         <IonInput></IonInput>
       </IonItem>
     </IonList>

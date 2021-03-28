@@ -17,26 +17,26 @@ const NoticeNew: React.FC = () => {
               <IonBackButton defaultHref="/notice" text="" />
             </IonButton>
           </IonButtons>
-          <IonTitle>{t("forum.forum")}</IonTitle>
+          <IonTitle>{t("notice.notice")}</IonTitle>
         </IonToolbar>
         <IonToolbar>
-          <IonTitle size="large">发布通知</IonTitle>
+          <IonTitle size="large">{t("notice.post_notice")}</IonTitle>
           <IonButtons slot="end">
-            <IonButton>发布</IonButton>
+            <IonButton>{t("notice.post")}</IonButton>
           </IonButtons>
         </IonToolbar>
       </IonHeader>
       <IonContent fullscreen>
         <IonList>
           <IonItem>
-            <IonLabel>发送给：</IonLabel>
+            <IonLabel>{t("notice.to")}</IonLabel>
           </IonItem>
           <IonItem>
-            <IonLabel position="stacked">通知标题</IonLabel>
+            <IonLabel position="stacked">{t("notice.notice_title")}</IonLabel>
             <IonInput></IonInput>
           </IonItem>
           <IonItem>
-            <IonLabel position="stacked">通知内容</IonLabel>
+            <IonLabel position="stacked">{t("notice.notice_content")}</IonLabel>
             <IonTextarea autoGrow></IonTextarea>
           </IonItem>
         </IonList>

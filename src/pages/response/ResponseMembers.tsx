@@ -32,7 +32,7 @@ const ResponseMembers: React.FC = () => {
             </IonButtons>
             <IonTitle>{t("response.response")}</IonTitle>
             <IonButtons slot="end">
-              <IonButton>邀请好友</IonButton>
+              <IonButton>{t("response.invite")}</IonButton>
             </IonButtons>
           </IonToolbar>
           <IonToolbar>
@@ -65,7 +65,7 @@ const ResponseMembers: React.FC = () => {
               setPickerIsOpen(false);
             }}
           />
-          <IonItemDivider>50个成员</IonItemDivider>
+          <IonItemDivider>50{t("response.members")}</IonItemDivider>
           <IonItemSliding>
             <IonItem button routerLink={'/user'}>
               <IonAvatar slot="start">
@@ -77,7 +77,7 @@ const ResponseMembers: React.FC = () => {
               </IonLabel>
             </IonItem>
             <IonItemOptions side="end">
-              <IonItemOption color="danger">移出</IonItemOption>
+              <IonItemOption color="danger">{t("response.remove")}</IonItemOption>
             </IonItemOptions>
           </IonItemSliding>
         </IonContent>

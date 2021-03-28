@@ -10,7 +10,7 @@ const RecommendStepOne: React.FC = () => {
   return (
     <IonList>
       <IonRadioGroup>
-        <IonListHeader>一、请选择资源类型</IonListHeader>
+        <IonListHeader>{t("library.choose_resource")}</IonListHeader>
         <IonItem>
           <IonLabel>{t("library.video")}</IonLabel>
           <IonRadio value="video" />

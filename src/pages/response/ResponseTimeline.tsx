@@ -22,7 +22,7 @@ const ResponseTimeline: React.FC = () => {
             </IonButtons>
             <IonTitle>{t("response.response")}</IonTitle>
             <IonButtons slot="end">
-              <IonButton>添加事件</IonButton>
+              <IonButton>{t("response.add_event")}</IonButton>
             </IonButtons>
           </IonToolbar>
           <IonToolbar>
@@ -50,8 +50,8 @@ const ResponseTimeline: React.FC = () => {
                 </IonLabel>
               </IonItem>
               <IonItemOptions side="end">
-                <IonItemOption color="danger">删除</IonItemOption>
-                <IonItemOption>编辑</IonItemOption>
+                <IonItemOption color="danger">{t("response.delete")}</IonItemOption>
+                <IonItemOption>{t("response.edit")}</IonItemOption>
               </IonItemOptions>
             </IonItemSliding>
             <IonItemSliding>
@@ -63,8 +63,8 @@ const ResponseTimeline: React.FC = () => {
                 </IonLabel>
               </IonItem>
               <IonItemOptions side="end">
-                <IonItemOption color="danger">删除</IonItemOption>
-                <IonItemOption>编辑</IonItemOption>
+                <IonItemOption color="danger">{t("response.delete")}</IonItemOption>
+                <IonItemOption>{t("response.edit")}</IonItemOption>
               </IonItemOptions>
             </IonItemSliding>
           </IonItemGroup>

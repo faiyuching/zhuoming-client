@@ -15,7 +15,7 @@ const ResponseHistory: React.FC = () => {
         <IonToolbar>
           <IonTitle>{t("response.history")}</IonTitle>
           <IonButtons slot="end">
-            <IonButton>发起响应</IonButton>
+            <IonButton>{t("response.launch_response")}</IonButton>
           </IonButtons>
         </IonToolbar>
       </IonHeader>

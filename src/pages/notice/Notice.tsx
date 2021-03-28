@@ -15,7 +15,7 @@ const Notice: React.FC = () => {
         <IonToolbar>
           <IonTitle>{t("notice.notice")}</IonTitle>
           <IonButtons slot="end">
-            <IonButton routerLink={"/notice/new"}>发布</IonButton>
+            <IonButton routerLink={"/notice/new"}>{t("notice.post")}</IonButton>
           </IonButtons>
         </IonToolbar>
         <IonToolbar>

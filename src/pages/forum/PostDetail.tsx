@@ -46,7 +46,7 @@ const PostDetail: React.FC = () => {
             而有一样东西你们美国永远都不可能有。美国总统很好奇，问到有什么东西美国永远都不会有。
               赫鲁晓夫笑道：国家元首终身制。</p>
           </IonItem>
-          <IonItemDivider>评论</IonItemDivider>
+          <IonItemDivider>{t("forum.comment")}</IonItemDivider>
           <IonItem lines="none" routerLink={"/user"}>
             <IonAvatar slot="start">
               <IonImg src="/assets/avatar.png" />

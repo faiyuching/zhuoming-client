@@ -49,8 +49,8 @@ const ResponseAbout: React.FC = () => {
             onDidDismiss={() => setShowPopover({ showPopover: false, event: undefined })}
           >
             <IonList>
-              <IonItem button>添加分组</IonItem>
-              <IonItem button>添加岗位</IonItem>
+              <IonItem button>{t("response.all_groups")}</IonItem>
+              <IonItem button>{t("response.all_jobs")}</IonItem>
             </IonList>
           </IonPopover>
           <IonSegment value={value} onIonChange={e => setValue(e.detail.value!)}>

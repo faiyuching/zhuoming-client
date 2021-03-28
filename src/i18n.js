@@ -27,6 +27,7 @@ const resources = {
         add_group: "Add Group",
         edit: "Edit",
         delete: "Delete",
+        remove: "Remove",
         response_name: "Response Name",
         organizer: "Organizer:",
         disaster_type: "Disaster Type",
@@ -38,11 +39,15 @@ const resources = {
         statement: "statement",
         all_groups: "All Groups",
         all_jobs: "All Jobs",
+        add_groups: "Add Groups",
+        add_jobs: "Add Jobs",
         cancel: "Cancel",
         confirm: "confirm",
         filter: "Filter",
         clear: "Clear",
         invite: "Invite",
+        add_event: "Add Event",
+        create_task: "Create Task",
         task_detail: "Task Detail",
         task_name: "Task Name",
         task_creator: "Creator",
@@ -54,7 +59,10 @@ const resources = {
         task_recipient: "Recipients",
         task_submit: "Task Submit",
         apply_list: "Apply List",
-        receive: "Receive"
+        receive: "Receive",
+        notice_me_new_task: "Notify me of new tasks",
+        end_response: "End response",
+        launch_response: "Launch"
       },
       library: {
         library: "Library",
@@ -86,7 +94,26 @@ const resources = {
         confirm: "confirm",
         filter: "Filter",
         clear: "Clear",
-        search: "Search"
+        search: "Search",
+        recommend: "Recommend",
+        create_topic: "Create Topic",
+        base_settings: "Base Settings",
+        topic_name: "Topic Title",
+        topic_intro: "Topic Introduction",
+        choose_picture: "Choose Picture",
+        choose_file: "Choose File",
+        file_list: "File List",
+        upload_link: "Upload Link",
+        upload_file: "Upload File",
+        step_one: "Step One",
+        step_two: "Step Two",
+        step_three: "Step Three",
+        previous: "Previous",
+        next_step: "Next Step",
+        complete: "Complete",
+        choose_resource: "Choose Resource Type",
+        choose_category: "Choose Category",
+        upload_link_file: "Upload link or file"
       },
       notice: {
         notice: "Notifications",
@@ -94,7 +121,12 @@ const resources = {
         archive: "Archive",
         system: "System Notification",
         task: "Task Notification",
-        group: "Group Notice"
+        group: "Group Notice",
+        post: "Post",
+        post_notice: "Post Notice",
+        to: "To",
+        notice_title: "Motice Title",
+        notice_content: "Notice Content"
       },
       forum: {
         forum: "Forum",
@@ -105,7 +137,9 @@ const resources = {
         development: "#Development",
         response: "#Response",
         opinion: "#Opinion",
-        moments: "#Moments"
+        moments: "#Moments",
+        post: "Post",
+        comment: "Comment"
       },
       user: {
         user: "Me",
@@ -171,11 +205,15 @@ const resources = {
         statement: "发起声明",
         all_groups: "所有分组",
         all_jobs: "所有岗位",
+        add_groups: "添加分组",
+        add_jobs: "添加岗位",
         cancel: "取消",
         confirm: "确定",
         filter: "筛选",
         clear: "清空",
         invite: "邀请",
+        add_event: "添加事件",
+        create_task: "新建任务",
         task_detail: "任务详情",
         task_name: "任务标题",
         task_creator: "创建人",
@@ -187,7 +225,10 @@ const resources = {
         task_recipient: "领取人",
         task_submit: "提交页面",
         apply_list: "报名列表",
-        receive: "领取"
+        receive: "领取",
+        notice_me_new_task: "有新任务时通知我",
+        end_response: "结束响应",
+        launch_response: "发起响应"
       },
       library: {
         library: "资料库",
@@ -219,7 +260,26 @@ const resources = {
         confirm: "确定",
         filter: "筛选",
         clear: "清空",
-        search: "搜索"
+        search: "搜索",
+        recommend: "推荐",
+        create_topic: "新建主题",
+        base_settings: "基本设置",
+        topic_name: "主题名称",
+        topic_intro: "主题简介",
+        choose_picture: "选择主图",
+        choose_file: "选择文件",
+        file_list: "文件列表",
+        upload_file: "上传文件",
+        upload_link: "上传链接",
+        step_one: "第一步",
+        step_two: "第二步",
+        step_three: "第三步",
+        previous: "上一步",
+        next_step: "下一步",
+        complete: "完成",
+        choose_resource: "选择资源类型",
+        choose_category: "选择分类",
+        upload_link_file: "上传链接或文件"
       },
       notice: {
         notice: "通知",
@@ -227,7 +287,12 @@ const resources = {
         archive: "已读",
         system: "系统通知",
         task: "任务通知",
-        group: "小组通知"
+        group: "小组通知",
+        post: "发布",
+        post_notice: "发布通知",
+        to: "发布给",
+        notice_title: "通知标题",
+        notice_content: "通知内容"
       },
       forum: {
         forum: "论坛",
@@ -238,7 +303,9 @@ const resources = {
         development: "#开发",
         response: "#响应",
         opinion: "#观点/意见",
-        moments: "#此时此刻"
+        moments: "#此时此刻",
+        post: "发布",
+        comment: "评论"
       },
       user: {
         user: "我的",

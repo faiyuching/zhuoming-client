@@ -31,7 +31,7 @@ const ResponseTasks: React.FC = () => {
             </IonButtons>
             <IonTitle>{t("response.response")}</IonTitle>
             <IonButtons slot="end">
-              <IonButton>新建任务</IonButton>
+              <IonButton>{t("response.create_task")}</IonButton>
             </IonButtons>
           </IonToolbar>
           <IonToolbar>
@@ -74,7 +74,7 @@ const ResponseTasks: React.FC = () => {
               setPickerIsOpen(false);
             }}
           />
-          <IonItemDivider>45个任务</IonItemDivider>
+          <IonItemDivider>45{t("response.tasks")}</IonItemDivider>
           <IonCard routerLink={'/response/task/1'}>
             <IonCardHeader>
               <IonCardSubtitle>组名｜岗位名</IonCardSubtitle>

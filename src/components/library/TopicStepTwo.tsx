@@ -10,9 +10,9 @@ const TopicStepTwo: React.FC = () => {
   return (
     <IonList>
       <IonRadioGroup>
-        <IonListHeader>二、选择文件</IonListHeader>
+        <IonListHeader>{t("library.choose_file")}</IonListHeader>
         <IonItem>
-          <IonLabel>文件列表</IonLabel>
+          <IonLabel>{t("library.file_list")}</IonLabel>
         </IonItem>
         <IonItem>
           <IonLabel>file1</IonLabel>

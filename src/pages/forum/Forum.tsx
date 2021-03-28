@@ -17,7 +17,7 @@ const Forum: React.FC = () => {
         <IonToolbar>
           <IonTitle>{t("forum.forum")}</IonTitle>
           <IonButtons slot="end">
-            <IonButton routerLink={"/forum/post/new"}>发布</IonButton>
+            <IonButton routerLink={"/forum/post/new"}>{t("forum.post")}</IonButton>
           </IonButtons>
         </IonToolbar>
         <IonToolbar>

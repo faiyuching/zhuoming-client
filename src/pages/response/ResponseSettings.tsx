@@ -28,11 +28,11 @@ const ResponseSettings: React.FC = () => {
         </IonHeader>
         <IonContent fullscreen>
           <IonItem>
-            <IonLabel>有新任务时通知我</IonLabel>
+            <IonLabel>{t("response.notice_me_new_task")}</IonLabel>
             <IonToggle checked={checked1} onIonChange={e => setChecked1(e.detail.checked)} />
           </IonItem>
           <IonItem>
-            <IonLabel>结束响应</IonLabel>
+            <IonLabel>{t("response.end_response")}</IonLabel>
             <IonToggle checked={checked2} onIonChange={e => setChecked2(e.detail.checked)} />
           </IonItem>
         </IonContent>

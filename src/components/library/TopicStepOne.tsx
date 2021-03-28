@@ -10,17 +10,17 @@ const TopicStepOne: React.FC = () => {
 
   return (
     <IonList>
-      <IonListHeader>一、基本设置</IonListHeader>
+      <IonListHeader>{t("library.base_settings")}</IonListHeader>
       <IonItem>
-        <IonLabel position="floating">专题名称</IonLabel>
+        <IonLabel position="floating">{t("library.topic_name")}</IonLabel>
         <IonInput></IonInput>
       </IonItem>
       <IonItem>
-        <IonLabel position="floating">专题简介</IonLabel>
+        <IonLabel position="floating">{t("library.topic_intro")}</IonLabel>
         <IonTextarea autoGrow></IonTextarea>
       </IonItem>
       <IonItem lines="none">
-        <IonButton>选择图片</IonButton>
+        <IonButton>{t("library.choose_picture")}</IonButton>
       </IonItem>
     </IonList>
 
