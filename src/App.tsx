@@ -18,6 +18,8 @@ import ResponseHistory from './pages/response/ResponseHistory';
 import ApplyList from './pages/response/ApplyList';
 import TaskPage from './pages/response/TaskPage';
 import Library from './pages/Library';
+import TopicPage from './pages/library/TopicPage';
+import Recommend from './pages/library/Recommend';
 import Notice from './pages/Notice';
 import Forum from './pages/Forum';
 import User from './pages/User';
@@ -57,6 +59,8 @@ const App: React.FC = () => (
           <Route path="/response/task/:id" component={TaskPage} exact={true} />
           <Route path="/response/applylist" component={ApplyList} exact={true} />
           <Route path="/library" component={Library} exact={true} />
+          <Route path="/library/topic" component={TopicPage} exact={true} />
+          <Route path="/library/recommend" component={Recommend} exact={true} />
           <Route path="/notice" component={Notice} exact={true} />
           <Route path="/forum" component={Forum} exact={true} />
           <Route path="/user" component={User} exact={true} />

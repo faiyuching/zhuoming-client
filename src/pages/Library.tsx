@@ -69,8 +69,7 @@ const Library: React.FC = () => {
           onDidDismiss={() => setShowPopover({ showPopover: false, event: undefined })}
         >
           <IonList>
-            <IonItem button>推荐</IonItem>
-            <IonItem button>上传</IonItem>
+            <IonItem button routerLink={"/library/recommend"}>推荐</IonItem>
             <IonItem button>新建专题</IonItem>
           </IonList>
         </IonPopover>
@@ -89,7 +88,7 @@ const Library: React.FC = () => {
         <IonGrid>
           <IonRow>
             <IonCol size-lg="4" size-md="6" size-sm="12">
-              <IonCard>
+              <IonCard routerLink={"/library/topic"}>
                 <IonImg src="https://directorsblog.nih.gov/wp-content/uploads/2020/03/COVID-19-Card-3.jpg" />
                 <IonCardHeader>
                   <IonCardSubtitle>COVID-19｜专题</IonCardSubtitle>
