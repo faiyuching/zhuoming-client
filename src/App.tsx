@@ -30,6 +30,7 @@ import User from './pages/user/User';
 import UserProfile from './pages/user/UserProfile';
 import UserFollow from './pages/user/UserFollow';
 import UserSettings from './pages/user/UserSettings';
+import NotFound from './pages//NotFound';
 
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css';
@@ -55,6 +56,7 @@ const App: React.FC = () => (
     <IonReactRouter>
       <IonTabs>
         <IonRouterOutlet>
+          <Route path="/404" component={NotFound} exact={true} />
           <Route path="/response" component={Response} exact={true} />
           <Route path="/response/tasks" component={ResponseTasks} exact={true} />
           <Route path="/response/members" component={ResponseMembers} exact={true} />

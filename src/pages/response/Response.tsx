@@ -1,19 +1,16 @@
 import React, { useState } from 'react';
-import ResponseTasks from './ResponseTasks';
-import ResponseHistory from './ResponseHistory';
+import NotFound from '../NotFound';
 
 const Response: React.FC = () => {
   const [responsing, setResponsing] = useState(true)
   if (responsing) {
-    // window.location=""
-    return (
-      <ResponseTasks />
-    )
+    window.location.href = "/response/tasks"
   } else {
-    return (
-      <ResponseHistory />
-    );
+    window.location.href = "/response/history"
   }
+  return (
+    <NotFound />
+  );
 };
 
 export default Response;
