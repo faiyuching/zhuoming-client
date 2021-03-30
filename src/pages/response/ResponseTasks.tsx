@@ -1,14 +1,15 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   IonContent, IonHeader, IonMenuButton, IonPage, IonIcon,
   IonTitle, IonToolbar, IonSplitPane, IonButton, IonButtons,
   IonSegment, IonSegmentButton, IonLabel, IonCard, IonCardHeader,
   IonCardSubtitle, IonCardTitle, IonCardContent, IonItem, IonItemDivider
 } from '@ionic/react';
+import { addOutline } from 'ionicons/icons';
 import ResponseMenu from '../../components/response/ResponseMenu';
 import { useTranslation } from "react-i18next";
 import ResponseMembersPicker from "../../components/response/ResponseMembersPicker"
-import { addOutline } from 'ionicons/icons';
+import axios from 'axios';
 
 export interface ISessionTime {
   weekday: string;
@@ -16,11 +17,35 @@ export interface ISessionTime {
 }
 
 const ResponseTasks: React.FC = () => {
+  const [tasks, setTasks] = useState([
+    {
+      id: "",
+      task_name: "",
+      description: "",
+      Group: {
+        group_name: ""
+      },
+      Job: {
+        job_name: ""
+      }
+    }
+  ]);
   const { t } = useTranslation();
   const [pickerIsOpen, setPickerIsOpen] = useState(false);
   const [sessionTime, setSessionTime] = useState<ISessionTime | undefined>(
     undefined
   );
+
+  useEffect(() => {
+    axios.get(`${localStorage.getItem("res_id")}/tasks`)
+      .then(function (res) {
+        setTasks(res.data)
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  }, [])
+
   return (
     <IonSplitPane contentId="response">
       <ResponseMenu />
@@ -79,33 +104,21 @@ const ResponseTasks: React.FC = () => {
             }}
           />
           <IonItemDivider>45{t("response.tasks")}</IonItemDivider>
-          <IonCard routerLink={'/response/task/1'}>
-            <IonCardHeader>
-              <IonCardSubtitle>组名｜岗位名</IonCardSubtitle>
-              <IonCardTitle>任务标题</IonCardTitle>
-            </IonCardHeader>
-            <IonCardContent>
-              任务内容
-            </IonCardContent>
-          </IonCard>
-          <IonCard routerLink={'/response/task/2'}>
-            <IonCardHeader>
-              <IonCardSubtitle>组名｜岗位名</IonCardSubtitle>
-              <IonCardTitle>任务标题</IonCardTitle>
-            </IonCardHeader>
-            <IonCardContent>
-              任务内容
-            </IonCardContent>
-          </IonCard>
-          <IonCard routerLink={'/response/task/3'}>
-            <IonCardHeader>
-              <IonCardSubtitle>组名｜岗位名</IonCardSubtitle>
-              <IonCardTitle>任务标题</IonCardTitle>
-            </IonCardHeader>
-            <IonCardContent>
-              任务内容
-            </IonCardContent>
-          </IonCard>
+          {tasks.length === 0 ? (
+            <IonCard>
+              <IonCardHeader>暂无任务</IonCardHeader>
+            </IonCard>
+          ) : tasks.map((task, index) => {
+            return (
+              <IonCard key={index} routerLink={`/response/task/${task.id}`}>
+                <IonCardHeader>
+                  <IonCardSubtitle>{task.Group.group_name}｜{task.Job.job_name}</IonCardSubtitle>
+                  <IonCardTitle>{task.task_name}</IonCardTitle>
+                </IonCardHeader>
+                <IonCardContent>{task.description}</IonCardContent>
+              </IonCard>
+            )
+          })}
         </IonContent>
       </IonPage>
     </IonSplitPane>

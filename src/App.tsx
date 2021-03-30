@@ -8,7 +8,6 @@ import {
   volumeHighOutline, libraryOutline, notificationsOutline,
   chatbubblesOutline, personOutline
 } from 'ionicons/icons';
-import Response from './pages/response/Response';
 import ResponseSettings from './pages/response/ResponseSettings';
 import ResponseTasks from './pages/response/ResponseTasks';
 import ResponseMembers from './pages/response/ResponseMembers';
@@ -30,6 +29,8 @@ import User from './pages/user/User';
 import UserProfile from './pages/user/UserProfile';
 import UserFollow from './pages/user/UserFollow';
 import UserSettings from './pages/user/UserSettings';
+import Signin from './pages/user/Signin';
+import Signup from './pages/user/Signup';
 import NotFound from './pages//NotFound';
 
 /* Core CSS required for Ionic components to work properly */
@@ -51,20 +52,35 @@ import '@ionic/react/css/display.css';
 /* Theme variables */
 import './theme/variables.css';
 
+import axios from 'axios'
+
+// 只运行一次
+let homeUrl = ""
+axios.get('/response/current')
+  .then(function (res) {
+    homeUrl = res.data.id + "/tasks"
+    localStorage.setItem("res_id", res.data.id)
+    localStorage.setItem("res_name", res.data.response_name)
+    localStorage.setItem("res_slogan", res.data.slogan || "")
+  })
+  .catch(function (error) {
+    homeUrl = "history"
+  });
+
 const App: React.FC = () => (
   <IonApp>
     <IonReactRouter>
       <IonTabs>
         <IonRouterOutlet>
           <Route path="/404" component={NotFound} exact={true} />
-          <Route path="/response" component={Response} exact={true} />
-          <Route path="/response/tasks" component={ResponseTasks} exact={true} />
-          <Route path="/response/members" component={ResponseMembers} exact={true} />
-          <Route path="/response/timeline" component={ResponseTimeline} exact={true} />
-          <Route path="/response/settings" component={ResponseSettings} exact={true} />
+          <Route path="/response/:id/tasks" component={ResponseTasks} exact={true} />
+          {/* <Route path="/response/tasks" component={ResponseTasks} exact={true} /> */}
+          <Route path="/response/:id/members" component={ResponseMembers} exact={true} />
+          <Route path="/response/:id/timeline" component={ResponseTimeline} exact={true} />
+          <Route path="/response/:id/settings" component={ResponseSettings} exact={true} />
           <Route path="/response/history" component={ResponseHistory} exact={true} />
           <Route path="/response/task/:id" component={TaskPage} exact={true} />
-          <Route path="/response/applylist" component={ApplyList} exact={true} />
+          <Route path="/response/:id/applylist" component={ApplyList} exact={true} />
           <Route path="/library" component={Library} exact={true} />
           <Route path="/library/topic" component={TopicPage} exact={true} />
           <Route path="/library/topic/new" component={TopicNew} exact={true} />
@@ -79,7 +95,10 @@ const App: React.FC = () => (
           <Route path="/user/profile" component={UserProfile} exact={true} />
           <Route path="/user/follow" component={UserFollow} exact={true} />
           <Route path="/user/settings" component={UserSettings} exact={true} />
-          <Route path="/" render={() => <Redirect to="/response" />} exact={true} />
+          <Route path="/user/signin" component={Signin} exact={true} />
+          <Route path="/user/signup" component={Signup} exact={true} />
+          <Route path="/response" render={() => <Redirect to={`/response/${homeUrl}`} />} exact={true} />
+          <Route path="/" render={() => <Redirect to={`/response/${homeUrl}`} />} exact={true} />
         </IonRouterOutlet>
         <IonTabBar slot="bottom">
           <IonTabButton tab="response" href="/response">

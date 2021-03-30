@@ -1,12 +1,13 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
-  IonItem, IonLabel, IonItemGroup,
+  IonItem, IonLabel, IonItemGroup, IonAlert,
   IonItemSliding, IonItemOptions, IonItemOption, IonButton,
 } from '@ionic/react';
 import { useTranslation } from "react-i18next";
 
 const ResponseBaseInfo: React.FC = () => {
   const { t } = useTranslation();
+  const [endConfirm, setEndConfirm] = useState(false);
   return (
     <IonItemGroup>
       <IonItemSliding>
@@ -47,7 +48,7 @@ const ResponseBaseInfo: React.FC = () => {
       <IonItemSliding>
         <IonItem lines="full">
           <IonLabel className="ion-text-wrap">
-            <h2>{t("response.disaster_level")}</h2>
+            <h2>{t("response.response_level")}</h2>
             <p>text</p>
           </IonLabel>
         </IonItem>
@@ -122,7 +123,29 @@ const ResponseBaseInfo: React.FC = () => {
           <IonItemOption>编辑</IonItemOption>
         </IonItemOptions>
       </IonItemSliding>
-      <IonButton fill="outline" expand="block" color="danger">结束响应</IonButton>
+      <IonButton onClick={() => setEndConfirm(true)} fill="outline" expand="block" color="danger">结束响应</IonButton>
+      <IonAlert
+        isOpen={endConfirm}
+        onDidDismiss={() => setEndConfirm(false)}
+        header={t("response.end_confirm")}
+        message={t("response.end_message")}
+        buttons={[
+          {
+            text: t("response.okay"),
+            handler: () => {
+              console.log('Confirm Okay');
+            }
+          },
+          {
+            text: t("response.cancel"),
+            role: 'cancel',
+            cssClass: 'secondary',
+            handler: blah => {
+              console.log('Confirm Cancel: blah');
+            }
+          }
+        ]}
+      />
     </IonItemGroup>
   );
 };

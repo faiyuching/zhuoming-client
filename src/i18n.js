@@ -8,6 +8,7 @@ const resources = {
     translation: {
       back: "Back",
       remove: "Remove",
+      cancel: "Cancel",
       response: {
         response: "Response",
         disaster: "Disaster",
@@ -33,7 +34,7 @@ const resources = {
         response_name: "Response Name",
         organizer: "Organizer:",
         disaster_type: "Disaster Type",
-        disaster_level: "Disaster Level",
+        response_level: "Response Level",
         begin_time: "Begin Time",
         needs_time: "Needs Time",
         end_time: "End Time",
@@ -65,6 +66,9 @@ const resources = {
         receive: "Receive",
         notice_me_new_task: "Notify me of new tasks",
         end_response: "End response",
+        end_confirm: "Are you sure to end?",
+        end_message: "All tasks in progress will end",
+        okay: "Okay",
         launch_response: "Launch"
       },
       library: {
@@ -178,6 +182,7 @@ const resources = {
     translation: {
       back: "返回",
       remove: "移除",
+      cancel: "取消",
       response: {
         response: "响应",
         menu: "菜单",
@@ -202,7 +207,7 @@ const resources = {
         response_name: "响应名称",
         organizer: "发起人",
         disaster_type: "灾害类型",
-        disaster_level: "灾害级别",
+        response_level: "响应级别",
         begin_time: "开始时间",
         needs_time: "持续时间",
         end_time: "结束时间",
@@ -234,6 +239,9 @@ const resources = {
         receive: "领取",
         notice_me_new_task: "有新任务时通知我",
         end_response: "结束响应",
+        end_confirm: "确认结束响应？",
+        end_message: "正在进行中的所有任务将结束",
+        okay: "确定",
         launch_response: "发起响应"
       },
       library: {
