@@ -56,7 +56,7 @@ import axios from 'axios'
 
 // 只运行一次
 let homeUrl = ""
-axios.get('/response/current')
+axios.get('https://api.zhuominginfo.cn/response/current')
   .then(function (res) {
     homeUrl = res.data.id + "/tasks"
     localStorage.setItem("res_id", res.data.id)
