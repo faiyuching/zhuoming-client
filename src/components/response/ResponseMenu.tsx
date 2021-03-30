@@ -42,25 +42,25 @@ const ResponseMenu: React.FC = () => {
   const responsePages: page[] = [
     {
       title: t("response.settings"),
-      url: `/response/${localStorage.getItem("res_id")}/settings`,
+      url: `/response/settings`,
       iosIcon: settingsOutline,
       mdIcon: settingsSharp
     },
     {
       title: t("response.tasks"),
-      url: `/response/${localStorage.getItem("res_id")}/tasks`,
+      url: `/response/tasks`,
       iosIcon: listOutline,
       mdIcon: listSharp
     },
     {
       title: t("response.members"),
-      url: `/response/${localStorage.getItem("res_id")}/members`,
+      url: `/response/members`,
       iosIcon: peopleOutline,
       mdIcon: peopleSharp
     },
     {
       title: t("response.timeline"),
-      url: `/response/${localStorage.getItem("res_id")}/timeline`,
+      url: `/response/timeline`,
       iosIcon: timeOutline,
       mdIcon: timeSharp
     },

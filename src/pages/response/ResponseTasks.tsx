@@ -37,7 +37,7 @@ const ResponseTasks: React.FC = () => {
   );
 
   useEffect(() => {
-    axios.get(`/${localStorage.getItem("res_id")}/tasks`)
+    axios.get(`/tasks?response_id=${localStorage.getItem("response_id")}`)
       .then(function (res) {
         setTasks(res.data)
       })

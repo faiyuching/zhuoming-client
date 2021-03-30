@@ -15,6 +15,7 @@ const ResponseSettings: React.FC = () => {
   const [popoverState, setShowPopover] = useState({ showPopover: false, event: undefined });
   const [value, setValue] = useState('base_info')
   const { t } = useTranslation();
+
   return (
     <IonSplitPane contentId="response">
       <ResponseMenu />

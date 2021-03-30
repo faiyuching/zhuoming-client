@@ -1,20 +1,46 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   IonItem, IonLabel, IonItemGroup, IonAlert,
   IonItemSliding, IonItemOptions, IonItemOption, IonButton,
 } from '@ionic/react';
 import { useTranslation } from "react-i18next";
+import axios from 'axios';
 
 const ResponseBaseInfo: React.FC = () => {
   const { t } = useTranslation();
   const [endConfirm, setEndConfirm] = useState(false);
+
+  const [response, setResponse] = useState({
+    response_name: "",
+    disaster_type: "",
+    response_level: "",
+    begin_time: "",
+    needs_time: "",
+    end_time: "",
+    join_mode: "",
+    need_people: "",
+    statement: "",
+    User: {
+      username: ""
+    }
+  });
+
+  useEffect(() => {
+    axios.get(`/response/${localStorage.getItem("response_id")}`)
+      .then(function (res) {
+        setResponse(res.data)
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  }, [])
   return (
     <IonItemGroup>
       <IonItemSliding>
         <IonItem lines="full">
           <IonLabel className="ion-text-wrap">
             <h2>{t("response.response_name")}</h2>
-            <p>text</p>
+            <p>{response.response_name}</p>
           </IonLabel>
         </IonItem>
         <IonItemOptions side="end">
@@ -27,7 +53,7 @@ const ResponseBaseInfo: React.FC = () => {
         <IonItem lines="full">
           <IonLabel className="ion-text-wrap">
             <h2>{t("response.organizer")}</h2>
-            <p>text</p>
+            <p>{response.User.username}</p>
           </IonLabel>
         </IonItem>
         <IonItemOptions side="end">
@@ -38,7 +64,7 @@ const ResponseBaseInfo: React.FC = () => {
         <IonItem lines="full">
           <IonLabel className="ion-text-wrap">
             <h2>{t("response.disaster_type")}</h2>
-            <p>text</p>
+            <p>{response.disaster_type}</p>
           </IonLabel>
         </IonItem>
         <IonItemOptions side="end">
@@ -49,7 +75,7 @@ const ResponseBaseInfo: React.FC = () => {
         <IonItem lines="full">
           <IonLabel className="ion-text-wrap">
             <h2>{t("response.response_level")}</h2>
-            <p>text</p>
+            <p>{response.response_level}</p>
           </IonLabel>
         </IonItem>
         <IonItemOptions side="end">
@@ -60,7 +86,7 @@ const ResponseBaseInfo: React.FC = () => {
         <IonItem lines="full">
           <IonLabel className="ion-text-wrap">
             <h2>{t("response.begin_time")}</h2>
-            <p>text</p>
+            <p>{response.begin_time.split(".")[0].replace("T", " ")}</p>
           </IonLabel>
         </IonItem>
         <IonItemOptions side="end">
@@ -71,7 +97,7 @@ const ResponseBaseInfo: React.FC = () => {
         <IonItem lines="full">
           <IonLabel className="ion-text-wrap">
             <h2>{t("response.needs_time")}</h2>
-            <p>text</p>
+            <p>{response.needs_time}</p>
           </IonLabel>
         </IonItem>
         <IonItemOptions side="end">
@@ -82,7 +108,7 @@ const ResponseBaseInfo: React.FC = () => {
         <IonItem lines="full">
           <IonLabel className="ion-text-wrap">
             <h2>{t("response.end_time")}</h2>
-            <p>text</p>
+            <p>{response.end_time}</p>
           </IonLabel>
         </IonItem>
         <IonItemOptions side="end">
@@ -93,7 +119,7 @@ const ResponseBaseInfo: React.FC = () => {
         <IonItem lines="full">
           <IonLabel className="ion-text-wrap">
             <h2>{t("response.join_mode")}</h2>
-            <p>所有人可申请加入</p>
+            <p>{response.join_mode}</p>
           </IonLabel>
         </IonItem>
         <IonItemOptions side="end">
@@ -104,7 +130,7 @@ const ResponseBaseInfo: React.FC = () => {
         <IonItem lines="full">
           <IonLabel className="ion-text-wrap">
             <h2>{t("response.need_people")}</h2>
-            <p>text（现有人数）</p>
+            <p>{response.need_people}</p>
           </IonLabel>
         </IonItem>
         <IonItemOptions side="end">
@@ -115,8 +141,7 @@ const ResponseBaseInfo: React.FC = () => {
         <IonItem lines="full">
           <IonLabel className="ion-text-wrap">
             <h2>{t("response.statement")}</h2>
-            <p>Multiline text that should wrap when it is too long
-          to fit on one line in the item...</p>
+            <p>{response.statement}</p>
           </IonLabel>
         </IonItem>
         <IonItemOptions side="end">
