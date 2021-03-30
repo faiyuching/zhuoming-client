@@ -55,7 +55,7 @@ import './theme/variables.css';
 import axios from 'axios'
 
 // 只运行一次
-let homeUrl = "3d75fe40-917b-11eb-8c69-e1f724af00e3/tasks"
+let homeUrl = ""
 axios.get('/response/current')
   .then(function (res) {
     console.log(res)
