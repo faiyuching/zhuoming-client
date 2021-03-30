@@ -58,6 +58,7 @@ import axios from 'axios'
 let homeUrl = ""
 axios.get('/response/current')
   .then(function (res) {
+    console.log(res)
     homeUrl = res.data.id + "/tasks"
     localStorage.setItem("res_id", res.data.id)
     localStorage.setItem("res_name", res.data.response_name)
