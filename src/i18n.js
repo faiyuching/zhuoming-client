@@ -9,6 +9,8 @@ const resources = {
       back: "Back",
       remove: "Remove",
       cancel: "Cancel",
+      delete: "Delete",
+      edit: "Edit",
       response: {
         response: "Response",
         disaster: "Disaster",
@@ -183,6 +185,8 @@ const resources = {
       back: "返回",
       remove: "移除",
       cancel: "取消",
+      delete: "删除",
+      edit: "编辑",
       response: {
         response: "响应",
         menu: "菜单",

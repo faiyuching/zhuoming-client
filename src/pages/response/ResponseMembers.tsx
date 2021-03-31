@@ -1,12 +1,13 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   IonContent, IonHeader, IonMenuButton, IonItemOptions, IonItemDivider,
-  IonPage, IonTitle, IonToolbar, IonSplitPane, IonItemOption,
+  IonPage, IonTitle, IonToolbar, IonSplitPane, IonItemOption, IonCard, IonCardHeader,
   IonButton, IonButtons, IonItem, IonLabel, IonItemSliding, IonAvatar, IonImg
 } from '@ionic/react';
 import ResponseMenu from '../../components/response/ResponseMenu';
 import { useTranslation } from "react-i18next";
 import ResponseMembersPicker from "../../components/response/ResponseMembersPicker"
+import axios from 'axios';
 
 export interface ISessionTime {
   weekday: string;
@@ -20,6 +21,25 @@ const ResponseMembers: React.FC = () => {
   const [sessionTime, setSessionTime] = useState<ISessionTime | undefined>(
     undefined
   );
+
+  const [applies, setApplies] = useState([
+    {
+      User: {
+        username: "",
+        avatar: ""
+      }
+    }
+  ]);
+  useEffect(() => {
+    axios.get(`/applies?response_id=${localStorage.getItem("response_id")}`)
+      .then(function (res) {
+        console.log(res.data)
+        setApplies(res.data)
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  }, [])
 
   return (
     <IonSplitPane contentId="response">
@@ -66,90 +86,28 @@ const ResponseMembers: React.FC = () => {
             }}
           />
           <IonItemDivider>50{t("response.members")}</IonItemDivider>
-          <IonItemSliding>
-            <IonItem button routerLink={'/user'}>
-              <IonAvatar slot="start">
-                <IonImg src="/assets/avatar.png" />
-              </IonAvatar>
-              <IonLabel>
-                <h2>Faiyuching</h2>
-                <p>正在进行中的任务：x个</p>
-              </IonLabel>
-            </IonItem>
-            <IonItemOptions side="end">
-              <IonItemOption color="danger">{t("remove")}</IonItemOption>
-            </IonItemOptions>
-          </IonItemSliding>
-          <IonItemSliding>
-            <IonItem button routerLink={'/user'}>
-              <IonAvatar slot="start">
-                <IonImg src="/assets/avatar.png" />
-              </IonAvatar>
-              <IonLabel>
-                <h2>Faiyuching</h2>
-                <p>正在进行中的任务：x个</p>
-              </IonLabel>
-            </IonItem>
-            <IonItemOptions side="end">
-              <IonItemOption color="danger">{t("remove")}</IonItemOption>
-            </IonItemOptions>
-          </IonItemSliding>
-          <IonItemSliding>
-            <IonItem button routerLink={'/user'}>
-              <IonAvatar slot="start">
-                <IonImg src="/assets/avatar.png" />
-              </IonAvatar>
-              <IonLabel>
-                <h2>Faiyuching</h2>
-                <p>正在进行中的任务：x个</p>
-              </IonLabel>
-            </IonItem>
-            <IonItemOptions side="end">
-              <IonItemOption color="danger">{t("remove")}</IonItemOption>
-            </IonItemOptions>
-          </IonItemSliding>
-          <IonItemSliding>
-            <IonItem button routerLink={'/user'}>
-              <IonAvatar slot="start">
-                <IonImg src="/assets/avatar.png" />
-              </IonAvatar>
-              <IonLabel>
-                <h2>Faiyuching</h2>
-                <p>正在进行中的任务：x个</p>
-              </IonLabel>
-            </IonItem>
-            <IonItemOptions side="end">
-              <IonItemOption color="danger">{t("remove")}</IonItemOption>
-            </IonItemOptions>
-          </IonItemSliding>
-          <IonItemSliding>
-            <IonItem button routerLink={'/user'}>
-              <IonAvatar slot="start">
-                <IonImg src="/assets/avatar.png" />
-              </IonAvatar>
-              <IonLabel>
-                <h2>Faiyuching</h2>
-                <p>正在进行中的任务：x个</p>
-              </IonLabel>
-            </IonItem>
-            <IonItemOptions side="end">
-              <IonItemOption color="danger">{t("remove")}</IonItemOption>
-            </IonItemOptions>
-          </IonItemSliding>
-          <IonItemSliding>
-            <IonItem button routerLink={'/user'}>
-              <IonAvatar slot="start">
-                <IonImg src="/assets/avatar.png" />
-              </IonAvatar>
-              <IonLabel>
-                <h2>Faiyuching</h2>
-                <p>正在进行中的任务：x个</p>
-              </IonLabel>
-            </IonItem>
-            <IonItemOptions side="end">
-              <IonItemOption color="danger">{t("remove")}</IonItemOption>
-            </IonItemOptions>
-          </IonItemSliding>
+          {applies.length === 0 ? (
+            <IonCard>
+              <IonCardHeader>暂无报名</IonCardHeader>
+            </IonCard>
+          ) : applies.map((apply, index) => {
+            return (
+              <IonItemSliding key={index}>
+                <IonItem button routerLink={'/user'}>
+                  <IonAvatar slot="start">
+                    <IonImg src={apply.User.avatar} />
+                  </IonAvatar>
+                  <IonLabel>
+                    <h2>{apply.User.username}</h2>
+                    <p>正在进行中的任务：x个</p>
+                  </IonLabel>
+                </IonItem>
+                <IonItemOptions side="end">
+                  <IonItemOption color="danger">{t("remove")}</IonItemOption>
+                </IonItemOptions>
+              </IonItemSliding>
+            )
+          })}
         </IonContent>
       </IonPage>
     </IonSplitPane>

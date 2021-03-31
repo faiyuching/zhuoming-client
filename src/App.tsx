@@ -31,6 +31,7 @@ import UserFollow from './pages/user/UserFollow';
 import UserSettings from './pages/user/UserSettings';
 import Signin from './pages/user/Signin';
 import Signup from './pages/user/Signup';
+import wxLogin from './pages/user/wxLogin';
 import NotFound from './pages//NotFound';
 
 /* Core CSS required for Ionic components to work properly */
@@ -95,6 +96,7 @@ const App: React.FC = () => (
           <Route path="/user/profile" component={UserProfile} exact={true} />
           <Route path="/user/follow" component={UserFollow} exact={true} />
           <Route path="/user/settings" component={UserSettings} exact={true} />
+          <Route path="/user/wxlogin" component={wxLogin} exact={true} />
           <Route path="/user/signin" component={Signin} exact={true} />
           <Route path="/user/signup" component={Signup} exact={true} />
           <Route path="/response" render={() => <Redirect to={`/response/${homePage}`} />} exact={true} />
@@ -117,7 +119,7 @@ const App: React.FC = () => (
             <IonIcon icon={chatbubblesOutline} size="small" />
             <IonLabel>论坛</IonLabel>
           </IonTabButton>
-          <IonTabButton tab="user" href="/user">
+          <IonTabButton tab="user" href="/user/wxlogin">
             <IonIcon icon={personOutline} size="small" />
             <IonLabel>我的</IonLabel>
           </IonTabButton>

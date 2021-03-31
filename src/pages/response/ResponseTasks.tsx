@@ -19,7 +19,7 @@ export interface ISessionTime {
 const ResponseTasks: React.FC = () => {
   const [tasks, setTasks] = useState([
     {
-      id: "",
+      task_id: "",
       task_name: "",
       description: "",
       Group: {
@@ -110,7 +110,7 @@ const ResponseTasks: React.FC = () => {
             </IonCard>
           ) : tasks.map((task, index) => {
             return (
-              <IonCard key={index} routerLink={`/response/task/${task.id}`}>
+              <IonCard key={index} routerLink={`/response/task/${task.task_id}`}>
                 <IonCardHeader>
                   <IonCardSubtitle>{task.Group.group_name}｜{task.Job.job_name}</IonCardSubtitle>
                   <IonCardTitle>{task.task_name}</IonCardTitle>
