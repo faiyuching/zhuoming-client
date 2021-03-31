@@ -96,7 +96,7 @@ const App: React.FC = () => (
           <Route path="/user/profile" component={UserProfile} exact={true} />
           <Route path="/user/follow" component={UserFollow} exact={true} />
           <Route path="/user/settings" component={UserSettings} exact={true} />
-          <Route path="/user/wxlogin" component={wxLogin} exact={true} />
+          <Route path="/wxlogin" component={wxLogin} exact={true} />
           <Route path="/user/signin" component={Signin} exact={true} />
           <Route path="/user/signup" component={Signup} exact={true} />
           <Route path="/response" render={() => <Redirect to={`/response/${homePage}`} />} exact={true} />
@@ -119,7 +119,7 @@ const App: React.FC = () => (
             <IonIcon icon={chatbubblesOutline} size="small" />
             <IonLabel>论坛</IonLabel>
           </IonTabButton>
-          <IonTabButton tab="user" href="/user/wxlogin">
+          <IonTabButton tab="wxlogin" href="/wxlogin">
             <IonIcon icon={personOutline} size="small" />
             <IonLabel>我的</IonLabel>
           </IonTabButton>
