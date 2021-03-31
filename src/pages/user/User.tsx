@@ -17,7 +17,7 @@ const User: React.FC = () => {
       <IonHeader>
         <IonToolbar>
           <IonButtons slot="start">
-            <IonButton href="https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxa407d8ca09c9b93b&redirect_uri=http%3a%2f%2flocalhost%3a3000%2fuser&response_type=code&scope=snsapi_base&#wechat_redirec">login</IonButton>
+            <IonButton href="https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxa407d8ca09c9b93b&redirect_uri=https%3a%2f%2fwww.zhuominginfo.cn&response_type=code&scope=snsapi_base&#wechat_redirec">login</IonButton>
           </IonButtons>
           <IonTitle>{t("user.user")}</IonTitle>
           <IonButtons slot="end">
