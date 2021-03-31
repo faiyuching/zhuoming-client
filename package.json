@@ -2,7 +2,7 @@
   "name": "zhuoming-client",
   "version": "0.0.1",
   "private": true,
-  "proxy": "http://127.0.0.1:8000",
+  "proxy": "wss://api.zhuominginfo.cn:8000",
   "dependencies": {
     "@capacitor/core": "2.4.5",
     "@ionic/react": "^5.0.7",
@@ -30,7 +30,7 @@
   },
   "scripts": {
     "dev": "react-scripts start",
-    "prod": "pm2 start node_modules/react-scripts/scripts/start.js --name=zhuoming-client",
+    "prod": "pm2 start node_modules/react-scripts/scripts/start.js --name=client",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
