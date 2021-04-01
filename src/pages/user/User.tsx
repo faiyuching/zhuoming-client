@@ -8,8 +8,22 @@ import {
   IonImg, IonText, IonThumbnail, IonPopover, IonList
 } from '@ionic/react';
 import { useTranslation } from "react-i18next";
+import axios from 'axios';
+
+const url = new URL(window.location.href);
+const code = url.searchParams.get("code");
+if (code) {
+  axios.post('/wx/login', { code: code })
+    .then(function (res) {
+      console.log(res)
+    })
+    .catch(function (error) {
+      console.log(error);
+    })
+}
 
 const User: React.FC = () => {
+
   const [popoverState, setShowPopover] = useState({ showPopover: false, event: undefined });
   const { t } = useTranslation();
   return (

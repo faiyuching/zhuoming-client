@@ -17,17 +17,17 @@ const ResponseHistory: React.FC = () => {
     end_time: ""
   }]);
 
-  useEffect(() => {
-    axios.get('/responses')
-      .then(function (res) {
-        const responseList = res.data
-        responseList.pop()
-        setResponses(responseList)
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
-  }, [])
+  // useEffect(() => {
+  //   axios.get('/responses')
+  //     .then(function (res) {
+  //       const responseList = res.data
+  //       responseList.pop()
+  //       setResponses(responseList)
+  //     })
+  //     .catch(function (error) {
+  //       console.log(error);
+  //     });
+  // }, [])
   return (
     <IonPage>
       <IonHeader>
@@ -44,7 +44,14 @@ const ResponseHistory: React.FC = () => {
         </IonToolbar>
       </IonHeader>
       <IonContent fullscreen>
-        {responses.length === 0 ? (
+        <IonCard >
+          <IonCardHeader>
+            <IonCardSubtitle>开始时间-结束时间｜参与人数</IonCardSubtitle>
+            <IonCardTitle>响应名称</IonCardTitle>
+          </IonCardHeader>
+          <IonCardContent>结果：完成几个任务｜产出几个产品｜完成几次讨论</IonCardContent>
+        </IonCard>
+        {/* {responses.length === 0 ? (
           <IonCard>
             <IonCardHeader>暂无响应</IonCardHeader>
           </IonCard>
@@ -58,7 +65,7 @@ const ResponseHistory: React.FC = () => {
               <IonCardContent>结果：完成几个任务｜产出几个产品｜完成几次讨论</IonCardContent>
             </IonCard>
           )
-        })}
+        })} */}
       </IonContent>
     </IonPage>
   );

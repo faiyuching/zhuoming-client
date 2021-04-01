@@ -55,17 +55,17 @@ import './theme/variables.css';
 import axios from 'axios'
 
 // 只运行一次
-let homePage = "/"
-axios.get('/response/current')
-  .then(function (res) {
-    homePage = "tasks"
-    localStorage.setItem("response_id", res.data.response_id)
-    localStorage.setItem("response_name", res.data.response_name)
-    localStorage.setItem("response_slogan", res.data.slogan || "")
-  })
-  .catch(function (error) {
-    homePage = "history"
-  });
+let homePage = "/history"
+// axios.get('/response/current')
+//   .then(function (res) {
+//     homePage = "tasks"
+//     localStorage.setItem("response_id", res.data.response_id)
+//     localStorage.setItem("response_name", res.data.response_name)
+//     localStorage.setItem("response_slogan", res.data.slogan || "")
+//   })
+//   .catch(function (error) {
+//     homePage = "history"
+//   });
 
 const App: React.FC = () => (
   <IonApp>
@@ -97,8 +97,8 @@ const App: React.FC = () => (
           <Route path="/user/settings" component={UserSettings} exact={true} />
           <Route path="/user/signin" component={Signin} exact={true} />
           <Route path="/user/signup" component={Signup} exact={true} />
-          <Route path="/response" render={() => <Redirect to={`/response/${homePage}`} />} exact={true} />
-          <Route path="/" render={() => <Redirect to={`/response/${homePage}`} />} exact={true} />
+          <Route path="/response" render={() => <Redirect to={`/response/history`} />} exact={true} />
+          <Route path="/" render={() => <Redirect to={`/response/history`} />} exact={true} />
         </IonRouterOutlet>
         <IonTabBar slot="bottom">
           <IonTabButton tab="response" href="/response">
@@ -113,10 +113,10 @@ const App: React.FC = () => (
             <IonIcon icon={notificationsOutline} size="small" />
             <IonLabel>通知</IonLabel>
           </IonTabButton>
-          <IonTabButton tab="forum" href="/forum">
+          {/* <IonTabButton tab="forum" href="/forum">
             <IonIcon icon={chatbubblesOutline} size="small" />
             <IonLabel>论坛</IonLabel>
-          </IonTabButton>
+          </IonTabButton> */}
           <IonTabButton tab="user" href="/user">
             <IonIcon icon={personOutline} size="small" />
             <IonLabel>我的</IonLabel>
