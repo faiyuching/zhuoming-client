@@ -66,6 +66,9 @@ let homePage = "/history"
 //   .catch(function (error) {
 //     homePage = "history"
 //   });
+console.log(navigator.userAgent.toLowerCase())
+
+console.log(navigator.userAgent.toLowerCase().indexOf('micromessenger') != -1)
 
 const App: React.FC = () => (
   <IonApp>
@@ -113,10 +116,10 @@ const App: React.FC = () => (
             <IonIcon icon={notificationsOutline} size="small" />
             <IonLabel>通知</IonLabel>
           </IonTabButton>
-          {/* <IonTabButton tab="forum" href="/forum">
+          <IonTabButton tab="forum" href="/forum">
             <IonIcon icon={chatbubblesOutline} size="small" />
             <IonLabel>论坛</IonLabel>
-          </IonTabButton> */}
+          </IonTabButton>
           <IonTabButton tab="user" href="/user">
             <IonIcon icon={personOutline} size="small" />
             <IonLabel>我的</IonLabel>

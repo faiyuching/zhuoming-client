@@ -1,37 +1,44 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   IonContent, IonHeader, IonPage, IonTitle,
   IonToolbar, IonButtons, IonButton,
   IonSegment, IonSegmentButton, IonLabel,
   IonCard, IonCardHeader, IonCardSubtitle,
   IonCardTitle, IonCardContent, IonItem,
-  IonImg, IonText, IonThumbnail, IonPopover, IonList
+  IonImg, IonText, IonThumbnail, IonPopover, IonList, IonNote
 } from '@ionic/react';
 import { useTranslation } from "react-i18next";
 import axios from 'axios';
+import QRcode from '../../components/user/QRcode'
+// const url = new URL(window.location.href);
+// const code = url.searchParams.get("code");
+// if (code) {
+//   axios.post('/wx/login', { code: code })
+//     .then(function (res) {
+//       console.log(res)
+//     })
+//     .catch(function (error) {
+//       console.log(error);
+//     })
+// }
 
-const url = new URL(window.location.href);
-const code = url.searchParams.get("code");
-if (code) {
-  axios.post('/wx/login', { code: code })
-    .then(function (res) {
-      console.log(res)
-    })
-    .catch(function (error) {
-      console.log(error);
-    })
-}
 
 const User: React.FC = () => {
 
   const [popoverState, setShowPopover] = useState({ showPopover: false, event: undefined });
   const { t } = useTranslation();
+
+  if (!localStorage.getItem("zhuoming_userid")) {
+    return (
+      <QRcode />
+    )
+  }
   return (
     <IonPage>
       <IonHeader>
         <IonToolbar>
           <IonButtons slot="start">
-            <IonButton href="https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxa407d8ca09c9b93b&redirect_uri=https%3a%2f%2fwww.zhuominginfo.cn%2fuser&response_type=code&scope=snsapi_base&#wechat_redirec">login</IonButton>
+            <IonButton routerLink={'/user/follow'}>{t("user.follow")}</IonButton>
           </IonButtons>
           <IonTitle>{t("user.user")}</IonTitle>
           <IonButtons slot="end">
@@ -51,14 +58,11 @@ const User: React.FC = () => {
             </IonThumbnail>
             <IonLabel>
               <h1><strong>Faiyuching</strong></h1>
-              <p>@faiyuching</p>
+              <p>签名</p>
             </IonLabel>
           </IonItem>
           <IonItem lines="none">
-            <IonButtons slot="start">
-              <IonButton size="small" color="medium" routerLink={"/user/follow"}><IonText color="dark">{"123"}</IonText>{t("user.following")}</IonButton>
-              <IonButton size="small" color="medium" routerLink={"/user/follow"}><IonText color="dark">{"123"}</IonText>{t("user.followers")}</IonButton>
-            </IonButtons>
+            <IonNote>石墨：</IonNote>
           </IonItem>
         </IonToolbar>
       </IonHeader>
