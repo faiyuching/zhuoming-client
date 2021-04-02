@@ -66,9 +66,8 @@ let homePage = "/history"
 //   .catch(function (error) {
 //     homePage = "history"
 //   });
-console.log(navigator.userAgent.toLowerCase())
 
-console.log(navigator.userAgent.toLowerCase().indexOf('micromessenger') != -1)
+// console.log(navigator.userAgent.toLowerCase().indexOf('micromessenger') != -1)
 
 const App: React.FC = () => (
   <IonApp>

@@ -9,11 +9,12 @@ const QRcode: React.FC = () => {
   const [QRcode, setQRcode] = useState("")
 
   useEffect(() => {
-    axios.get("/wechat/get_qrcode")
+    axios.get("/get/qrcode")
       .then(function (res) {
         if (res.data.ticket) {
           setQRcode("<img src='" + "https://mp.weixin.qq.com/cgi-bin/showqrcode?ticket=" + res.data.ticket + "'/>")
           setAlertpen(true)
+          // axios.get('/wechat/login')
         }
       })
       .catch(function (error) {
