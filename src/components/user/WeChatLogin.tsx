@@ -3,7 +3,7 @@ import { IonAlert } from '@ionic/react';
 import { useTranslation } from "react-i18next";
 import axios from 'axios';
 
-const QRcode: React.FC = () => {
+const WeChatLogin: React.FC = () => {
   const { t } = useTranslation();
   const [alertOpen, setAlertpen] = useState(false);
   const [QRcode, setQRcode] = useState("")
@@ -14,6 +14,7 @@ const QRcode: React.FC = () => {
         if (res.data.ticket) {
           setQRcode("<img src='" + "https://mp.weixin.qq.com/cgi-bin/showqrcode?ticket=" + res.data.ticket + "'/>")
           setAlertpen(true)
+          // axios.get('/wechat/login')
         }
       })
       .catch(function (error) {
@@ -41,4 +42,4 @@ const QRcode: React.FC = () => {
   )
 };
 
-export default QRcode;
+export default WeChatLogin;

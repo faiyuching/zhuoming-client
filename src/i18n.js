@@ -176,7 +176,9 @@ const resources = {
         location: "Location",
         job: "Job",
         skill: "Skill",
-        introduction: "Introduction"
+        introduction: "Introduction",
+        signin: "Sign",
+        wechat_sign: "Sign in with WeChat"
       }
     }
   },
@@ -351,7 +353,9 @@ const resources = {
         location: "所在地",
         job: "职业",
         skill: "技能",
-        introduction: "一句话介绍"
+        introduction: "一句话介绍",
+        sign: "登录",
+        wechat_sign: "使用微信账号登录"
       }
     }
   }

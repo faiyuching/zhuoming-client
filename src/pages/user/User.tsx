@@ -5,34 +5,40 @@ import {
   IonSegment, IonSegmentButton, IonLabel,
   IonCard, IonCardHeader, IonCardSubtitle,
   IonCardTitle, IonCardContent, IonItem,
-  IonImg, IonText, IonThumbnail, IonPopover, IonList, IonNote
+  IonImg, IonThumbnail, IonNote
 } from '@ionic/react';
 import { useTranslation } from "react-i18next";
 import axios from 'axios';
-import QRcode from '../../components/user/QRcode'
-// const url = new URL(window.location.href);
-// const code = url.searchParams.get("code");
-// if (code) {
-//   axios.post('/wx/login', { code: code })
-//     .then(function (res) {
-//       console.log(res)
-//     })
-//     .catch(function (error) {
-//       console.log(error);
-//     })
-// }
+
 
 
 const User: React.FC = () => {
-
-  const [popoverState, setShowPopover] = useState({ showPopover: false, event: undefined });
   const { t } = useTranslation();
+  const [userInfo, serUserInfo] = useState({
+    nickname: "",
+    slogan: "",
+    shimo: "",
+    headimgurl: ""
+  })
 
-  if (!localStorage.getItem("zhuoming_userid")) {
-    return (
-      <QRcode />
-    )
-  }
+  useEffect(() => {
+
+    if (localStorage.getItem("user_id")) {
+      axios.get(`/user/${localStorage.getItem("user_id")}`)
+        .then(function (res) {
+          console.log(res.data)
+          serUserInfo(res.data)
+        })
+        .catch(function (error) {
+          console.log(error);
+        })
+    } else {
+      window.location.href = "/user/login"
+    }
+
+  }, [localStorage.getItem("user_id")])
+
+
   return (
     <IonPage>
       <IonHeader>
@@ -42,43 +48,25 @@ const User: React.FC = () => {
           </IonButtons>
           <IonTitle>{t("user.user")}</IonTitle>
           <IonButtons slot="end">
-            <IonButton routerLink={'/user/settings'}
-            // onClick={
-            //   (e: any) => {
-            //     e.persist();
-            //     setShowPopover({ showPopover: true, event: e })
-            //   }}
-            >{t("user.settings")}</IonButton>
+            <IonButton routerLink={'/user/settings'}>{t("user.settings")}</IonButton>
           </IonButtons>
         </IonToolbar>
         <IonToolbar>
           <IonItem lines="none" button routerLink={"/user/profile"}>
             <IonThumbnail slot="start">
-              <IonImg style={{ borderRadius: "50%" }} src="/assets/avatar.png" />
+              <IonImg style={{ borderRadius: "50%" }} src={userInfo.headimgurl} />
             </IonThumbnail>
             <IonLabel>
-              <h1><strong>Faiyuching</strong></h1>
-              <p>签名</p>
+              <h1><strong>{userInfo.nickname}</strong></h1>
+              <p>{userInfo.slogan}</p>
             </IonLabel>
           </IonItem>
           <IonItem lines="none">
-            <IonNote>石墨：</IonNote>
+            <IonNote>石墨账号：{userInfo.shimo || "未填写"}</IonNote>
           </IonItem>
         </IonToolbar>
       </IonHeader>
       <IonContent fullscreen>
-        <IonPopover
-          cssClass='my-custom-class'
-          event={popoverState.event}
-          isOpen={popoverState.showPopover}
-          onDidDismiss={() => setShowPopover({ showPopover: false, event: undefined })}
-        >
-          <IonList>
-            <IonItem button>{t("user.moments")}</IonItem>
-            <IonItem button>{t("user.bookmarks")}</IonItem>
-            <IonItem button routerLink={'/user/settings'}>{t("user.settings")}</IonItem>
-          </IonList>
-        </IonPopover>
         <IonItem lines="none">
           <IonSegment value="unfinished" onIonChange={e => console.log('Segment selected', e.detail.value)}>
             <IonSegmentButton value="unfinished">

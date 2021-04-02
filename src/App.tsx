@@ -13,7 +13,6 @@ import ResponseTasks from './pages/response/ResponseTasks';
 import ResponseMembers from './pages/response/ResponseMembers';
 import ResponseTimeline from './pages/response/ResponseTimeline';
 import ResponseHistory from './pages/response/ResponseHistory';
-import ApplyList from './pages/response/ApplyList';
 import TaskPage from './pages/response/TaskPage';
 import Library from './pages/library/Library';
 import TopicPage from './pages/library/TopicPage';
@@ -26,6 +25,7 @@ import Forum from './pages/forum/Forum';
 import PostDetail from './pages/forum/PostDetail';
 import PostNew from './pages/forum/PostNew';
 import User from './pages/user/User';
+import UserLogin from './pages/user/UserLogin';
 import UserProfile from './pages/user/UserProfile';
 import UserFollow from './pages/user/UserFollow';
 import UserSettings from './pages/user/UserSettings';
@@ -52,10 +52,10 @@ import '@ionic/react/css/display.css';
 /* Theme variables */
 import './theme/variables.css';
 
-import axios from 'axios'
+// import axios from 'axios'
 
 // 只运行一次
-let homePage = "/history"
+// let homePage = "/history"
 // axios.get('/response/current')
 //   .then(function (res) {
 //     homePage = "tasks"
@@ -82,7 +82,6 @@ const App: React.FC = () => (
           <Route path="/response/settings" component={ResponseSettings} exact={true} />
           <Route path="/response/history" component={ResponseHistory} exact={true} />
           <Route path="/response/task/:id" component={TaskPage} exact={true} />
-          <Route path="/response/applylist" component={ApplyList} exact={true} />
           <Route path="/library" component={Library} exact={true} />
           <Route path="/library/topic" component={TopicPage} exact={true} />
           <Route path="/library/topic/new" component={TopicNew} exact={true} />
@@ -94,6 +93,7 @@ const App: React.FC = () => (
           <Route path="/forum/post/:id" component={PostDetail} exact={true} />
           <Route path="/forum/post/new" component={PostNew} exact={true} />
           <Route path="/user" component={User} exact={true} />
+          <Route path="/user/login" component={UserLogin} exact={true} />
           <Route path="/user/profile" component={UserProfile} exact={true} />
           <Route path="/user/follow" component={UserFollow} exact={true} />
           <Route path="/user/settings" component={UserSettings} exact={true} />
