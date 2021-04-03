@@ -31,6 +31,9 @@ const Response: React.FC = () => {
         console.log(error);
       });
   }, [])
+  const loginAlert = () => {
+    alert("请先登录")
+  }
   return (
     <IonSplitPane contentId="response">
       <ResponseMenu />
@@ -44,7 +47,7 @@ const Response: React.FC = () => {
             </IonButtons>
             <IonTitle>{response.response_name}</IonTitle>
             <IonButtons slot="end">
-              <IonButton routerLink="/response/launch">加入</IonButton>
+              {localStorage.getItem("user_id") && <IonButton onClick={() => { loginAlert() }}>加入</IonButton>}
             </IonButtons>
           </IonToolbar>
           <IonToolbar>
