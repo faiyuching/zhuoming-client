@@ -16,7 +16,7 @@ const ResponseHistory: React.FC = () => {
   const [responses, setResponses] = useState([{
     id: "",
     response_name: "",
-    begin_time: "",
+    created_at: "",
     end_time: ""
   }]);
 
@@ -24,7 +24,7 @@ const ResponseHistory: React.FC = () => {
     axios.get('/responses')
       .then(function (res) {
         const responseList = res.data
-        responseList.pop()
+        // responseList.pop()
         setResponses(responseList)
       })
       .catch(function (error) {
@@ -42,12 +42,12 @@ const ResponseHistory: React.FC = () => {
           </IonButtons>
           <IonTitle>{t("response.history")}</IonTitle>
           <IonButtons slot="end">
-            <IonButton>{t("response.launch_response")}</IonButton>
+            <IonButton routerLink="/response/launch">{t("response.launch_response")}</IonButton>
           </IonButtons>
         </IonToolbar>
       </IonHeader>
       <IonContent fullscreen>
-        <IonToast
+        {/* <IonToast
           isOpen={showToast1}
           onDidDismiss={() => setShowToast1(false)}
           message="Your settings have been saved."
@@ -76,7 +76,7 @@ const ResponseHistory: React.FC = () => {
               }
             }
           ]}
-        />
+        /> */}
         {responses.length === 0 ? (
           <IonCard>
             <IonCardHeader>暂无历史响应</IonCardHeader>
@@ -85,10 +85,10 @@ const ResponseHistory: React.FC = () => {
           return (
             <IonCard key={index}>
               <IonCardHeader>
-                <IonCardSubtitle>{response.begin_time.split(".")[0].replace("T", " ")}{response.end_time}｜参与人数</IonCardSubtitle>
+                <IonCardSubtitle>{response.created_at.split("T")[0] + " - " + (response.end_time || "正在响应")}｜参与人数</IonCardSubtitle>
                 <IonCardTitle>{response.response_name}</IonCardTitle>
               </IonCardHeader>
-              <IonCardContent>结果：完成几个任务｜产出几个产品｜完成几次讨论</IonCardContent>
+              <IonCardContent>完成几个任务｜产出几个产品</IonCardContent>
             </IonCard>
           )
         })}

@@ -8,11 +8,14 @@ import {
   volumeHighOutline, libraryOutline, notificationsOutline,
   chatbubblesOutline, personOutline
 } from 'ionicons/icons';
+import Response from './pages/response/Response';
 import ResponseSettings from './pages/response/ResponseSettings';
 import ResponseTasks from './pages/response/ResponseTasks';
 import ResponseMembers from './pages/response/ResponseMembers';
 import ResponseTimeline from './pages/response/ResponseTimeline';
 import ResponseHistory from './pages/response/ResponseHistory';
+import LaunchResponse from './pages/response/LaunchResponse';
+import LaunchSuccess from './pages/response/LaunchSuccess';
 import TaskPage from './pages/response/TaskPage';
 import Library from './pages/library/Library';
 import TopicPage from './pages/library/TopicPage';
@@ -75,12 +78,15 @@ const App: React.FC = () => (
       <IonTabs>
         <IonRouterOutlet>
           <Route path="/404" component={NotFound} exact={true} />
+          <Route path="/response" component={Response} exact={true} />
           <Route path="/response/tasks" component={ResponseTasks} exact={true} />
           {/* <Route path="/response/tasks" component={ResponseTasks} exact={true} /> */}
           <Route path="/response/members" component={ResponseMembers} exact={true} />
           <Route path="/response/timeline" component={ResponseTimeline} exact={true} />
           <Route path="/response/settings" component={ResponseSettings} exact={true} />
           <Route path="/response/history" component={ResponseHistory} exact={true} />
+          <Route path="/response/launch" component={LaunchResponse} exact={true} />
+          <Route path="/response/launch/success" component={LaunchSuccess} exact={true} />
           <Route path="/response/task/:id" component={TaskPage} exact={true} />
           <Route path="/library" component={Library} exact={true} />
           <Route path="/library/topic" component={TopicPage} exact={true} />
@@ -99,8 +105,7 @@ const App: React.FC = () => (
           <Route path="/user/settings" component={UserSettings} exact={true} />
           <Route path="/user/signin" component={Signin} exact={true} />
           <Route path="/user/signup" component={Signup} exact={true} />
-          <Route path="/response" render={() => <Redirect to={`/response/history`} />} exact={true} />
-          <Route path="/" render={() => <Redirect to={`/response/history`} />} exact={true} />
+          <Route path="/" render={() => <Redirect to="/response" />} exact={true} />
         </IonRouterOutlet>
         <IonTabBar slot="bottom">
           <IonTabButton tab="response" href="/response">
