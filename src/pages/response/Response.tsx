@@ -70,7 +70,7 @@ const Response: React.FC = () => {
                       <IonImg src="/assets/avatar.png" />
                     </IonAvatar>
                     <IonLabel>
-                      <h3>刚刚：完成任务</h3>
+                      <h2>刚刚：完成任务</h2>
                       <IonNote>搜集微博灾情信息</IonNote>
                     </IonLabel>
                   </IonItem>
@@ -79,7 +79,7 @@ const Response: React.FC = () => {
                       <IonImg src="/assets/avatar.png" />
                     </IonAvatar>
                     <IonLabel>
-                      <h3>一小时前：发布任务</h3>
+                      <h2>一小时前：发布任务</h2>
                       <p>搜集微博灾情信息</p>
                     </IonLabel>
                   </IonItem>
@@ -89,43 +89,39 @@ const Response: React.FC = () => {
                     <IonCardSubtitle>成员</IonCardSubtitle>
                     <IonCardTitle>20</IonCardTitle>
                   </IonCardHeader>
-                  <IonCardContent>
-                    <IonItem lines="none">
-                      <IonAvatar slot="start">
-                        <IonImg src="/assets/avatar.png" />
-                      </IonAvatar>
-                      <IonLabel>
-                        <h3>刚刚：发布任务</h3>
-                        <p>搜集微博灾情信息</p>
-                      </IonLabel>
-                    </IonItem>
-                    <IonItem lines="none">
-                      <IonAvatar slot="start">
-                        <IonImg src="/assets/avatar.png" />
-                      </IonAvatar>
-                      <IonLabel>
-                        <h3>刚刚：发布任务</h3>
-                        <p>搜集微博灾情信息</p>
-                      </IonLabel>
-                    </IonItem>
-                  </IonCardContent>
+                  <IonItem lines="none">
+                    <IonAvatar slot="start">
+                      <IonImg src="/assets/avatar.png" />
+                    </IonAvatar>
+                    <IonLabel>
+                      <h2>刚刚：发布任务</h2>
+                      <p>搜集微博灾情信息</p>
+                    </IonLabel>
+                  </IonItem>
+                  <IonItem lines="none">
+                    <IonAvatar slot="start">
+                      <IonImg src="/assets/avatar.png" />
+                    </IonAvatar>
+                    <IonLabel>
+                      <h2>刚刚：发布任务</h2>
+                      <p>搜集微博灾情信息</p>
+                    </IonLabel>
+                  </IonItem>
                 </IonCard>
                 <IonCard>
                   <IonCardHeader>
                     <IonCardSubtitle>讨论</IonCardSubtitle>
                     {/* <IonCardTitle>20</IonCardTitle> */}
                   </IonCardHeader>
-                  <IonCardContent>
-                    <IonItem lines="none">
-                      <IonAvatar slot="start">
-                        <IonImg src="/assets/avatar.png" />
-                      </IonAvatar>
-                      <IonLabel>
-                        <h3>刚刚：提问</h3>
-                        <p>请问哪里可以找到XXX</p>
-                      </IonLabel>
-                    </IonItem>
-                  </IonCardContent>
+                  <IonItem lines="none">
+                    <IonAvatar slot="start">
+                      <IonImg src="/assets/avatar.png" />
+                    </IonAvatar>
+                    <IonLabel>
+                      <h2>刚刚：提问</h2>
+                      <p>请问哪里可以找到XXX</p>
+                    </IonLabel>
+                  </IonItem>
                 </IonCard>
               </IonCol>
             </IonRow>
