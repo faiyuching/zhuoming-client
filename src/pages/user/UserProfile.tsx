@@ -7,8 +7,14 @@ import {
 } from '@ionic/react';
 import { useTranslation } from "react-i18next";
 
+const exitAccount = () => {
+  localStorage.removeItem("user_id")
+  window.location.href = "/user"
+}
+
 const UserProfile: React.FC = () => {
   const { t } = useTranslation();
+
   return (
     <IonPage>
       <IonHeader>
@@ -191,6 +197,7 @@ const UserProfile: React.FC = () => {
             </IonItemOptions>
           </IonItemSliding>
         </IonItemGroup>
+        <IonButton onClick={() => { exitAccount() }}>退出账号</IonButton>
       </IonContent>
     </IonPage>
   );

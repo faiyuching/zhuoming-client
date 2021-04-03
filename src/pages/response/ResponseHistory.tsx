@@ -57,7 +57,7 @@ const ResponseHistory: React.FC = () => {
         <IonToast
           isOpen={showToast2}
           onDidDismiss={() => setShowToast2(false)}
-          color="medium"
+          color="danger"
           message="正在响应：长江洪灾II级响应"
           position="top"
           buttons={[
