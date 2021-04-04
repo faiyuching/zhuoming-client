@@ -3,16 +3,17 @@ import {
   IonItem, IonLabel, IonItemGroup, IonCard, IonCardHeader,
   IonItemSliding, IonItemOptions, IonItemOption, IonButtons,
   IonButton, IonModal, IonContent, IonHeader, IonToolbar, IonTitle,
-  IonIcon, IonInput, IonTextarea, IonToast
+  IonIcon, IonInput, IonTextarea
 } from '@ionic/react';
 import { useTranslation } from "react-i18next";
 import axios from 'axios';
 import { closeOutline } from 'ionicons/icons';
+import Toast from "../../components/Toast"
 
 const ResponseGroups: React.FC = () => {
   const { t } = useTranslation();
   const [showAddGroup, setShowAddGroup] = useState(false);
-  const [group_name, setGroupNameo] = useState("")
+  const [group_name, setGroupName] = useState("")
   const [description, setDescription] = useState("")
   const [showSuccessToast, setShowSuccessToast] = useState(false);
   const [showFailToast, setShowFailToast] = useState(false);
@@ -44,6 +45,8 @@ const ResponseGroups: React.FC = () => {
         .then(function (res) {
           setShowAddGroup(false)
           setShowSuccessToast(true)
+          setGroupName("")
+          setDescription("")
         })
         .catch(function (error) {
           console.log(error);
@@ -81,21 +84,8 @@ const ResponseGroups: React.FC = () => {
           <IonButton onClick={() => { setShowAddGroup(true) }}>添加分组</IonButton>
         </IonButtons>
       </IonItem>
-      <IonToast
-        isOpen={showSuccessToast}
-        onDidDismiss={() => setShowSuccessToast(false)}
-        message="添加分组成功！"
-        duration={500}
-        position="top"
-      />
-      <IonToast
-        isOpen={showFailToast}
-        onDidDismiss={() => setShowFailToast(false)}
-        message="添加分组失败，已存在该组"
-        duration={1000}
-        position="top"
-        color="danger"
-      />
+      <Toast open={showSuccessToast} message={"添加分组成功！"} duration={1000} color={"success"} />
+      <Toast open={showFailToast} message={"添加失败失败！"} duration={1000} color={"danger"} />
       <IonModal isOpen={showAddGroup} >
         <IonContent>
           <IonHeader>
@@ -113,7 +103,7 @@ const ResponseGroups: React.FC = () => {
           </IonHeader>
           <IonItem>
             <IonLabel position="floating">组名</IonLabel>
-            <IonInput value={group_name} onIonChange={e => setGroupNameo(e.detail.value!)}></IonInput>
+            <IonInput value={group_name} onIonChange={e => setGroupName(e.detail.value!)}></IonInput>
           </IonItem>
           <IonItem>
             <IonLabel position="floating">描述</IonLabel>

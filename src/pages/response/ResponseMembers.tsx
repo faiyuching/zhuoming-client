@@ -73,7 +73,7 @@ const ResponseMembers: React.FC = () => {
           </IonToolbar>
         </IonHeader>
         <IonContent fullscreen>
-          <ResponseMembersPicker
+          {/* <ResponseMembersPicker
             isOpen={pickerIsOpen}
             onCancel={() => {
               setPickerIsOpen(false);
@@ -84,7 +84,7 @@ const ResponseMembers: React.FC = () => {
               setSessionTime({ weekday: Day.text, period: SessionTime.text });
               setPickerIsOpen(false);
             }}
-          />
+          /> */}
           <IonItemDivider>50{t("response.members")}</IonItemDivider>
           {applies.length === 0 ? (
             <IonCard>

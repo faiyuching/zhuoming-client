@@ -2,12 +2,13 @@ import React, { useCallback, useEffect, useState } from 'react';
 import {
   IonItem, IonLabel, IonItemGroup, IonItemSliding, IonItemOptions,
   IonItemOption, IonCard, IonCardHeader, IonButtons, IonButton,
-  IonToast, IonModal, IonContent, IonHeader, IonToolbar, IonTitle,
+  IonModal, IonContent, IonHeader, IonToolbar, IonTitle,
   IonIcon, IonInput, IonTextarea, IonSelect, IonSelectOption
 } from '@ionic/react';
 import { useTranslation } from "react-i18next";
 import axios from 'axios';
 import { closeOutline } from 'ionicons/icons';
+import Toast from "../../components/Toast"
 
 const ResponseJobs: React.FC = () => {
   const { t } = useTranslation();
@@ -66,6 +67,9 @@ const ResponseJobs: React.FC = () => {
         .then(function (res) {
           setShowAddJob(false)
           setShowSuccessToast(true)
+          setGroupId("")
+          setJobName("")
+          setDescription("")
         })
         .catch(function (error) {
           console.log(error);
@@ -104,21 +108,8 @@ const ResponseJobs: React.FC = () => {
           <IonButton onClick={() => { setShowAddJob(true) }}>添加岗位</IonButton>
         </IonButtons>
       </IonItem>
-      <IonToast
-        isOpen={showSuccessToast}
-        onDidDismiss={() => setShowSuccessToast(false)}
-        message="添加岗位成功！"
-        duration={500}
-        position="top"
-      />
-      <IonToast
-        isOpen={showFailToast}
-        onDidDismiss={() => setShowFailToast(false)}
-        message="添加岗位失败，已存在该岗位"
-        duration={1000}
-        position="top"
-        color="danger"
-      />
+      <Toast open={showSuccessToast} message={"添加岗位成功！"} duration={1000} color={"success"} />
+      <Toast open={showFailToast} message={"添加岗位失败！"} duration={1000} color={"danger"} />
       <IonModal isOpen={showAddJob} >
         <IonContent>
           <IonHeader>

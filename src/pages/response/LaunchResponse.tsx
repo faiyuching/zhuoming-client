@@ -39,7 +39,7 @@ const LaunchResponse: React.FC = () => {
         .then(function (res) {
           console.log(res.data)
           // localStorage.setItem("userId", res.data.id)
-          // window.location.href = "/"
+          window.location.href = "/response/launch/success"
         })
         .catch(function (error) {
           console.log(error);
@@ -122,7 +122,7 @@ const LaunchResponse: React.FC = () => {
                 <IonSelectOption value="ten_thirty">10-30</IonSelectOption>
                 <IonSelectOption value="thirty_fifty">30-50</IonSelectOption>
                 <IonSelectOption value="fifty_hundred">50-100</IonSelectOption>
-                <IonSelectOption value="over_hundred">不限</IonSelectOption>
+                <IonSelectOption value="unlimited">不限</IonSelectOption>
               </IonSelect>
             </IonItem>
           </IonGrid>

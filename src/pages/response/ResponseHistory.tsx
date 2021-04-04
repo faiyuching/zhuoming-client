@@ -1,18 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import {
-  IonContent, IonHeader, IonPage, IonToast,
+  IonContent, IonHeader, IonPage,
   IonTitle, IonToolbar, IonButton, IonButtons,
   IonCard, IonCardHeader, IonCardSubtitle,
   IonCardTitle, IonCardContent, IonBackButton,
 } from '@ionic/react';
 import { useTranslation } from "react-i18next";
 import axios from 'axios';
-import { closeOutline } from 'ionicons/icons';
 
 const ResponseHistory: React.FC = () => {
   const { t } = useTranslation();
-  const [showToast1, setShowToast1] = useState(false);
-  const [showToast2, setShowToast2] = useState(true);
   const [responses, setResponses] = useState([{
     response_id: "",
     response_name: "",
@@ -55,36 +52,6 @@ const ResponseHistory: React.FC = () => {
         </IonToolbar>
       </IonHeader>
       <IonContent fullscreen>
-        {/* <IonToast
-          isOpen={showToast1}
-          onDidDismiss={() => setShowToast1(false)}
-          message="Your settings have been saved."
-          duration={200}
-        />
-
-        <IonToast
-          isOpen={showToast2}
-          onDidDismiss={() => setShowToast2(false)}
-          color="danger"
-          message="正在响应：长江洪灾II级响应"
-          position="top"
-          buttons={[
-            {
-              side: 'start',
-              icon: closeOutline,
-              handler: () => {
-                console.log('Favorite clicked');
-              }
-            },
-            {
-              text: '查看',
-              role: 'cancel',
-              handler: () => {
-                console.log('Cancel clicked');
-              }
-            }
-          ]}
-        /> */}
         {responses.length === 0 ? (
           <IonCard>
             <IonCardHeader>暂无历史响应</IonCardHeader>

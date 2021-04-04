@@ -1,30 +1,30 @@
 import React, { useEffect, useState } from 'react';
 import {
-  IonContent, IonHeader, IonMenuButton, IonPage, IonIcon, IonToast, IonTextarea,
+  IonContent, IonHeader, IonMenuButton, IonPage, IonIcon, IonTextarea,
   IonTitle, IonToolbar, IonSplitPane, IonButton, IonButtons, IonModal, IonSelect,
   IonSegment, IonSegmentButton, IonLabel, IonCard, IonCardHeader, IonInput,
   IonCardSubtitle, IonCardTitle, IonCardContent, IonItem, IonItemDivider,
   IonSelectOption
 } from '@ionic/react';
-import { addOutline, closeOutline } from 'ionicons/icons';
+import { closeOutline } from 'ionicons/icons';
 import ResponseMenu from '../../components/response/ResponseMenu';
 import { useTranslation } from "react-i18next";
-import ResponseMembersPicker from "../../components/response/ResponseMembersPicker"
 import axios from 'axios';
-
-export interface ISessionTime {
-  weekday: string;
-  period: string;
-}
+import Toast from "../../components/Toast"
 
 const ResponseTasks: React.FC = () => {
+  const { t } = useTranslation();
   const [showAddTask, setShowAddTask] = useState(false);
   const [showSuccessToast, setShowSuccessToast] = useState(false);
   const [showFailToast, setShowFailToast] = useState(false);
+
   const [task_name, setTaskName] = useState("")
   const [group_id, setGroupId] = useState("")
   const [job_id, setJobId] = useState("")
   const [description, setDescription] = useState("")
+
+  const [groups, setGroups] = useState([{ group_id: "", group_name: "" }]);
+  const [jobs, setJobs] = useState([{ job_id: "", job_name: "" }]);
   const [tasks, setTasks] = useState([
     {
       task_id: "",
@@ -38,27 +38,12 @@ const ResponseTasks: React.FC = () => {
       }
     }
   ]);
-  const [groups, setGroups] = useState([
-    {
-      group_id: "",
-      group_name: ""
-    }
-  ]);
-  const [jobs, setJobs] = useState([
-    {
-      job_id: "",
-      job_name: ""
-    }
-  ]);
-  const { t } = useTranslation();
-  const [pickerIsOpen, setPickerIsOpen] = useState(false);
-  const [sessionTime, setSessionTime] = useState<ISessionTime | undefined>(
-    undefined
-  );
+
 
   useEffect(() => {
-    axios.get(`/tasks?response_id=${localStorage.getItem("response_id")}&group_id=${group_id}`)
+    axios.get(`/tasks?response_id=${localStorage.getItem("response_id")}`)
       .then(function (res) {
+
         setTasks(res.data)
       })
       .catch(function (error) {
@@ -75,6 +60,7 @@ const ResponseTasks: React.FC = () => {
         console.log(error);
       });
   }, [])
+
   useEffect(() => {
     axios.get(`/jobs?response_id=${localStorage.getItem("response_id")}&group_id=${group_id}`)
       .then(function (res) {
@@ -83,7 +69,7 @@ const ResponseTasks: React.FC = () => {
       .catch(function (error) {
         console.log(error);
       });
-  }, [group_id])
+  }, [])
 
   const addTask = () => {
     if (task_name !== "") {
@@ -98,6 +84,10 @@ const ResponseTasks: React.FC = () => {
         .then(function (res) {
           setShowAddTask(false)
           setShowSuccessToast(true)
+          setTaskName("")
+          setGroupId("")
+          setJobId("")
+          setDescription("")
         })
         .catch(function (error) {
           console.log(error);
@@ -121,8 +111,7 @@ const ResponseTasks: React.FC = () => {
             <IonTitle>{localStorage.getItem("response_name")}</IonTitle>
             <IonButtons slot="end">
               <IonButton onClick={() => { setShowAddTask(true) }}>
-                <IonIcon icon={addOutline} />
-                {/* {t("response.create_task")} */}
+                {t("response.create_task")}
               </IonButton>
             </IonButtons>
           </IonToolbar>
@@ -139,35 +128,8 @@ const ResponseTasks: React.FC = () => {
               </IonSegment>
             </IonButtons>
           </IonToolbar>
-          <IonToolbar>
-            <IonItem onClick={() => { setPickerIsOpen(true); }} lines="none">
-              {sessionTime ? (
-                <IonLabel>{sessionTime?.weekday} - {sessionTime?.period}</IonLabel>
-              ) : (
-                <IonLabel className="placeHolder">{t("response.all_groups")} - {t("response.all_jobs")}</IonLabel>
-              )}
-            </IonItem>
-            <IonButtons slot="end">
-              <IonButton onClick={() => { setPickerIsOpen(true); }}>{t("response.filter")}</IonButton>
-              <IonButton onClick={() => { setSessionTime(undefined); }}>{t("response.clear")}</IonButton>
-            </IonButtons>
-          </IonToolbar>
         </IonHeader>
         <IonContent fullscreen>
-          <ResponseMembersPicker
-            isOpen={pickerIsOpen}
-            // tasks={tasks}
-            // groups={groups}
-            onCancel={() => {
-              setPickerIsOpen(false);
-            }}
-            onSave={(_value: any) => {
-              console.log(_value);
-              let { Day, SessionTime } = _value;
-              setSessionTime({ weekday: Day.text, period: SessionTime.text });
-              setPickerIsOpen(false);
-            }}
-          />
           <IonItemDivider>{tasks.length + " "}{t("response.tasks")}</IonItemDivider>
           {tasks.length === 0 ? (
             <IonCard>
@@ -184,21 +146,8 @@ const ResponseTasks: React.FC = () => {
               </IonCard>
             )
           })}
-          <IonToast
-            isOpen={showSuccessToast}
-            onDidDismiss={() => setShowSuccessToast(false)}
-            message="添加任务成功！"
-            duration={500}
-            position="top"
-          />
-          <IonToast
-            isOpen={showFailToast}
-            onDidDismiss={() => setShowFailToast(false)}
-            message="添加任务失败，已存在该任务"
-            duration={1000}
-            position="top"
-            color="danger"
-          />
+          <Toast open={showSuccessToast} message={"添加任务成功！"} duration={1000} color={"success"} />
+          <Toast open={showFailToast} message={"添加任务失败！"} duration={1000} color={"danger"} />
           <IonModal isOpen={showAddTask} >
             <IonContent>
               <IonHeader>
@@ -227,13 +176,11 @@ const ResponseTasks: React.FC = () => {
               <IonItem>
                 <IonLabel position="floating">岗位</IonLabel>
                 <IonSelect value={job_id} interface="action-sheet" onIonChange={e => setJobId(e.detail.value)}>
-                  {jobs.length == 0 ?
-                    <IonSelectOption>暂无岗位</IonSelectOption> :
-                    jobs.map((job, index) => {
-                      return (
-                        <IonSelectOption key={index} value={job.job_id}>{job.job_name}</IonSelectOption>
-                      )
-                    })}
+                  {jobs.map((job, index) => {
+                    return (
+                      <IonSelectOption key={index} value={job.job_id}>{job.job_name}</IonSelectOption>
+                    )
+                  })}
                 </IonSelect>
               </IonItem>
               <IonItem>

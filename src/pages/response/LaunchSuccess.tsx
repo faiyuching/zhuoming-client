@@ -24,7 +24,7 @@ const LaunchSuccess: React.FC = () => {
           <IonListHeader>
             <h2>创建成功</h2>
           </IonListHeader>
-          <IonButton expand="block" routerLink="/response/tasks">去创建任务</IonButton>
+          <IonButton expand="block" routerLink="/response/settings">去创建分组、岗位</IonButton>
           <IonButton expand="block" fill="clear" >邀请好友加入</IonButton>
         </IonGrid>
       </IonContent>
