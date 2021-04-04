@@ -116,7 +116,7 @@ const ResponseBaseInfo: React.FC = () => {
         <IonItem lines="full">
           <IonLabel className="ion-text-wrap">
             <h2>{t("response.end_time")}</h2>
-            <p>{response.end_time.split(".")[0].replace("T", " ") || "未知"}</p>
+            <p>{response.end_time !== "" ? response.end_time.split(".")[0].replace("T", " ") : "未知"}</p>
           </IonLabel>
         </IonItem>
         <IonItemOptions side="end">
