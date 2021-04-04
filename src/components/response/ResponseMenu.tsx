@@ -66,13 +66,13 @@ const ResponseMenu: React.FC = () => {
     },
     {
       title: t("response.resources"),
-      url: '/library/topic',
+      url: `/library?response_id=${localStorage.getItem("response_id")}`,
       iosIcon: libraryOutline,
       mdIcon: librarySharp
     },
     {
       title: t("response.discussion"),
-      url: '/forum',
+      url: `/forum?response_id=${localStorage.getItem("response_id")}`,
       iosIcon: chatbubblesOutline,
       mdIcon: chatbubblesSharp
     },
@@ -81,21 +81,22 @@ const ResponseMenu: React.FC = () => {
   return (
     <IonMenu contentId="response" type="overlay" side="start">
       <IonContent>
-        <IonList id="inbox-list">
-          <IonListHeader>{localStorage.getItem("res_name")}</IonListHeader>
-          <IonNote>{localStorage.getItem("res_slogan")}</IonNote>
-          {responsePages.map((page, index) => {
-            return (
-              <IonMenuToggle key={index} autoHide={false}>
-                <IonItem className={location.pathname === page.url ? 'selected' : ''} routerLink={page.url} routerDirection="none" lines="none" detail={false}>
-                  <IonIcon slot="start" ios={page.iosIcon} md={page.mdIcon} />
-                  <IonLabel>{page.title}</IonLabel>
-                </IonItem>
-              </IonMenuToggle>
-            );
-          })}
-        </IonList>
-
+        {localStorage.getItem("response_id") &&
+          <IonList id="inbox-list">
+            <IonListHeader>{localStorage.getItem("response_name")}</IonListHeader>
+            <IonNote>{localStorage.getItem("response_slogan")}</IonNote>
+            {responsePages.map((page, index) => {
+              return (
+                <IonMenuToggle key={index} autoHide={false}>
+                  <IonItem className={location.pathname === page.url ? 'selected' : ''} routerLink={page.url} routerDirection="none" lines="none" detail={false}>
+                    <IonIcon slot="start" ios={page.iosIcon} md={page.mdIcon} />
+                    <IonLabel>{page.title}</IonLabel>
+                  </IonItem>
+                </IonMenuToggle>
+              );
+            })}
+          </IonList>
+        }
         <IonList id="labels-list">
           <IonListHeader>{t("response.history")}</IonListHeader>
           {responses.length === 0 ? (

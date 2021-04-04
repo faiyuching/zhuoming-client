@@ -55,22 +55,21 @@ import '@ionic/react/css/display.css';
 /* Theme variables */
 import './theme/variables.css';
 
-// import axios from 'axios'
+import axios from 'axios'
 
-// 只运行一次
-// let homePage = "/history"
-// axios.get('/response/current')
-//   .then(function (res) {
-//     homePage = "tasks"
-//     localStorage.setItem("response_id", res.data.response_id)
-//     localStorage.setItem("response_name", res.data.response_name)
-//     localStorage.setItem("response_slogan", res.data.slogan || "")
-//   })
-//   .catch(function (error) {
-//     homePage = "history"
-//   });
+axios.get('/response/current')
+  .then(function (res) {
+    localStorage.setItem("response_id", res.data.response_id)
+    localStorage.setItem("response_name", res.data.response_name)
+    res.data.response_slogan && localStorage.setItem("response_slogan", res.data.response_slogan)
+  })
+  .catch(function (error) {
+    console.log(error);
+    // localStorage.removeItem("response_id")
+    // localStorage.removeItem("response_name")
+    // localStorage.removeItem("response_slogan")
+  });
 
-// console.log(navigator.userAgent.toLowerCase().indexOf('micromessenger') != -1)
 
 const App: React.FC = () => (
   <IonApp>
@@ -84,10 +83,10 @@ const App: React.FC = () => (
           <Route path="/response/members" component={ResponseMembers} exact={true} />
           <Route path="/response/timeline" component={ResponseTimeline} exact={true} />
           <Route path="/response/settings" component={ResponseSettings} exact={true} />
+          <Route path="/response/task" component={TaskPage} exact={true} />
           <Route path="/response/history" component={ResponseHistory} exact={true} />
           <Route path="/response/launch" component={LaunchResponse} exact={true} />
           <Route path="/response/launch/success" component={LaunchSuccess} exact={true} />
-          <Route path="/response/task/:id" component={TaskPage} exact={true} />
           <Route path="/library" component={Library} exact={true} />
           <Route path="/library/topic" component={TopicPage} exact={true} />
           <Route path="/library/topic/new" component={TopicNew} exact={true} />

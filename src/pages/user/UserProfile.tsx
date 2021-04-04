@@ -194,8 +194,8 @@ const UserProfile: React.FC = () => {
               <IonItemOption>编辑</IonItemOption>
             </IonItemOptions>
           </IonItemSliding>
+          <IonButton color="danger" fill="outline" expand="block" onClick={() => { exitAccount() }}>退出账号</IonButton>
         </IonItemGroup>
-        <IonButton color="danger" fill="outline" expand="block" onClick={() => { exitAccount() }}>退出账号</IonButton>
       </IonContent>
     </IonPage>
   );

@@ -14,11 +14,19 @@ const ResponseHistory: React.FC = () => {
   const [showToast1, setShowToast1] = useState(false);
   const [showToast2, setShowToast2] = useState(true);
   const [responses, setResponses] = useState([{
-    id: "",
+    response_id: "",
     response_name: "",
+    response_slogan: "",
     created_at: "",
     end_time: ""
   }]);
+
+  const enterResponse = (response_id: string, response_name: string, response_slogan: string) => {
+    localStorage.setItem("response_id", response_id)
+    localStorage.setItem("response_name", response_name)
+    response_slogan && localStorage.setItem("response_slogan", response_slogan)
+    window.location.href = "/response"
+  }
 
   useEffect(() => {
     axios.get('/responses')
@@ -83,9 +91,9 @@ const ResponseHistory: React.FC = () => {
           </IonCard>
         ) : responses.map((response, index) => {
           return (
-            <IonCard key={index}>
+            <IonCard key={index} onClick={() => { enterResponse(response.response_id, response.response_name, response.response_slogan) }}>
               <IonCardHeader>
-                <IonCardSubtitle>{response.created_at.split("T")[0] + " - " + (response.end_time || "正在响应")}｜参与人数</IonCardSubtitle>
+                <IonCardSubtitle>{response.created_at.split("T")[0] + " - " + (response.end_time.split("T")[0] || "正在响应")}｜参与人数</IonCardSubtitle>
                 <IonCardTitle>{response.response_name}</IonCardTitle>
               </IonCardHeader>
               <IonCardContent>完成几个任务｜产出几个产品</IonCardContent>

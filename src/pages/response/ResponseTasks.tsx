@@ -55,7 +55,7 @@ const ResponseTasks: React.FC = () => {
             <IonButtons slot="start">
               <IonMenuButton />
             </IonButtons>
-            <IonTitle>{t("response.response")}</IonTitle>
+            <IonTitle>{localStorage.getItem("response_name")}</IonTitle>
             <IonButtons slot="end">
               <IonButton>
                 <IonIcon icon={addOutline} />

@@ -14,16 +14,26 @@ const ResponseBaseInfo: React.FC = () => {
     response_name: "",
     disaster_type: "",
     response_level: "",
-    begin_time: "",
+    created_at: "",
     needs_time: "",
     end_time: "",
     join_mode: "",
     need_people: "",
     statement: "",
     User: {
-      username: ""
+      nickname: ""
     }
   });
+
+  const endResponse = () => {
+    axios.put(`/response/${localStorage.getItem("response_id")}`, { end_time: Date.now() })
+      .then(function (res) {
+        window.location.href = "/response"
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  }
 
   useEffect(() => {
     axios.get(`/response/${localStorage.getItem("response_id")}`)
@@ -44,111 +54,109 @@ const ResponseBaseInfo: React.FC = () => {
           </IonLabel>
         </IonItem>
         <IonItemOptions side="end">
-          <IonItemOption>
-            编辑
-          </IonItemOption>
+          <IonItemOption>{t("edit")}</IonItemOption>
         </IonItemOptions>
       </IonItemSliding>
       <IonItemSliding>
         <IonItem lines="full">
           <IonLabel className="ion-text-wrap">
             <h2>{t("response.organizer")}</h2>
-            <p>{response.User.username}</p>
+            <p>{response.User.nickname}</p>
           </IonLabel>
         </IonItem>
         <IonItemOptions side="end">
-          <IonItemOption>编辑</IonItemOption>
+          <IonItemOption>{t("edit")}</IonItemOption>
         </IonItemOptions>
       </IonItemSliding>
       <IonItemSliding>
         <IonItem lines="full">
           <IonLabel className="ion-text-wrap">
             <h2>{t("response.disaster_type")}</h2>
-            <p>{response.disaster_type}</p>
+            <p>{t(`library.${response.disaster_type}`)}</p>
           </IonLabel>
         </IonItem>
         <IonItemOptions side="end">
-          <IonItemOption>编辑</IonItemOption>
+          <IonItemOption>{t("edit")}</IonItemOption>
         </IonItemOptions>
       </IonItemSliding>
       <IonItemSliding>
         <IonItem lines="full">
           <IonLabel className="ion-text-wrap">
             <h2>{t("response.response_level")}</h2>
-            <p>{response.response_level}</p>
+            <p>{t(`response.${response.response_level}`)}</p>
           </IonLabel>
         </IonItem>
         <IonItemOptions side="end">
-          <IonItemOption>编辑</IonItemOption>
+          <IonItemOption>{t("edit")}</IonItemOption>
         </IonItemOptions>
       </IonItemSliding>
       <IonItemSliding>
         <IonItem lines="full">
           <IonLabel className="ion-text-wrap">
             <h2>{t("response.begin_time")}</h2>
-            <p>{response.begin_time.split(".")[0].replace("T", " ")}</p>
+            <p>{response.created_at.split(".")[0].replace("T", " ")}</p>
           </IonLabel>
         </IonItem>
         <IonItemOptions side="end">
-          <IonItemOption>编辑</IonItemOption>
+          <IonItemOption>{t("edit")}</IonItemOption>
         </IonItemOptions>
       </IonItemSliding>
       <IonItemSliding>
         <IonItem lines="full">
           <IonLabel className="ion-text-wrap">
             <h2>{t("response.needs_time")}</h2>
-            <p>{response.needs_time}</p>
+            <p>{t(`response.${response.needs_time}`)}</p>
           </IonLabel>
         </IonItem>
         <IonItemOptions side="end">
-          <IonItemOption>编辑</IonItemOption>
+          <IonItemOption>{t("edit")}</IonItemOption>
         </IonItemOptions>
       </IonItemSliding>
       <IonItemSliding>
         <IonItem lines="full">
           <IonLabel className="ion-text-wrap">
             <h2>{t("response.end_time")}</h2>
-            <p>{response.end_time}</p>
+            <p>{response.end_time.split(".")[0].replace("T", " ") || "未知"}</p>
           </IonLabel>
         </IonItem>
         <IonItemOptions side="end">
-          <IonItemOption>编辑</IonItemOption>
+          <IonItemOption>{t("edit")}</IonItemOption>
         </IonItemOptions>
       </IonItemSliding>
       <IonItemSliding>
         <IonItem lines="full">
           <IonLabel className="ion-text-wrap">
             <h2>{t("response.join_mode")}</h2>
-            <p>{response.join_mode}</p>
+            <p>{t(`response.${response.join_mode}`)}</p>
           </IonLabel>
         </IonItem>
         <IonItemOptions side="end">
-          <IonItemOption>编辑</IonItemOption>
+          <IonItemOption>{t("edit")}</IonItemOption>
         </IonItemOptions>
       </IonItemSliding>
       <IonItemSliding>
         <IonItem lines="full">
           <IonLabel className="ion-text-wrap">
             <h2>{t("response.need_people")}</h2>
-            <p>{response.need_people}</p>
+            <p>{t(`response.${response.need_people}`)}</p>
           </IonLabel>
         </IonItem>
         <IonItemOptions side="end">
-          <IonItemOption>编辑</IonItemOption>
+          <IonItemOption>{t("edit")}</IonItemOption>
         </IonItemOptions>
       </IonItemSliding>
       <IonItemSliding>
         <IonItem lines="full">
           <IonLabel className="ion-text-wrap">
             <h2>{t("response.statement")}</h2>
-            <p>{response.statement}</p>
+            <p>{response.statement || "未填写"}</p>
           </IonLabel>
         </IonItem>
         <IonItemOptions side="end">
-          <IonItemOption>编辑</IonItemOption>
+          <IonItemOption>{t("edit")}</IonItemOption>
         </IonItemOptions>
       </IonItemSliding>
-      <IonButton onClick={() => setEndConfirm(true)} fill="outline" expand="block" color="danger">结束响应</IonButton>
+      {response.end_time === "" && <IonButton onClick={() => setEndConfirm(true)} fill="outline" expand="block" color="danger">结束响应</IonButton>}
       <IonAlert
         isOpen={endConfirm}
         onDidDismiss={() => setEndConfirm(false)}
@@ -157,14 +165,11 @@ const ResponseBaseInfo: React.FC = () => {
         buttons={[
           {
             text: t("response.okay"),
-            handler: () => {
-              console.log('Confirm Okay');
-            }
+            handler: () => { endResponse() }
           },
           {
             text: t("response.cancel"),
             role: 'cancel',
-            cssClass: 'secondary',
             handler: blah => {
               console.log('Confirm Cancel: blah');
             }
