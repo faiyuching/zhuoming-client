@@ -1,14 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import {
-  IonItem, IonLabel, IonItemGroup, IonAlert,
-  IonItemSliding, IonItemOptions, IonItemOption, IonButton,
+  IonItem, IonLabel, IonItemGroup,
+  IonItemSliding, IonItemOptions, IonItemOption
 } from '@ionic/react';
 import { useTranslation } from "react-i18next";
 import axios from 'axios';
 
 const ResponseBaseInfo: React.FC = () => {
   const { t } = useTranslation();
-  const [endConfirm, setEndConfirm] = useState(false);
 
   const [response, setResponse] = useState({
     response_name: "",
@@ -25,18 +24,6 @@ const ResponseBaseInfo: React.FC = () => {
     }
   });
 
-  const endResponse = () => {
-    axios.put(`/response/${localStorage.getItem("response_id")}`, { end_time: Date.now() })
-      .then(function (res) {
-        localStorage.removeItem("response_id")
-        localStorage.removeItem("response_name")
-        localStorage.removeItem("response_slogan")
-        window.location.href = "/response"
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
-  }
 
   useEffect(() => {
     axios.get(`/response/${localStorage.getItem("response_id")}`)
@@ -159,26 +146,6 @@ const ResponseBaseInfo: React.FC = () => {
           <IonItemOption>{t("edit")}</IonItemOption>
         </IonItemOptions>
       </IonItemSliding>
-      {response.end_time === "" && <IonButton onClick={() => setEndConfirm(true)} fill="outline" expand="block" color="danger">结束响应</IonButton>}
-      <IonAlert
-        isOpen={endConfirm}
-        onDidDismiss={() => setEndConfirm(false)}
-        header={t("response.end_confirm")}
-        message={t("response.end_message")}
-        buttons={[
-          {
-            text: t("response.okay"),
-            handler: () => { endResponse() }
-          },
-          {
-            text: t("response.cancel"),
-            role: 'cancel',
-            handler: blah => {
-              console.log('Confirm Cancel: blah');
-            }
-          }
-        ]}
-      />
     </IonItemGroup>
   );
 };

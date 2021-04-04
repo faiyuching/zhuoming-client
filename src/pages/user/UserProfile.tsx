@@ -90,9 +90,9 @@ const UserProfile: React.FC = () => {
             <IonItem lines="full">
               <IonLabel className="ion-text-wrap">
                 <p>{t("user.gender")}</p>
-                {userInfo.sex == "0" && <h2>未知</h2>}
-                {userInfo.sex == "1" && <h2>男性</h2>}
-                {userInfo.sex == "2" && <h2>女性</h2>}
+                {userInfo.sex === "0" && <h2>未知</h2>}
+                {userInfo.sex === "1" && <h2>男性</h2>}
+                {userInfo.sex === "2" && <h2>女性</h2>}
               </IonLabel>
             </IonItem>
             <IonItemOptions side="end">

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import {
   IonContent, IonHeader, IonPage, IonSplitPane,
   IonTitle, IonToolbar, IonButton, IonButtons, IonLabel, IonIcon,
@@ -7,7 +7,6 @@ import {
 } from '@ionic/react';
 import ResponseMenu from '../../components/response/ResponseMenu';
 import { useTranslation } from "react-i18next";
-import axios from 'axios';
 import { notificationsOutline } from 'ionicons/icons';
 
 const Response: React.FC = () => {

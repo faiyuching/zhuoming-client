@@ -1,13 +1,13 @@
 import {
   IonCard, IonCardHeader, IonIcon, IonImg, IonCardContent, IonItem,
-  IonLabel, IonInput, IonButton, IonContent, IonHeader, IonToolbar,
-  IonTitle, IonPage, IonButtons, IonText, IonThumbnail, IonAlert
+  IonButton, IonContent, IonHeader, IonToolbar, IonAlert,
+  IonTitle, IonPage, IonButtons, IonText, IonThumbnail,
 } from "@ionic/react";
 import React, { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import axios from 'axios';
 import './UserLogin.css'
-import { logoWechat, arrowForwardOutline } from "ionicons/icons";
+import { logoWechat } from "ionicons/icons";
 
 let env = ''
 if (navigator.userAgent.toLowerCase().indexOf('micromessenger') !== -1) {
