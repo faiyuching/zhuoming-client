@@ -97,6 +97,8 @@ const ResponseTasks: React.FC = () => {
     } else {
       alert("请填写任务名称")
     }
+    setShowSuccessToast(false)
+    setShowFailToast(false)
   }
 
   return (

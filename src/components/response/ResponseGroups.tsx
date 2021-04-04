@@ -56,6 +56,8 @@ const ResponseGroups: React.FC = () => {
     } else {
       alert("请填写组名")
     }
+    setShowSuccessToast(false)
+    setShowFailToast(false)
   }
   return (
     <IonItemGroup>

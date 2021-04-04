@@ -79,6 +79,8 @@ const ResponseJobs: React.FC = () => {
     } else {
       alert("请填写岗位名")
     }
+    setShowSuccessToast(false)
+    setShowFailToast(false)
   }
 
   return (
