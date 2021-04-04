@@ -49,8 +49,8 @@ const ResponseBaseInfo: React.FC = () => {
       <IonItemSliding>
         <IonItem lines="full">
           <IonLabel className="ion-text-wrap">
-            <h2>{t("response.response_name")}</h2>
-            <p>{response.response_name}</p>
+            <p>{t("response.response_name")}</p>
+            <h2>{response.response_name}</h2>
           </IonLabel>
         </IonItem>
         <IonItemOptions side="end">
@@ -60,8 +60,8 @@ const ResponseBaseInfo: React.FC = () => {
       <IonItemSliding>
         <IonItem lines="full">
           <IonLabel className="ion-text-wrap">
-            <h2>{t("response.organizer")}</h2>
-            <p>{response.User.nickname}</p>
+            <p>{t("response.organizer")}</p>
+            <h2>{response.User.nickname}</h2>
           </IonLabel>
         </IonItem>
         <IonItemOptions side="end">
@@ -71,8 +71,8 @@ const ResponseBaseInfo: React.FC = () => {
       <IonItemSliding>
         <IonItem lines="full">
           <IonLabel className="ion-text-wrap">
-            <h2>{t("response.disaster_type")}</h2>
-            <p>{t(`library.${response.disaster_type}`)}</p>
+            <p>{t("response.disaster_type")}</p>
+            <h2>{t(`library.${response.disaster_type}`)}</h2>
           </IonLabel>
         </IonItem>
         <IonItemOptions side="end">
@@ -82,8 +82,8 @@ const ResponseBaseInfo: React.FC = () => {
       <IonItemSliding>
         <IonItem lines="full">
           <IonLabel className="ion-text-wrap">
-            <h2>{t("response.response_level")}</h2>
-            <p>{t(`response.${response.response_level}`)}</p>
+            <p>{t("response.response_level")}</p>
+            <h2>{t(`response.${response.response_level}`)}</h2>
           </IonLabel>
         </IonItem>
         <IonItemOptions side="end">
@@ -93,8 +93,8 @@ const ResponseBaseInfo: React.FC = () => {
       <IonItemSliding>
         <IonItem lines="full">
           <IonLabel className="ion-text-wrap">
-            <h2>{t("response.begin_time")}</h2>
-            <p>{response.created_at.split(".")[0].replace("T", " ")}</p>
+            <p>{t("response.begin_time")}</p>
+            <h2>{response.created_at.split(".")[0].replace("T", " ")}</h2>
           </IonLabel>
         </IonItem>
         <IonItemOptions side="end">
@@ -104,8 +104,8 @@ const ResponseBaseInfo: React.FC = () => {
       <IonItemSliding>
         <IonItem lines="full">
           <IonLabel className="ion-text-wrap">
-            <h2>{t("response.needs_time")}</h2>
-            <p>{t(`response.${response.needs_time}`)}</p>
+            <p>{t("response.needs_time")}</p>
+            <h2>{t(`response.${response.needs_time}`)}</h2>
           </IonLabel>
         </IonItem>
         <IonItemOptions side="end">
@@ -115,8 +115,8 @@ const ResponseBaseInfo: React.FC = () => {
       <IonItemSliding>
         <IonItem lines="full">
           <IonLabel className="ion-text-wrap">
-            <h2>{t("response.end_time")}</h2>
-            <p>{response.end_time ? response.end_time.split(".")[0].replace("T", " ") : "未知"}</p>
+            <p>{t("response.end_time")}</p>
+            <h2>{response.end_time ? response.end_time.split(".")[0].replace("T", " ") : "未知"}</h2>
           </IonLabel>
         </IonItem>
         <IonItemOptions side="end">
@@ -126,8 +126,8 @@ const ResponseBaseInfo: React.FC = () => {
       <IonItemSliding>
         <IonItem lines="full">
           <IonLabel className="ion-text-wrap">
-            <h2>{t("response.join_mode")}</h2>
-            <p>{t(`response.${response.join_mode}`)}</p>
+            <p>{t("response.join_mode")}</p>
+            <h2>{t(`response.${response.join_mode}`)}</h2>
           </IonLabel>
         </IonItem>
         <IonItemOptions side="end">
@@ -137,8 +137,8 @@ const ResponseBaseInfo: React.FC = () => {
       <IonItemSliding>
         <IonItem lines="full">
           <IonLabel className="ion-text-wrap">
-            <h2>{t("response.need_people")}</h2>
-            <p>{t(`response.${response.need_people}`)}</p>
+            <p>{t("response.need_people")}</p>
+            <h2>{t(`response.${response.need_people}`)}</h2>
           </IonLabel>
         </IonItem>
         <IonItemOptions side="end">
@@ -148,8 +148,8 @@ const ResponseBaseInfo: React.FC = () => {
       <IonItemSliding>
         <IonItem lines="full">
           <IonLabel className="ion-text-wrap">
-            <h2>{t("response.statement")}</h2>
-            <p>{response.statement || "未填写"}</p>
+            <p>{t("response.statement")}</p>
+            <h2>{response.statement || "未填写"}</h2>
           </IonLabel>
         </IonItem>
         <IonItemOptions side="end">

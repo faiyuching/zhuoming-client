@@ -74,76 +74,9 @@ const UserProfile: React.FC = () => {
           </IonItem>
           <IonItemSliding>
             <IonItem lines="full">
-              <IonLabel className="ion-text-wrap">{t("user.nickname")}</IonLabel>
-              <IonLabel>{userInfo.nickname}</IonLabel>
-            </IonItem>
-            <IonItemOptions side="end">
-              <IonItemOption>编辑</IonItemOption>
-            </IonItemOptions>
-          </IonItemSliding>
-          {userInfo.password && (
-            <IonItemSliding>
-              <IonItem lines="full">
-                <IonLabel className="ion-text-wrap">{t("user.password")}</IonLabel>
-                <IonLabel>{userInfo.password}</IonLabel>
-              </IonItem>
-              <IonItemOptions side="end">
-                <IonItemOption>编辑</IonItemOption>
-              </IonItemOptions>
-            </IonItemSliding>
-          )}
-          <IonItemSliding>
-            <IonItem lines="full">
-              <IonLabel className="ion-text-wrap">{t("user.wechat")}</IonLabel>
-              <IonLabel>{userInfo.wechat}</IonLabel>
-            </IonItem>
-            <IonItemOptions side="end">
-              <IonItemOption>编辑</IonItemOption>
-            </IonItemOptions>
-          </IonItemSliding>
-          <IonItemSliding>
-            <IonItem lines="full">
-              <IonLabel className="ion-text-wrap">{t("user.shimo")}</IonLabel>
-              <IonLabel>{userInfo.shimo}</IonLabel>
-            </IonItem>
-            <IonItemOptions side="end">
-              <IonItemOption>编辑</IonItemOption>
-            </IonItemOptions>
-          </IonItemSliding>
-          <IonItemSliding>
-            <IonItem lines="full">
-              <IonLabel className="ion-text-wrap">{t("user.phone")}</IonLabel>
-              <IonLabel>{userInfo.phone}</IonLabel>
-            </IonItem>
-            <IonItemOptions side="end">
-              <IonItemOption>编辑</IonItemOption>
-            </IonItemOptions>
-          </IonItemSliding>
-          <IonItemSliding>
-            <IonItem lines="full">
-              <IonLabel className="ion-text-wrap">{t("user.email")}</IonLabel>
-              <IonLabel>{userInfo.email}</IonLabel>
-            </IonItem>
-            <IonItemOptions side="end">
-              <IonItemOption>编辑</IonItemOption>
-            </IonItemOptions>
-          </IonItemSliding>
-          <IonItemSliding>
-            <IonItem lines="full">
-              <IonLabel className="ion-text-wrap">{t("user.role")}</IonLabel>
-              <IonLabel>{userInfo.remark}</IonLabel>
-            </IonItem>
-            <IonItemOptions side="end">
-              <IonItemOption>编辑</IonItemOption>
-            </IonItemOptions>
-          </IonItemSliding>
-          <IonItemSliding>
-            <IonItem lines="full">
-              <IonLabel className="ion-text-wrap">{t("user.gender")}</IonLabel>
-              <IonLabel>
-                {userInfo.sex == "0" && "未知"}
-                {userInfo.sex == "1" && "男性"}
-                {userInfo.sex == "2" && "女性"}
+              <IonLabel className="ion-text-wrap">
+                <p>{t("user.nickname")}</p>
+                <h2>{userInfo.nickname}</h2>
               </IonLabel>
             </IonItem>
             <IonItemOptions side="end">
@@ -152,8 +85,12 @@ const UserProfile: React.FC = () => {
           </IonItemSliding>
           <IonItemSliding>
             <IonItem lines="full">
-              <IonLabel className="ion-text-wrap">{t("user.location")}</IonLabel>
-              <IonLabel>{userInfo.country + " - " + userInfo.province + " - " + userInfo.city}</IonLabel>
+              <IonLabel className="ion-text-wrap">
+                <p>{t("user.gender")}</p>
+                {userInfo.sex == "0" && <h2>未知</h2>}
+                {userInfo.sex == "1" && <h2>男性</h2>}
+                {userInfo.sex == "2" && <h2>女性</h2>}
+              </IonLabel>
             </IonItem>
             <IonItemOptions side="end">
               <IonItemOption>编辑</IonItemOption>
@@ -161,8 +98,10 @@ const UserProfile: React.FC = () => {
           </IonItemSliding>
           <IonItemSliding>
             <IonItem lines="full">
-              <IonLabel className="ion-text-wrap">{t("user.language")}</IonLabel>
-              <IonLabel>{userInfo.language}</IonLabel>
+              <IonLabel className="ion-text-wrap">
+                <p>{t("user.location")}</p>
+                <h2>{userInfo.country + " - " + userInfo.province + " - " + userInfo.city}</h2>
+              </IonLabel>
             </IonItem>
             <IonItemOptions side="end">
               <IonItemOption>编辑</IonItemOption>
@@ -170,8 +109,34 @@ const UserProfile: React.FC = () => {
           </IonItemSliding>
           <IonItemSliding>
             <IonItem lines="full">
-              <IonLabel className="ion-text-wrap">{t("user.job")}</IonLabel>
-              <IonLabel>{userInfo.job}</IonLabel>
+              <IonLabel className="ion-text-wrap">
+                <p>{t("user.language")}</p>
+                <h2>{userInfo.language}</h2>
+              </IonLabel>
+            </IonItem>
+            <IonItemOptions side="end">
+              <IonItemOption>编辑</IonItemOption>
+            </IonItemOptions>
+          </IonItemSliding>
+          {userInfo.password && (
+            <IonItemSliding>
+              <IonItem lines="full">
+                <IonLabel className="ion-text-wrap">
+                  <p>{t("user.password")}</p>
+                  <h2>. . . . . . . .</h2>
+                </IonLabel>
+              </IonItem>
+              <IonItemOptions side="end">
+                <IonItemOption>编辑</IonItemOption>
+              </IonItemOptions>
+            </IonItemSliding>
+          )}
+          <IonItemSliding>
+            <IonItem lines="full">
+              <IonLabel className="ion-text-wrap">
+                <p>{t("user.wechat")}</p>
+                <h2>{userInfo.wechat}</h2>
+              </IonLabel>
             </IonItem>
             <IonItemOptions side="end">
               <IonItemOption>编辑</IonItemOption>
@@ -179,8 +144,10 @@ const UserProfile: React.FC = () => {
           </IonItemSliding>
           <IonItemSliding>
             <IonItem lines="full">
-              <IonLabel className="ion-text-wrap">{t("user.skill")}</IonLabel>
-              <IonLabel>{userInfo.skill}</IonLabel>
+              <IonLabel className="ion-text-wrap">
+                <p>{t("user.shimo")}</p>
+                <h2>{userInfo.shimo}</h2>
+              </IonLabel>
             </IonItem>
             <IonItemOptions side="end">
               <IonItemOption>编辑</IonItemOption>
@@ -188,8 +155,65 @@ const UserProfile: React.FC = () => {
           </IonItemSliding>
           <IonItemSliding>
             <IonItem lines="full">
-              <IonLabel className="ion-text-wrap">{t("user.introduction")}</IonLabel>
-              <IonLabel>{userInfo.skill}</IonLabel>
+              <IonLabel className="ion-text-wrap">
+                <p>{t("user.phone")}</p>
+                <h2>{userInfo.phone}</h2>
+              </IonLabel>
+            </IonItem>
+            <IonItemOptions side="end">
+              <IonItemOption>编辑</IonItemOption>
+            </IonItemOptions>
+          </IonItemSliding>
+          <IonItemSliding>
+            <IonItem lines="full">
+              <IonLabel className="ion-text-wrap">
+                <p>{t("user.email")}</p>
+                <h2>{userInfo.email}</h2>
+              </IonLabel>
+            </IonItem>
+            <IonItemOptions side="end">
+              <IonItemOption>编辑</IonItemOption>
+            </IonItemOptions>
+          </IonItemSliding>
+          <IonItemSliding>
+            <IonItem lines="full">
+              <IonLabel className="ion-text-wrap">
+                <p>{t("user.role")}</p>
+                <h2>{userInfo.remark}</h2>
+              </IonLabel>
+            </IonItem>
+            <IonItemOptions side="end">
+              <IonItemOption>编辑</IonItemOption>
+            </IonItemOptions>
+          </IonItemSliding>
+          <IonItemSliding>
+            <IonItem lines="full">
+              <IonLabel className="ion-text-wrap">
+                <p>{t("user.job")}</p>
+                <h2>{userInfo.job}</h2>
+              </IonLabel>
+            </IonItem>
+            <IonItemOptions side="end">
+              <IonItemOption>编辑</IonItemOption>
+            </IonItemOptions>
+          </IonItemSliding>
+          <IonItemSliding>
+            <IonItem lines="full">
+              <IonLabel className="ion-text-wrap">
+                <p>{t("user.skill")}</p>
+                <h2>{userInfo.skill}</h2>
+              </IonLabel>
+            </IonItem>
+            <IonItemOptions side="end">
+              <IonItemOption>编辑</IonItemOption>
+            </IonItemOptions>
+          </IonItemSliding>
+          <IonItemSliding>
+            <IonItem lines="full">
+              <IonLabel className="ion-text-wrap">
+                <p>{t("user.introduction")}</p>
+                <h2>{userInfo.introduction}</h2>
+              </IonLabel>
             </IonItem>
             <IonItemOptions side="end">
               <IonItemOption>编辑</IonItemOption>

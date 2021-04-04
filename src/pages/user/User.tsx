@@ -16,9 +16,10 @@ const User: React.FC = () => {
   const { t } = useTranslation();
   const [userInfo, serUserInfo] = useState({
     nickname: "",
-    slogan: "",
     shimo: "",
-    headimgurl: ""
+    headimgurl: "",
+    remark: "",
+    job: ""
   })
 
   useEffect(() => {
@@ -58,7 +59,7 @@ const User: React.FC = () => {
             </IonThumbnail>
             <IonLabel>
               <h1><strong>{userInfo.nickname}</strong></h1>
-              <p>{userInfo.slogan}</p>
+              <p>{(userInfo.remark || "") + " " + (userInfo.job || "")}</p>
             </IonLabel>
           </IonItem>
           <IonItem lines="none">
