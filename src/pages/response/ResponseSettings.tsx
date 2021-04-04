@@ -16,11 +16,11 @@ const ResponseSettings: React.FC = () => {
   const { t } = useTranslation();
   const [endConfirm, setEndConfirm] = useState(false);
   const endResponse = () => {
-    localStorage.removeItem("response_id")
-    localStorage.removeItem("response_name")
-    localStorage.removeItem("response_slogan")
     axios.put(`/response/${localStorage.getItem("response_id")}`, { end_time: Date.now() })
       .then(function (res) {
+        localStorage.removeItem("response_id")
+        localStorage.removeItem("response_name")
+        localStorage.removeItem("response_slogan")
         window.location.href = "/response"
       })
       .catch(function (error) {
