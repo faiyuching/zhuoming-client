@@ -11,6 +11,14 @@ interface _Props {
   isOpen: boolean
   onSave: Function
   onCancel: Function
+  // tasks: [{
+  //   task_id: string
+  //   task_name: string
+  // }]
+  // groups: [{
+  //   group_id: string
+  //   group_name: string
+  // }]
 }
 
 const ResponseMembersPicker: React.FC<_Props> = ({ onSave, onCancel, isOpen }) => {
@@ -18,6 +26,9 @@ const ResponseMembersPicker: React.FC<_Props> = ({ onSave, onCancel, isOpen }) =
   const DayColumn = {
     name: "Day",
     options: [
+      // tasks.map((task, index) => {
+      //   { text: task.task_name, value: task.task_id }
+      // })
       { text: "所有分组", value: "all_groups" },
       { text: "信息组", value: "info" },
       { text: "监测组", value: "monitor" },

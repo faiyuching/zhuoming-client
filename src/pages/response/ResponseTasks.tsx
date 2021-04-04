@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import {
-  IonContent, IonHeader, IonMenuButton, IonPage, IonIcon,
-  IonTitle, IonToolbar, IonSplitPane, IonButton, IonButtons,
-  IonSegment, IonSegmentButton, IonLabel, IonCard, IonCardHeader,
-  IonCardSubtitle, IonCardTitle, IonCardContent, IonItem, IonItemDivider
+  IonContent, IonHeader, IonMenuButton, IonPage, IonIcon, IonToast, IonTextarea,
+  IonTitle, IonToolbar, IonSplitPane, IonButton, IonButtons, IonModal, IonSelect,
+  IonSegment, IonSegmentButton, IonLabel, IonCard, IonCardHeader, IonInput,
+  IonCardSubtitle, IonCardTitle, IonCardContent, IonItem, IonItemDivider,
+  IonSelectOption
 } from '@ionic/react';
-import { addOutline } from 'ionicons/icons';
+import { addOutline, closeOutline } from 'ionicons/icons';
 import ResponseMenu from '../../components/response/ResponseMenu';
 import { useTranslation } from "react-i18next";
 import ResponseMembersPicker from "../../components/response/ResponseMembersPicker"
@@ -17,6 +18,13 @@ export interface ISessionTime {
 }
 
 const ResponseTasks: React.FC = () => {
+  const [showAddTask, setShowAddTask] = useState(false);
+  const [showSuccessToast, setShowSuccessToast] = useState(false);
+  const [showFailToast, setShowFailToast] = useState(false);
+  const [task_name, setTaskName] = useState("")
+  const [group_id, setGroupId] = useState("")
+  const [job_id, setJobId] = useState("")
+  const [description, setDescription] = useState("")
   const [tasks, setTasks] = useState([
     {
       task_id: "",
@@ -30,6 +38,18 @@ const ResponseTasks: React.FC = () => {
       }
     }
   ]);
+  const [groups, setGroups] = useState([
+    {
+      group_id: "",
+      group_name: ""
+    }
+  ]);
+  const [jobs, setJobs] = useState([
+    {
+      job_id: "",
+      job_name: ""
+    }
+  ]);
   const { t } = useTranslation();
   const [pickerIsOpen, setPickerIsOpen] = useState(false);
   const [sessionTime, setSessionTime] = useState<ISessionTime | undefined>(
@@ -37,14 +57,57 @@ const ResponseTasks: React.FC = () => {
   );
 
   useEffect(() => {
-    axios.get(`/tasks?response_id=${localStorage.getItem("response_id")}`)
+    axios.get(`/tasks?response_id=${localStorage.getItem("response_id")}&group_id=${group_id}`)
       .then(function (res) {
         setTasks(res.data)
       })
       .catch(function (error) {
         console.log(error);
       });
+  }, [showSuccessToast])
+
+  useEffect(() => {
+    axios.get(`/groups?response_id=${localStorage.getItem("response_id")}`)
+      .then(function (res) {
+        setGroups(res.data)
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
   }, [])
+  useEffect(() => {
+    axios.get(`/jobs?response_id=${localStorage.getItem("response_id")}&group_id=${group_id}`)
+      .then(function (res) {
+        setJobs(res.data)
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  }, [group_id])
+
+  const addTask = () => {
+    if (task_name !== "") {
+      axios.post("/task", {
+        user_id: localStorage.getItem("user_id"),
+        task_name,
+        description,
+        response_id: localStorage.getItem("response_id"),
+        group_id,
+        job_id
+      })
+        .then(function (res) {
+          setShowAddTask(false)
+          setShowSuccessToast(true)
+        })
+        .catch(function (error) {
+          console.log(error);
+          setShowAddTask(false)
+          setShowFailToast(true)
+        });
+    } else {
+      alert("请填写任务名称")
+    }
+  }
 
   return (
     <IonSplitPane contentId="response">
@@ -57,7 +120,7 @@ const ResponseTasks: React.FC = () => {
             </IonButtons>
             <IonTitle>{localStorage.getItem("response_name")}</IonTitle>
             <IonButtons slot="end">
-              <IonButton>
+              <IonButton onClick={() => { setShowAddTask(true) }}>
                 <IonIcon icon={addOutline} />
                 {/* {t("response.create_task")} */}
               </IonButton>
@@ -93,6 +156,8 @@ const ResponseTasks: React.FC = () => {
         <IonContent fullscreen>
           <ResponseMembersPicker
             isOpen={pickerIsOpen}
+            // tasks={tasks}
+            // groups={groups}
             onCancel={() => {
               setPickerIsOpen(false);
             }}
@@ -103,7 +168,7 @@ const ResponseTasks: React.FC = () => {
               setPickerIsOpen(false);
             }}
           />
-          <IonItemDivider>45{t("response.tasks")}</IonItemDivider>
+          <IonItemDivider>{tasks.length + " "}{t("response.tasks")}</IonItemDivider>
           {tasks.length === 0 ? (
             <IonCard>
               <IonCardHeader>暂无任务</IonCardHeader>
@@ -119,6 +184,68 @@ const ResponseTasks: React.FC = () => {
               </IonCard>
             )
           })}
+          <IonToast
+            isOpen={showSuccessToast}
+            onDidDismiss={() => setShowSuccessToast(false)}
+            message="添加任务成功！"
+            duration={500}
+            position="top"
+          />
+          <IonToast
+            isOpen={showFailToast}
+            onDidDismiss={() => setShowFailToast(false)}
+            message="添加任务失败，已存在该任务"
+            duration={1000}
+            position="top"
+            color="danger"
+          />
+          <IonModal isOpen={showAddTask} >
+            <IonContent>
+              <IonHeader>
+                <IonToolbar>
+                  <IonButtons slot="start">
+                    <IonButton onClick={() => { setShowAddTask(false) }}>
+                      <IonIcon icon={closeOutline} />
+                    </IonButton>
+                  </IonButtons>
+                  <IonTitle>添加任务</IonTitle>
+                  <IonButtons slot="end">
+                    <IonButton onClick={() => { addTask() }}>确定</IonButton>
+                  </IonButtons>
+                </IonToolbar>
+              </IonHeader>
+              <IonItem>
+                <IonLabel position="floating">组别</IonLabel>
+                <IonSelect value={group_id} interface="action-sheet" onIonChange={e => (setGroupId(e.detail.value))}>
+                  {groups.map((group, index) => {
+                    return (
+                      <IonSelectOption key={index} value={group.group_id}>{group.group_name}</IonSelectOption>
+                    )
+                  })}
+                </IonSelect>
+              </IonItem>
+              <IonItem>
+                <IonLabel position="floating">岗位</IonLabel>
+                <IonSelect value={job_id} interface="action-sheet" onIonChange={e => setJobId(e.detail.value)}>
+                  {jobs.length == 0 ?
+                    <IonSelectOption>暂无岗位</IonSelectOption> :
+                    jobs.map((job, index) => {
+                      return (
+                        <IonSelectOption key={index} value={job.job_id}>{job.job_name}</IonSelectOption>
+                      )
+                    })}
+                </IonSelect>
+              </IonItem>
+              <IonItem>
+                <IonLabel position="floating">任务名称</IonLabel>
+                <IonInput value={task_name} onIonChange={e => setTaskName(e.detail.value!)}></IonInput>
+              </IonItem>
+              <IonItem>
+                <IonLabel position="floating">描述</IonLabel>
+                <IonTextarea autoGrow rows={6} value={description} onIonChange={e => setDescription(e.detail.value!)}></IonTextarea>
+              </IonItem>
+            </IonContent>
+          </IonModal>
         </IonContent>
       </IonPage>
     </IonSplitPane>
