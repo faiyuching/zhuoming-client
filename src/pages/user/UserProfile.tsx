@@ -60,6 +60,9 @@ const UserProfile: React.FC = () => {
             </IonButton>
           </IonButtons>
           <IonTitle>{t("user.user")}</IonTitle>
+          <IonButtons slot="end">
+            <IonButton color="danger" onClick={() => { exitAccount() }}>退出账号</IonButton>
+          </IonButtons>
         </IonToolbar>
         <IonToolbar>
           <IonTitle size="large">{t("user.profile")}</IonTitle>
@@ -219,7 +222,6 @@ const UserProfile: React.FC = () => {
               <IonItemOption>编辑</IonItemOption>
             </IonItemOptions>
           </IonItemSliding>
-          <IonButton color="danger" fill="outline" expand="block" onClick={() => { exitAccount() }}>退出账号</IonButton>
         </IonItemGroup>
       </IonContent>
     </IonPage>

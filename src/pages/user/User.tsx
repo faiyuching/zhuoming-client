@@ -60,11 +60,11 @@ const User: React.FC = () => {
             <IonLabel>
               <h1><strong>{userInfo.nickname}</strong></h1>
               <p>
-                {userInfo.role == "user" && "用户"}
-                {userInfo.role == "volunteer" && "志愿者"}
-                {userInfo.role == "developer" && "开发者"}
-                {userInfo.role == "admin" && "管理员"}
-                {userInfo.role == "super_admin" && "0号员工"}
+                {userInfo.role === "user" && "用户"}
+                {userInfo.role === "volunteer" && "志愿者"}
+                {userInfo.role === "developer" && "开发者"}
+                {userInfo.role === "admin" && "管理员"}
+                {userInfo.role === "super_admin" && "0号员工"}
                 {userInfo.job ? (" - " + userInfo.job) : ""}
               </p>
             </IonLabel>
