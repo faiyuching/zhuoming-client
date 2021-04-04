@@ -18,7 +18,7 @@ const User: React.FC = () => {
     nickname: "",
     shimo: "",
     headimgurl: "",
-    remark: "",
+    role: "",
     job: ""
   })
 
@@ -59,7 +59,14 @@ const User: React.FC = () => {
             </IonThumbnail>
             <IonLabel>
               <h1><strong>{userInfo.nickname}</strong></h1>
-              <p>{(userInfo.remark || "") + " " + (userInfo.job || "")}</p>
+              <p>
+                {userInfo.role == "user" && "用户"}
+                {userInfo.role == "volunteer" && "志愿者"}
+                {userInfo.role == "developer" && "开发者"}
+                {userInfo.role == "admin" && "管理员"}
+                {userInfo.role == "super_admin" && "0号员工"}
+                {userInfo.job ? (" - " + userInfo.job) : ""}
+              </p>
             </IonLabel>
           </IonItem>
           <IonItem lines="none">
