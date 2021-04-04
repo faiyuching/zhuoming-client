@@ -142,7 +142,7 @@ const LaunchResponse: React.FC = () => {
             </IonItem>
             <IonItem>
               <IonLabel position="floating">声明</IonLabel>
-              <IonTextarea autoGrow rows={10} value={statement} onIonChange={e => setStatement(e.detail.value!)}></IonTextarea>
+              <IonTextarea autoGrow rows={6} value={statement} onIonChange={e => setStatement(e.detail.value!)}></IonTextarea>
             </IonItem>
           </IonGrid>}
         <IonItem lines="none">
