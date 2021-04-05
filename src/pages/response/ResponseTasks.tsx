@@ -200,12 +200,12 @@ const ResponseTasks: React.FC = () => {
                 <IonInput value={need_people} onIonChange={e => setNeedPeople(e.detail.value!)}></IonInput>
               </IonItem>
               <IonItem>
-                <IonLabel position="floating">描述</IonLabel>
-                <IonTextarea autoGrow rows={5} value={description} onIonChange={e => setDescription(e.detail.value!)}></IonTextarea>
-              </IonItem>
-              <IonItem>
                 <IonLabel>需要石墨账号？</IonLabel>
                 <IonToggle checked={need_shimo} onIonChange={e => setNeedShimo(e.detail.checked)} />
+              </IonItem>
+              <IonItem>
+                <IonLabel position="floating">描述</IonLabel>
+                <IonTextarea autoGrow rows={5} value={description} onIonChange={e => setDescription(e.detail.value!)}></IonTextarea>
               </IonItem>
             </IonContent>
           </IonModal>
