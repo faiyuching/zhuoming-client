@@ -35,7 +35,7 @@ const ResponseHome: React.FC = () => {
             <IonTitle>{localStorage.getItem("response_name")}</IonTitle>
           </IonToolbar>
           <IonToolbar>
-            <IonTitle size="large">总览</IonTitle>
+            <IonTitle size="large">{t("response.home")}</IonTitle>
             <IonButtons slot="end">
               <IonButton>
                 <IonIcon color="danger" icon={notificationsOutline} />
