@@ -65,7 +65,7 @@ const TaskPage: React.FC = () => {
       });
   }
   const ShimoJudge = () => {
-    if (need_shimo && localStorage.getItem("shimo")) {
+    if (need_shimo && localStorage.getItem("shimo") !== null) {
       setShowAlert(true)
     } else if (!need_shimo) {
       setShowAlert(true)
