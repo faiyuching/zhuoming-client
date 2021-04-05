@@ -90,7 +90,10 @@ const resources = {
         end_confirm: "Are you sure to end?",
         end_message: "All tasks in progress will end",
         okay: "Okay",
-        launch_response: "Launch"
+        launch_response: "Launch",
+        applied: "Applied",
+        success: "Passed",
+        fail: "Did not pass"
       },
       library: {
         library: "Library",
@@ -123,7 +126,7 @@ const resources = {
         filter: "Filter",
         clear: "Clear",
         search: "Search",
-        recommend: "Recommend & Upload",
+        recommend: "Recommend",
         create_topic: "Create Topic",
         base_settings: "Base Settings",
         topic_name: "Topic Title",
@@ -286,7 +289,10 @@ const resources = {
         end_confirm: "确认结束响应？",
         end_message: "正在进行中的所有任务将结束",
         okay: "确定",
-        launch_response: "发起响应"
+        launch_response: "发起响应",
+        applied: "申请中",
+        success: "已通过",
+        fail: "未通过"
       },
       library: {
         library: "资料库",
@@ -319,7 +325,7 @@ const resources = {
         filter: "筛选",
         clear: "清空",
         search: "搜索",
-        recommend: "推荐或上传资源",
+        recommend: "推荐资源",
         create_topic: "新建主题",
         base_settings: "基本设置",
         topic_name: "主题名称",

@@ -32,7 +32,7 @@ const Response: React.FC = () => {
                 <IonMenuButton />
               </IonButton>
             </IonButtons>
-            <IonTitle>{response.response_name}</IonTitle>
+            <IonTitle>{localStorage.getItem("response_name")}</IonTitle>
           </IonToolbar>
           <IonToolbar>
             <IonTitle size="large">总览</IonTitle>

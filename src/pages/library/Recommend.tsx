@@ -22,6 +22,13 @@ const Recommend: React.FC = () => {
         </IonToolbar>
         <IonToolbar>
           <IonTitle size="large">{t("library.recommend")}</IonTitle>
+          <IonButtons slot="end">
+            {value !== "1" && <IonButton onClick={() => { setValue(value.slice(1)) }}>{t("library.previous")}</IonButton>}
+            {value === "111" ?
+              <IonButton>{t("library.complete")}</IonButton> :
+              <IonButton onClick={() => { setValue(value + "1") }}>{t("library.next_step")}</IonButton>
+            }
+          </IonButtons>
         </IonToolbar>
       </IonHeader>
       <IonContent fullscreen>
@@ -39,15 +46,6 @@ const Recommend: React.FC = () => {
         {value === "1" && <RecommendStepOne />}
         {value === "11" && <RecommendStepTwo />}
         {value === "111" && <RecommendStepThree />}
-        <IonItem lines="none">
-          <IonButtons slot="end">
-            {value !== "1" && <IonButton onClick={() => { setValue(value.slice(1)) }}>{t("library.previous")}</IonButton>}
-            {value === "111" ?
-              <IonButton>{t("library.complete")}</IonButton> :
-              <IonButton onClick={() => { setValue(value + "1") }}>{t("library.next_step")}</IonButton>
-            }
-          </IonButtons>
-        </IonItem>
       </IonContent>
     </IonPage>
 

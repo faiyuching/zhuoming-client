@@ -83,7 +83,7 @@ const App: React.FC = () => (
           <Route path="/response/members" component={ResponseMembers} exact={true} />
           <Route path="/response/timeline" component={ResponseTimeline} exact={true} />
           <Route path="/response/settings" component={ResponseSettings} exact={true} />
-          <Route path="/response/task/:id" component={TaskPage} exact={true} />
+          <Route path="/response/task/:task_id" component={TaskPage} exact={true} />
           <Route path="/response/history" component={ResponseHistory} exact={true} />
           <Route path="/response/launch" component={LaunchResponse} exact={true} />
           <Route path="/response/launch/success" component={LaunchSuccess} exact={true} />

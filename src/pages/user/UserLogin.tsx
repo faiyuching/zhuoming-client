@@ -56,6 +56,8 @@ const UserLogin: React.FC = () => {
       axios.post('/user/login/wechat/browser', { code: code })
         .then(function (res) {
           localStorage.setItem("user_id", res.data.user_id)
+          localStorage.setItem("shimo", res.data.shimo)
+          localStorage.setItem("role", res.data.shimo)
           window.location.href = "/user"
         })
         .catch(function (error) {

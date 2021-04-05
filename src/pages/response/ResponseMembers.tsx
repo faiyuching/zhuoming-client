@@ -22,19 +22,37 @@ const ResponseMembers: React.FC = () => {
     undefined
   );
 
-  const [applies, setApplies] = useState([
-    {
-      User: {
-        username: "",
-        avatar: ""
-      }
+  const [applies, setApplies] = useState([{
+    user_id: "",
+    task_num: "",
+    User: {
+      nickname: "",
+      headimgurl: ""
     }
-  ]);
+  }])
+
   useEffect(() => {
     axios.get(`/applies?response_id=${localStorage.getItem("response_id")}`)
       .then(function (res) {
-        console.log(res.data)
-        setApplies(res.data)
+        let hash = [];
+        for (var i = 0; i < res.data.length; i++) {
+          for (var j = i + 1; j < res.data.length; j++) {
+            if (res.data[i].user_id === res.data[j].user_id) {
+              ++i;
+              j = i;
+            }
+          }
+          res.data[i].task_num = 0;
+          hash.push(res.data[i]);
+        }
+        hash.forEach(item => {
+          res.data.forEach((each: any) => {
+            if (item.user_id === each.user_id) {
+              item.task_num++
+            }
+          })
+        });
+        setApplies(hash)
       })
       .catch(function (error) {
         console.log(error);
@@ -85,7 +103,7 @@ const ResponseMembers: React.FC = () => {
               setPickerIsOpen(false);
             }}
           /> */}
-          <IonItemDivider>50{t("response.members")}</IonItemDivider>
+          <IonItemDivider>{applies.length + " " + t("response.members")}</IonItemDivider>
           {applies.length === 0 ? (
             <IonCard>
               <IonCardHeader>暂无报名</IonCardHeader>
@@ -95,11 +113,11 @@ const ResponseMembers: React.FC = () => {
               <IonItemSliding key={index}>
                 <IonItem button routerLink={'/user'}>
                   <IonAvatar slot="start">
-                    <IonImg src={apply.User.avatar} />
+                    <IonImg src={apply.User.headimgurl} />
                   </IonAvatar>
                   <IonLabel>
-                    <h2>{apply.User.username}</h2>
-                    <p>正在进行中的任务：x个</p>
+                    <h2>{apply.User.nickname}</h2>
+                    <p>正在进行中的任务：{apply.task_num}</p>
                   </IonLabel>
                 </IonItem>
                 <IonItemOptions side="end">

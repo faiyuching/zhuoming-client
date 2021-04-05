@@ -4,7 +4,7 @@ import {
   IonTitle, IonToolbar, IonSplitPane, IonButton, IonButtons, IonModal, IonSelect,
   IonSegment, IonSegmentButton, IonLabel, IonCard, IonCardHeader, IonInput,
   IonCardSubtitle, IonCardTitle, IonCardContent, IonItem, IonItemDivider,
-  IonSelectOption
+  IonSelectOption, IonToggle
 } from '@ionic/react';
 import { closeOutline } from 'ionicons/icons';
 import ResponseMenu from '../../components/response/ResponseMenu';
@@ -19,9 +19,11 @@ const ResponseTasks: React.FC = () => {
   const [showFailToast, setShowFailToast] = useState(false);
 
   const [task_name, setTaskName] = useState("")
+  const [need_people, setNeedPeople] = useState("")
   const [group_id, setGroupId] = useState("")
   const [job_id, setJobId] = useState("")
   const [description, setDescription] = useState("")
+  const [need_shimo, setNeedShimo] = useState(false)
 
   const [groups, setGroups] = useState([{ group_id: "", group_name: "" }]);
   const [jobs, setJobs] = useState([{ job_id: "", job_name: "" }]);
@@ -79,7 +81,9 @@ const ResponseTasks: React.FC = () => {
         description,
         response_id: localStorage.getItem("response_id"),
         group_id,
-        job_id
+        job_id,
+        need_people,
+        need_shimo
       })
         .then(function (res) {
           setShowAddTask(false)
@@ -88,6 +92,8 @@ const ResponseTasks: React.FC = () => {
           setGroupId("")
           setJobId("")
           setDescription("")
+          setNeedPeople("")
+          setNeedShimo(false)
         })
         .catch(function (error) {
           console.log(error);
@@ -190,8 +196,16 @@ const ResponseTasks: React.FC = () => {
                 <IonInput value={task_name} onIonChange={e => setTaskName(e.detail.value!)}></IonInput>
               </IonItem>
               <IonItem>
+                <IonLabel position="floating">需要人数</IonLabel>
+                <IonInput value={need_people} onIonChange={e => setNeedPeople(e.detail.value!)}></IonInput>
+              </IonItem>
+              <IonItem>
                 <IonLabel position="floating">描述</IonLabel>
-                <IonTextarea autoGrow rows={6} value={description} onIonChange={e => setDescription(e.detail.value!)}></IonTextarea>
+                <IonTextarea autoGrow rows={5} value={description} onIonChange={e => setDescription(e.detail.value!)}></IonTextarea>
+              </IonItem>
+              <IonItem>
+                <IonLabel>需要石墨账号？</IonLabel>
+                <IonToggle checked={need_shimo} onIonChange={e => setNeedShimo(e.detail.checked)} />
               </IonItem>
             </IonContent>
           </IonModal>
