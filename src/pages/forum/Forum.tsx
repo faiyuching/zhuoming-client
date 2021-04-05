@@ -106,12 +106,16 @@ const Forum: React.FC = () => {
             </IonCol>
           </IonRow>
         </IonGrid>
-        {posts.map((post, index) => {
+        {posts.length === 0 ? (
+          <IonCard>
+            <IonCardHeader>暂无帖子</IonCardHeader>
+          </IonCard>
+        ) : posts.map((post, index) => {
           return (
             <IonCard key={index} routerLink={`/forum/post/${post.post_id}`}>
               {/* <IonCardHeader>
-                <IonCardSubtitle>#{}</IonCardSubtitle>
-              </IonCardHeader> */}
+                  <IonCardSubtitle>#{}</IonCardSubtitle>
+                </IonCardHeader> */}
               <IonItem lines="none">
                 <IonAvatar slot="start">
                   <IonImg src={post.User.headimgurl} />
@@ -132,15 +136,15 @@ const Forum: React.FC = () => {
                 <IonLabel>{post.post_content}</IonLabel>
               </IonItem>
               {/* <IonItem lines="none">
-                <IonButtons slot="end">
-                  <IonButton color="medium">
-                    <IonIcon icon={heartOutline} />123
-                  </IonButton>
-                  <IonButton color="medium">
-                    <IonIcon icon={chatbubblesOutline} />123
-                  </IonButton>
-                </IonButtons>
-              </IonItem> */}
+                  <IonButtons slot="end">
+                    <IonButton color="medium">
+                      <IonIcon icon={heartOutline} />123
+                    </IonButton>
+                    <IonButton color="medium">
+                      <IonIcon icon={chatbubblesOutline} />123
+                    </IonButton>
+                  </IonButtons>
+                </IonItem> */}
             </IonCard>
           )
         })}
