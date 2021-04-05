@@ -59,6 +59,13 @@ const LaunchResponse: React.FC = () => {
             </IonButton>
           </IonButtons>
           <IonTitle>发起响应</IonTitle>
+          <IonButtons slot="end">
+            {value !== "1" && <IonButton onClick={() => { setValue(value.slice(1)) }}>{t("library.previous")}</IonButton>}
+            {value === "11" ?
+              <IonButton onClick={() => { onSubmit() }}>{t("library.complete")}</IonButton> :
+              <IonButton onClick={() => { setValue(value + "1") }}>{t("library.next_step")}</IonButton>
+            }
+          </IonButtons>
         </IonToolbar>
       </IonHeader>
       <IonContent fullscreen>
@@ -126,8 +133,7 @@ const LaunchResponse: React.FC = () => {
               </IonSelect>
             </IonItem>
           </IonGrid>
-        }
-        {value === "11" &&
+        }{value === "11" &&
           <IonGrid>
             <IonListHeader>
               <h2>2. 完善响应信息</h2>
@@ -144,16 +150,8 @@ const LaunchResponse: React.FC = () => {
               <IonLabel position="floating">声明</IonLabel>
               <IonTextarea autoGrow rows={6} value={statement} onIonChange={e => setStatement(e.detail.value!)}></IonTextarea>
             </IonItem>
-          </IonGrid>}
-        <IonItem lines="none">
-          <IonButtons slot="end">
-            {value !== "1" && <IonButton onClick={() => { setValue(value.slice(1)) }}>{t("library.previous")}</IonButton>}
-            {value === "11" ?
-              <IonButton onClick={() => { onSubmit() }}>{t("library.complete")}</IonButton> :
-              <IonButton onClick={() => { setValue(value + "1") }}>{t("library.next_step")}</IonButton>
-            }
-          </IonButtons>
-        </IonItem>
+          </IonGrid>
+        }
       </IonContent>
     </IonPage>
   );
