@@ -2,8 +2,7 @@ import React, { useEffect, useState } from 'react';
 import {
   IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonSplitPane,
   IonSegment, IonButtons, IonButton, IonLabel, IonBackButton,
-  IonSegmentButton, IonModal, IonRadioGroup, IonListHeader,
-  IonItem, IonAvatar, IonImg, IonRadio, IonAlert
+  IonSegmentButton, IonAlert
 } from '@ionic/react';
 import ResponseMenu from '../../components/response/ResponseMenu';
 import TaskBaseInfo from '../../components/response/TaskBaseInfo';
@@ -13,6 +12,8 @@ import { useTranslation } from "react-i18next";
 import { useParams } from 'react-router';
 import axios from "axios";
 import Toast from "../../components/Toast"
+import ApplyList from "../../components/response/ApplyList"
+
 interface ParamTypes {
   task_id: string
 }
@@ -65,7 +66,7 @@ const TaskPage: React.FC = () => {
       });
   }
   const ShimoJudge = () => {
-    if (need_shimo && localStorage.getItem("shimo") !== null) {
+    if (need_shimo && localStorage.getItem("shimo") && localStorage.getItem("shimo") !== "null") {
       setShowAlert(true)
     } else if (!need_shimo) {
       setShowAlert(true)
@@ -97,14 +98,14 @@ const TaskPage: React.FC = () => {
         <IonContent fullscreen>
           <Toast open={showSuccessToast} message={"领取任务成功！"} duration={1000} color={"success"} />
           <Toast open={showFailToast} message={"领取任务失败！"} duration={1000} color={"danger"} />
-          {/* <ApplyList show={showApplyList} /> */}
+          <ApplyList openApplyList={showApplyList} />
           <IonAlert
             isOpen={shimoAlert}
             onDidDismiss={() => setShimoAlert(false)}
             header={'需要石墨账号'}
             buttons={[
               {
-                text: 'Cancel',
+                text: t("cancel"),
                 role: 'cancel',
                 cssClass: 'secondary',
                 handler: blah => {
@@ -114,7 +115,7 @@ const TaskPage: React.FC = () => {
               {
                 text: '去完善个人资料',
                 handler: () => {
-                  console.log('Confirm Okay');
+                  window.location.href = "/user"
                 }
               }
             ]}
@@ -145,37 +146,6 @@ const TaskPage: React.FC = () => {
               }
             ]}
           />
-          <IonModal isOpen={showApplyList} >
-            <IonContent>
-              <IonHeader>
-                <IonToolbar>
-                  <IonTitle>{t("response.response")}</IonTitle>
-                  <IonButtons slot="end">
-                    <IonButton onClick={() => { setShowApplyList(false) }}>{t("close")}</IonButton>
-                  </IonButtons>
-                </IonToolbar>
-                <IonToolbar>
-                  <IonTitle size="large">{t("response.apply_list")}</IonTitle>
-                  <IonButtons slot="end">
-                    <IonButton>{t("response.invite")}</IonButton>
-                  </IonButtons>
-                </IonToolbar>
-              </IonHeader>
-              <IonRadioGroup>
-                <IonListHeader>信息组</IonListHeader>
-                <IonItem>
-                  <IonAvatar slot="start">
-                    <IonImg src="/assets/avatar.png" />
-                  </IonAvatar>
-                  <IonLabel>
-                    <h2>Faiyuching</h2>
-                    <p>正在进行中的任务：x个</p>
-                  </IonLabel>
-                  <IonRadio value="faiyuching" />
-                </IonItem>
-              </IonRadioGroup>
-            </IonContent>
-          </IonModal>
           <IonSegment value={value} onIonChange={e => setValue(e.detail.value!)}>
             <IonSegmentButton value="base_info">
               <IonLabel>{t("response.base_info")}</IonLabel>
