@@ -374,7 +374,7 @@ const resources = {
         response: "#响应",
         opinion: "#观点/意见",
         moments: "#此时此刻",
-        post: "发布",
+        post: "发贴",
         comment: "评论"
       },
       user: {

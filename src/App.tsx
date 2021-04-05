@@ -79,7 +79,6 @@ const App: React.FC = () => (
           <Route path="/404" component={NotFound} exact={true} />
           <Route path="/response/home" component={ResponseHome} exact={true} />
           <Route path="/response/tasks" component={ResponseTasks} exact={true} />
-          {/* <Route path="/response/tasks" component={ResponseTasks} exact={true} /> */}
           <Route path="/response/members" component={ResponseMembers} exact={true} />
           <Route path="/response/timeline" component={ResponseTimeline} exact={true} />
           <Route path="/response/settings" component={ResponseSettings} exact={true} />
@@ -95,7 +94,7 @@ const App: React.FC = () => (
           <Route path="/notice/new" component={NoticeNew} exact={true} />
           <Route path="/notice/detail/:id" component={NoticeDetail} exact={true} />
           <Route path="/forum" component={Forum} exact={true} />
-          <Route path="/forum/post/:id" component={PostDetail} exact={true} />
+          <Route path="/forum/post/:post_id" component={PostDetail} exact={true} />
           <Route path="/forum/post/new" component={PostNew} exact={true} />
           <Route path="/user" component={User} exact={true} />
           <Route path="/user/login" component={UserLogin} exact={true} />
