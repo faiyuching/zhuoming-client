@@ -103,7 +103,7 @@ const ResponseMembers: React.FC = () => {
               setPickerIsOpen(false);
             }}
           /> */}
-          <IonItemDivider>{applies.length + " " + t("response.members")}</IonItemDivider>
+          <IonItemDivider>{applies.length}</IonItemDivider>
           {applies.length === 0 ? (
             <IonCard>
               <IonCardHeader>暂无报名</IonCardHeader>
