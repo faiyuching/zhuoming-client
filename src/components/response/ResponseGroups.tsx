@@ -3,11 +3,10 @@ import {
   IonItem, IonLabel, IonItemGroup, IonCard, IonCardHeader,
   IonItemSliding, IonItemOptions, IonItemOption, IonButtons,
   IonButton, IonModal, IonContent, IonHeader, IonToolbar, IonTitle,
-  IonIcon, IonInput, IonTextarea
+  IonInput, IonTextarea
 } from '@ionic/react';
 import { useTranslation } from "react-i18next";
 import axios from 'axios';
-import { closeOutline } from 'ionicons/icons';
 import Toast from "../../components/Toast"
 
 const ResponseGroups: React.FC = () => {
@@ -93,13 +92,11 @@ const ResponseGroups: React.FC = () => {
           <IonHeader>
             <IonToolbar>
               <IonButtons slot="start">
-                <IonButton onClick={() => { setShowAddGroup(false) }}>
-                  <IonIcon icon={closeOutline} />
-                </IonButton>
+                <IonButton onClick={() => { setShowAddGroup(false) }}>{t("close")}</IonButton>
               </IonButtons>
               <IonTitle>添加分组</IonTitle>
               <IonButtons slot="end">
-                <IonButton onClick={() => { addGroup() }}>确定</IonButton>
+                <IonButton onClick={() => { addGroup() }}>{t("ok")}</IonButton>
               </IonButtons>
             </IonToolbar>
           </IonHeader>

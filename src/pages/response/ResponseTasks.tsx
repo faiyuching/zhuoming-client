@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import {
-  IonContent, IonHeader, IonMenuButton, IonPage, IonIcon, IonTextarea,
+  IonContent, IonHeader, IonMenuButton, IonPage, IonTextarea,
   IonTitle, IonToolbar, IonSplitPane, IonButton, IonButtons, IonModal, IonSelect,
   IonSegment, IonSegmentButton, IonLabel, IonCard, IonCardHeader, IonInput,
   IonCardSubtitle, IonCardTitle, IonCardContent, IonItem, IonItemDivider,
   IonSelectOption, IonToggle
 } from '@ionic/react';
-import { closeOutline } from 'ionicons/icons';
 import ResponseMenu from '../../components/response/ResponseMenu';
 import { useTranslation } from "react-i18next";
 import axios from 'axios';
@@ -161,13 +160,11 @@ const ResponseTasks: React.FC = () => {
               <IonHeader>
                 <IonToolbar>
                   <IonButtons slot="start">
-                    <IonButton onClick={() => { setShowAddTask(false) }}>
-                      <IonIcon icon={closeOutline} />
-                    </IonButton>
+                    <IonButton onClick={() => { setShowAddTask(false) }}>{t("close")}</IonButton>
                   </IonButtons>
                   <IonTitle>添加任务</IonTitle>
                   <IonButtons slot="end">
-                    <IonButton onClick={() => { addTask() }}>确定</IonButton>
+                    <IonButton onClick={() => { addTask() }}>{t("ok")}</IonButton>
                   </IonButtons>
                 </IonToolbar>
               </IonHeader>

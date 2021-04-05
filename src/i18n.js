@@ -11,6 +11,8 @@ const resources = {
       cancel: "Cancel",
       delete: "Delete",
       edit: "Edit",
+      close: "Close",
+      ok: "Ok",
       response: {
         one_ten: "1-10",
         ten_thirty: "10-30",
@@ -211,6 +213,8 @@ const resources = {
       cancel: "取消",
       delete: "删除",
       edit: "编辑",
+      close: "关闭",
+      ok: "确定",
       response: {
         one_ten: "1-10",
         ten_thirty: "10-30",

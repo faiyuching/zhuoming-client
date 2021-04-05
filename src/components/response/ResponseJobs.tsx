@@ -3,11 +3,10 @@ import {
   IonItem, IonLabel, IonItemGroup, IonItemSliding, IonItemOptions,
   IonItemOption, IonCard, IonCardHeader, IonButtons, IonButton,
   IonModal, IonContent, IonHeader, IonToolbar, IonTitle,
-  IonIcon, IonInput, IonTextarea, IonSelect, IonSelectOption
+  IonInput, IonTextarea, IonSelect, IonSelectOption
 } from '@ionic/react';
 import { useTranslation } from "react-i18next";
 import axios from 'axios';
-import { closeOutline } from 'ionicons/icons';
 import Toast from "../../components/Toast"
 
 const ResponseJobs: React.FC = () => {
@@ -117,13 +116,11 @@ const ResponseJobs: React.FC = () => {
           <IonHeader>
             <IonToolbar>
               <IonButtons slot="start">
-                <IonButton onClick={() => { setShowAddJob(false) }}>
-                  <IonIcon icon={closeOutline} />
-                </IonButton>
+                <IonButton onClick={() => { setShowAddJob(false) }}>{t("close")}</IonButton>
               </IonButtons>
               <IonTitle>添加岗位</IonTitle>
               <IonButtons slot="end">
-                <IonButton onClick={() => { addGroup() }}>确定</IonButton>
+                <IonButton onClick={() => { addGroup() }}>{t("ok")}</IonButton>
               </IonButtons>
             </IonToolbar>
           </IonHeader>

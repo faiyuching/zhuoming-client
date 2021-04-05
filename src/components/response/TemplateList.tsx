@@ -1,13 +1,10 @@
-import React, { useRef, useState, useEffect, useImperativeHandle } from 'react';
+import React, { useState } from 'react';
 import {
-  IonContent, IonHeader, IonPage, IonTitle, IonToolbar,
-  IonButton, IonButtons, IonSlide, IonBackButton, IonSlides,
-  IonItem, IonLabel, IonInput, IonGrid, IonRow, IonCol,
-  IonTextarea, IonSelect, IonSelectOption, IonModal, IonIcon,
-  IonRadioGroup, IonListHeader, IonAvatar, IonImg, IonRadio
+  IonContent, IonHeader, IonTitle, IonToolbar,
+  IonButton, IonButtons, IonItem, IonLabel, IonModal,
+  IonRadioGroup, IonListHeader, IonRadio
 } from '@ionic/react';
 import { useTranslation } from "react-i18next";
-import { closeOutline } from 'ionicons/icons';
 
 
 const TemplateList: React.FC = () => {
@@ -28,9 +25,7 @@ const TemplateList: React.FC = () => {
             </IonButtons>
             <IonTitle>模版库</IonTitle>
             <IonButtons slot="end">
-              <IonButton onClick={() => { setShowTemp(false) }}>
-                <IonIcon icon={closeOutline} />
-              </IonButton>
+              <IonButton onClick={() => { setShowTemp(false) }}>{t("close")}</IonButton>
             </IonButtons>
           </IonToolbar>
         </IonHeader>

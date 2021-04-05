@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import {
   IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonSplitPane,
   IonSegment, IonButtons, IonButton, IonLabel, IonBackButton,
-  IonSegmentButton, IonModal, IonIcon, IonRadioGroup, IonListHeader,
+  IonSegmentButton, IonModal, IonRadioGroup, IonListHeader,
   IonItem, IonAvatar, IonImg, IonRadio, IonAlert
 } from '@ionic/react';
 import ResponseMenu from '../../components/response/ResponseMenu';
@@ -10,7 +10,6 @@ import TaskBaseInfo from '../../components/response/TaskBaseInfo';
 import TaskMembers from '../../components/response/TaskMembers';
 import TaskSubmit from '../../components/response/TaskSubmit';
 import { useTranslation } from "react-i18next";
-import { closeOutline } from 'ionicons/icons';
 import { useParams } from 'react-router';
 import axios from "axios";
 import Toast from "../../components/Toast"
@@ -152,9 +151,7 @@ const TaskPage: React.FC = () => {
                 <IonToolbar>
                   <IonTitle>{t("response.response")}</IonTitle>
                   <IonButtons slot="end">
-                    <IonButton onClick={() => { setShowApplyList(false) }}>
-                      <IonIcon icon={closeOutline} />
-                    </IonButton>
+                    <IonButton onClick={() => { setShowApplyList(false) }}>{t("close")}</IonButton>
                   </IonButtons>
                 </IonToolbar>
                 <IonToolbar>
