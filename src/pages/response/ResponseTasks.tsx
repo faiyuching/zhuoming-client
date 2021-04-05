@@ -169,11 +169,11 @@ const ResponseTasks: React.FC = () => {
                 </IonToolbar>
               </IonHeader>
               <IonItem>
-                <IonLabel>需要石墨账号？</IonLabel>
+                <IonLabel>此任务需要石墨账号？</IonLabel>
                 <IonToggle checked={need_shimo} onIonChange={e => setNeedShimo(e.detail.checked)} />
               </IonItem>
               <IonItem>
-                <IonLabel position="floating">组别</IonLabel>
+                <IonLabel position="floating">组别<sup style={{ color: "#eb445a" }}>*</sup></IonLabel>
                 <IonSelect value={group_id} interface="action-sheet" onIonChange={e => (setGroupId(e.detail.value))}>
                   {groups.map((group, index) => {
                     return (
@@ -183,7 +183,7 @@ const ResponseTasks: React.FC = () => {
                 </IonSelect>
               </IonItem>
               <IonItem>
-                <IonLabel position="floating">岗位</IonLabel>
+                <IonLabel position="floating">岗位<sup style={{ color: "#eb445a" }}>*</sup></IonLabel>
                 <IonSelect value={job_id} interface="action-sheet" onIonChange={e => setJobId(e.detail.value)}>
                   {jobs.map((job, index) => {
                     return (
@@ -193,7 +193,7 @@ const ResponseTasks: React.FC = () => {
                 </IonSelect>
               </IonItem>
               <IonItem>
-                <IonLabel position="floating">任务名称</IonLabel>
+                <IonLabel position="floating">任务名称<sup style={{ color: "#eb445a" }}>*</sup></IonLabel>
                 <IonInput value={task_name} onIonChange={e => setTaskName(e.detail.value!)}></IonInput>
               </IonItem>
               <IonItem>

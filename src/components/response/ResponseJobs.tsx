@@ -125,7 +125,7 @@ const ResponseJobs: React.FC = () => {
             </IonToolbar>
           </IonHeader>
           <IonItem>
-            <IonLabel position="floating">组别</IonLabel>
+            <IonLabel position="floating">组别<sup style={{ color: "#eb445a" }}>*</sup></IonLabel>
             <IonSelect value={group_id} interface="action-sheet" onIonChange={e => setGroupId(e.detail.value)}>
               {groups.map((group, index) => {
                 return (
@@ -135,7 +135,7 @@ const ResponseJobs: React.FC = () => {
             </IonSelect>
           </IonItem>
           <IonItem>
-            <IonLabel position="floating">岗位名</IonLabel>
+            <IonLabel position="floating">岗位名<sup style={{ color: "#eb445a" }}>*</sup></IonLabel>
             <IonInput value={job_name} onIonChange={e => setJobName(e.detail.value!)}></IonInput>
           </IonItem>
           <IonItem>

@@ -101,7 +101,7 @@ const ResponseGroups: React.FC = () => {
             </IonToolbar>
           </IonHeader>
           <IonItem>
-            <IonLabel position="floating">组名</IonLabel>
+            <IonLabel position="floating">组名<sup style={{ color: "#eb445a" }}>*</sup></IonLabel>
             <IonInput value={group_name} onIonChange={e => setGroupName(e.detail.value!)}></IonInput>
           </IonItem>
           <IonItem>

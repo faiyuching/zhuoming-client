@@ -83,7 +83,7 @@ const LaunchResponse: React.FC = () => {
               <h2>1. 基本设置</h2>
             </IonListHeader>
             <IonItem>
-              <IonLabel position="floating">灾害类型</IonLabel>
+              <IonLabel position="floating">灾害类型<sup style={{ color: "#eb445a" }}>*</sup></IonLabel>
               <IonSelect value={disaster_type} interface="action-sheet" onIonChange={e => setDisasterType(e.detail.value)}>
                 <IonSelectOption value="meteoro_hydro">{t("library.meteoro_hydro")}</IonSelectOption>
                 <IonSelectOption value="geological">{t("library.geological")}</IonSelectOption>
@@ -94,7 +94,7 @@ const LaunchResponse: React.FC = () => {
               </IonSelect>
             </IonItem>
             <IonItem>
-              <IonLabel position="floating">响应级别</IonLabel>
+              <IonLabel position="floating">响应级别<sup style={{ color: "#eb445a" }}>*</sup></IonLabel>
               <IonSelect value={response_level} interface="action-sheet" onIonChange={e => setResponseLevel(e.detail.value)}>
                 <IonSelectOption value="one">一级</IonSelectOption>
                 <IonSelectOption value="two">二级</IonSelectOption>
@@ -103,7 +103,7 @@ const LaunchResponse: React.FC = () => {
               </IonSelect>
             </IonItem>
             <IonItem>
-              <IonLabel position="floating">需要时间（大概）</IonLabel>
+              <IonLabel position="floating">需要时间（大概）<sup style={{ color: "#eb445a" }}>*</sup></IonLabel>
               <IonSelect value={needs_time} interface="action-sheet" onIonChange={e => setNeedsTime(e.detail.value)}>
                 <IonSelectOption value="three_days">1-3天</IonSelectOption>
                 <IonSelectOption value="one_week">一周</IonSelectOption>
@@ -115,15 +115,15 @@ const LaunchResponse: React.FC = () => {
                 <IonSelectOption value="over_year">一年以上</IonSelectOption>
               </IonSelect>
             </IonItem>
-            <IonItem>
+            {/* <IonItem>
               <IonLabel position="floating">加入模式</IonLabel>
               <IonSelect value={join_mode} interface="action-sheet" onIonChange={e => setJoinMode(e.detail.value)}>
                 <IonSelectOption value="all">所有人都可申请加入</IonSelectOption>
                 <IonSelectOption value="invite_only">仅被邀请的人才能加入</IonSelectOption>
               </IonSelect>
-            </IonItem>
+            </IonItem> */}
             <IonItem>
-              <IonLabel position="floating">需要人数</IonLabel>
+              <IonLabel position="floating">需要人数<sup style={{ color: "#eb445a" }}>*</sup></IonLabel>
               <IonSelect value={need_people} interface="action-sheet" onIonChange={e => setNeedPeople(e.detail.value)}>
                 <IonSelectOption value="one_ten">1-10</IonSelectOption>
                 <IonSelectOption value="ten_thirty">10-30</IonSelectOption>
@@ -139,7 +139,7 @@ const LaunchResponse: React.FC = () => {
               <h2>2. 完善响应信息</h2>
             </IonListHeader>
             <IonItem>
-              <IonLabel position="floating">响应名称</IonLabel>
+              <IonLabel position="floating">响应名称<sup style={{ color: "#eb445a" }}>*</sup></IonLabel>
               <IonInput value={response_name} onIonChange={e => setResponseName(e.detail.value!)}></IonInput>
             </IonItem>
             <IonItem>
