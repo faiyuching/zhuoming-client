@@ -8,7 +8,8 @@ import {
   libraryOutline, librarySharp, bookmarkOutline,
   timeOutline, timeSharp, peopleOutline, peopleSharp,
   chatbubblesOutline, chatbubblesSharp,
-  settingsOutline, settingsSharp, listOutline, listSharp
+  settingsOutline, settingsSharp, listOutline, listSharp,
+  homeOutline, homeSharp
 } from 'ionicons/icons';
 import { arrowForwardOutline } from 'ionicons/icons';
 import './ResponseMenu.css';
@@ -40,6 +41,12 @@ const ResponseMenu: React.FC = () => {
   const location = useLocation();
   const { t } = useTranslation();
   const responsePages: page[] = [
+    {
+      title: t("response.home"),
+      url: `/response/home`,
+      iosIcon: homeOutline,
+      mdIcon: homeSharp
+    },
     {
       title: t("response.settings"),
       url: `/response/settings`,

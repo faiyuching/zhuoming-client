@@ -8,7 +8,7 @@ import {
   volumeHighOutline, libraryOutline, notificationsOutline,
   chatbubblesOutline, personOutline
 } from 'ionicons/icons';
-import Response from './pages/response/Response';
+import ResponseHome from './pages/response/ResponseHome';
 import ResponseSettings from './pages/response/ResponseSettings';
 import ResponseTasks from './pages/response/ResponseTasks';
 import ResponseMembers from './pages/response/ResponseMembers';
@@ -77,7 +77,7 @@ const App: React.FC = () => (
       <IonTabs>
         <IonRouterOutlet>
           <Route path="/404" component={NotFound} exact={true} />
-          <Route path="/response" component={Response} exact={true} />
+          <Route path="/response/home" component={ResponseHome} exact={true} />
           <Route path="/response/tasks" component={ResponseTasks} exact={true} />
           {/* <Route path="/response/tasks" component={ResponseTasks} exact={true} /> */}
           <Route path="/response/members" component={ResponseMembers} exact={true} />
@@ -104,10 +104,10 @@ const App: React.FC = () => (
           <Route path="/user/settings" component={UserSettings} exact={true} />
           <Route path="/user/signin" component={Signin} exact={true} />
           <Route path="/user/signup" component={Signup} exact={true} />
-          <Route path="/" render={() => <Redirect to="/response" />} exact={true} />
+          <Route path="/" render={() => <Redirect to="/response/home" />} exact={true} />
         </IonRouterOutlet>
         <IonTabBar slot="bottom">
-          <IonTabButton tab="response" href="/response">
+          <IonTabButton tab="response" href="/response/home">
             <IonIcon icon={volumeHighOutline} size="small" />
             <IonLabel>响应</IonLabel>
           </IonTabButton>

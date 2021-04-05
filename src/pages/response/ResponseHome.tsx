@@ -9,7 +9,7 @@ import ResponseMenu from '../../components/response/ResponseMenu';
 import { useTranslation } from "react-i18next";
 import { notificationsOutline } from 'ionicons/icons';
 
-const Response: React.FC = () => {
+const ResponseHome: React.FC = () => {
   const { t } = useTranslation();
   const [response, setResponse] = useState({
     response_id: "",
@@ -113,4 +113,4 @@ const Response: React.FC = () => {
   );
 };
 
-export default Response;
+export default ResponseHome;

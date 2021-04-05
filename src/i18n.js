@@ -14,6 +14,7 @@ const resources = {
       close: "Close",
       ok: "Ok",
       response: {
+        home: "Home",
         one_ten: "1-10",
         ten_thirty: "10-30",
         thirty_fifty: "30-50",
@@ -216,6 +217,7 @@ const resources = {
       close: "关闭",
       ok: "确定",
       response: {
+        home: "首页",
         one_ten: "1-10",
         ten_thirty: "10-30",
         thirty_fifty: "30-50",

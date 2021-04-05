@@ -24,7 +24,7 @@ const ResponseSettings: React.FC = () => {
         localStorage.removeItem("response_id")
         localStorage.removeItem("response_name")
         localStorage.removeItem("response_slogan")
-        window.location.href = "/response"
+        window.location.href = "/response/history"
       })
       .catch(function (error) {
         console.log(error);
