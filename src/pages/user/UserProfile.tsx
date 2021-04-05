@@ -103,7 +103,7 @@ const UserProfile: React.FC = () => {
             <IonItem lines="full">
               <IonLabel className="ion-text-wrap">
                 <p>{t("user.location")}</p>
-                <h2>{userInfo.country + " - " + userInfo.province + " - " + userInfo.city}</h2>
+                <h2>{userInfo.country + "-" + userInfo.province + "-" + userInfo.city}</h2>
               </IonLabel>
             </IonItem>
             <IonItemOptions side="end">
