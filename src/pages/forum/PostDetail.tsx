@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import {
-  IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonAvatar, IonImg, IonLabel,
-  IonList, IonListHeader, IonItem, IonButtons, IonButton, IonBackButton, IonIcon,
-  IonCard, IonModal, IonNote, IonInput, IonTextarea, IonGrid, IonAlert
+  IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonAvatar,
+  IonItem, IonButtons, IonButton, IonBackButton, IonIcon,
+  IonModal, IonNote, IonTextarea, IonGrid, IonAlert, IonImg, IonLabel,
 } from '@ionic/react';
 import { useTranslation } from "react-i18next";
-import { chatbubble, chatbubbles, chatbubblesOutline, heart, heartOutline, trashOutline } from 'ionicons/icons';
+import { chatbubblesOutline, heart, heartOutline } from 'ionicons/icons';
 import { useParams } from 'react-router';
 import axios from "axios"
 import Toast from "../../components/Toast"
@@ -213,8 +213,6 @@ const PostDetail: React.FC = () => {
         })}
         <Toast open={showSuccessToast} message={"评论成功！"} duration={1000} color={"success"} />
         <Toast open={showFailToast} message={"评论失败！"} duration={1000} color={"danger"} />
-        <Toast open={showSuccessToast} message={"删除成功！"} duration={1000} color={"success"} />
-        <Toast open={showFailToast} message={"删除失败！"} duration={1000} color={"danger"} />
         <IonModal isOpen={showAddComment} >
           <IonContent>
             <IonHeader>

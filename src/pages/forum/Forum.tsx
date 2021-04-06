@@ -3,11 +3,10 @@ import {
   IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonTextarea,
   IonChip, IonLabel, IonGrid, IonRow, IonCol, IonCard, IonImg,
   IonCardHeader, IonCardSubtitle, IonSegment, IonSegmentButton, IonList,
-  IonButtons, IonButton, IonSearchbar, IonItem, IonIcon, IonAvatar,
-  IonModal, IonListHeader, IonRadioGroup, IonRadio, IonItemDivider, IonInput
+  IonButtons, IonButton, IonSearchbar, IonItem, IonAvatar,
+  IonModal, IonListHeader, IonRadioGroup, IonRadio, IonInput
 } from '@ionic/react';
 import { useTranslation } from "react-i18next";
-import { chatbubblesOutline, heartOutline } from 'ionicons/icons';
 import axios from "axios"
 import Toast from "../../components/Toast"
 
@@ -90,6 +89,16 @@ const Forum: React.FC = () => {
       });
   }, [showSuccessToast])
 
+  const fliterPost = (tag: string) => {
+    axios.get(`/forum/post?tag=${tag}`)
+      .then(function (res) {
+        setPosts(res.data)
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  }
+
   const addPost = () => {
     if (content !== "") {
       axios.post('/forum/post', {
@@ -103,6 +112,7 @@ const Forum: React.FC = () => {
           setShowSuccessToast(true)
           setValue("1")
           setContent("")
+          setTag("")
           setInputTag("")
         })
         .catch(function (error) {
@@ -132,10 +142,10 @@ const Forum: React.FC = () => {
         <IonGrid>
           <IonRow>
             <IonCol>
-              {tags.length === 0 ? "" : tags.map((tag, index) => {
+              {tags.length !== 0 && tags.map((tag, index) => {
                 return (
-                  <IonChip color={tag.color} outline key={index}>
-                    <IonLabel>{tag.tag === "" ? ("未标签 " + tag.num) : (tag.tag + " " + tag.num)}</IonLabel>
+                  <IonChip key={index} color={tag.color} outline onClick={() => { fliterPost(tag.tag) }}>
+                    <IonLabel>#{tag.tag + " " + tag.num}</IonLabel>
                   </IonChip>
                 )
               })}
@@ -181,7 +191,7 @@ const Forum: React.FC = () => {
               <IonButtons slot="end">
                 {value !== "1" && <IonButton onClick={() => { setValue(value.slice(1)) }}>{t("library.previous")}</IonButton>}
                 {value === "11" ?
-                  <IonButton onClick={() => { addPost() }}>{t("library.complete")}</IonButton> :
+                  <IonButton onClick={() => { addPost() }}>{(tag || input_tag) ? t("library.complete") : "跳过"}</IonButton> :
                   <IonButton onClick={() => { setValue(value + "1") }}>{t("library.next_step")}</IonButton>
                 }
               </IonButtons>
@@ -207,20 +217,20 @@ const Forum: React.FC = () => {
                 <IonListHeader>
                   <IonLabel>请选择标签</IonLabel>
                 </IonListHeader>
-                {tags.length === 0 ? (
+                {posts.length === 0 ? (
                   <IonCard>
                     <IonCardHeader>暂无标签</IonCardHeader>
                   </IonCard>
-                ) : tags.map((post, index) => {
+                ) : posts.map((post, index) => {
                   return (
                     <IonItem key={index}>
-                      <IonLabel>{post.tag === "" ? "#未标签" : ("#" + post.tag)}</IonLabel>
+                      <IonLabel>{post.tag}</IonLabel>
                       <IonRadio value={post.tag} />
                     </IonItem>
                   )
                 })}
                 <IonItem>
-                  <IonLabel><strong>或输入标签：</strong></IonLabel>
+                  <IonLabel>或输入标签：</IonLabel>
                   <IonInput value={input_tag} onIonChange={(e) => { setInputTag(e.detail.value!); setTag("") }}>#</IonInput>
                 </IonItem>
               </IonRadioGroup>
