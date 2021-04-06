@@ -2,10 +2,10 @@ import React, { useEffect, useState } from 'react';
 import {
   IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonAvatar, IonImg, IonLabel,
   IonList, IonListHeader, IonItem, IonButtons, IonButton, IonBackButton, IonIcon,
-  IonCard, IonModal, IonNote, IonInput, IonTextarea, IonGrid
+  IonCard, IonModal, IonNote, IonInput, IonTextarea, IonGrid, IonAlert
 } from '@ionic/react';
 import { useTranslation } from "react-i18next";
-import { chatbubble, chatbubbles, chatbubblesOutline, heart, heartOutline } from 'ionicons/icons';
+import { chatbubble, chatbubbles, chatbubblesOutline, heart, heartOutline, trashOutline } from 'ionicons/icons';
 import { useParams } from 'react-router';
 import axios from "axios"
 import Toast from "../../components/Toast"
@@ -20,6 +20,7 @@ const PostDetail: React.FC = () => {
   const [showAddComment, setShowAddComment] = useState(false)
   const [showSuccessToast, setShowSuccessToast] = useState(false);
   const [showFailToast, setShowFailToast] = useState(false);
+  const [deleteConfirm, setDeleteConfirm] = useState(false)
   const [content, setContent] = useState("")
   const [post, setPost] = useState({
     post_id: "",
@@ -33,15 +34,6 @@ const PostDetail: React.FC = () => {
       introduction: ""
     }
   })
-  const [likes, setLikes] = useState([{
-    User: {
-      nickname: "",
-      headimgurl: "",
-      role: "",
-      job: "",
-      introduction: ""
-    }
-  }])
 
   const [comments, setComments] = useState([{
     content: "",
@@ -71,7 +63,6 @@ const PostDetail: React.FC = () => {
   useEffect(() => {
     axios.get(`/forum/${post_id}/like`)
       .then(function (res) {
-        setLikes(res.data)
         setLikeCount(res.data.length)
         console.log(res.data)
         res.data.forEach((each: any) => {
@@ -133,6 +124,14 @@ const PostDetail: React.FC = () => {
         setLikeCount(likeCount - 1)
       });
   }
+  const DeletePost = () => {
+    axios.delete(`/forum/post/${post_id}`)
+      .then(function (res) {
+        window.location.href = "/forum"
+      })
+      .catch(function (error) {
+      });
+  }
 
   return (
     <IonPage>
@@ -144,6 +143,28 @@ const PostDetail: React.FC = () => {
             </IonButton>
           </IonButtons>
           <IonTitle>{t("forum.forum")}</IonTitle>
+          <IonButtons slot="end">
+            <IonButton onClick={() => { setDeleteConfirm(true) }}>删除</IonButton>
+          </IonButtons>
+          <IonAlert
+            isOpen={deleteConfirm}
+            onDidDismiss={() => setDeleteConfirm(false)}
+            header={"确定删除？"}
+            // message={t("response.end_message")}
+            buttons={[
+              {
+                text: t("response.okay"),
+                handler: () => { DeletePost() }
+              },
+              {
+                text: t("response.cancel"),
+                role: 'cancel',
+                handler: blah => {
+                  console.log('Confirm Cancel: blah');
+                }
+              }
+            ]}
+          />
         </IonToolbar>
       </IonHeader>
       <IonContent fullscreen>
@@ -174,7 +195,7 @@ const PostDetail: React.FC = () => {
             <IonGrid key={index}>
               <IonItem lines="none" routerLink={"/user"}>
                 <IonAvatar slot="start">
-                  <IonImg src="/assets/avatar.png" />
+                  <IonImg src={comment.User.headimgurl} />
                 </IonAvatar>
                 <IonLabel className="ion-text-wrap">
                   <h2>{comment.User.nickname}</h2>
@@ -188,11 +209,12 @@ const PostDetail: React.FC = () => {
                 <IonNote>{comment.created_at.split(".")[0].replace("T", " ")}</IonNote>
               </IonItem>
             </IonGrid>
-
           )
         })}
         <Toast open={showSuccessToast} message={"评论成功！"} duration={1000} color={"success"} />
         <Toast open={showFailToast} message={"评论失败！"} duration={1000} color={"danger"} />
+        <Toast open={showSuccessToast} message={"删除成功！"} duration={1000} color={"success"} />
+        <Toast open={showFailToast} message={"删除失败！"} duration={1000} color={"danger"} />
         <IonModal isOpen={showAddComment} >
           <IonContent>
             <IonHeader>
@@ -207,7 +229,7 @@ const PostDetail: React.FC = () => {
               </IonToolbar>
             </IonHeader>
             <IonItem>
-              <IonTextarea autoGrow rows={6} value={content}
+              <IonTextarea autoGrow rows={20} value={content}
                 onIonChange={e => setContent(e.detail.value!)}
                 placeholder="请输入评论内容"
               ></IonTextarea>

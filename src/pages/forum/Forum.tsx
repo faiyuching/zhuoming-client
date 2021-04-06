@@ -135,7 +135,7 @@ const Forum: React.FC = () => {
               {tags.length === 0 ? "" : tags.map((tag, index) => {
                 return (
                   <IonChip color={tag.color} outline key={index}>
-                    <IonLabel>{tag.tag + " " + tag.num}</IonLabel>
+                    <IonLabel>{tag.tag === "" ? ("未标签 " + tag.num) : (tag.tag + " " + tag.num)}</IonLabel>
                   </IonChip>
                 )
               })}
@@ -164,16 +164,6 @@ const Forum: React.FC = () => {
               <IonItem lines="none">
                 <IonLabel>{post.content}</IonLabel>
               </IonItem>
-              {/* <IonItem lines="none">
-                  <IonButtons slot="end">
-                    <IonButton color="medium">
-                      <IonIcon icon={heartOutline} />123
-                    </IonButton>
-                    <IonButton color="medium">
-                      <IonIcon icon={chatbubblesOutline} />123
-                    </IonButton>
-                  </IonButtons>
-                </IonItem> */}
             </IonCard>
           )
         })}
@@ -188,13 +178,10 @@ const Forum: React.FC = () => {
                 <IonButton onClick={() => { setShowAddPost(false) }}>{t("close")}</IonButton>
               </IonButtons>
               <IonTitle>发帖</IonTitle>
-              {/* <IonButtons slot="end">
-                <IonButton onClick={() => { addPost() }}>{t("ok")}</IonButton>
-              </IonButtons> */}
               <IonButtons slot="end">
                 {value !== "1" && <IonButton onClick={() => { setValue(value.slice(1)) }}>{t("library.previous")}</IonButton>}
                 {value === "11" ?
-                  <IonButton onClick={() => { addPost() }}>{(tag || input_tag) ? t("library.complete") : "跳过"}</IonButton> :
+                  <IonButton onClick={() => { addPost() }}>{t("library.complete")}</IonButton> :
                   <IonButton onClick={() => { setValue(value + "1") }}>{t("library.next_step")}</IonButton>
                 }
               </IonButtons>
@@ -227,7 +214,7 @@ const Forum: React.FC = () => {
                 ) : tags.map((post, index) => {
                   return (
                     <IonItem key={index}>
-                      <IonLabel>{"#" + post.tag}</IonLabel>
+                      <IonLabel>{post.tag === "" ? "#未标签" : ("#" + post.tag)}</IonLabel>
                       <IonRadio value={post.tag} />
                     </IonItem>
                   )
