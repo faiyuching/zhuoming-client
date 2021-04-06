@@ -46,9 +46,11 @@ const ResponseHistory: React.FC = () => {
             </IonButton>
           </IonButtons>
           <IonTitle>{t("response.history")}</IonTitle>
-          <IonButtons slot="end">
-            <IonButton routerLink="/response/launch">{t("response.launch_response")}</IonButton>
-          </IonButtons>
+          {localStorage.getItem("response_current") !== "true" &&
+            <IonButtons slot="end">
+              <IonButton routerLink="/response/launch">{t("response.launch_response")}</IonButton>
+            </IonButtons>
+          }
         </IonToolbar>
       </IonHeader>
       <IonContent fullscreen>
@@ -60,13 +62,20 @@ const ResponseHistory: React.FC = () => {
           return (
             <IonCard key={index} onClick={() => { enterResponse(response.response_id, response.response_name, response.response_slogan) }}>
               <IonCardHeader>
-                <IonCardSubtitle>{response.created_at.split("T")[0] + " - " + (response.end_time.split("T")[0] || "正在响应")}｜参与人数</IonCardSubtitle>
+                <IonCardSubtitle>{response.created_at.split("T")[0] + " - " + (response.end_time ? response.end_time.split("T")[0] : "正在响应")}｜参与人数</IonCardSubtitle>
                 <IonCardTitle>{response.response_name}</IonCardTitle>
               </IonCardHeader>
               <IonCardContent>完成几个任务｜产出几个产品</IonCardContent>
             </IonCard>
           )
         })}
+        <IonCard>
+          <IonCardHeader>
+            <IonCardSubtitle>2012-01-24｜2021-02-19</IonCardSubtitle>
+            <IonCardTitle>吉林通化疫情三级响应</IonCardTitle>
+          </IonCardHeader>
+          <IonCardContent>完成几个任务｜产出几个产品</IonCardContent>
+        </IonCard>
       </IonContent>
     </IonPage>
   );

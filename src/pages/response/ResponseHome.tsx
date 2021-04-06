@@ -44,7 +44,7 @@ const ResponseHome: React.FC = () => {
           </IonToolbar>
         </IonHeader>
         <IonContent fullscreen>
-          <IonCard>
+          <IonCard routerLink={"/response/tasks"}>
             <IonCardHeader>
               <IonCardSubtitle>任务</IonCardSubtitle>
               <IonCardTitle>10</IonCardTitle>
@@ -68,7 +68,7 @@ const ResponseHome: React.FC = () => {
               </IonLabel>
             </IonItem>
           </IonCard>
-          <IonCard>
+          <IonCard routerLink={"/response/members"}>
             <IonCardHeader>
               <IonCardSubtitle>成员</IonCardSubtitle>
               <IonCardTitle>20</IonCardTitle>

@@ -34,7 +34,7 @@ const PostNew: React.FC = () => {
           <IonTitle>{t("forum.forum")}</IonTitle>
         </IonToolbar>
         <IonToolbar>
-          <IonTitle size="large">发布帖子</IonTitle>
+          <IonTitle size="large">发帖</IonTitle>
           <IonButtons slot="end">
             <IonButton>发布</IonButton>
           </IonButtons>

@@ -59,6 +59,7 @@ import axios from 'axios'
 
 axios.get('/response/current')
   .then(function (res) {
+    localStorage.setItem("response_current", "true")
     localStorage.setItem("response_id", res.data.response_id)
     localStorage.setItem("response_name", res.data.response_name)
     res.data.response_slogan && localStorage.setItem("response_slogan", res.data.response_slogan)

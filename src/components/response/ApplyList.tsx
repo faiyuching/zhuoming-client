@@ -72,7 +72,7 @@ const ApplyList: React.FC<popsType> = (props) => {
           </IonCard>
         ) : applies.map((apply, index) => {
           return (
-            <IonRadioGroup>
+            <IonRadioGroup key={index}>
               <IonListHeader>信息组</IonListHeader>
               <IonItem>
                 <IonAvatar slot="start">

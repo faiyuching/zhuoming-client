@@ -3,7 +3,8 @@ import {
   IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonTextarea,
   IonChip, IonLabel, IonGrid, IonRow, IonCol, IonCard, IonImg,
   IonCardHeader, IonCardSubtitle, IonSegment, IonSegmentButton, IonList,
-  IonButtons, IonButton, IonSearchbar, IonItem, IonIcon, IonAvatar, IonModal
+  IonButtons, IonButton, IonSearchbar, IonItem, IonIcon, IonAvatar,
+  IonModal, IonListHeader, IonRadioGroup, IonRadio, IonItemDivider, IonInput
 } from '@ionic/react';
 import { useTranslation } from "react-i18next";
 import { chatbubblesOutline, heartOutline } from 'ionicons/icons';
@@ -17,27 +18,72 @@ const Forum: React.FC = () => {
   const [showSuccessToast, setShowSuccessToast] = useState(false);
   const [showFailToast, setShowFailToast] = useState(false);
   const [tag, setTag] = useState("")
-  const [post_content, setPostContent] = useState("")
+  const [content, setContent] = useState("")
+  const [value, setValue] = useState('1')
+  const [input_tag, setInputTag] = useState("")
+  const [tags, setTags] = useState([{
+    tag: "",
+    num: "",
+    color: ""
+  }])
 
   const [posts, setPosts] = useState([{
-    Tag: {
-      tag_name: ""
-    },
+    post_id: "",
+    content: "",
+    tag: "",
     User: {
       nickname: "",
       headimgurl: "",
       role: "",
-      job: ""
-    },
-    post_content: "",
-    post_id: ""
+      job: "",
+      introduction: ""
+    }
   }])
+
 
   useEffect(() => {
     axios.get('/forum/post')
       .then(function (res) {
         setPosts(res.data)
-        console.log(res.data)
+
+        let hash = [];
+        for (var i = 0; i < res.data.length; i++) {
+          for (var j = i + 1; j < res.data.length; j++) {
+            if (res.data[i].tag === res.data[j].tag) {
+              ++i;
+              j = i;
+            }
+          }
+          res.data[i].num = 0;
+          res.data[i].color = "";
+          hash.push(res.data[i]);
+        }
+        hash.forEach(item => {
+          res.data.forEach((each: any) => {
+            if (item.tag === each.tag) {
+              item.num++
+            }
+            if (item.num >= 8) {
+              item.color = "danger"
+            } else if (item.num >= 7) {
+              item.color = "warning"
+            } else if (item.num >= 6) {
+              item.color = "dark"
+            } else if (item.num >= 5) {
+              item.color = "success"
+            } else if (item.num >= 4) {
+              item.color = "tertiary"
+            } else if (item.num >= 3) {
+              item.color = "secondary"
+            } else if (item.num >= 2) {
+              item.color = "primary"
+            } else if (item.num >= 1) {
+              item.color = "medium"
+            }
+          })
+        });
+        setTags(hash)
+        console.log(hash)
       })
       .catch(function (error) {
         console.log(error);
@@ -45,12 +91,19 @@ const Forum: React.FC = () => {
   }, [showSuccessToast])
 
   const addPost = () => {
-    if (post_content !== "") {
-      axios.post('/forum/post', { post_content, user_id: localStorage.getItem("user_id") })
+    if (content !== "") {
+      axios.post('/forum/post', {
+        content,
+        user_id: localStorage.getItem("user_id"),
+        tag: tag || input_tag
+      })
         .then(function (res) {
           console.log(res.data)
           setShowAddPost(false)
           setShowSuccessToast(true)
+          setValue("1")
+          setContent("")
+          setTag("")
         })
         .catch(function (error) {
           console.log(error);
@@ -79,30 +132,13 @@ const Forum: React.FC = () => {
         <IonGrid>
           <IonRow>
             <IonCol>
-              <IonChip color="dark" outline>
-                <IonLabel>{t("forum.question")}</IonLabel>
-              </IonChip>
-              <IonChip color="danger" outline>
-                <IonLabel>{t("forum.disaster")}</IonLabel>
-              </IonChip>
-              <IonChip color="warning" outline>
-                <IonLabel>{t("forum.zhuoming")}</IonLabel>
-              </IonChip>
-              <IonChip color="success" outline>
-                <IonLabel>{t("forum.charity")}</IonLabel>
-              </IonChip>
-              <IonChip color="tertiary" outline>
-                <IonLabel>{t("forum.development")}</IonLabel>
-              </IonChip>
-              <IonChip color="primary" outline>
-                <IonLabel>{t("forum.response")}</IonLabel>
-              </IonChip>
-              <IonChip color="secondary" outline>
-                <IonLabel>{t("forum.opinion")}</IonLabel>
-              </IonChip>
-              <IonChip color="medium" outline>
-                <IonLabel>{t("forum.moments")}</IonLabel>
-              </IonChip>
+              {tags.length !== 0 && tags.map((tag, index) => {
+                return (
+                  <IonChip color={tag.color} outline key={index}>
+                    <IonLabel>#{tag.tag + " " + tag.num}</IonLabel>
+                  </IonChip>
+                )
+              })}
             </IonCol>
           </IonRow>
         </IonGrid>
@@ -113,27 +149,20 @@ const Forum: React.FC = () => {
         ) : posts.map((post, index) => {
           return (
             <IonCard key={index} routerLink={`/forum/post/${post.post_id}`}>
-              {/* <IonCardHeader>
-                  <IonCardSubtitle>#{}</IonCardSubtitle>
-                </IonCardHeader> */}
+              <IonCardHeader>
+                <IonCardSubtitle>{post.tag ? "#" + post.tag : ""}</IonCardSubtitle>
+              </IonCardHeader>
               <IonItem lines="none">
                 <IonAvatar slot="start">
                   <IonImg src={post.User.headimgurl} />
                 </IonAvatar>
                 <IonLabel>
                   <h2>{post.User.nickname}</h2>
-                  <p>
-                    {post.User.role === "user" && "用户"}
-                    {post.User.role === "volunteer" && "志愿者"}
-                    {post.User.role === "developer" && "开发者"}
-                    {post.User.role === "admin" && "管理员"}
-                    {post.User.role === "super_admin" && "0号员工"}
-                    {post.User.job ? ("-" + post.User.job) : ""}
-                  </p>
+                  <p>{post.User.introduction}</p>
                 </IonLabel>
               </IonItem>
               <IonItem lines="none">
-                <IonLabel>{post.post_content}</IonLabel>
+                <IonLabel>{post.content}</IonLabel>
               </IonItem>
               {/* <IonItem lines="none">
                   <IonButtons slot="end">
@@ -158,9 +187,16 @@ const Forum: React.FC = () => {
               <IonButtons slot="start">
                 <IonButton onClick={() => { setShowAddPost(false) }}>{t("close")}</IonButton>
               </IonButtons>
-              <IonTitle>发布帖子</IonTitle>
-              <IonButtons slot="end">
+              <IonTitle>发帖</IonTitle>
+              {/* <IonButtons slot="end">
                 <IonButton onClick={() => { addPost() }}>{t("ok")}</IonButton>
+              </IonButtons> */}
+              <IonButtons slot="end">
+                {value !== "1" && <IonButton onClick={() => { setValue(value.slice(1)) }}>{t("library.previous")}</IonButton>}
+                {value === "11" ?
+                  <IonButton onClick={() => { addPost() }}>{(tag || input_tag) ? t("library.complete") : "跳过"}</IonButton> :
+                  <IonButton onClick={() => { setValue(value + "1") }}>{t("library.next_step")}</IonButton>
+                }
               </IonButtons>
             </IonToolbar>
             <IonSegment disabled>
@@ -172,12 +208,37 @@ const Forum: React.FC = () => {
               </IonSegmentButton>
             </IonSegment>
           </IonHeader>
-          <IonList>
+          {value === "1" &&
             <IonItem>
               <IonTextarea rows={20} autoGrow placeholder="请输入内容"
-                onIonChange={e => setPostContent(e.detail.value!)}></IonTextarea>
+                onIonChange={e => setContent(e.detail.value!)}></IonTextarea>
             </IonItem>
-          </IonList>
+          }
+          {value === "11" &&
+            <IonList>
+              <IonRadioGroup value={tag} onIonChange={e => setTag(e.detail.value)}>
+                <IonListHeader>
+                  <IonLabel>请选择标签</IonLabel>
+                </IonListHeader>
+                {posts.length === 0 ? (
+                  <IonCard>
+                    <IonCardHeader>暂无标签</IonCardHeader>
+                  </IonCard>
+                ) : posts.map((post, index) => {
+                  return (
+                    <IonItem key={index}>
+                      <IonLabel>{post.tag}</IonLabel>
+                      <IonRadio value={post.tag} />
+                    </IonItem>
+                  )
+                })}
+                <IonItem>
+                  <IonLabel>或输入标签：</IonLabel>
+                  <IonInput value={input_tag} onIonChange={(e) => { setInputTag(e.detail.value!); setTag("") }}>#</IonInput>
+                </IonItem>
+              </IonRadioGroup>
+            </IonList>
+          }
         </IonContent>
       </IonModal>
     </IonPage>

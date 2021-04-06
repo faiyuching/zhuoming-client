@@ -2,12 +2,13 @@ import React, { useEffect, useState } from 'react';
 import {
   IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonAvatar, IonImg, IonLabel,
   IonList, IonListHeader, IonItem, IonButtons, IonButton, IonBackButton, IonIcon,
-
+  IonCard, IonModal, IonNote, IonInput, IonTextarea, IonGrid
 } from '@ionic/react';
 import { useTranslation } from "react-i18next";
-import { heart, heartOutline } from 'ionicons/icons';
+import { chatbubble, chatbubbles, chatbubblesOutline, heart, heartOutline } from 'ionicons/icons';
 import { useParams } from 'react-router';
 import axios from "axios"
+import Toast from "../../components/Toast"
 
 interface ParamTypes {
   post_id: string
@@ -16,9 +17,14 @@ interface ParamTypes {
 const PostDetail: React.FC = () => {
   const { t } = useTranslation();
   const { post_id } = useParams<ParamTypes>()
+  const [showAddComment, setShowAddComment] = useState(false)
+  const [showSuccessToast, setShowSuccessToast] = useState(false);
+  const [showFailToast, setShowFailToast] = useState(false);
+  const [content, setContent] = useState("")
   const [post, setPost] = useState({
     post_id: "",
-    post_content: "",
+    content: "",
+    created_at: "",
     User: {
       nickname: "",
       headimgurl: "",
@@ -27,17 +33,100 @@ const PostDetail: React.FC = () => {
       introduction: ""
     }
   })
+  const [likes, setLikes] = useState([{
+    User: {
+      nickname: "",
+      headimgurl: "",
+      role: "",
+      job: "",
+      introduction: ""
+    }
+  }])
+
+  const [comments, setComments] = useState([{
+    content: "",
+    created_at: "",
+    User: {
+      user_id: "",
+      nickname: "",
+      headimgurl: "",
+      role: "",
+      job: "",
+      introduction: ""
+    }
+  }])
+  const [isLike, setIsLike] = useState(false)
+  const [likeCount, setLikeCount] = useState(0)
 
   useEffect(() => {
     axios.get(`/forum/post/${post_id}`)
       .then(function (res) {
         setPost(res.data)
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+    axios.get(`/forum/${post_id}/like`)
+      .then(function (res) {
+        setLikes(res.data)
+        setLikeCount(res.data.length)
+        console.log(res.data)
+        res.data.forEach((each: any) => {
+          if (each.user_id === localStorage.getItem("user_id")) {
+            setIsLike(true)
+          }
+        })
+
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+    axios.get(`/forum/${post_id}/comment`)
+      .then(function (res) {
+        setComments(res.data)
         console.log(res.data)
       })
       .catch(function (error) {
         console.log(error);
       });
   }, [])
+
+  const AddComment = () => {
+    if (content !== "") {
+      axios.post(`/forum/comment/${post_id}`, {
+        user_id: localStorage.getItem("user_id"),
+        content,
+        post_id
+      })
+        .then(function (res) {
+          setShowAddComment(false)
+          setShowSuccessToast(true)
+          setContent("")
+        })
+        .catch(function (error) {
+          console.log(error);
+          setShowAddComment(false)
+          setShowFailToast(true)
+        });
+    } else {
+      alert("请填写内容")
+    }
+    setShowSuccessToast(false)
+    setShowFailToast(false)
+  }
+
+  const AddLike = () => {
+    axios.post(`/forum/${post_id}/like`, {
+      user_id: localStorage.getItem("user_id"),
+    })
+      .then(function (res) {
+        setIsLike(true)
+        setLikeCount(likeCount + 1)
+      })
+      .catch(function (error) {
+        setIsLike(false)
+      });
+  }
 
   return (
     <IonPage>
@@ -49,12 +138,6 @@ const PostDetail: React.FC = () => {
             </IonButton>
           </IonButtons>
           <IonTitle>{t("forum.forum")}</IonTitle>
-          <IonButtons slot="end">
-            <IonButton color="danger">
-              123
-              <IonIcon slot="end" icon={heart} />
-            </IonButton>
-          </IonButtons>
         </IonToolbar>
       </IonHeader>
       <IonContent fullscreen>
@@ -67,32 +150,64 @@ const PostDetail: React.FC = () => {
             <p>{post.User.introduction}</p>
           </IonLabel>
         </IonItem>
+        <IonItem lines="none">
+          <p>{post.content}</p>
+        </IonItem>
         <IonItem>
-          <p>{post.post_content}</p>
+          <IonNote>{post.created_at.split(".")[0].replace("T", " ")}</IonNote>
+          <IonButtons slot="end">
+            <IonButton color={isLike ? "danger" : "medium"} onClick={() => { AddLike() }}>
+              {likeCount === 0 ? "" : likeCount}
+              <IonIcon slot="end" icon={isLike ? heart : heartOutline} />
+            </IonButton>
+            <IonButton color="medium" onClick={() => { setShowAddComment(true) }}><IonIcon icon={chatbubblesOutline} /></IonButton>
+          </IonButtons>
         </IonItem>
-        <IonItem lines="none" routerLink={"/user"}>
-          <IonAvatar slot="start">
-            <IonImg src="/assets/avatar.png" />
-          </IonAvatar>
-          <IonLabel className="ion-text-wrap">
-            <h2>Faiyuching</h2>
-            <p>@username</p>
-          </IonLabel>
-        </IonItem><IonItem >
-          <p>评论内容</p>
-        </IonItem>
+        {comments.length !== 0 && comments.map((comment, index) => {
+          return (
+            <IonGrid key={index}>
+              <IonItem lines="none" routerLink={"/user"}>
+                <IonAvatar slot="start">
+                  <IonImg src="/assets/avatar.png" />
+                </IonAvatar>
+                <IonLabel className="ion-text-wrap">
+                  <h2>{comment.User.nickname}</h2>
+                  <p>{comment.User.introduction}</p>
+                </IonLabel>
+              </IonItem>
+              <IonItem lines="none">
+                <p>{comment.content}</p>
+              </IonItem>
+              <IonItem>
+                <IonNote>{comment.created_at.split(".")[0].replace("T", " ")}</IonNote>
+              </IonItem>
+            </IonGrid>
 
-        <IonItem lines="none" routerLink={"/user"}>
-          <IonAvatar slot="start">
-            <IonImg src="/assets/avatar.png" />
-          </IonAvatar>
-          <IonLabel className="ion-text-wrap">
-            <h2>Faiyuching</h2>
-            <p>@username</p>
-          </IonLabel>
-        </IonItem><IonItem >
-          <p>评论内容</p>
-        </IonItem>
+          )
+        })}
+        <Toast open={showSuccessToast} message={"评论成功！"} duration={1000} color={"success"} />
+        <Toast open={showFailToast} message={"评论失败！"} duration={1000} color={"danger"} />
+        <IonModal isOpen={showAddComment} >
+          <IonContent>
+            <IonHeader>
+              <IonToolbar>
+                <IonButtons slot="start">
+                  <IonButton onClick={() => { setShowAddComment(false) }}>{t("close")}</IonButton>
+                </IonButtons>
+                <IonTitle>添加评论</IonTitle>
+                <IonButtons slot="end">
+                  <IonButton onClick={() => { AddComment() }}>{t("ok")}</IonButton>
+                </IonButtons>
+              </IonToolbar>
+            </IonHeader>
+            <IonItem>
+              <IonTextarea autoGrow rows={6} value={content}
+                onIonChange={e => setContent(e.detail.value!)}
+                placeholder="输入......"
+              ></IonTextarea>
+            </IonItem>
+          </IonContent>
+        </IonModal>
       </IonContent>
     </IonPage>
   );

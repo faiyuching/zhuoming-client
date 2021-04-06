@@ -109,7 +109,7 @@ const ResponseMenu: React.FC = () => {
           {responses.length === 0 ? (
             <IonItem lines="none">
               <IonIcon slot="start" icon={bookmarkOutline} />
-              <IonLabel>暂无历史任务</IonLabel>
+              <IonLabel>暂无历史响应</IonLabel>
             </IonItem>
           ) : responses.map((response, index) => {
             return (
