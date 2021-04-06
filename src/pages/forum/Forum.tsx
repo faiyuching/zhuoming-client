@@ -233,7 +233,7 @@ const Forum: React.FC = () => {
                   )
                 })}
                 <IonItem>
-                  <IonLabel>或输入标签：</IonLabel>
+                  <IonLabel><strong>或输入标签：</strong></IonLabel>
                   <IonInput value={input_tag} onIonChange={(e) => { setInputTag(e.detail.value!); setTag("") }}>#</IonInput>
                 </IonItem>
               </IonRadioGroup>
