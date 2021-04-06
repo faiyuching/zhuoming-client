@@ -224,7 +224,7 @@ const Forum: React.FC = () => {
                 ) : tags.map((tag, index) => {
                   return (
                     <IonItem key={index}>
-                      <IonLabel>{tag.tag}</IonLabel>
+                      <IonLabel>#{tag.tag}</IonLabel>
                       <IonRadio value={tag.tag} />
                     </IonItem>
                   )
