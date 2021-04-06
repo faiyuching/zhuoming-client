@@ -44,11 +44,9 @@ const ResponseHistory: React.FC = () => {
             </IonButton>
           </IonButtons>
           <IonTitle>{t("response.history")}</IonTitle>
-          {localStorage.getItem("response_current") !== "true" &&
-            <IonButtons slot="end">
-              <IonButton routerLink="/response/launch">{t("response.launch_response")}</IonButton>
-            </IonButtons>
-          }
+          <IonButtons slot="end">
+            <IonButton routerLink="/response/launch">{t("response.launch_response")}</IonButton>
+          </IonButtons>
         </IonToolbar>
       </IonHeader>
       <IonContent fullscreen>
