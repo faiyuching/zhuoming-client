@@ -69,13 +69,6 @@ const ResponseHistory: React.FC = () => {
             </IonCard>
           )
         })}
-        <IonCard>
-          <IonCardHeader>
-            <IonCardSubtitle>2012-01-24｜2021-02-19</IonCardSubtitle>
-            <IonCardTitle>吉林通化疫情三级响应</IonCardTitle>
-          </IonCardHeader>
-          <IonCardContent>完成几个任务｜产出几个产品</IonCardContent>
-        </IonCard>
       </IonContent>
     </IonPage>
   );

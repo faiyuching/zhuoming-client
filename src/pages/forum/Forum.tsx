@@ -132,10 +132,10 @@ const Forum: React.FC = () => {
         <IonGrid>
           <IonRow>
             <IonCol>
-              {tags.length !== 0 && tags.map((tag, index) => {
+              {tags.length === 0 ? "" : tags.map((tag, index) => {
                 return (
                   <IonChip color={tag.color} outline key={index}>
-                    <IonLabel>#{tag.tag + " " + tag.num}</IonLabel>
+                    <IonLabel>{tag.tag + " " + tag.num}</IonLabel>
                   </IonChip>
                 )
               })}
