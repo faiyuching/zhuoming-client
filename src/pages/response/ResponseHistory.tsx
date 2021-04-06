@@ -28,9 +28,7 @@ const ResponseHistory: React.FC = () => {
   useEffect(() => {
     axios.get('/responses')
       .then(function (res) {
-        const responseList = res.data
-        // responseList.pop()
-        setResponses(responseList)
+        setResponses(res.data)
       })
       .catch(function (error) {
         console.log(error);
