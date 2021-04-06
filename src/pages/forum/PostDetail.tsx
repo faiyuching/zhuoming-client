@@ -5,7 +5,7 @@ import {
   IonModal, IonNote, IonTextarea, IonGrid, IonAlert, IonImg, IonLabel,
 } from '@ionic/react';
 import { useTranslation } from "react-i18next";
-import { chatbubblesOutline, heart, heartOutline } from 'ionicons/icons';
+import { heart, heartOutline } from 'ionicons/icons';
 import { useParams } from 'react-router';
 import axios from "axios"
 import Toast from "../../components/Toast"
@@ -21,6 +21,7 @@ const PostDetail: React.FC = () => {
   const [showSuccessToast, setShowSuccessToast] = useState(false);
   const [showFailToast, setShowFailToast] = useState(false);
   const [deleteConfirm, setDeleteConfirm] = useState(false)
+  const [deleteCommentAlert, setDeleteCommentAlert] = useState(false)
   const [content, setContent] = useState("")
   const [post, setPost] = useState({
     post_id: "",
@@ -36,6 +37,7 @@ const PostDetail: React.FC = () => {
   })
 
   const [comments, setComments] = useState([{
+    comment_id: "",
     content: "",
     created_at: "",
     User: {
@@ -61,7 +63,7 @@ const PostDetail: React.FC = () => {
   }, [])
 
   useEffect(() => {
-    axios.get(`/forum/${post_id}/like`)
+    axios.get(`/forum/like/${post_id}`)
       .then(function (res) {
         setLikeCount(res.data.length)
         console.log(res.data)
@@ -77,7 +79,7 @@ const PostDetail: React.FC = () => {
   }, [])
 
   useEffect(() => {
-    axios.get(`/forum/${post_id}/comment`)
+    axios.get(`/forum/comment/${post_id}`)
       .then(function (res) {
         setComments(res.data)
         console.log(res.data)
@@ -85,7 +87,7 @@ const PostDetail: React.FC = () => {
       .catch(function (error) {
         console.log(error);
       });
-  }, [showSuccessToast])
+  }, [showSuccessToast,deleteCommentAlert])
 
   const AddComment = () => {
     if (content !== "") {
@@ -112,7 +114,7 @@ const PostDetail: React.FC = () => {
   }
 
   const AddLike = () => {
-    axios.post(`/forum/${post_id}/like`, {
+    axios.post(`/forum/like/${post_id}`, {
       user_id: localStorage.getItem("user_id"),
     })
       .then(function (res) {
@@ -132,6 +134,13 @@ const PostDetail: React.FC = () => {
       .catch(function (error) {
       });
   }
+  const DeleteComment = (comment_id: string) => {
+    axios.delete(`/forum/comment/${comment_id}`)
+      .then(function (res) {
+      })
+      .catch(function (error) {
+      });
+  }
 
   return (
     <IonPage>
@@ -144,7 +153,10 @@ const PostDetail: React.FC = () => {
           </IonButtons>
           <IonTitle>{t("forum.forum")}</IonTitle>
           <IonButtons slot="end">
-            <IonButton onClick={() => { setDeleteConfirm(true) }}>删除</IonButton>
+            <IonButton color={isLike ? "danger" : "medium"} onClick={() => { AddLike() }}>
+              {likeCount === 0 ? "" : likeCount}
+              <IonIcon slot="end" icon={isLike ? heart : heartOutline} />
+            </IonButton>
           </IonButtons>
           <IonAlert
             isOpen={deleteConfirm}
@@ -183,11 +195,8 @@ const PostDetail: React.FC = () => {
         <IonItem>
           <IonNote>{post.created_at.split(".")[0].replace("T", " ")}</IonNote>
           <IonButtons slot="end">
-            <IonButton color={isLike ? "danger" : "medium"} onClick={() => { AddLike() }}>
-              {likeCount === 0 ? "" : likeCount}
-              <IonIcon slot="end" icon={isLike ? heart : heartOutline} />
-            </IonButton>
-            <IonButton color="medium" onClick={() => { setShowAddComment(true) }}><IonIcon icon={chatbubblesOutline} /></IonButton>
+            <IonButton color="medium" onClick={() => { setShowAddComment(true) }}>评论</IonButton>
+            <IonButton color="medium" onClick={() => { setDeleteConfirm(true) }}>删除</IonButton>
           </IonButtons>
         </IonItem>
         {comments.length !== 0 && comments.map((comment, index) => {
@@ -207,6 +216,28 @@ const PostDetail: React.FC = () => {
               </IonItem>
               <IonItem>
                 <IonNote>{comment.created_at.split(".")[0].replace("T", " ")}</IonNote>
+                <IonButtons slot="end" onClick={() => { }}>
+                  <IonButton color="medium" onClick={() => { setDeleteCommentAlert(true) }}>删除</IonButton>
+                </IonButtons>
+                <IonAlert
+                  isOpen={deleteCommentAlert}
+                  onDidDismiss={() => setDeleteCommentAlert(false)}
+                  header={"确定删除？"}
+                  // message={t("response.end_message")}
+                  buttons={[
+                    {
+                      text: t("response.okay"),
+                      handler: () => { DeleteComment(comment.comment_id) }
+                    },
+                    {
+                      text: t("response.cancel"),
+                      role: 'cancel',
+                      handler: blah => {
+                        console.log('Confirm Cancel: blah');
+                      }
+                    }
+                  ]}
+                />
               </IonItem>
             </IonGrid>
           )
