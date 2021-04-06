@@ -173,7 +173,8 @@ const resources = {
         opinion: "#Opinion",
         moments: "#Moments",
         post: "Post",
-        comment: "Comment"
+        comment: "Comment",
+        unlabeled: "Unlabeled"
       },
       user: {
         user: "Me",
@@ -375,7 +376,8 @@ const resources = {
         opinion: "#观点/意见",
         moments: "#此时此刻",
         post: "发贴",
-        comment: "评论"
+        comment: "评论",
+        unlabeled: "未标签"
       },
       user: {
         user: "我的",

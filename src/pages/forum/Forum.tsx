@@ -145,7 +145,7 @@ const Forum: React.FC = () => {
               {tags.length !== 0 && tags.map((tag, index) => {
                 return (
                   <IonChip key={index} color={tag.color} outline onClick={() => { fliterPost(tag.tag) }}>
-                    <IonLabel>#{tag.tag + " " + tag.num}</IonLabel>
+                    <IonLabel>#{(tag.tag === "unlabeled" ? t("forum.unlabeled") : tag.tag) + " " + tag.num}</IonLabel>
                   </IonChip>
                 )
               })}
@@ -224,7 +224,7 @@ const Forum: React.FC = () => {
                 ) : tags.map((tag, index) => {
                   return (
                     <IonItem key={index}>
-                      <IonLabel>#{tag.tag}</IonLabel>
+                      <IonLabel>#{tag.tag === "Unlabeled" ? t("forum.unlabeled") : tag.tag}</IonLabel>
                       <IonRadio value={tag.tag} />
                     </IonItem>
                   )
