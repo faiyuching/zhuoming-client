@@ -160,7 +160,7 @@ const Forum: React.FC = () => {
           return (
             <IonCard key={index} routerLink={`/forum/post/${post.post_id}`}>
               <IonCardHeader>
-                <IonCardSubtitle>{post.tag ? "#" + post.tag : ""}</IonCardSubtitle>
+                <IonCardSubtitle>{post.tag === "unlabeled" ? t("forum.unlabeled") : post.tag}</IonCardSubtitle>
               </IonCardHeader>
               <IonItem lines="none">
                 <IonAvatar slot="start">
@@ -224,7 +224,7 @@ const Forum: React.FC = () => {
                 ) : tags.map((tag, index) => {
                   return (
                     <IonItem key={index}>
-                      <IonLabel>#{tag.tag === "Unlabeled" ? t("forum.unlabeled") : tag.tag}</IonLabel>
+                      <IonLabel>#{tag.tag === "unlabeled" ? t("forum.unlabeled") : tag.tag}</IonLabel>
                       <IonRadio value={tag.tag} />
                     </IonItem>
                   )
