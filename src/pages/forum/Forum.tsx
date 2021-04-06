@@ -220,11 +220,7 @@ const Forum: React.FC = () => {
                 <IonListHeader>
                   <IonLabel>请选择标签</IonLabel>
                 </IonListHeader>
-                {posts.length === 0 ? (
-                  <IonCard>
-                    <IonCardHeader>暂无标签</IonCardHeader>
-                  </IonCard>
-                ) : posts.map((post, index) => {
+                {tags.length !== 0 && tags.map((post, index) => {
                   return (
                     <IonItem key={index}>
                       <IonLabel>{post.tag}</IonLabel>

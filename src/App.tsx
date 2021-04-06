@@ -57,10 +57,6 @@ import './theme/variables.css';
 
 import axios from 'axios'
 
-localStorage.removeItem("response_id")
-localStorage.removeItem("response_name")
-localStorage.removeItem("response_slogan")
-
 axios.get('/response/current')
   .then(function (res) {
     localStorage.setItem("response_current", "true")

@@ -66,6 +66,9 @@ const PostDetail: React.FC = () => {
       .catch(function (error) {
         console.log(error);
       });
+  }, [])
+
+  useEffect(() => {
     axios.get(`/forum/${post_id}/like`)
       .then(function (res) {
         setLikes(res.data)
@@ -76,11 +79,13 @@ const PostDetail: React.FC = () => {
             setIsLike(true)
           }
         })
-
       })
       .catch(function (error) {
         console.log(error);
       });
+  }, [])
+
+  useEffect(() => {
     axios.get(`/forum/${post_id}/comment`)
       .then(function (res) {
         setComments(res.data)
@@ -89,7 +94,7 @@ const PostDetail: React.FC = () => {
       .catch(function (error) {
         console.log(error);
       });
-  }, [])
+  }, [showSuccessToast])
 
   const AddComment = () => {
     if (content !== "") {
@@ -125,6 +130,7 @@ const PostDetail: React.FC = () => {
       })
       .catch(function (error) {
         setIsLike(false)
+        setLikeCount(likeCount - 1)
       });
   }
 
@@ -203,7 +209,7 @@ const PostDetail: React.FC = () => {
             <IonItem>
               <IonTextarea autoGrow rows={6} value={content}
                 onIonChange={e => setContent(e.detail.value!)}
-                placeholder="输入......"
+                placeholder="请输入评论内容"
               ></IonTextarea>
             </IonItem>
           </IonContent>

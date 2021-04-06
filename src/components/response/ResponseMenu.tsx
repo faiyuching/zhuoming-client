@@ -43,7 +43,7 @@ const ResponseMenu: React.FC = () => {
   const responsePages: page[] = [
     {
       title: t("response.home"),
-      url: `/response/home`,
+      url: `/response`,
       iosIcon: homeOutline,
       mdIcon: homeSharp
     },

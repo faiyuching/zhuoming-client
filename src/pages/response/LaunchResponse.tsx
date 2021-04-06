@@ -24,7 +24,7 @@ const LaunchResponse: React.FC = () => {
     if (disaster_type
       && response_level
       && needs_time
-      && join_mode
+      // && join_mode
       && need_people
       && response_name !== "") {
       axios.post('/response', {
