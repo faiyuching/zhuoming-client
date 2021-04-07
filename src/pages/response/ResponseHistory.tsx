@@ -22,7 +22,7 @@ const ResponseHistory: React.FC = () => {
     localStorage.setItem("response_id", response_id)
     localStorage.setItem("response_name", response_name)
     response_slogan && localStorage.setItem("response_slogan", response_slogan)
-    window.location.href = "/response/home"
+    window.location.href = "/response"
   }
 
   useEffect(() => {
