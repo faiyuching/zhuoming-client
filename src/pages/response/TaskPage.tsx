@@ -115,7 +115,7 @@ const TaskPage: React.FC = () => {
               {
                 text: '去完善个人资料',
                 handler: () => {
-                  window.location.href = "/user"
+                  window.location.href = "/user/profile"
                 }
               }
             ]}

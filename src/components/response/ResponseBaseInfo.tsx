@@ -113,7 +113,7 @@ const ResponseBaseInfo: React.FC = () => {
           <IonItemOption>{t("edit")}</IonItemOption>
         </IonItemOptions>
       </IonItemSliding>
-      <IonItemSliding>
+      {/* <IonItemSliding>
         <IonItem lines="full">
           <IonLabel className="ion-text-wrap">
             <p>{t("response.join_mode")}</p>
@@ -123,7 +123,7 @@ const ResponseBaseInfo: React.FC = () => {
         <IonItemOptions side="end">
           <IonItemOption>{t("edit")}</IonItemOption>
         </IonItemOptions>
-      </IonItemSliding>
+      </IonItemSliding> */}
       <IonItemSliding>
         <IonItem lines="full">
           <IonLabel className="ion-text-wrap">
