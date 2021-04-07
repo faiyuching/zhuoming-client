@@ -36,7 +36,7 @@ const ResponseHistory: React.FC = () => {
   }, [])
 
   const launchResponse = () => {
-    if (localStorage.getItem("user_id")) {
+    if (!localStorage.getItem("user_id")) {
       alert("请先登录！")
     } else {
       window.location.href = "/response/launch"
