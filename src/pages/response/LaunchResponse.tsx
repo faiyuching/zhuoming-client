@@ -55,7 +55,7 @@ const LaunchResponse: React.FC = () => {
         <IonToolbar>
           <IonButtons>
             <IonButton>
-              <IonBackButton defaultHref="/response/home" text={t("back")} />
+              <IonBackButton defaultHref="/response/history" text={t("back")} />
             </IonButton>
           </IonButtons>
           <IonTitle>发起响应</IonTitle>
