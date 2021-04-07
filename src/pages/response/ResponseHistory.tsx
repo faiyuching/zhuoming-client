@@ -34,6 +34,14 @@ const ResponseHistory: React.FC = () => {
         console.log(error);
       });
   }, [])
+
+  const launchResponse = () => {
+    if (localStorage.getItem("user_id")) {
+      alert("请先登录！")
+    } else {
+      window.location.href = "/response/launch"
+    }
+  }
   return (
     <IonPage>
       <IonHeader>
@@ -45,7 +53,7 @@ const ResponseHistory: React.FC = () => {
           </IonButtons>
           <IonTitle>{t("response.history")}</IonTitle>
           <IonButtons slot="end">
-            <IonButton routerLink="/response/launch">{t("response.launch_response")}</IonButton>
+            <IonButton onClick={() => { launchResponse() }}>{t("response.launch_response")}</IonButton>
           </IonButtons>
         </IonToolbar>
       </IonHeader>
