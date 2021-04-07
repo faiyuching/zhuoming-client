@@ -33,16 +33,12 @@ const LibraryPicker: React.FC<_Props> = ({ onSave, onCancel, isOpen }) => {
     options: [
       { text: t("library.all_resource_types"), value: "all_resource_types" },
       { text: t("library.topic"), value: "topic" },
+      { text: t("library.brief_report"), value: "brief_report" },
       { text: t("library.video"), value: "video" },
       { text: t("library.audio"), value: "audio" },
       { text: t("library.picture"), value: "picture" },
       { text: t("library.article"), value: "article" },
       { text: t("library.book"), value: "book" },
-      { text: t("library.brief_report"), value: "brief_report" },
-      { text: t("library.doc"), value: "doc" },
-      { text: t("library.pdf"), value: "pdf" },
-      { text: t("library.excel"), value: "excel" },
-      { text: t("library.ppt"), value: "ppt" },
     ]
   } as PickerColumn;
   return (
