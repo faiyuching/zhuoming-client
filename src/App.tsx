@@ -8,7 +8,7 @@ import {
   volumeHighOutline, libraryOutline, notificationsOutline,
   chatbubblesOutline, personOutline
 } from 'ionicons/icons';
-import ResponseHome from './pages/response/ResponseHome';
+import Response from './pages/response/Response';
 import ResponseSettings from './pages/response/ResponseSettings';
 import ResponseTasks from './pages/response/ResponseTasks';
 import ResponseMembers from './pages/response/ResponseMembers';
@@ -80,7 +80,7 @@ const App: React.FC = () => (
       <IonTabs>
         <IonRouterOutlet>
           <Route path="/404" component={NotFound} exact={true} />
-          <Route path="/response" component={ResponseHome} exact={true} />
+          <Route path="/response" component={Response} exact={true} />
           <Route path="/response/tasks" component={ResponseTasks} exact={true} />
           <Route path="/response/members" component={ResponseMembers} exact={true} />
           <Route path="/response/timeline" component={ResponseTimeline} exact={true} />
