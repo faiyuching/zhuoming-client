@@ -43,6 +43,7 @@ const LaunchResponse: React.FC = () => {
         })
         .catch(function (error) {
           console.log(error);
+          alert("创建失败！请检查响应名称是否重复")
         })
     } else {
       alert("请完善信息");
