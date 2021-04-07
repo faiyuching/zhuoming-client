@@ -55,7 +55,7 @@ const Response: React.FC = () => {
               </IonAvatar>
               <IonLabel>
                 <h2>刚刚：完成任务</h2>
-                <IonNote>搜集微博灾情信息</IonNote>
+                <p>搜集微博灾情信息</p>
               </IonLabel>
             </IonItem>
             <IonItem lines="none">
@@ -95,7 +95,7 @@ const Response: React.FC = () => {
           <IonCard>
             <IonCardHeader>
               <IonCardSubtitle>讨论</IonCardSubtitle>
-              {/* <IonCardTitle>20</IonCardTitle> */}
+              <IonCardTitle>5</IonCardTitle>
             </IonCardHeader>
             <IonItem lines="none">
               <IonAvatar slot="start">
