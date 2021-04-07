@@ -22,7 +22,7 @@ const LaunchSuccess: React.FC = () => {
       <IonContent fullscreen>
         <IonGrid>
           <IonListHeader>
-            <h2>创建成功</h2>
+            <h2>创建成功！</h2>
           </IonListHeader>
           <IonButton expand="block" routerLink="/response/settings">去创建分组、岗位</IonButton>
           <IonButton expand="block" fill="clear" >邀请好友加入</IonButton>
