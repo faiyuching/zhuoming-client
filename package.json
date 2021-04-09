@@ -19,6 +19,7 @@
     "axios": "^0.21.1",
     "i18next": "^20.1.0",
     "ionicons": "^5.0.0",
+    "moment": "^2.29.1",
     "query-string": "^7.0.0",
     "react": "^16.13.0",
     "react-dom": "^16.13.0",

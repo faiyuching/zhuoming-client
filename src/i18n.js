@@ -14,6 +14,9 @@ const resources = {
       close: "Close",
       ok: "Ok",
       response: {
+        createtask: "Create task",
+        applytask: "Apply task",
+        moments: "Moments",
         home: "Home",
         one_ten: "1-10",
         ten_thirty: "10-30",
@@ -218,6 +221,9 @@ const resources = {
       close: "关闭",
       ok: "确定",
       response: {
+        createtask: "创建任务",
+        applytask: "申请任务",
+        moments: "动态",
         home: "首页",
         one_ten: "1-10",
         ten_thirty: "10-30",

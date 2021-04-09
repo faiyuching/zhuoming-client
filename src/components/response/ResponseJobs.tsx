@@ -91,7 +91,7 @@ const ResponseJobs: React.FC = () => {
       ) : jobs.map((job, index) => {
         return (
           <IonItemSliding key={index}>
-            <IonItem button lines="full">
+            <IonItem lines="full">
               <IonLabel className="ion-text-wrap">
                 <h2>{job.job_name}</h2>
                 <p>{job.description}</p>

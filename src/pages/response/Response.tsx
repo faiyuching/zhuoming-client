@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   IonContent, IonHeader, IonPage, IonSplitPane,
   IonTitle, IonToolbar, IonButton, IonButtons, IonLabel, IonIcon,
@@ -7,19 +7,39 @@ import {
 } from '@ionic/react';
 import ResponseMenu from '../../components/response/ResponseMenu';
 import { useTranslation } from "react-i18next";
-import { notificationsOutline } from 'ionicons/icons';
+import axios from 'axios';
 
 const Response: React.FC = () => {
   const { t } = useTranslation();
-  const [response, setResponse] = useState({
-    response_id: "",
-    response_name: "",
-    response_slogan: "",
-  });
+  const [moments, setMoments] = useState([{
+    User: {
+      nickname: "",
+      headimgurl: "",
+      type: "",
+      description: "",
+    },
+    Task: {
+      task_name: ""
+    },
+    type: "",
+    action: "",
+    created_at: ""
+  }]);
 
   if (!localStorage.getItem("response_id")) {
     window.location.href = "/response/history"
   }
+
+  useEffect(() => {
+    axios.get(`/moments?response_id=${localStorage.getItem("response_id")}`)
+      .then(function (res) {
+        console.log(res.data)
+        setMoments(res.data)
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  }, [])
 
   return (
     <IonSplitPane contentId="response">
@@ -35,11 +55,9 @@ const Response: React.FC = () => {
             <IonTitle>{localStorage.getItem("response_name")}</IonTitle>
           </IonToolbar>
           <IonToolbar>
-            <IonTitle size="large">{t("response.home")}</IonTitle>
+            <IonTitle size="large">{t("response.moments")}</IonTitle>
             <IonButtons slot="end">
-              <IonButton>
-                <IonIcon color="danger" icon={notificationsOutline} />
-              </IonButton>
+              <IonButton>新手指引</IonButton>
             </IonButtons>
           </IonToolbar>
         </IonHeader>
@@ -49,24 +67,22 @@ const Response: React.FC = () => {
               <IonCardSubtitle>任务</IonCardSubtitle>
               <IonCardTitle>10</IonCardTitle>
             </IonCardHeader>
-            <IonItem lines="none">
-              <IonAvatar slot="start">
-                <IonImg src="/assets/avatar.png" />
-              </IonAvatar>
-              <IonLabel>
-                <h2>刚刚：完成任务</h2>
-                <p>搜集微博灾情信息</p>
-              </IonLabel>
-            </IonItem>
-            <IonItem lines="none">
-              <IonAvatar slot="start">
-                <IonImg src="/assets/avatar.png" />
-              </IonAvatar>
-              <IonLabel>
-                <h2>一小时前：发布任务</h2>
-                <p>搜集微博灾情信息</p>
-              </IonLabel>
-            </IonItem>
+            {moments.map((moment, index) => {
+              if (moment.type !== "task") {
+                return 0
+              }
+              return (
+                <IonItem lines="none" key={index}>
+                  <IonAvatar slot="start">
+                    <IonImg src={moment.User.headimgurl} />
+                  </IonAvatar>
+                  <IonLabel>
+                    <h2>{moment.User.nickname + " " + t(`response.${moment.action + moment.type}`) + "：" + moment.Task.task_name}</h2>
+                    <p>{moment.created_at.split(".")[0].replace("T", " ")}</p>
+                  </IonLabel>
+                </IonItem>
+              )
+            })}
           </IonCard>
           <IonCard routerLink={"/response/members"}>
             <IonCardHeader>

@@ -15,7 +15,9 @@ interface ParamTypes {
 const TaskMembers: React.FC = () => {
   const { t } = useTranslation();
   const { task_id } = useParams<ParamTypes>()
+  const [status, setStatus] = useState(false)
   const [applies, setApplies] = useState([{
+    apply_id: "",
     status: "",
     User: {
       user_id: "",
@@ -31,7 +33,27 @@ const TaskMembers: React.FC = () => {
       .catch(function (error) {
         console.log(error);
       });
-  }, [])
+  }, [status])
+
+  const onSuccess = (apply_id: string) => {
+    axios.put(`/apply/${apply_id}`, { status: "success" })
+      .then(function (res) {
+        setStatus(true)
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  }
+  const onFail = (apply_id: string) => {
+    axios.put(`/apply/${apply_id}`, { status: "fail" })
+      .then(function (res) {
+        setStatus(true)
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  }
+
   return (
     <IonItemGroup>
       {applies.length === 0 ? (
@@ -54,7 +76,8 @@ const TaskMembers: React.FC = () => {
             </IonItem>
             <IonItemOptions side="end">
               <IonItemOptions side="end">
-                <IonItemOption color="danger">移出</IonItemOption>
+                {apply.status === "applied" && <IonItemOption color="success" onClick={() => { onSuccess(apply.apply_id) }}>同意</IonItemOption>}
+                {apply.status === "applied" && <IonItemOption color="danger" onClick={() => { onFail(apply.apply_id) }}>拒绝</IonItemOption>}
               </IonItemOptions>
             </IonItemOptions>
           </IonItemSliding>

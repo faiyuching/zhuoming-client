@@ -67,7 +67,7 @@ const ResponseGroups: React.FC = () => {
       ) : groups.map((group, index) => {
         return (
           <IonItemSliding key={index}>
-            <IonItem button lines="full">
+            <IonItem lines="full">
               <IonLabel className="ion-text-wrap">
                 <h2>{group.group_name}</h2>
                 <p>{group.description}</p>
