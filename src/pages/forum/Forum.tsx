@@ -168,7 +168,14 @@ const Forum: React.FC = () => {
                 </IonAvatar>
                 <IonLabel>
                   <h2>{post.User.nickname}</h2>
-                  <p>{post.User.introduction}</p>
+                  <p>
+                    {post.User.role === "user" && "用户"}
+                    {post.User.role === "volunteer" && "志愿者"}
+                    {post.User.role === "developer" && "开发者"}
+                    {post.User.role === "admin" && "管理员"}
+                    {post.User.role === "super_admin" && "0号员工"}
+                    {post.User.job ? ("-" + post.User.job) : ""}
+                  </p>
                 </IonLabel>
               </IonItem>
               <IonItem lines="none">
