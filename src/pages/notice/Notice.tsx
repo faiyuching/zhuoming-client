@@ -3,7 +3,7 @@ import {
   IonContent, IonHeader, IonPage, IonTitle, IonToolbar,
   IonSegment, IonSegmentButton, IonLabel, IonNote,
   IonList, IonItemSliding, IonItem, IonItemOptions,
-  IonItemOption, IonAvatar, IonImg, IonButtons, IonButton, IonBadge,
+  IonItemOption, IonAvatar, IonImg, IonButtons, IonButton,
 } from '@ionic/react';
 import { useTranslation } from "react-i18next";
 import axios from 'axios';
@@ -11,7 +11,9 @@ import moment from "moment"
 
 const Notice: React.FC = () => {
   const { t } = useTranslation();
-  const [notices, setNotices] = useState([{
+  const [status, setStatus] = useState(false)
+  const [value, setValue] = useState("unread")
+  const [unreadNotices, setUnreadNotices] = useState([{
     User: {
       nickname: "",
       headimgurl: "",
@@ -25,19 +27,58 @@ const Notice: React.FC = () => {
     type: "",
     action: "",
     status: "",
-    created_at: ""
+    created_at: "",
+    notice_id: ""
+  }]);
+  const [readNotices, setReadNotices] = useState([{
+    User: {
+      nickname: "",
+      headimgurl: "",
+      type: "",
+      description: "",
+    },
+    Task: {
+      task_id: "",
+      task_name: ""
+    },
+    type: "",
+    action: "",
+    status: "",
+    created_at: "",
+    notice_id: ""
   }]);
 
   useEffect(() => {
     axios.get(`/notices?user_id=${localStorage.getItem("user_id")}`)
       .then(function (res) {
-        console.log(res.data)
-        setNotices(res.data)
+
+        let unread_notice: any = [];
+        let read_notice: any = [];
+        res.data.forEach((each: any) => {
+          if (each.status === "unread") {
+            unread_notice.push(each)
+          } else if (each.status === "read") {
+            read_notice.push(each)
+          }
+        })
+        setUnreadNotices(unread_notice)
+        setReadNotices(read_notice)
+
       })
       .catch(function (error) {
         console.log(error);
       });
-  }, [])
+  }, [status])
+
+  const onChangeStatus = (notice_id: string) => {
+    axios.put(`/notice/${notice_id}`, { status: "read" })
+      .then(function (res) {
+        setStatus(false)
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  }
 
   return (
     <IonPage>
@@ -49,7 +90,7 @@ const Notice: React.FC = () => {
           </IonButtons>
         </IonToolbar>
         <IonToolbar>
-          <IonSegment value="unread" onIonChange={e => console.log('Segment selected', e.detail.value)}>
+          <IonSegment value={value} onIonChange={e => setValue(e.detail.value!)}>
             <IonSegmentButton value="unread">
               <IonLabel>{t("notice.unread")}</IonLabel>
             </IonSegmentButton>
@@ -61,10 +102,10 @@ const Notice: React.FC = () => {
       </IonHeader>
       <IonContent fullscreen>
         <IonList>
-          {notices.map((notice, index) => {
+          {value === "unread" && unreadNotices.map((notice, index) => {
             return (
               <IonItemSliding key={index}>
-                <IonItem button routerLink={`/response/task/${notice.Task.task_id}`}>
+                <IonItem button routerLink={`/response/task/${notice.Task.task_id}`} onClick={() => { onChangeStatus(notice.notice_id) }}>
                   <IonAvatar slot="start">
                     <IonImg src="/assets/task.png" />
                   </IonAvatar>
@@ -80,7 +121,26 @@ const Notice: React.FC = () => {
               </IonItemSliding>
             )
           })}
-          <IonItemSliding>
+          {value === "read" && readNotices.map((notice, index) => {
+            return (
+              <IonItemSliding key={index}>
+                <IonItem button routerLink={`/response/task/${notice.Task.task_id}`} onClick={() => { onChangeStatus(notice.notice_id) }}>
+                  <IonAvatar slot="start">
+                    <IonImg src="/assets/task.png" />
+                  </IonAvatar>
+                  <IonLabel>
+                    <h2>{t(`notice.${notice.type}`)}</h2>
+                    <p>{notice.User.nickname + " " + t(`response.${notice.action + notice.type}`) + "：" + notice.Task.task_name}</p>
+                  </IonLabel>
+                  <IonNote slot="end">{moment(notice.created_at).startOf('hour').fromNow()}</IonNote>
+                </IonItem>
+                <IonItemOptions side="end">
+                  <IonItemOption onClick={() => { }}>{t("notice.archive")}</IonItemOption>
+                </IonItemOptions>
+              </IonItemSliding>
+            )
+          })}
+          {/* <IonItemSliding>
             <IonItem button routerLink={"/notice/detail/:id"}>
               <IonAvatar slot="start">
                 <IonImg src="/assets/notice.png" />
@@ -136,7 +196,7 @@ const Notice: React.FC = () => {
             <IonItemOptions side="end">
               <IonItemOption onClick={() => { }}>{t("notice.archive")}</IonItemOption>
             </IonItemOptions>
-          </IonItemSliding>
+          </IonItemSliding> */}
         </IonList>
       </IonContent>
     </IonPage>
