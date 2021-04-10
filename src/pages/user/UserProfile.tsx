@@ -134,7 +134,7 @@ const UserProfile: React.FC = () => {
               <h2>{userInfo.nickname}</h2>
             </IonLabel>
           </IonItem>
-          <IonItem lines="full" button onClick={() => { setKey("sex"); setShowAlert(true) }}>
+          <IonItem lines="full" button>
             <IonLabel className="ion-text-wrap">
               <p>{t("user.gender")}</p>
               {userInfo.sex === "0" && <h2>未知</h2>}
@@ -148,7 +148,7 @@ const UserProfile: React.FC = () => {
               <h2>{userInfo.country + "-" + userInfo.province + "-" + userInfo.city}</h2>
             </IonLabel>
           </IonItem>
-          <IonItem lines="full" button onClick={() => { setKey("language"); setShowAlert(true) }}>
+          <IonItem lines="full" button>
             <IonLabel className="ion-text-wrap">
               <p>{t("user.language")}</p>
               <h2>{userInfo.language}</h2>
