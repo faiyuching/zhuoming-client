@@ -180,7 +180,12 @@ const resources = {
         unlabeled: "Unlabeled"
       },
       user: {
-        user: "Me",
+        me: "Me",
+        user: "User",
+        volunteer: "Volunteer",
+        developer: "Developer",
+        admin: "Admin",
+        super_admin: "Super admin",
         profile: "Profile",
         moments: "Moments",
         follow: "Follow",
@@ -386,7 +391,12 @@ const resources = {
         unlabeled: "未标签"
       },
       user: {
-        user: "我的",
+        me: "我的",
+        user: "用户",
+        volunteer: "志愿者",
+        developer: "开发者",
+        admin: "管理员",
+        super_admin: "0号员工",
         profile: "个人资料",
         tasks: "任务",
         moments: "帖子",
@@ -410,8 +420,8 @@ const resources = {
         gender: "性别",
         location: "所在地",
         job: "职业",
-        skill: "技能",
-        introduction: "一句话介绍",
+        skill: "专业/技能",
+        introduction: "个人介绍",
         sign: "登录",
         wechat_sign: "使用微信账号登录"
       }

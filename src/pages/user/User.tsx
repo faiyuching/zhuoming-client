@@ -12,14 +12,8 @@ import axios from 'axios';
 import { useLocation } from 'react-router';
 import queryString from 'querystring'
 
-interface ParamTypes {
-  user_id: string
-}
-
-
 const User: React.FC = () => {
   const { t } = useTranslation();
-  // const { user_id } = useParams<ParamTypes>()
   const user_id = queryString.parse(useLocation().search.split('?')[1]).id
   const [userInfo, serUserInfo] = useState({
     nickname: "",
@@ -51,7 +45,7 @@ const User: React.FC = () => {
     } else {
       window.location.href = "/user/login"
     }
-  }, [localStorage.getItem("user_id")])
+  }, [])
 
 
   return (
@@ -61,7 +55,7 @@ const User: React.FC = () => {
           <IonButtons slot="start">
             {user_id ? <IonBackButton text={t("back")} /> : <IonButton routerLink={'/user/follow'}>{t("user.follow")}</IonButton>}
           </IonButtons>
-          {!user_id && <IonTitle>{t("user.user")}</IonTitle>}
+          {!user_id && <IonTitle>{t("user.me")}</IonTitle>}
           <IonButtons slot="end">
             {!user_id && <IonButton routerLink={'/user/settings'}>{t("user.settings")}</IonButton>}
           </IonButtons>

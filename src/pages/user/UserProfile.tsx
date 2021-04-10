@@ -1,15 +1,21 @@
 import React, { useEffect, useState } from 'react';
 import {
-  IonContent, IonHeader, IonPage, IonTitle,
-  IonToolbar, IonButtons, IonButton, IonThumbnail,
-  IonItemGroup, IonItemSliding, IonLabel, IonImg,
-  IonItemOptions, IonItemOption, IonItem, IonBackButton,
+  IonContent, IonHeader, IonPage, IonTitle, IonToolbar,
+  IonButtons, IonButton, IonThumbnail, IonItemGroup,
+  IonAlert, IonLabel, IonImg, IonItem, IonBackButton,
 } from '@ionic/react';
 import { useTranslation } from "react-i18next";
 import axios from "axios";
+import queryString from 'querystring'
+import { useLocation } from 'react-router';
+
 const UserProfile: React.FC = () => {
   const { t } = useTranslation();
-
+  const user_id = queryString.parse(useLocation().search.split('?')[1]).id
+  const [showAlert, setShowAlert] = useState(false)
+  const [key, setKey] = useState("")
+  const [value, setValue] = useState("")
+  const [updateUserData, setUpdateUserData] = useState(false)
   const [userInfo, serUserInfo] = useState({
     shimo: "",
     wechat: "",
@@ -26,15 +32,22 @@ const UserProfile: React.FC = () => {
     province: "",
     country: "",
     headimgurl: "",
-    remark: ""
+    role: ""
   })
 
   useEffect(() => {
-
-    if (localStorage.getItem("user_id")) {
-      axios.get(`/user/${localStorage.getItem("user_id")}`)
+    if (user_id) {
+      axios.get(`/user/${user_id}`)
         .then(function (res) {
           console.log(res.data)
+          serUserInfo(res.data)
+        })
+        .catch(function (error) {
+          console.log(error);
+        })
+    } else if (localStorage.getItem("user_id")) {
+      axios.get(`/user/${localStorage.getItem("user_id")}`)
+        .then(function (res) {
           serUserInfo(res.data)
         })
         .catch(function (error) {
@@ -43,13 +56,22 @@ const UserProfile: React.FC = () => {
     } else {
       window.location.href = "/user/login"
     }
-
-  }, [localStorage.getItem("user_id")])
+  }, [updateUserData])
 
   const exitAccount = () => {
     localStorage.removeItem("user_id")
     window.location.href = "/user"
   }
+  const updateUser = (key: string, value: string) => {
+    axios.put(`/user/${localStorage.getItem("user_id")}`, { key, value })
+      .then(function (res) {
+        setUpdateUserData(!updateUserData)
+      })
+      .catch(function (error) {
+        console.log(error);
+      })
+  }
+
   return (
     <IonPage>
       <IonHeader>
@@ -59,7 +81,7 @@ const UserProfile: React.FC = () => {
               <IonBackButton text={t("back")} defaultHref="/user" />
             </IonButton>
           </IonButtons>
-          <IonTitle>{t("user.user")}</IonTitle>
+          <IonTitle>{t("user.me")}</IonTitle>
           <IonButtons slot="end">
             <IonButton color="danger" onClick={() => { exitAccount() }}>退出账号</IonButton>
           </IonButtons>
@@ -69,162 +91,122 @@ const UserProfile: React.FC = () => {
         </IonToolbar>
       </IonHeader>
       <IonContent fullscreen>
+        <IonAlert
+          isOpen={showAlert}
+          onDidDismiss={() => setShowAlert(false)}
+          header={"修改" + t(`user.${key}`)}
+          inputs={[
+            {
+              name: 'value',
+              type: 'text',
+              value: value,
+              placeholder: "请输入"
+            }
+          ]}
+          buttons={[
+            {
+              text: 'Cancel',
+              role: 'cancel',
+            },
+            {
+              text: 'Ok',
+              handler: (data) => {
+                updateUser(key, data.value)
+              }
+            }
+          ]}
+        />
         <IonItemGroup>
           <IonItem lines="none" button>
             <IonThumbnail slot="start">
               <IonImg style={{ borderRadius: "50%" }} src={userInfo.headimgurl} />
             </IonThumbnail>
           </IonItem>
-          <IonItemSliding>
-            <IonItem lines="full">
-              <IonLabel className="ion-text-wrap">
-                <p>{t("user.nickname")}</p>
-                <h2>{userInfo.nickname}</h2>
-              </IonLabel>
-            </IonItem>
-            <IonItemOptions side="end">
-              <IonItemOption>编辑</IonItemOption>
-            </IonItemOptions>
-          </IonItemSliding>
-          <IonItemSliding>
-            <IonItem lines="full">
-              <IonLabel className="ion-text-wrap">
-                <p>{t("user.gender")}</p>
-                {userInfo.sex === "0" && <h2>未知</h2>}
-                {userInfo.sex === "1" && <h2>男性</h2>}
-                {userInfo.sex === "2" && <h2>女性</h2>}
-              </IonLabel>
-            </IonItem>
-            <IonItemOptions side="end">
-              <IonItemOption>编辑</IonItemOption>
-            </IonItemOptions>
-          </IonItemSliding>
-          <IonItemSliding>
-            <IonItem lines="full">
-              <IonLabel className="ion-text-wrap">
-                <p>{t("user.location")}</p>
-                <h2>{userInfo.country + "-" + userInfo.province + "-" + userInfo.city}</h2>
-              </IonLabel>
-            </IonItem>
-            <IonItemOptions side="end">
-              <IonItemOption>编辑</IonItemOption>
-            </IonItemOptions>
-          </IonItemSliding>
-          <IonItemSliding>
-            <IonItem lines="full">
-              <IonLabel className="ion-text-wrap">
-                <p>{t("user.language")}</p>
-                <h2>{userInfo.language}</h2>
-              </IonLabel>
-            </IonItem>
-            <IonItemOptions side="end">
-              <IonItemOption>编辑</IonItemOption>
-            </IonItemOptions>
-          </IonItemSliding>
+          <IonItem lines="full">
+            <IonLabel className="ion-text-wrap">
+              <p>{t("user.role")}</p>
+              <h2>{t(`user.${userInfo.role}`)}</h2>
+            </IonLabel>
+          </IonItem>
+          <IonItem lines="full" button onClick={() => { setKey("nickname"); setShowAlert(true) }}>
+            <IonLabel className="ion-text-wrap">
+              <p>{t("user.nickname")}</p>
+              <h2>{userInfo.nickname}</h2>
+            </IonLabel>
+          </IonItem>
+          <IonItem lines="full" button onClick={() => { setKey("sex"); setShowAlert(true) }}>
+            <IonLabel className="ion-text-wrap">
+              <p>{t("user.gender")}</p>
+              {userInfo.sex === "0" && <h2>未知</h2>}
+              {userInfo.sex === "1" && <h2>男性</h2>}
+              {userInfo.sex === "2" && <h2>女性</h2>}
+            </IonLabel>
+          </IonItem>
+          <IonItem lines="full" button>
+            <IonLabel className="ion-text-wrap">
+              <p>{t("user.location")}</p>
+              <h2>{userInfo.country + "-" + userInfo.province + "-" + userInfo.city}</h2>
+            </IonLabel>
+          </IonItem>
+          <IonItem lines="full" button onClick={() => { setKey("language"); setShowAlert(true) }}>
+            <IonLabel className="ion-text-wrap">
+              <p>{t("user.language")}</p>
+              <h2>{userInfo.language}</h2>
+            </IonLabel>
+          </IonItem>
           {userInfo.password && (
-            <IonItemSliding>
-              <IonItem lines="full">
-                <IonLabel className="ion-text-wrap">
-                  <p>{t("user.password")}</p>
-                  <h2>. . . . . . . .</h2>
-                </IonLabel>
-              </IonItem>
-              <IonItemOptions side="end">
-                <IonItemOption>编辑</IonItemOption>
-              </IonItemOptions>
-            </IonItemSliding>
+            <IonItem lines="full" button onClick={() => { setKey("password"); setShowAlert(true) }}>
+              <IonLabel className="ion-text-wrap">
+                <p>{t("user.password")}</p>
+                <h2>. . . . . . . .</h2>
+              </IonLabel>
+            </IonItem>
           )}
-          <IonItemSliding>
-            <IonItem lines="full">
-              <IonLabel className="ion-text-wrap">
-                <p>{t("user.wechat")}</p>
-                <h2>{userInfo.wechat}</h2>
-              </IonLabel>
-            </IonItem>
-            <IonItemOptions side="end">
-              <IonItemOption>编辑</IonItemOption>
-            </IonItemOptions>
-          </IonItemSliding>
-          <IonItemSliding>
-            <IonItem lines="full">
-              <IonLabel className="ion-text-wrap">
-                <p>{t("user.shimo")}</p>
-                <h2>{userInfo.shimo}</h2>
-              </IonLabel>
-            </IonItem>
-            <IonItemOptions side="end">
-              <IonItemOption>编辑</IonItemOption>
-            </IonItemOptions>
-          </IonItemSliding>
-          <IonItemSliding>
-            <IonItem lines="full">
-              <IonLabel className="ion-text-wrap">
-                <p>{t("user.phone")}</p>
-                <h2>{userInfo.phone}</h2>
-              </IonLabel>
-            </IonItem>
-            <IonItemOptions side="end">
-              <IonItemOption>编辑</IonItemOption>
-            </IonItemOptions>
-          </IonItemSliding>
-          <IonItemSliding>
-            <IonItem lines="full">
-              <IonLabel className="ion-text-wrap">
-                <p>{t("user.email")}</p>
-                <h2>{userInfo.email}</h2>
-              </IonLabel>
-            </IonItem>
-            <IonItemOptions side="end">
-              <IonItemOption>编辑</IonItemOption>
-            </IonItemOptions>
-          </IonItemSliding>
-          <IonItemSliding>
-            <IonItem lines="full">
-              <IonLabel className="ion-text-wrap">
-                <p>{t("user.role")}</p>
-                <h2>{userInfo.remark}</h2>
-              </IonLabel>
-            </IonItem>
-            <IonItemOptions side="end">
-              <IonItemOption>编辑</IonItemOption>
-            </IonItemOptions>
-          </IonItemSliding>
-          <IonItemSliding>
-            <IonItem lines="full">
-              <IonLabel className="ion-text-wrap">
-                <p>{t("user.job")}</p>
-                <h2>{userInfo.job}</h2>
-              </IonLabel>
-            </IonItem>
-            <IonItemOptions side="end">
-              <IonItemOption>编辑</IonItemOption>
-            </IonItemOptions>
-          </IonItemSliding>
-          <IonItemSliding>
-            <IonItem lines="full">
-              <IonLabel className="ion-text-wrap">
-                <p>{t("user.skill")}</p>
-                <h2>{userInfo.skill}</h2>
-              </IonLabel>
-            </IonItem>
-            <IonItemOptions side="end">
-              <IonItemOption>编辑</IonItemOption>
-            </IonItemOptions>
-          </IonItemSliding>
-          <IonItemSliding>
-            <IonItem lines="full">
-              <IonLabel className="ion-text-wrap">
-                <p>{t("user.introduction")}</p>
-                <h2>{userInfo.introduction}</h2>
-              </IonLabel>
-            </IonItem>
-            <IonItemOptions side="end">
-              <IonItemOption>编辑</IonItemOption>
-            </IonItemOptions>
-          </IonItemSliding>
+          <IonItem lines="full" button onClick={() => { setKey("wechat"); setShowAlert(true) }}>
+            <IonLabel className="ion-text-wrap">
+              <p>{t("user.wechat")}</p>
+              <h2>{userInfo.wechat}</h2>
+            </IonLabel>
+          </IonItem>
+          <IonItem lines="full" button onClick={() => { setKey("shimo"); setShowAlert(true) }}>
+            <IonLabel className="ion-text-wrap">
+              <p>{t("user.shimo")}</p>
+              <h2>{userInfo.shimo}</h2>
+            </IonLabel>
+          </IonItem>
+          <IonItem lines="full" button onClick={() => { setKey("phone"); setShowAlert(true) }}>
+            <IonLabel className="ion-text-wrap">
+              <p>{t("user.phone")}</p>
+              <h2>{userInfo.phone}</h2>
+            </IonLabel>
+          </IonItem>
+          <IonItem lines="full" button onClick={() => { setKey("email"); setShowAlert(true) }}>
+            <IonLabel className="ion-text-wrap">
+              <p>{t("user.email")}</p>
+              <h2>{userInfo.email}</h2>
+            </IonLabel>
+          </IonItem>
+          <IonItem lines="full" button onClick={() => { setKey("job"); setShowAlert(true) }}>
+            <IonLabel className="ion-text-wrap">
+              <p>{t("user.job")}</p>
+              <h2>{userInfo.job}</h2>
+            </IonLabel>
+          </IonItem>
+          <IonItem lines="full" button onClick={() => { setKey("skill"); setShowAlert(true) }}>
+            <IonLabel className="ion-text-wrap">
+              <p>{t("user.skill")}</p>
+              <h2>{userInfo.skill}</h2>
+            </IonLabel>
+          </IonItem>
+          <IonItem lines="full" button onClick={() => { setKey("introduction"); setShowAlert(true) }}>
+            <IonLabel className="ion-text-wrap">
+              <p>{t("user.introduction")}</p>
+              <h2>{userInfo.introduction}</h2>
+            </IonLabel>
+          </IonItem>
         </IonItemGroup>
       </IonContent>
-    </IonPage>
+    </IonPage >
   );
 };
 
