@@ -102,7 +102,7 @@ const Notice: React.FC = () => {
       </IonHeader>
       <IonContent fullscreen>
         <IonList>
-          {value === "unread" && unreadNotices.map((notice, index) => {
+          {unreadNotices.length !== 0 && value === "unread" && unreadNotices.map((notice, index) => {
             return (
               <IonItemSliding key={index}>
                 <IonItem button routerLink={`/response/task/${notice.Task.task_id}`} onClick={() => { onChangeStatus(notice.notice_id) }}>
@@ -121,7 +121,7 @@ const Notice: React.FC = () => {
               </IonItemSliding>
             )
           })}
-          {value === "read" && readNotices.map((notice, index) => {
+          {readNotices.length !== 0 && value === "read" && readNotices.map((notice, index) => {
             return (
               <IonItemSliding key={index}>
                 <IonItem button routerLink={`/response/task/${notice.Task.task_id}`} onClick={() => { onChangeStatus(notice.notice_id) }}>
