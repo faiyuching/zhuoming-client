@@ -68,9 +68,6 @@ const Response: React.FC = () => {
               <IonCardTitle>10</IonCardTitle>
             </IonCardHeader>
             {moments.map((moment, index) => {
-              if (moment.type !== "task") {
-                return 0
-              }
               return (
                 <IonItem lines="none" key={index}>
                   <IonAvatar slot="start">

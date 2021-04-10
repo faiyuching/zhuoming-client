@@ -42,7 +42,7 @@ const ResponseMenu: React.FC = () => {
   const { t } = useTranslation();
   const responsePages: page[] = [
     {
-      title: t("response.home"),
+      title: t("response.moments"),
       url: `/response`,
       iosIcon: homeOutline,
       mdIcon: homeSharp
