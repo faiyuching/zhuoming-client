@@ -1,9 +1,8 @@
 import React from 'react';
 import {
   IonContent, IonHeader, IonPage, IonTitle, IonSegment,
-  IonToolbar, IonButtons, IonButton, IonImg, IonSegmentButton,
-  IonItemGroup, IonItemSliding, IonLabel, IonAvatar,
-  IonItemOptions, IonItemOption, IonItem, IonBackButton,
+  IonToolbar, IonButtons, IonButton, IonLabel, IonSegmentButton,
+  IonBackButton, IonCard, IonCardContent,
 } from '@ionic/react';
 import { useTranslation } from "react-i18next";
 
@@ -18,7 +17,7 @@ const UserFollow: React.FC = () => {
               <IonBackButton text={t("back")} defaultHref="/user" />
             </IonButton>
           </IonButtons>
-          <IonTitle>{t("user.user")}</IonTitle>
+          <IonTitle>{t("user.follow")}</IonTitle>
         </IonToolbar>
         <IonToolbar>
           <IonSegment value="following" onIonChange={e => console.log('Segment selected', e.detail.value)}>
@@ -32,22 +31,11 @@ const UserFollow: React.FC = () => {
         </IonToolbar>
       </IonHeader>
       <IonContent fullscreen>
-        <IonItemGroup>
-          <IonItemSliding>
-            <IonItem button routerLink={"/notice/detail"}>
-              <IonAvatar slot="start">
-                <IonImg src="/assets/avatar.png" />
-              </IonAvatar>
-              <IonLabel>
-                <h2>Faiyuching</h2>
-                <p>一句话介绍</p>
-              </IonLabel>
-            </IonItem>
-            <IonItemOptions side="end">
-              <IonItemOption onClick={() => { }}>{t("notice.archive")}</IonItemOption>
-            </IonItemOptions>
-          </IonItemSliding>
-        </IonItemGroup>
+        <IonCard href="https://github.com/zhuoming-info" target="blank">
+          <IonCardContent>
+            正在开发中，参与此开源项目请访问：https://github.com/zhuoming-info
+          </IonCardContent>
+        </IonCard>
       </IonContent>
     </IonPage>
   );
