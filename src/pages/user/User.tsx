@@ -61,7 +61,7 @@ const User: React.FC = () => {
           <IonButtons slot="start">
             {user_id ? <IonBackButton text={t("back")} /> : <IonButton routerLink={'/user/follow'}>{t("user.follow")}</IonButton>}
           </IonButtons>
-          {user_id ? <IonTitle>用户</IonTitle> : <IonTitle>{t("user.user")}</IonTitle>}
+          {!user_id && <IonTitle>{t("user.user")}</IonTitle>}
           <IonButtons slot="end">
             {!user_id && <IonButton routerLink={'/user/settings'}>{t("user.settings")}</IonButton>}
           </IonButtons>

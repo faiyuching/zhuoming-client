@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import {
   IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonSplitPane,
   IonSegment, IonButtons, IonButton, IonLabel, IonBackButton,
-  IonSegmentButton, IonAlert
+  IonSegmentButton, IonAlert, IonPopover, IonItem
 } from '@ionic/react';
 import ResponseMenu from '../../components/response/ResponseMenu';
 import TaskBaseInfo from '../../components/response/TaskBaseInfo';
@@ -35,6 +35,8 @@ const TaskPage: React.FC = () => {
   })
   const [need_shimo, setNeedShimo] = useState(false)
   const [shimoAlert, setShimoAlert] = useState(false)
+
+  const [popoverState, setShowPopover] = useState({ showPopover: false, event: undefined });
 
   useEffect(() => {
     axios.get(`/task/${task_id}`)
@@ -74,6 +76,16 @@ const TaskPage: React.FC = () => {
       setShimoAlert(true)
     }
   }
+  const onEndTask = () => {
+    axios.put(`/task/${task_id}`, { end_time: Date.now() })
+      .then(function (res) {
+        console.log(res.data)
+        window.location.reload()
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  }
   return (
     <IonSplitPane contentId="response">
       <ResponseMenu />
@@ -83,9 +95,25 @@ const TaskPage: React.FC = () => {
             <IonButtons slot="start">
               <IonBackButton text={t("back")} defaultHref="/response/tasks" />
             </IonButtons>
-            <IonTitle>{t("response.response")}</IonTitle>
+            <IonTitle>{localStorage.getItem("response_name")}</IonTitle>
             <IonButtons slot="end">
-              <IonButton onClick={() => { setShowApplyList(true) }}>{t("response.invite")}</IonButton>
+              <IonButton onClick={
+                (e: any) => {
+                  e.persist();
+                  setShowPopover({ showPopover: true, event: e })
+                }}
+              >
+                更多
+                </IonButton>
+              <IonPopover
+                cssClass='my-custom-class'
+                event={popoverState.event}
+                isOpen={popoverState.showPopover}
+                onDidDismiss={() => setShowPopover({ showPopover: false, event: undefined })}
+              >
+                <IonItem button onClick={() => { setShowApplyList(true) }}>{t("response.invite")}</IonItem>
+                <IonItem button lines="none" onClick={() => { onEndTask() }}>结束任务</IonItem>
+              </IonPopover>
             </IonButtons>
           </IonToolbar>
           <IonToolbar>
