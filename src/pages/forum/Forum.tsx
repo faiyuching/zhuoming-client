@@ -130,9 +130,11 @@ const Forum: React.FC = () => {
       <IonHeader>
         <IonToolbar>
           <IonTitle>{t("forum.forum")}</IonTitle>
-          <IonButtons slot="end">
-            <IonButton onClick={() => { setShowAddPost(true) }}>{t("forum.post")}</IonButton>
-          </IonButtons>
+          {localStorage.getItem("user_id") &&
+            <IonButtons slot="end">
+              <IonButton onClick={() => { setShowAddPost(true) }}>{t("forum.post")}</IonButton>
+            </IonButtons>
+          }
         </IonToolbar>
         <IonToolbar>
           <IonSearchbar placeholder={t("library.search")} value={searchText} onIonChange={e => setSearchText(e.detail.value!)}></IonSearchbar>

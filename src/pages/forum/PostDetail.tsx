@@ -153,12 +153,14 @@ const PostDetail: React.FC = () => {
             </IonButton>
           </IonButtons>
           <IonTitle>{t("forum.forum")}</IonTitle>
-          <IonButtons slot="end">
-            <IonButton color={isLike ? "danger" : "medium"} onClick={() => { AddLike() }}>
-              {likeCount === 0 ? "" : likeCount}
-              <IonIcon slot="end" icon={isLike ? heart : heartOutline} />
-            </IonButton>
-          </IonButtons>
+          {localStorage.getItem("user_id") &&
+            <IonButtons slot="end">
+              <IonButton color={isLike ? "danger" : "medium"} onClick={() => { AddLike() }}>
+                {likeCount === 0 ? "" : likeCount}
+                <IonIcon slot="end" icon={isLike ? heart : heartOutline} />
+              </IonButton>
+            </IonButtons>
+          }
           <IonAlert
             isOpen={deleteConfirm}
             onDidDismiss={() => setDeleteConfirm(false)}
@@ -204,8 +206,8 @@ const PostDetail: React.FC = () => {
         <IonItem>
           <IonNote>{post.created_at.split(".")[0].replace("T", " ")}</IonNote>
           <IonButtons slot="end">
-            <IonButton color="medium" onClick={() => { setShowAddComment(true) }}>评论</IonButton>
-            <IonButton color="medium" onClick={() => { setDeleteConfirm(true) }}>删除</IonButton>
+            {localStorage.getItem("user_id") && <IonButton color="medium" onClick={() => { setShowAddComment(true) }}>评论</IonButton>}
+            {localStorage.getItem("user_id") === post.User.user_id && <IonButton color="medium" onClick={() => { setDeleteConfirm(true) }}>删除</IonButton>}
           </IonButtons>
         </IonItem>
         {comments.length !== 0 && comments.map((comment, index) => {
