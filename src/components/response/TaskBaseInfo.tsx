@@ -21,6 +21,7 @@ const TaskBaseInfo: React.FC = () => {
     end_time: "",
     created_at: "",
     User: {
+      user_id: "",
       nickname: ""
     }
   })
@@ -49,7 +50,7 @@ const TaskBaseInfo: React.FC = () => {
         </IonItemOptions>
       </IonItemSliding>
       <IonItemSliding>
-        <IonItem lines="full">
+        <IonItem lines="full" routerLink={`/user?id=${task.User.user_id}`}>
           <IonLabel className="ion-text-wrap">
             <p>{t("response.task_principal")}</p>
             <h2>{task.User.nickname}</h2>

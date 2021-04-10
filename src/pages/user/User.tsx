@@ -20,7 +20,8 @@ const User: React.FC = () => {
     shimo: "",
     headimgurl: "",
     role: "",
-    job: ""
+    job: "",
+    introduction: ""
   })
 
   useEffect(() => {
@@ -61,7 +62,7 @@ const User: React.FC = () => {
           </IonButtons>
         </IonToolbar>
         <IonToolbar>
-          <IonItem lines="none" button routerLink={"/user/profile"}>
+          <IonItem lines="none" button routerLink={user_id ? `/user/profile?id=${user_id}` : "/user/profile"}>
             <IonThumbnail slot="start">
               <IonImg style={{ borderRadius: "50%" }} src={userInfo.headimgurl} />
             </IonThumbnail>
@@ -73,7 +74,8 @@ const User: React.FC = () => {
                 {userInfo.role === "developer" && "开发者"}
                 {userInfo.role === "admin" && "管理员"}
                 {userInfo.role === "super_admin" && "0号员工"}
-                {userInfo.job ? ("-" + userInfo.job) : ""}
+                {userInfo.job && ("-" + userInfo.job)}
+                {userInfo.introduction && ("-" + userInfo.introduction)}
               </p>
             </IonLabel>
           </IonItem>

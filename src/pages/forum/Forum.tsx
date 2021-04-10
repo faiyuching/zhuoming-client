@@ -174,7 +174,8 @@ const Forum: React.FC = () => {
                     {post.User.role === "developer" && "开发者"}
                     {post.User.role === "admin" && "管理员"}
                     {post.User.role === "super_admin" && "0号员工"}
-                    {post.User.job ? ("-" + post.User.job) : ""}
+                    {post.User.job && ("-" + post.User.job)}
+                    {post.User.introduction && ("-" + post.User.introduction)}
                   </p>
                 </IonLabel>
               </IonItem>

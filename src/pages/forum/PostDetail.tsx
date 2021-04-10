@@ -28,6 +28,7 @@ const PostDetail: React.FC = () => {
     content: "",
     created_at: "",
     User: {
+      user_id: "",
       nickname: "",
       headimgurl: "",
       role: "",
@@ -87,7 +88,7 @@ const PostDetail: React.FC = () => {
       .catch(function (error) {
         console.log(error);
       });
-  }, [showSuccessToast,deleteCommentAlert])
+  }, [showSuccessToast, deleteCommentAlert])
 
   const AddComment = () => {
     if (content !== "") {
@@ -180,13 +181,21 @@ const PostDetail: React.FC = () => {
         </IonToolbar>
       </IonHeader>
       <IonContent fullscreen>
-        <IonItem lines="none" routerLink={"/user"}>
+        <IonItem lines="none" routerLink={`/user?id=${post.User.user_id}`}>
           <IonAvatar slot="start">
             <IonImg src={post.User.headimgurl} />
           </IonAvatar>
           <IonLabel>
             <h2>{post.User.nickname}</h2>
-            <p>{post.User.introduction}</p>
+            <p>
+              {post.User.role === "user" && "用户"}
+              {post.User.role === "volunteer" && "志愿者"}
+              {post.User.role === "developer" && "开发者"}
+              {post.User.role === "admin" && "管理员"}
+              {post.User.role === "super_admin" && "0号员工"}
+              {post.User.job && ("-" + post.User.job)}
+              {post.User.introduction && ("-" + post.User.introduction)}
+            </p>
           </IonLabel>
         </IonItem>
         <IonItem lines="none">
