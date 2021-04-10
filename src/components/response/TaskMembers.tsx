@@ -65,7 +65,7 @@ const TaskMembers: React.FC = () => {
       ) : applies.map((apply, index) => {
         return (
           <IonItemSliding key={index}>
-            <IonItem routerLink={`/user/${apply.User.user_id}`}>
+            <IonItem routerLink={`/user?id=${apply.User.user_id}`}>
               <IonAvatar slot="start">
                 <IonImg src={apply.User.headimgurl} />
               </IonAvatar>

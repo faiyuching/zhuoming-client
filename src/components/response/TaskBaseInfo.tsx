@@ -107,7 +107,7 @@ const TaskBaseInfo: React.FC = () => {
         <IonItem lines="full">
           <IonLabel className="ion-text-wrap">
             <p>{t("response.task_resources")}</p>
-            <h2>text</h2>
+            <h2></h2>
           </IonLabel>
         </IonItem>
         <IonItemOptions side="end">
@@ -118,7 +118,7 @@ const TaskBaseInfo: React.FC = () => {
         <IonItem lines="full">
           <IonLabel className="ion-text-wrap">
             <p>{t("response.task_tool")}</p>
-            <h2>text</h2>
+            <h2></h2>
           </IonLabel>
         </IonItem>
         <IonItemOptions side="end">
@@ -129,7 +129,7 @@ const TaskBaseInfo: React.FC = () => {
         <IonItem lines="full">
           <IonLabel className="ion-text-wrap">
             <p>{t("response.task_talk")}</p>
-            <h2>text</h2>
+            <h2></h2>
           </IonLabel>
         </IonItem>
         <IonItemOptions side="end">

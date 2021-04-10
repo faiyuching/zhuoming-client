@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import {
   IonContent, IonHeader, IonPage, IonTitle, IonToolbar,
-  IonSegment, IonSegmentButton, IonLabel,
+  IonSegment, IonSegmentButton, IonLabel, IonNote,
   IonList, IonItemSliding, IonItem, IonItemOptions,
   IonItemOption, IonAvatar, IonImg, IonButtons, IonButton, IonBadge,
 } from '@ionic/react';
 import { useTranslation } from "react-i18next";
 import axios from 'axios';
+import moment from "moment"
 
 const Notice: React.FC = () => {
   const { t } = useTranslation();
@@ -71,6 +72,7 @@ const Notice: React.FC = () => {
                     <h2>{t(`notice.${notice.type}`)}</h2>
                     <p>{notice.User.nickname + " " + t(`response.${notice.action + notice.type}`) + "：" + notice.Task.task_name}</p>
                   </IonLabel>
+                  <IonNote slot="end">{moment(notice.created_at).startOf('hour').fromNow()}</IonNote>
                 </IonItem>
                 <IonItemOptions side="end">
                   <IonItemOption onClick={() => { }}>{t("notice.archive")}</IonItemOption>
