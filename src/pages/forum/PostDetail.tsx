@@ -153,14 +153,18 @@ const PostDetail: React.FC = () => {
             </IonButton>
           </IonButtons>
           <IonTitle>{t("forum.forum")}</IonTitle>
-          {localStorage.getItem("user_id") &&
-            <IonButtons slot="end">
+          <IonButtons slot="end">
+            {localStorage.getItem("user_id") ?
               <IonButton color={isLike ? "danger" : "medium"} onClick={() => { AddLike() }}>
                 {likeCount === 0 ? "" : likeCount}
                 <IonIcon slot="end" icon={isLike ? heart : heartOutline} />
+              </IonButton> :
+              <IonButton color={isLike ? "danger" : "medium"}>
+                {likeCount === 0 ? "" : likeCount}
+                <IonIcon slot="end" icon={isLike ? heart : heartOutline} />
               </IonButton>
-            </IonButtons>
-          }
+            }
+          </IonButtons>
           <IonAlert
             isOpen={deleteConfirm}
             onDidDismiss={() => setDeleteConfirm(false)}
