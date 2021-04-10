@@ -219,7 +219,15 @@ const PostDetail: React.FC = () => {
                 </IonAvatar>
                 <IonLabel className="ion-text-wrap">
                   <h2>{comment.User.nickname}</h2>
-                  <p>{comment.User.introduction}</p>
+                  <p>
+                    {comment.User.role === "user" && "用户"}
+                    {comment.User.role === "volunteer" && "志愿者"}
+                    {comment.User.role === "developer" && "开发者"}
+                    {comment.User.role === "admin" && "管理员"}
+                    {comment.User.role === "super_admin" && "0号员工"}
+                    {comment.User.job && ("-" + comment.User.job)}
+                    {comment.User.introduction && ("-" + comment.User.introduction)}
+                  </p>
                 </IonLabel>
               </IonItem>
               <IonItem lines="none">
@@ -227,9 +235,11 @@ const PostDetail: React.FC = () => {
               </IonItem>
               <IonItem>
                 <IonNote>{comment.created_at.split(".")[0].replace("T", " ")}</IonNote>
-                <IonButtons slot="end" onClick={() => { }}>
-                  <IonButton color="medium" onClick={() => { setDeleteCommentAlert(true) }}>删除</IonButton>
-                </IonButtons>
+                {localStorage.getItem("user_id") === comment.User.user_id &&
+                  <IonButtons slot="end" onClick={() => { }}>
+                    <IonButton color="medium" onClick={() => { setDeleteCommentAlert(true) }}>删除</IonButton>
+                  </IonButtons>
+                }
                 <IonAlert
                   isOpen={deleteCommentAlert}
                   onDidDismiss={() => setDeleteCommentAlert(false)}
