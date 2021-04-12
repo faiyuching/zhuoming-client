@@ -93,7 +93,7 @@ const Library: React.FC = () => {
       .catch(function (error) {
         console.log(error);
       });
-  }, [])
+  }, [showSuccessToast])
 
   return (
     <IonPage>
