@@ -84,7 +84,7 @@ const App: React.FC = () => (
           <Route path="/response/launch" component={LaunchResponse} exact={true} />
           <Route path="/response/launch/success" component={LaunchSuccess} exact={true} />
           <Route path="/library" component={Library} exact={true} />
-          <Route path="/library/topic" component={TopicPage} exact={true} />
+          <Route path="/library/:topic_id" component={TopicPage} exact={true} />
           <Route path="/library/topic/new" component={TopicNew} exact={true} />
           <Route path="/notice" component={Notice} exact={true} />
           <Route path="/notice/new" component={NoticeNew} exact={true} />

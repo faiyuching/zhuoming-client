@@ -193,7 +193,7 @@ const Library: React.FC = () => {
           <IonRow>
             <IonCol size-lg="4" size-md="6" size-sm="12">
               {topic &&
-                <IonCard routerLink={`/library?topic=${topic.topic_id}`}>
+                <IonCard routerLink={`/library/${topic.topic_id}`}>
                   {topic.picture_url && <IonImg src={topic.picture_url} />}
                   <IonCardHeader>
                     <IonCardSubtitle>{t(`library.${topic.Category.category_name}`)}｜{t("library.topic")}</IonCardSubtitle>
