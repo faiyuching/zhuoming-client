@@ -137,7 +137,7 @@ const ResponseTasks: React.FC = () => {
           </IonToolbar>
         </IonHeader>
         <IonContent fullscreen>
-          <IonItemDivider>{tasks.length}</IonItemDivider>
+          {/* <IonItemDivider>{tasks.length}</IonItemDivider> */}
           {tasks.length === 0 ? (
             <IonCard>
               <IonCardHeader>暂无任务</IonCardHeader>

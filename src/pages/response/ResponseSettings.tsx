@@ -21,7 +21,7 @@ const ResponseSettings: React.FC = () => {
         localStorage.removeItem("response_id")
         localStorage.removeItem("response_name")
         localStorage.removeItem("response_slogan")
-        window.location.href = "/response/history"  
+        window.location.href = "/response/history"
       })
       .catch(function (error) {
         console.log(error);
@@ -63,8 +63,6 @@ const ResponseSettings: React.FC = () => {
           <IonToolbar>
             <IonTitle size="large">{t("response.settings")}</IonTitle>
           </IonToolbar>
-        </IonHeader>
-        <IonContent fullscreen>
           <IonSegment value={value} onIonChange={e => setValue(e.detail.value!)}>
             <IonSegmentButton value="base_info">
               <IonLabel>{t("response.base_info")}</IonLabel>
@@ -76,6 +74,8 @@ const ResponseSettings: React.FC = () => {
               <IonLabel>{t("response.jobs")}</IonLabel>
             </IonSegmentButton>
           </IonSegment>
+        </IonHeader>
+        <IonContent fullscreen>
           {value === "base_info" && <ResponseBaseInfo />}
           {value === "groups" && <ResponseGroups />}
           {value === "jobs" && <ResponseJobs />}
