@@ -82,7 +82,6 @@ const Forum: React.FC = () => {
           })
         });
         setTags(hash)
-        console.log(hash)
       })
       .catch(function (error) {
         console.log(error);
@@ -98,6 +97,16 @@ const Forum: React.FC = () => {
         console.log(error);
       });
   }
+
+  useEffect(() => {
+    axios.get(`/forum/post?search=${searchText}`)
+      .then(function (res) {
+        setPosts(res.data)
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  }, [searchText])
 
   const addPost = () => {
     if (content !== "") {

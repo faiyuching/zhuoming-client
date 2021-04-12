@@ -15,7 +15,6 @@ const UserProfile: React.FC = () => {
   const [showAlert, setShowAlert] = useState(false)
   const [key, setKey] = useState("")
   const [value, setValue] = useState("")
-  const [updateUserData, setUpdateUserData] = useState(false)
   const [userInfo, serUserInfo] = useState({
     shimo: "",
     wechat: "",
@@ -56,7 +55,7 @@ const UserProfile: React.FC = () => {
     } else {
       window.location.href = "/user/login"
     }
-  }, [updateUserData])
+  }, [])
 
   const exitAccount = () => {
     localStorage.removeItem("user_id")
@@ -65,7 +64,7 @@ const UserProfile: React.FC = () => {
   const updateUser = (key: string, value: string) => {
     axios.put(`/user/${localStorage.getItem("user_id")}`, { key, value })
       .then(function (res) {
-        setUpdateUserData(!updateUserData)
+        window.location.reload()
       })
       .catch(function (error) {
         console.log(error);
