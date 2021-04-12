@@ -196,7 +196,7 @@ const Library: React.FC = () => {
                 <IonCard routerLink={`/library?topic=${topic.topic_id}`}>
                   {topic.picture_url && <IonImg src={topic.picture_url} />}
                   <IonCardHeader>
-                    <IonCardSubtitle>{t(`library.${topic.Category.category_name}`)}</IonCardSubtitle>
+                    <IonCardSubtitle>{t(`library.${topic.Category.category_name}`)}｜{t("library.topic")}</IonCardSubtitle>
                     <IonCardTitle>{topic.topic_name}</IonCardTitle>
                   </IonCardHeader>
                   <IonCardContent>{topic.description}</IonCardContent>

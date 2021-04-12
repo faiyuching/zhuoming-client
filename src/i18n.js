@@ -117,7 +117,7 @@ const resources = {
         history: "History",
         more: "More",
         recent: "Recent",
-        topic: "Topics",
+        topic: "Topic",
         video: "Videos",
         audio: "Audio",
         article: "Articles",
