@@ -20,7 +20,6 @@ import TaskPage from './pages/response/TaskPage';
 import Library from './pages/library/Library';
 import TopicPage from './pages/library/TopicPage';
 import TopicNew from './pages/library/TopicNew';
-import Recommend from './pages/library/Recommend';
 import Notice from './pages/notice/Notice';
 import NoticeDetail from './pages/notice/NoticeDetail';
 import NoticeNew from './pages/notice/NoticeNew';
@@ -87,7 +86,6 @@ const App: React.FC = () => (
           <Route path="/library" component={Library} exact={true} />
           <Route path="/library/topic" component={TopicPage} exact={true} />
           <Route path="/library/topic/new" component={TopicNew} exact={true} />
-          <Route path="/library/recommend" component={Recommend} exact={true} />
           <Route path="/notice" component={Notice} exact={true} />
           <Route path="/notice/new" component={NoticeNew} exact={true} />
           <Route path="/notice/detail/:id" component={NoticeDetail} exact={true} />
