@@ -20,9 +20,14 @@ const Library: React.FC = () => {
   const [searchText, setSearchText] = useState('');
   const [popoverState, setShowPopover] = useState({ showPopover: false, event: undefined });
   const [showAddResource, setShowAddResource] = useState(false);
+  const [showAddTopic, setShowAddTopic] = useState(false);
 
   const [showSuccessToast, setShowSuccessToast] = useState(false);
   const [showFailToast, setShowFailToast] = useState(false);
+
+  const [topic_name, setTopicName] = useState<string>();
+  const [picture_url, setPictureUrl] = useState<string>();
+  const [description, setDescription] = useState<string>();
 
   const [present] = useIonPicker();
   const [fileTypeText, setFileTypeText] = useState<string>();
@@ -35,6 +40,7 @@ const Library: React.FC = () => {
   const [resources, setResources] = useState([{
     resource_link: "",
     resource_name: "",
+    picture_url: "",
     Filetype: {
       filetype_name: ""
     },
@@ -43,6 +49,51 @@ const Library: React.FC = () => {
     },
     recomment_reason: ""
   }]);
+  const [topic, setTopic] = useState({
+    topic_id: "",
+    topic_name: "",
+    picture_url: "",
+    description: "",
+    Category: {
+      category_name: ""
+    },
+  });
+
+  const addTopic = () => {
+    if (topic_name !== "" && categoryValue !== "") {
+      axios.post("/topic", {
+        user_id: localStorage.getItem("user_id"),
+        topic_name,
+        picture_url,
+        description,
+        categoryValue
+      })
+        .then(function (res) {
+          console.log(res.data)
+          setShowAddTopic(false)
+          setShowSuccessToast(true)
+          setCategoryText("")
+          setCategoryValue("")
+          setTopicName("")
+          setPictureUrl("")
+          setDescription("")
+        })
+        .catch(function (error) {
+          console.log(error);
+          setShowAddTopic(false)
+          setShowFailToast(true)
+          setCategoryText("")
+          setCategoryValue("")
+          setTopicName("")
+          setPictureUrl("")
+          setDescription("")
+        });
+    } else {
+      alert("带星号的必须填写")
+    }
+    setShowSuccessToast(false)
+    setShowFailToast(false)
+  }
 
   const addResource = () => {
     if (resource_link !== "" && resource_name !== "") {
@@ -50,6 +101,7 @@ const Library: React.FC = () => {
         user_id: localStorage.getItem("user_id"),
         resource_link,
         resource_name,
+        picture_url,
         fileTypeValue,
         categoryValue,
         recomment_reason
@@ -65,6 +117,7 @@ const Library: React.FC = () => {
           setResourceLink("")
           setResourceName("")
           setRecommentReason("")
+          setPictureUrl("")
         })
         .catch(function (error) {
           console.log(error);
@@ -77,6 +130,7 @@ const Library: React.FC = () => {
           setResourceLink("")
           setResourceName("")
           setRecommentReason("")
+          setPictureUrl("")
         });
     } else {
       alert("带星号的必须填写")
@@ -89,6 +143,13 @@ const Library: React.FC = () => {
     axios.get('/resources')
       .then(function (res) {
         setResources(res.data)
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+    axios.get('/topics')
+      .then(function (res) {
+        setTopic(res.data.pop())
       })
       .catch(function (error) {
         console.log(error);
@@ -125,29 +186,30 @@ const Library: React.FC = () => {
         >
           <IonList>
             <IonItem button onClick={() => { setShowAddResource(true); setShowPopover({ showPopover: false, event: undefined }) }}>{t("library.recommend")}</IonItem>
-            <IonItem button routerLink={"/library/topic/new"} >{t("library.create_topic")}</IonItem>
+            <IonItem button lines="none" onClick={() => { setShowAddTopic(true); setShowPopover({ showPopover: false, event: undefined }) }}>{t("library.create_topic")}</IonItem>
           </IonList>
         </IonPopover>
         <IonGrid>
           <IonRow>
             <IonCol size-lg="4" size-md="6" size-sm="12">
-              <IonCard routerLink={"/library/topic"}>
-                <IonImg src="https://directorsblog.nih.gov/wp-content/uploads/2020/03/COVID-19-Card-3.jpg" />
-                <IonCardHeader>
-                  <IonCardSubtitle>COVID-19｜专题</IonCardSubtitle>
-                  <IonCardTitle>专题名称</IonCardTitle>
-                </IonCardHeader>
-                <IonCardContent>
-                  专题简介
-                  </IonCardContent>
-              </IonCard>
+              {topic &&
+                <IonCard routerLink={`/library?topic=${topic.topic_id}`}>
+                  {topic.picture_url && <IonImg src={topic.picture_url} />}
+                  <IonCardHeader>
+                    <IonCardSubtitle>{t(`library.${topic.Category.category_name}`)}</IonCardSubtitle>
+                    <IonCardTitle>{topic.topic_name}</IonCardTitle>
+                  </IonCardHeader>
+                  <IonCardContent>{topic.description}</IonCardContent>
+                </IonCard>
+              }
               {resources.length === 0 ? (
                 <IonCard>
-                  <IonCardHeader>暂无任务</IonCardHeader>
+                  <IonCardHeader>暂无资源</IonCardHeader>
                 </IonCard>
               ) : resources.map((resource, index) => {
                 return (
                   <IonCard key={index} href={resource.resource_link} target="blank">
+                    {resource.picture_url && <IonImg src={resource.picture_url} />}
                     <IonCardHeader>
                       <IonCardSubtitle>{t(`library.${resource.Category.category_name}`)}｜{t(`library.${resource.Filetype.filetype_name}`)}</IonCardSubtitle>
                       <IonCardTitle>{resource.resource_name}</IonCardTitle>
@@ -160,8 +222,8 @@ const Library: React.FC = () => {
           </IonRow>
         </IonGrid>
       </IonContent>
-      <Toast open={showSuccessToast} message={"推荐资源成功！"} duration={1000} color={"success"} />
-      <Toast open={showFailToast} message={"推荐资源失败！"} duration={1000} color={"danger"} />
+      <Toast open={showSuccessToast} message={"创建成功！"} duration={1000} color={"success"} />
+      <Toast open={showFailToast} message={"创建失败！"} duration={1000} color={"danger"} />
       <IonModal isOpen={showAddResource} >
         <IonContent>
           <IonHeader>
@@ -240,8 +302,83 @@ const Library: React.FC = () => {
               <IonInput value={resource_link} onIonChange={e => setResourceLink(e.detail.value!)}></IonInput>
             </IonItem>
             <IonItem>
+              <IonLabel position="floating">图片链接</IonLabel>
+              <IonInput value={picture_url} onIonChange={e => setPictureUrl(e.detail.value!)}></IonInput>
+            </IonItem>
+            <IonItem>
               <IonLabel position="floating">推荐理由</IonLabel>
               <IonTextarea rows={6} autoGrow value={recomment_reason} onIonChange={e => setRecommentReason(e.detail.value!)}></IonTextarea>
+            </IonItem>
+          </IonList>
+        </IonContent>
+      </IonModal>
+      <IonModal isOpen={showAddTopic} >
+        <IonContent>
+          <IonHeader>
+            <IonToolbar>
+              <IonButtons slot="start">
+                <IonButton onClick={() => { setShowAddTopic(false) }}>{t("close")}</IonButton>
+              </IonButtons>
+              <IonTitle>{t("library.library")}</IonTitle>
+              <IonButtons slot="end">
+                <IonButton onClick={() => { addTopic() }}>{t("ok")}</IonButton>
+              </IonButtons>
+            </IonToolbar>
+            <IonToolbar>
+              <IonTitle size="large">新建主题</IonTitle>
+            </IonToolbar>
+          </IonHeader>
+          <IonList>
+            <IonItem
+              onClick={() =>
+                present(
+                  [
+                    {
+                      name: 'category',
+                      options: [
+                        { text: t("library.meteoro_hydro"), value: 'meteoro_hydro' },
+                        { text: t("library.geological"), value: 'geological' },
+                        { text: t("library.marine"), value: 'marine' },
+                        { text: t("library.biological"), value: 'biological' },
+                        { text: t("library.ecological"), value: 'ecological' },
+                        { text: t("library.others"), value: 'others' },
+                      ],
+                    }
+                  ],
+                  [
+                    {
+                      text: t("response.cancel"),
+                      role: "cancel",
+                    },
+                    {
+                      text: t("response.confirm"),
+                      handler: (selected) => {
+                        setCategoryText(selected.category.text)
+                        setCategoryValue(selected.category.value)
+                      },
+                    }
+                  ]
+                )
+              }
+            >
+              {(categoryText ? categoryText : "请选择灾害类型")}
+              <IonButtons slot="end">
+                <IonButton color="medium">
+                  <IonIcon icon={chevronDownOutline} />
+                </IonButton>
+              </IonButtons>
+            </IonItem>
+            <IonItem>
+              <IonLabel position="floating">主题名称<sup style={{ color: "#eb445a" }}>*</sup></IonLabel>
+              <IonInput value={topic_name} onIonChange={e => setTopicName(e.detail.value!)}></IonInput>
+            </IonItem>
+            <IonItem>
+              <IonLabel position="floating">主图链接</IonLabel>
+              <IonInput value={picture_url} onIonChange={e => setPictureUrl(e.detail.value!)}></IonInput>
+            </IonItem>
+            <IonItem>
+              <IonLabel position="floating">描述</IonLabel>
+              <IonTextarea rows={6} autoGrow value={description} onIonChange={e => setDescription(e.detail.value!)}></IonTextarea>
             </IonItem>
           </IonList>
         </IonContent>
