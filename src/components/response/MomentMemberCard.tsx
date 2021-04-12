@@ -26,8 +26,13 @@ const MomentMemberCard: React.FC = () => {
   useEffect(() => {
     axios.get(`/moments?response_id=${localStorage.getItem("response_id")}`)
       .then(function (res) {
-        console.log(res.data)
-        setMoments(res.data)
+        let member_moments: any = []
+        res.data.forEach((each: any) => {
+          if (!each.task_id && !each.post_id) {
+            member_moments.push(each)
+          }
+        })
+        setMoments(member_moments)
       })
       .catch(function (error) {
         console.log(error);
@@ -37,8 +42,8 @@ const MomentMemberCard: React.FC = () => {
   return (
     <IonCard routerLink={"/response/member"}>
       <IonCardHeader>
-        <IonCardSubtitle>成员</IonCardSubtitle>
-        <IonCardTitle>20</IonCardTitle>
+        <IonCardSubtitle>{t("response.members")}</IonCardSubtitle>
+        <IonCardTitle>{moments.length}</IonCardTitle>
       </IonCardHeader>
       {moments.map((moment, index) => {
         return (

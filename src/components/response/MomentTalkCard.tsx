@@ -15,8 +15,8 @@ const MomentTalkCard: React.FC = () => {
       type: "",
       description: "",
     },
-    Task: {
-      task_name: ""
+    Post: {
+      content: ""
     },
     type: "",
     action: "",
@@ -26,8 +26,13 @@ const MomentTalkCard: React.FC = () => {
   useEffect(() => {
     axios.get(`/moments?response_id=${localStorage.getItem("response_id")}`)
       .then(function (res) {
-        console.log(res.data)
-        setMoments(res.data)
+        let post_moments: any = []
+        res.data.forEach((each: any) => {
+          if (each.post_id) {
+            post_moments.push(each)
+          }
+        })
+        setMoments(post_moments)
       })
       .catch(function (error) {
         console.log(error);
@@ -37,8 +42,8 @@ const MomentTalkCard: React.FC = () => {
   return (
     <IonCard routerLink={"/forum?tag="}>
       <IonCardHeader>
-        <IonCardSubtitle>讨论</IonCardSubtitle>
-        <IonCardTitle>5</IonCardTitle>
+        <IonCardSubtitle>{t("response.talks")}</IonCardSubtitle>
+        <IonCardTitle>{moments.length}</IonCardTitle>
       </IonCardHeader>
       {moments.map((moment, index) => {
         return (
@@ -47,7 +52,7 @@ const MomentTalkCard: React.FC = () => {
               <IonImg src={moment.User.headimgurl} />
             </IonAvatar>
             <IonLabel>
-              <h2>{moment.User.nickname + " " + t(`response.${moment.action + moment.type}`) + "：" + moment.Task.task_name}</h2>
+              <h2>{moment.User.nickname + " " + t(`response.${moment.action + moment.type}`) + "：" + moment.Post.content}</h2>
               <p>{moment.created_at.split(".")[0].replace("T", " ")}</p>
             </IonLabel>
           </IonItem>

@@ -16,7 +16,9 @@ const resources = {
       response: {
         createtask: "Create task",
         applytask: "Apply task",
+        createpost: "Post",
         moments: "Moments",
+        talks: "Talks",
         home: "Home",
         one_ten: "1-10",
         ten_thirty: "10-30",
@@ -228,7 +230,9 @@ const resources = {
       response: {
         createtask: "创建任务",
         applytask: "申请任务",
+        createpost: "发帖",
         moments: "动态",
+        talks: "讨论",
         home: "首页",
         one_ten: "1-10",
         ten_thirty: "10-30",

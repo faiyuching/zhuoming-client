@@ -26,8 +26,13 @@ const MomentTaskCard: React.FC = () => {
   useEffect(() => {
     axios.get(`/moments?response_id=${localStorage.getItem("response_id")}`)
       .then(function (res) {
-        console.log(res.data)
-        setMoments(res.data)
+        let task_moments: any = []
+        res.data.forEach((each: any) => {
+          if (each.task_id) {
+            task_moments.push(each)
+          }
+        })
+        setMoments(task_moments)
       })
       .catch(function (error) {
         console.log(error);
@@ -37,8 +42,8 @@ const MomentTaskCard: React.FC = () => {
   return (
     <IonCard routerLink={"/response/tasks"}>
       <IonCardHeader>
-        <IonCardSubtitle>任务</IonCardSubtitle>
-        <IonCardTitle>10</IonCardTitle>
+        <IonCardSubtitle>{t("response.tasks")}</IonCardSubtitle>
+        <IonCardTitle>{moments.length}</IonCardTitle>
       </IonCardHeader>
       {moments.map((moment, index) => {
         return (
