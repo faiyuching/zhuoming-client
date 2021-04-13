@@ -107,7 +107,6 @@ const Library: React.FC = () => {
         recomment_reason
       })
         .then(function (res) {
-          console.log(res.data)
           setShowAddResource(false)
           setShowSuccessToast(true)
           setFileTypeText("")

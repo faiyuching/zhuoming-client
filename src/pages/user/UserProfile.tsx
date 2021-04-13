@@ -153,7 +153,7 @@ const UserProfile: React.FC = () => {
             <IonItem lines="full">
               <IonLabel className="ion-text-wrap">
                 <p>{t("user.language")}</p>
-                <h2>{userInfo.language}</h2>
+                <h2>{t(`user.${userInfo.language}`)}</h2>
               </IonLabel>
             </IonItem>
             {userInfo.password && (
@@ -242,7 +242,7 @@ const UserProfile: React.FC = () => {
             <IonItem lines="full" button>
               <IonLabel className="ion-text-wrap">
                 <p>{t("user.language")}</p>
-                <h2>{userInfo.language}</h2>
+                <h2>{t(`user.${userInfo.language}`)}</h2>
               </IonLabel>
             </IonItem>
             {userInfo.password && (

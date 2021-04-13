@@ -214,7 +214,8 @@ const resources = {
         skill: "Skill",
         introduction: "Introduction",
         signin: "Sign",
-        wechat_sign: "Sign in with WeChat"
+        wechat_sign: "Sign in with WeChat",
+        en: "English",
       }
     }
   },
@@ -427,7 +428,8 @@ const resources = {
         skill: "专业/技能",
         introduction: "个人介绍",
         sign: "登录",
-        wechat_sign: "使用微信账号登录"
+        wechat_sign: "使用微信账号登录",
+        en: "英语",
       }
     }
   }
