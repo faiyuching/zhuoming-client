@@ -14,7 +14,7 @@ const UserProfile: React.FC = () => {
   const user_id = queryString.parse(useLocation().search.split('?')[1]).id
   const [showAlert, setShowAlert] = useState(false)
   const [key, setKey] = useState("")
-  const [value, setValue] = useState("")
+  const [value] = useState("")
   const [userInfo, serUserInfo] = useState({
     shimo: "",
     wechat: "",
@@ -55,7 +55,7 @@ const UserProfile: React.FC = () => {
     } else {
       window.location.href = "/user/login"
     }
-  }, [])
+  }, [user_id])
 
   const exitAccount = () => {
     localStorage.removeItem("user_id")

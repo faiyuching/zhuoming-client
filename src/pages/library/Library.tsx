@@ -22,9 +22,6 @@ const Library: React.FC = () => {
   const [showAddResource, setShowAddResource] = useState(false);
   const [showAddTopic, setShowAddTopic] = useState(false);
 
-  const [fileTypeFilter, setFileTypeFilter] = useState<string>();
-  const [categoryFilter, setCategoryFilter] = useState<string>();
-
   const [showSuccessToast, setShowSuccessToast] = useState(false);
   const [showFailToast, setShowFailToast] = useState(false);
 
