@@ -141,7 +141,7 @@ const Library: React.FC = () => {
   useEffect(() => {
     if (fileTypeValue || categoryValue) {
       if (fileTypeValue === "topic") {
-        axios.get('/topics')
+        axios.get(`/topics?category_name=${categoryValue}`)
           .then(function (res) {
             setTopics(res.data)
             setResources([])
@@ -150,22 +150,33 @@ const Library: React.FC = () => {
             console.log(error);
           });
       } else {
-        axios.get(`/topics?category_name=${categoryValue}`)
-          .then(function (res) {
-            setTopics(res.data)
-          })
-          .catch(function (error) {
-            console.log(error);
-          });
-        axios.get(`/resources?filetype_name=${fileTypeValue}&category_name=${categoryValue}`)
-          .then(function (res) {
-            setResources(res.data)
-          })
-          .catch(function (error) {
-            console.log(error);
-          });
+        if (fileTypeValue === "undefined") {
+          axios.get(`/topics?category_name=${categoryValue}`)
+            .then(function (res) {
+              setTopics(res.data)
+            })
+            .catch(function (error) {
+              console.log(error);
+            });
+          axios.get(`/resources?filetype_name=${fileTypeValue}&category_name=${categoryValue}`)
+            .then(function (res) {
+              setResources(res.data)
+            })
+            .catch(function (error) {
+              console.log(error);
+            });
+        } else {
+          axios.get(`/resources?filetype_name=${fileTypeValue}&category_name=${categoryValue}`)
+            .then(function (res) {
+              setResources(res.data)
+              setTopics([])
+            })
+            .catch(function (error) {
+              console.log(error);
+            });
+        }
       }
-    } else {
+    } else if (!fileTypeValue && !categoryValue) {
       axios.get(`/resources?filetype_name=${fileTypeValue}&category_name=${categoryValue}`)
         .then(function (res) {
           setResources(res.data)
@@ -183,7 +194,7 @@ const Library: React.FC = () => {
           console.log(error);
         });
     }
-  }, [showSuccessToast, fileTypeValue || categoryValue])
+  }, [showSuccessToast, fileTypeValue, categoryValue])
 
   return (
     <IonPage>
