@@ -349,7 +349,7 @@ const resources = {
         clear: "清空",
         search: "搜索",
         recommend: "推荐资源",
-        create_topic: "新建主题",
+        create_topic: "新建专题",
         base_settings: "基本设置",
         topic_name: "主题名称",
         topic_intro: "主题简介",

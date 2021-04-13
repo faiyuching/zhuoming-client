@@ -124,7 +124,7 @@ const TopicPage: React.FC = () => {
         </IonToolbar>
       </IonHeader>
       <IonContent fullscreen>
-        {topic.picture_url && <img src={topic.picture_url} alt="picture"/>}
+        {topic.picture_url && <IonImg src={topic.picture_url} />}
         <IonGrid>
           <IonRow>
             <IonCol size-lg="4" size-md="6" size-sm="12">

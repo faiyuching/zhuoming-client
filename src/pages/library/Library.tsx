@@ -22,6 +22,9 @@ const Library: React.FC = () => {
   const [showAddResource, setShowAddResource] = useState(false);
   const [showAddTopic, setShowAddTopic] = useState(false);
 
+  const [fileTypeFilter, setFileTypeFilter] = useState<string>();
+  const [categoryFilter, setCategoryFilter] = useState<string>();
+
   const [showSuccessToast, setShowSuccessToast] = useState(false);
   const [showFailToast, setShowFailToast] = useState(false);
 
@@ -49,7 +52,7 @@ const Library: React.FC = () => {
     },
     recomment_reason: ""
   }]);
-  const [topic, setTopic] = useState({
+  const [topics, setTopics] = useState([{
     topic_id: "",
     topic_name: "",
     picture_url: "",
@@ -57,7 +60,7 @@ const Library: React.FC = () => {
     Category: {
       category_name: ""
     },
-  });
+  }]);
 
   const addTopic = () => {
     if (topic_name !== "" && categoryValue !== "") {
@@ -139,21 +142,51 @@ const Library: React.FC = () => {
   }
 
   useEffect(() => {
-    axios.get('/resources')
-      .then(function (res) {
-        setResources(res.data)
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
-    axios.get('/topics')
-      .then(function (res) {
-        setTopic(res.data.pop())
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
-  }, [showSuccessToast])
+    if (fileTypeValue || categoryValue) {
+      if (fileTypeValue === "topic") {
+        axios.get('/topics')
+          .then(function (res) {
+            setTopics(res.data)
+            setResources([])
+          })
+          .catch(function (error) {
+            console.log(error);
+          });
+      } else {
+        axios.get(`/topics?category_name=${categoryValue}`)
+          .then(function (res) {
+            setTopics(res.data)
+          })
+          .catch(function (error) {
+            console.log(error);
+          });
+        axios.get(`/resources?filetype_name=${fileTypeValue}&category_name=${categoryValue}`)
+          .then(function (res) {
+            setResources(res.data)
+          })
+          .catch(function (error) {
+            console.log(error);
+          });
+      }
+    } else {
+      axios.get(`/resources?filetype_name=${fileTypeValue}&category_name=${categoryValue}`)
+        .then(function (res) {
+          setResources(res.data)
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+      axios.get('/topics')
+        .then(function (res) {
+          const lastTopic = []
+          lastTopic.push(res.data.pop())
+          setTopics(lastTopic)
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+    }
+  }, [showSuccessToast, fileTypeValue || categoryValue])
 
   return (
     <IonPage>
@@ -161,19 +194,76 @@ const Library: React.FC = () => {
         <IonToolbar>
           <IonTitle>{sort ? t(`library.${sort}`) : t("library.library")}</IonTitle>
           <IonButtons slot="end">
-            <IonButton
-              onClick={
-                (e: any) => {
-                  e.persist();
-                  setShowPopover({ showPopover: true, event: e })
-                }}
-            >
-              <IonIcon icon={addOutline} />
-            </IonButton>
+            {localStorage.getItem("user_id") &&
+              <IonButton
+                onClick={
+                  (e: any) => {
+                    e.persist();
+                    setShowPopover({ showPopover: true, event: e })
+                  }}
+              >
+                <IonIcon icon={addOutline} />
+              </IonButton>
+            }
           </IonButtons>
         </IonToolbar>
         <IonToolbar>
           <IonSearchbar placeholder={t("library.search")} value={searchText} onIonChange={e => setSearchText(e.detail.value!)}></IonSearchbar>
+          <IonItem
+            onClick={() =>
+              present(
+                [
+                  {
+                    name: 'category',
+                    options: [
+                      { text: t("library.all_disaster_types"), value: 'undefined' },
+                      { text: t("library.meteoro_hydro"), value: 'meteoro_hydro' },
+                      { text: t("library.geological"), value: 'geological' },
+                      { text: t("library.marine"), value: 'marine' },
+                      { text: t("library.biological"), value: 'biological' },
+                      { text: t("library.ecological"), value: 'ecological' },
+                      { text: t("library.others"), value: 'others' },
+                    ],
+                  },
+                  {
+                    name: 'fileType',
+                    options: [
+                      { text: t("library.all_resource_types"), value: 'undefined' },
+                      { text: t("library.topic"), value: 'topic' },
+                      { text: t("library.brief_report"), value: 'brief_report' },
+                      { text: t("library.article"), value: 'article' },
+                      { text: t("library.picture"), value: 'picture' },
+                      { text: t("library.book"), value: 'book' },
+                      { text: t("library.video"), value: 'video' },
+                      { text: t("library.audio"), value: 'audio' },
+                    ],
+                  }
+                ],
+                [
+                  {
+                    text: t("response.cancel"),
+                    role: "cancel",
+                  },
+                  {
+                    text: t("response.confirm"),
+                    handler: (selected) => {
+                      setFileTypeText(selected.fileType.text)
+                      setCategoryText(selected.category.text)
+                      setFileTypeValue(selected.fileType.value)
+                      setCategoryValue(selected.category.value)
+                    },
+                  }
+                ]
+              )
+            }
+          >
+            {(categoryText ? categoryText : "请选择灾害类型") + " - " + (fileTypeText ? fileTypeText : "请选择资源类型")}
+            <IonButtons slot="end">
+              <IonButton color="medium">
+                <IonIcon icon={chevronDownOutline} />
+              </IonButton>
+            </IonButtons>
+          </IonItem>
         </IonToolbar>
       </IonHeader>
       <IonContent fullscreen>
@@ -191,21 +281,19 @@ const Library: React.FC = () => {
         <IonGrid>
           <IonRow>
             <IonCol size-lg="4" size-md="6" size-sm="12">
-              {topic &&
-                <IonCard routerLink={`/library/${topic.topic_id}`}>
-                  {topic.picture_url && <IonImg src={topic.picture_url} />}
-                  <IonCardHeader>
-                    <IonCardSubtitle>{t(`library.${topic.Category.category_name}`)}｜{t("library.topic")}</IonCardSubtitle>
-                    <IonCardTitle>{topic.topic_name}</IonCardTitle>
-                  </IonCardHeader>
-                  <IonCardContent>{topic.description}</IonCardContent>
-                </IonCard>
-              }
-              {resources.length === 0 ? (
-                <IonCard>
-                  <IonCardHeader>暂无资源</IonCardHeader>
-                </IonCard>
-              ) : resources.map((resource, index) => {
+              {topics.map((topic, index) => {
+                return (
+                  <IonCard key={index} routerLink={`/library/${topic.topic_id}`}>
+                    {topic.picture_url && <IonImg src={topic.picture_url} />}
+                    <IonCardHeader>
+                      <IonCardSubtitle>{t(`library.${topic.Category.category_name}`)}｜{t("library.topic")}</IonCardSubtitle>
+                      <IonCardTitle>{topic.topic_name}</IonCardTitle>
+                    </IonCardHeader>
+                    <IonCardContent>{topic.description}</IonCardContent>
+                  </IonCard>
+                )
+              })}
+              {resources.map((resource, index) => {
                 return (
                   <IonCard key={index} href={resource.resource_link} target="blank">
                     {resource.picture_url && <IonImg src={resource.picture_url} />}
@@ -324,7 +412,7 @@ const Library: React.FC = () => {
               </IonButtons>
             </IonToolbar>
             <IonToolbar>
-              <IonTitle size="large">新建主题</IonTitle>
+              <IonTitle size="large">{t("library.create_topic")}</IonTitle>
             </IonToolbar>
           </IonHeader>
           <IonList>
