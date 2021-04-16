@@ -13,9 +13,21 @@ import queryString from 'querystring'
 import { chevronDownOutline } from 'ionicons/icons';
 import Toast from "../../components/Toast"
 import axios from 'axios';
+import DocumentMeta from 'react-document-meta';
 
 const Library: React.FC = () => {
   const { t } = useTranslation();
+  const meta = {
+    title: '卓明·资料库',
+    description: 'I am a description, and I can create multiple tags',
+    canonical: 'http://example.com/path/to/page',
+    meta: {
+      charset: 'utf-8',
+      name: {
+        keywords: 'react,meta,document,html,tags'
+      }
+    }
+  };
   const sort = queryString.parse(useLocation().search.split('?')[1]).sort
   const [searchText, setSearchText] = useState('');
   const [popoverState, setShowPopover] = useState({ showPopover: false, event: undefined });
@@ -197,145 +209,27 @@ const Library: React.FC = () => {
   }, [showSuccessToast, fileTypeValue, categoryValue])
 
   return (
-    <IonPage>
-      <IonHeader>
-        <IonToolbar>
-          <IonTitle>{sort ? t(`library.${sort}`) : t("library.library")}</IonTitle>
-          <IonButtons slot="end">
-            {localStorage.getItem("user_id") &&
-              <IonButton
-                onClick={
-                  (e: any) => {
-                    e.persist();
-                    setShowPopover({ showPopover: true, event: e })
-                  }}
-              >
-                <IonIcon icon={addOutline} />
-              </IonButton>
-            }
-          </IonButtons>
-        </IonToolbar>
-        <IonToolbar>
-          <IonSearchbar placeholder={t("library.search")} value={searchText} onIonChange={e => setSearchText(e.detail.value!)}></IonSearchbar>
-          <IonItem
-            onClick={() =>
-              present(
-                [
-                  {
-                    name: 'category',
-                    options: [
-                      { text: t("library.all_disaster_types"), value: 'undefined' },
-                      { text: t("library.meteoro_hydro"), value: 'meteoro_hydro' },
-                      { text: t("library.geological"), value: 'geological' },
-                      { text: t("library.marine"), value: 'marine' },
-                      { text: t("library.biological"), value: 'biological' },
-                      { text: t("library.ecological"), value: 'ecological' },
-                      { text: t("library.others"), value: 'others' },
-                    ],
-                  },
-                  {
-                    name: 'fileType',
-                    options: [
-                      { text: t("library.all_resource_types"), value: 'undefined' },
-                      { text: t("library.topic"), value: 'topic' },
-                      { text: t("library.brief_report"), value: 'brief_report' },
-                      { text: t("library.article"), value: 'article' },
-                      { text: t("library.picture"), value: 'picture' },
-                      { text: t("library.book"), value: 'book' },
-                      { text: t("library.video"), value: 'video' },
-                      { text: t("library.audio"), value: 'audio' },
-                    ],
-                  }
-                ],
-                [
-                  {
-                    text: t("response.cancel"),
-                    role: "cancel",
-                  },
-                  {
-                    text: t("response.confirm"),
-                    handler: (selected) => {
-                      setFileTypeText(selected.fileType.text)
-                      setCategoryText(selected.category.text)
-                      setFileTypeValue(selected.fileType.value)
-                      setCategoryValue(selected.category.value)
-                    },
-                  }
-                ]
-              )
-            }
-          >
-            {(categoryText ? categoryText : "请选择灾害类型") + " - " + (fileTypeText ? fileTypeText : "请选择资源类型")}
+    <DocumentMeta {...meta}>
+      <IonPage>
+        <IonHeader>
+          <IonToolbar>
+            <IonTitle>{sort ? t(`library.${sort}`) : t("library.library")}</IonTitle>
             <IonButtons slot="end">
-              <IonButton color="medium">
-                <IonIcon icon={chevronDownOutline} />
-              </IonButton>
+              {localStorage.getItem("user_id") &&
+                <IonButton
+                  onClick={
+                    (e: any) => {
+                      e.persist();
+                      setShowPopover({ showPopover: true, event: e })
+                    }}
+                >
+                  <IonIcon icon={addOutline} />
+                </IonButton>
+              }
             </IonButtons>
-          </IonItem>
-        </IonToolbar>
-      </IonHeader>
-      <IonContent fullscreen>
-        <IonPopover
-          cssClass='my-custom-class'
-          event={popoverState.event}
-          isOpen={popoverState.showPopover}
-          onDidDismiss={() => setShowPopover({ showPopover: false, event: undefined })}
-        >
-          <IonList>
-            <IonItem button onClick={() => { setShowAddResource(true); setShowPopover({ showPopover: false, event: undefined }) }}>{t("library.recommend")}</IonItem>
-            <IonItem button lines="none" onClick={() => { setShowAddTopic(true); setShowPopover({ showPopover: false, event: undefined }) }}>{t("library.create_topic")}</IonItem>
-          </IonList>
-        </IonPopover>
-        <IonGrid>
-          <IonRow>
-            <IonCol size-lg="4" size-md="6" size-sm="12">
-              {topics.map((topic, index) => {
-                return (
-                  <IonCard key={index} routerLink={`/library/${topic.topic_id}`}>
-                    {topic.picture_url && <IonImg src={topic.picture_url} />}
-                    <IonCardHeader>
-                      <IonCardSubtitle>{t(`library.${topic.Category.category_name}`)}｜{t("library.topic")}</IonCardSubtitle>
-                      <IonCardTitle>{topic.topic_name}</IonCardTitle>
-                    </IonCardHeader>
-                    <IonCardContent>{topic.description}</IonCardContent>
-                  </IonCard>
-                )
-              })}
-              {resources.map((resource, index) => {
-                return (
-                  <IonCard key={index} href={resource.resource_link} target="blank">
-                    {resource.picture_url && <IonImg src={resource.picture_url} />}
-                    <IonCardHeader>
-                      <IonCardSubtitle>{t(`library.${resource.Category.category_name}`)}｜{t(`library.${resource.Filetype.filetype_name}`)}</IonCardSubtitle>
-                      <IonCardTitle>{resource.resource_name}</IonCardTitle>
-                    </IonCardHeader>
-                    <IonCardContent>{resource.recomment_reason}</IonCardContent>
-                  </IonCard>
-                )
-              })}
-            </IonCol>
-          </IonRow>
-        </IonGrid>
-      </IonContent>
-      <Toast open={showSuccessToast} message={"创建成功！"} duration={1000} color={"success"} />
-      <Toast open={showFailToast} message={"创建失败！"} duration={1000} color={"danger"} />
-      <IonModal isOpen={showAddResource} >
-        <IonContent>
-          <IonHeader>
-            <IonToolbar>
-              <IonButtons slot="start">
-                <IonButton onClick={() => { setShowAddResource(false) }}>{t("close")}</IonButton>
-              </IonButtons>
-              <IonTitle>{t("library.library")}</IonTitle>
-              <IonButtons slot="end">
-                <IonButton onClick={() => { addResource() }}>{t("ok")}</IonButton>
-              </IonButtons>
-            </IonToolbar>
-            <IonToolbar>
-              <IonTitle size="large">{t("library.recommend")}</IonTitle>
-            </IonToolbar>
-          </IonHeader>
-          <IonList>
+          </IonToolbar>
+          <IonToolbar>
+            <IonSearchbar placeholder={t("library.search")} value={searchText} onIonChange={e => setSearchText(e.detail.value!)}></IonSearchbar>
             <IonItem
               onClick={() =>
                 present(
@@ -343,6 +237,7 @@ const Library: React.FC = () => {
                     {
                       name: 'category',
                       options: [
+                        { text: t("library.all_disaster_types"), value: 'undefined' },
                         { text: t("library.meteoro_hydro"), value: 'meteoro_hydro' },
                         { text: t("library.geological"), value: 'geological' },
                         { text: t("library.marine"), value: 'marine' },
@@ -354,6 +249,8 @@ const Library: React.FC = () => {
                     {
                       name: 'fileType',
                       options: [
+                        { text: t("library.all_resource_types"), value: 'undefined' },
+                        { text: t("library.topic"), value: 'topic' },
                         { text: t("library.brief_report"), value: 'brief_report' },
                         { text: t("library.article"), value: 'article' },
                         { text: t("library.picture"), value: 'picture' },
@@ -388,98 +285,214 @@ const Library: React.FC = () => {
                 </IonButton>
               </IonButtons>
             </IonItem>
-            <IonItem>
-              <IonLabel position="floating">资源名称<sup style={{ color: "#eb445a" }}>*</sup></IonLabel>
-              <IonInput value={resource_name} onIonChange={e => setResourceName(e.detail.value!)}></IonInput>
-            </IonItem>
-            <IonItem>
-              <IonLabel position="floating">资源链接<sup style={{ color: "#eb445a" }}>*</sup></IonLabel>
-              <IonInput value={resource_link} onIonChange={e => setResourceLink(e.detail.value!)}></IonInput>
-            </IonItem>
-            <IonItem>
-              <IonLabel position="floating">图片链接</IonLabel>
-              <IonInput value={picture_url} onIonChange={e => setPictureUrl(e.detail.value!)}></IonInput>
-            </IonItem>
-            <IonItem>
-              <IonLabel position="floating">推荐理由</IonLabel>
-              <IonTextarea rows={6} autoGrow value={recomment_reason} onIonChange={e => setRecommentReason(e.detail.value!)}></IonTextarea>
-            </IonItem>
-          </IonList>
+          </IonToolbar>
+        </IonHeader>
+        <IonContent fullscreen>
+          <IonPopover
+            cssClass='my-custom-class'
+            event={popoverState.event}
+            isOpen={popoverState.showPopover}
+            onDidDismiss={() => setShowPopover({ showPopover: false, event: undefined })}
+          >
+            <IonList>
+              <IonItem button onClick={() => { setShowAddResource(true); setShowPopover({ showPopover: false, event: undefined }) }}>{t("library.recommend")}</IonItem>
+              <IonItem button lines="none" onClick={() => { setShowAddTopic(true); setShowPopover({ showPopover: false, event: undefined }) }}>{t("library.create_topic")}</IonItem>
+            </IonList>
+          </IonPopover>
+          <IonGrid>
+            <IonRow>
+              <IonCol size-lg="4" size-md="6" size-sm="12">
+                {topics.map((topic, index) => {
+                  return (
+                    <IonCard key={index} routerLink={`/library/${topic.topic_id}`}>
+                      {topic.picture_url && <IonImg src={topic.picture_url} />}
+                      <IonCardHeader>
+                        <IonCardSubtitle>{t(`library.${topic.Category.category_name}`)}｜{t("library.topic")}</IonCardSubtitle>
+                        <IonCardTitle>{topic.topic_name}</IonCardTitle>
+                      </IonCardHeader>
+                      <IonCardContent>{topic.description}</IonCardContent>
+                    </IonCard>
+                  )
+                })}
+                {resources.map((resource, index) => {
+                  return (
+                    <IonCard key={index} href={resource.resource_link} target="blank">
+                      {resource.picture_url && <IonImg src={resource.picture_url} />}
+                      <IonCardHeader>
+                        <IonCardSubtitle>{t(`library.${resource.Category.category_name}`)}｜{t(`library.${resource.Filetype.filetype_name}`)}</IonCardSubtitle>
+                        <IonCardTitle>{resource.resource_name}</IonCardTitle>
+                      </IonCardHeader>
+                      <IonCardContent>{resource.recomment_reason}</IonCardContent>
+                    </IonCard>
+                  )
+                })}
+              </IonCol>
+            </IonRow>
+          </IonGrid>
         </IonContent>
-      </IonModal>
-      <IonModal isOpen={showAddTopic} >
-        <IonContent>
-          <IonHeader>
-            <IonToolbar>
-              <IonButtons slot="start">
-                <IonButton onClick={() => { setShowAddTopic(false) }}>{t("close")}</IonButton>
-              </IonButtons>
-              <IonTitle>{t("library.library")}</IonTitle>
-              <IonButtons slot="end">
-                <IonButton onClick={() => { addTopic() }}>{t("ok")}</IonButton>
-              </IonButtons>
-            </IonToolbar>
-            <IonToolbar>
-              <IonTitle size="large">{t("library.create_topic")}</IonTitle>
-            </IonToolbar>
-          </IonHeader>
-          <IonList>
-            <IonItem
-              onClick={() =>
-                present(
-                  [
-                    {
-                      name: 'category',
-                      options: [
-                        { text: t("library.meteoro_hydro"), value: 'meteoro_hydro' },
-                        { text: t("library.geological"), value: 'geological' },
-                        { text: t("library.marine"), value: 'marine' },
-                        { text: t("library.biological"), value: 'biological' },
-                        { text: t("library.ecological"), value: 'ecological' },
-                        { text: t("library.others"), value: 'others' },
-                      ],
-                    }
-                  ],
-                  [
-                    {
-                      text: t("response.cancel"),
-                      role: "cancel",
-                    },
-                    {
-                      text: t("response.confirm"),
-                      handler: (selected) => {
-                        setCategoryText(selected.category.text)
-                        setCategoryValue(selected.category.value)
+        <Toast open={showSuccessToast} message={"创建成功！"} duration={1000} color={"success"} />
+        <Toast open={showFailToast} message={"创建失败！"} duration={1000} color={"danger"} />
+        <IonModal isOpen={showAddResource} >
+          <IonContent>
+            <IonHeader>
+              <IonToolbar>
+                <IonButtons slot="start">
+                  <IonButton onClick={() => { setShowAddResource(false) }}>{t("close")}</IonButton>
+                </IonButtons>
+                <IonTitle>{t("library.library")}</IonTitle>
+                <IonButtons slot="end">
+                  <IonButton onClick={() => { addResource() }}>{t("ok")}</IonButton>
+                </IonButtons>
+              </IonToolbar>
+              <IonToolbar>
+                <IonTitle size="large">{t("library.recommend")}</IonTitle>
+              </IonToolbar>
+            </IonHeader>
+            <IonList>
+              <IonItem
+                onClick={() =>
+                  present(
+                    [
+                      {
+                        name: 'category',
+                        options: [
+                          { text: t("library.meteoro_hydro"), value: 'meteoro_hydro' },
+                          { text: t("library.geological"), value: 'geological' },
+                          { text: t("library.marine"), value: 'marine' },
+                          { text: t("library.biological"), value: 'biological' },
+                          { text: t("library.ecological"), value: 'ecological' },
+                          { text: t("library.others"), value: 'others' },
+                        ],
                       },
-                    }
-                  ]
-                )
-              }
-            >
-              {(categoryText ? categoryText : "请选择灾害类型")}
-              <IonButtons slot="end">
-                <IonButton color="medium">
-                  <IonIcon icon={chevronDownOutline} />
-                </IonButton>
-              </IonButtons>
-            </IonItem>
-            <IonItem>
-              <IonLabel position="floating">主题名称<sup style={{ color: "#eb445a" }}>*</sup></IonLabel>
-              <IonInput value={topic_name} onIonChange={e => setTopicName(e.detail.value!)}></IonInput>
-            </IonItem>
-            <IonItem>
-              <IonLabel position="floating">主图链接</IonLabel>
-              <IonInput value={picture_url} onIonChange={e => setPictureUrl(e.detail.value!)}></IonInput>
-            </IonItem>
-            <IonItem>
-              <IonLabel position="floating">描述</IonLabel>
-              <IonTextarea rows={6} autoGrow value={description} onIonChange={e => setDescription(e.detail.value!)}></IonTextarea>
-            </IonItem>
-          </IonList>
-        </IonContent>
-      </IonModal>
-    </IonPage>
-
+                      {
+                        name: 'fileType',
+                        options: [
+                          { text: t("library.brief_report"), value: 'brief_report' },
+                          { text: t("library.article"), value: 'article' },
+                          { text: t("library.picture"), value: 'picture' },
+                          { text: t("library.book"), value: 'book' },
+                          { text: t("library.video"), value: 'video' },
+                          { text: t("library.audio"), value: 'audio' },
+                        ],
+                      }
+                    ],
+                    [
+                      {
+                        text: t("response.cancel"),
+                        role: "cancel",
+                      },
+                      {
+                        text: t("response.confirm"),
+                        handler: (selected) => {
+                          setFileTypeText(selected.fileType.text)
+                          setCategoryText(selected.category.text)
+                          setFileTypeValue(selected.fileType.value)
+                          setCategoryValue(selected.category.value)
+                        },
+                      }
+                    ]
+                  )
+                }
+              >
+                {(categoryText ? categoryText : "请选择灾害类型") + " - " + (fileTypeText ? fileTypeText : "请选择资源类型")}
+                <IonButtons slot="end">
+                  <IonButton color="medium">
+                    <IonIcon icon={chevronDownOutline} />
+                  </IonButton>
+                </IonButtons>
+              </IonItem>
+              <IonItem>
+                <IonLabel position="floating">资源名称<sup style={{ color: "#eb445a" }}>*</sup></IonLabel>
+                <IonInput value={resource_name} onIonChange={e => setResourceName(e.detail.value!)}></IonInput>
+              </IonItem>
+              <IonItem>
+                <IonLabel position="floating">资源链接<sup style={{ color: "#eb445a" }}>*</sup></IonLabel>
+                <IonInput value={resource_link} onIonChange={e => setResourceLink(e.detail.value!)}></IonInput>
+              </IonItem>
+              <IonItem>
+                <IonLabel position="floating">图片链接</IonLabel>
+                <IonInput value={picture_url} onIonChange={e => setPictureUrl(e.detail.value!)}></IonInput>
+              </IonItem>
+              <IonItem>
+                <IonLabel position="floating">推荐理由</IonLabel>
+                <IonTextarea rows={6} autoGrow value={recomment_reason} onIonChange={e => setRecommentReason(e.detail.value!)}></IonTextarea>
+              </IonItem>
+            </IonList>
+          </IonContent>
+        </IonModal>
+        <IonModal isOpen={showAddTopic} >
+          <IonContent>
+            <IonHeader>
+              <IonToolbar>
+                <IonButtons slot="start">
+                  <IonButton onClick={() => { setShowAddTopic(false) }}>{t("close")}</IonButton>
+                </IonButtons>
+                <IonTitle>{t("library.library")}</IonTitle>
+                <IonButtons slot="end">
+                  <IonButton onClick={() => { addTopic() }}>{t("ok")}</IonButton>
+                </IonButtons>
+              </IonToolbar>
+              <IonToolbar>
+                <IonTitle size="large">{t("library.create_topic")}</IonTitle>
+              </IonToolbar>
+            </IonHeader>
+            <IonList>
+              <IonItem
+                onClick={() =>
+                  present(
+                    [
+                      {
+                        name: 'category',
+                        options: [
+                          { text: t("library.meteoro_hydro"), value: 'meteoro_hydro' },
+                          { text: t("library.geological"), value: 'geological' },
+                          { text: t("library.marine"), value: 'marine' },
+                          { text: t("library.biological"), value: 'biological' },
+                          { text: t("library.ecological"), value: 'ecological' },
+                          { text: t("library.others"), value: 'others' },
+                        ],
+                      }
+                    ],
+                    [
+                      {
+                        text: t("response.cancel"),
+                        role: "cancel",
+                      },
+                      {
+                        text: t("response.confirm"),
+                        handler: (selected) => {
+                          setCategoryText(selected.category.text)
+                          setCategoryValue(selected.category.value)
+                        },
+                      }
+                    ]
+                  )
+                }
+              >
+                {(categoryText ? categoryText : "请选择灾害类型")}
+                <IonButtons slot="end">
+                  <IonButton color="medium">
+                    <IonIcon icon={chevronDownOutline} />
+                  </IonButton>
+                </IonButtons>
+              </IonItem>
+              <IonItem>
+                <IonLabel position="floating">主题名称<sup style={{ color: "#eb445a" }}>*</sup></IonLabel>
+                <IonInput value={topic_name} onIonChange={e => setTopicName(e.detail.value!)}></IonInput>
+              </IonItem>
+              <IonItem>
+                <IonLabel position="floating">主图链接</IonLabel>
+                <IonInput value={picture_url} onIonChange={e => setPictureUrl(e.detail.value!)}></IonInput>
+              </IonItem>
+              <IonItem>
+                <IonLabel position="floating">描述</IonLabel>
+                <IonTextarea rows={6} autoGrow value={description} onIonChange={e => setDescription(e.detail.value!)}></IonTextarea>
+              </IonItem>
+            </IonList>
+          </IonContent>
+        </IonModal>
+      </IonPage>
+    </DocumentMeta>
   );
 };
 
