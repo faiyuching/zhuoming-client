@@ -27,7 +27,8 @@
     "react-router": "^5.1.2",
     "react-router-dom": "^5.1.2",
     "react-scripts": "3.4.0",
-    "typescript": "3.8.3"
+    "typescript": "3.8.3",
+    "weixin-js-sdk": "^1.6.0"
   },
   "scripts": {
     "dev": "react-scripts start",
