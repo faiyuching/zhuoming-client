@@ -18,9 +18,9 @@ import DocumentMeta from 'react-document-meta';
 const Library: React.FC = () => {
   const { t } = useTranslation();
   const meta = {
-    title: '卓明·资料库',
-    description: 'I am a description, and I can create multiple tags',
-    canonical: 'http://example.com/path/to/page',
+    title: '资料库',
+    description: '描述',
+    canonical: 'https://zhuominginfo.cn/library',
     meta: {
       charset: 'utf-8',
       name: {
