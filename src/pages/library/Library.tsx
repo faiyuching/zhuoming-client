@@ -9,7 +9,7 @@ import {
 import { addOutline } from 'ionicons/icons';
 import { useTranslation } from "react-i18next";
 import { useLocation } from 'react-router';
-import queryString from 'querystring'
+import queryString from 'querystring';
 import { chevronDownOutline } from 'ionicons/icons';
 import Toast from "../../components/Toast"
 import axios from 'axios';
