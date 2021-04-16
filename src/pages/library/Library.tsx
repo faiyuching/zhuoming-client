@@ -17,17 +17,18 @@ import DocumentMeta from 'react-document-meta';
 
 const Library: React.FC = () => {
   const { t } = useTranslation();
-  const meta = {
-    title: '资料库',
-    description: '描述',
-    canonical: 'https://zhuominginfo.cn/library',
-    meta: {
-      charset: 'utf-8',
-      name: {
-        keywords: 'react,meta,document,html,tags'
-      }
-    }
-  };
+  // const meta = {
+  //   title: '资料库',
+  //   description: '描述',
+  //   canonical: 'https://zhuominginfo.cn/library',
+  //   meta: {
+  //     charset: 'utf-8',
+  //     name: {
+  //       keywords: 'react,meta,document,html,tags'
+  //     }
+  //   }
+  // };
+  document.title = "卓明｜资料库"
   const sort = queryString.parse(useLocation().search.split('?')[1]).sort
   const [searchText, setSearchText] = useState('');
   const [popoverState, setShowPopover] = useState({ showPopover: false, event: undefined });
@@ -209,7 +210,7 @@ const Library: React.FC = () => {
   }, [showSuccessToast, fileTypeValue, categoryValue])
 
   return (
-    <DocumentMeta {...meta}>
+    // <DocumentMeta {...meta}>
       <IonPage>
         <IonHeader>
           <IonToolbar>
@@ -492,7 +493,7 @@ const Library: React.FC = () => {
           </IonContent>
         </IonModal>
       </IonPage>
-    </DocumentMeta>
+    // </DocumentMeta>
   );
 };
 
