@@ -13,23 +13,9 @@ import queryString from 'querystring'
 import { chevronDownOutline } from 'ionicons/icons';
 import Toast from "../../components/Toast"
 import axios from 'axios';
-import DocumentMeta from 'react-document-meta';
-import { Helmet } from "react-helmet";
 
 const Library: React.FC = () => {
   const { t } = useTranslation();
-  // const meta = {
-  //   title: '资料库',
-  //   description: '描述',
-  //   canonical: 'https://zhuominginfo.cn/library',
-  //   meta: {
-  //     charset: 'utf-8',
-  //     name: {
-  //       keywords: 'react,meta,document,html,tags'
-  //     }
-  //   }
-  // };
-
   const sort = queryString.parse(useLocation().search.split('?')[1]).sort
   const [searchText, setSearchText] = useState('');
   const [popoverState, setShowPopover] = useState({ showPopover: false, event: undefined });
@@ -211,13 +197,7 @@ const Library: React.FC = () => {
   }, [showSuccessToast, fileTypeValue, categoryValue])
 
   return (
-    // <DocumentMeta {...meta}>
     <IonPage>
-      <Helmet>
-        <meta charSet="utf-8" />
-        <title>资料库</title>
-        <meta name="description" content="React application" />
-      </Helmet>
       <IonHeader>
         <IonToolbar>
           <IonTitle>{sort ? t(`library.${sort}`) : t("library.library")}</IonTitle>
@@ -499,7 +479,6 @@ const Library: React.FC = () => {
         </IonContent>
       </IonModal>
     </IonPage>
-    // </DocumentMeta>
   );
 };
 
