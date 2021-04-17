@@ -23,12 +23,31 @@ const User: React.FC = () => {
     job: "",
     introduction: ""
   })
+  const [status, setStatus] = useState<string>("success")
+  const [tasks, setTasks] = useState([
+    {
+      Response: {
+        response_name: ""
+      },
+      Group: {
+        group_name: ""
+      },
+      Job: {
+        job_name: ""
+      },
+      Task: {
+        task_id: "",
+        task_name: "",
+        description: "",
+      },
+      status: "",
+    }
+  ]);
 
   useEffect(() => {
     if (user_id) {
       axios.get(`/user/${user_id}`)
         .then(function (res) {
-          console.log(res.data)
           serUserInfo(res.data)
         })
         .catch(function (error) {
@@ -37,7 +56,6 @@ const User: React.FC = () => {
     } else if (localStorage.getItem("user_id")) {
       axios.get(`/user/${localStorage.getItem("user_id")}`)
         .then(function (res) {
-          console.log(res.data)
           serUserInfo(res.data)
         })
         .catch(function (error) {
@@ -48,6 +66,16 @@ const User: React.FC = () => {
     }
   }, [])
 
+  useEffect(() => {
+    axios.get(`/applies?user_id=${localStorage.getItem("user_id")}&status=${status}`)
+      .then(function (res) {
+        console.log(res.data)
+        setTasks(res.data)
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  }, [status])
 
   return (
     <IonPage>
@@ -86,42 +114,30 @@ const User: React.FC = () => {
       </IonHeader>
       <IonContent fullscreen>
         <IonItem lines="none">
-          <IonSegment value="unfinished" onIonChange={e => console.log('Segment selected', e.detail.value)}>
-            <IonSegmentButton value="unfinished">
+          <IonSegment value={status} onIonChange={e => setStatus(e.detail.value!)}>
+            <IonSegmentButton value="success">
               <IonLabel>{t("user.unfinished")}</IonLabel>
             </IonSegmentButton>
-            <IonSegmentButton value="finished">
+            <IonSegmentButton value="end">
               <IonLabel>{t("user.finished")}</IonLabel>
             </IonSegmentButton>
           </IonSegment>
         </IonItem>
-        <IonCard routerLink={'/response/task/1'}>
-          <IonCardHeader>
-            <IonCardSubtitle>组名｜岗位名</IonCardSubtitle>
-            <IonCardTitle>任务标题</IonCardTitle>
-          </IonCardHeader>
-          <IonCardContent>
-            任务内容
-            </IonCardContent>
-        </IonCard>
-        <IonCard routerLink={'/response/task/2'}>
-          <IonCardHeader>
-            <IonCardSubtitle>组名｜岗位名</IonCardSubtitle>
-            <IonCardTitle>任务标题</IonCardTitle>
-          </IonCardHeader>
-          <IonCardContent>
-            任务内容
-            </IonCardContent>
-        </IonCard>
-        <IonCard routerLink={'/response/task/3'}>
-          <IonCardHeader>
-            <IonCardSubtitle>组名｜岗位名</IonCardSubtitle>
-            <IonCardTitle>任务标题</IonCardTitle>
-          </IonCardHeader>
-          <IonCardContent>
-            任务内容
-            </IonCardContent>
-        </IonCard>
+        {tasks.length === 0 ? (
+          <IonCard>
+            <IonCardHeader>暂无任务</IonCardHeader>
+          </IonCard>
+        ) : tasks.map((task, index) => {
+          return (
+            <IonCard key={index} routerLink={`/response/task/${task.Task.task_id}`}>
+              <IonCardHeader>
+                <IonCardSubtitle>{task.Group.group_name}｜{task.Job.job_name}</IonCardSubtitle>
+                <IonCardTitle>{task.Task.task_name}</IonCardTitle>
+              </IonCardHeader>
+              <IonCardContent>{task.Task.description}</IonCardContent>
+            </IonCard>
+          )
+        })}
       </IonContent>
     </IonPage>
   );

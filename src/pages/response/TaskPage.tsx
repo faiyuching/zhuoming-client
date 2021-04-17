@@ -32,6 +32,7 @@ const TaskPage: React.FC = () => {
     group_id: "",
     job_id: "",
     need_shimo: "",
+    end_time: ""
   })
   const [need_shimo, setNeedShimo] = useState(false)
   const [shimoAlert, setShimoAlert] = useState(false)
@@ -59,7 +60,6 @@ const TaskPage: React.FC = () => {
       user_id: localStorage.getItem("user_id")
     })
       .then(function (res) {
-        console.log(res.data)
         setShowSuccessToast(true)
       })
       .catch(function (error) {
@@ -79,7 +79,6 @@ const TaskPage: React.FC = () => {
   const onEndTask = () => {
     axios.put(`/task/${task_id}`, { end_time: Date.now() })
       .then(function (res) {
-        console.log(res.data)
         window.location.reload()
       })
       .catch(function (error) {
@@ -96,31 +95,35 @@ const TaskPage: React.FC = () => {
               <IonBackButton text={t("back")} defaultHref="/response/tasks" />
             </IonButtons>
             <IonTitle>{localStorage.getItem("response_name")}</IonTitle>
-            <IonButtons slot="end">
-              <IonButton onClick={
-                (e: any) => {
-                  e.persist();
-                  setShowPopover({ showPopover: true, event: e })
-                }}
-              >
-                更多
-                </IonButton>
-              <IonPopover
-                cssClass='my-custom-class'
-                event={popoverState.event}
-                isOpen={popoverState.showPopover}
-                onDidDismiss={() => setShowPopover({ showPopover: false, event: undefined })}
-              >
-                <IonItem button onClick={() => { setShowApplyList(true) }}>{t("response.invite")}</IonItem>
-                <IonItem button lines="none" onClick={() => { onEndTask() }}>结束任务</IonItem>
-              </IonPopover>
-            </IonButtons>
+            {!task.end_time &&
+              <IonButtons slot="end">
+                <IonButton onClick={
+                  (e: any) => {
+                    e.persist();
+                    setShowPopover({ showPopover: true, event: e })
+                  }}
+                >
+                  更多
+              </IonButton>
+                <IonPopover
+                  cssClass='my-custom-class'
+                  event={popoverState.event}
+                  isOpen={popoverState.showPopover}
+                  onDidDismiss={() => setShowPopover({ showPopover: false, event: undefined })}
+                >
+                  <IonItem button onClick={() => { setShowApplyList(true) }}>{t("response.invite")}</IonItem>
+                  <IonItem button lines="none" onClick={() => { onEndTask() }}>结束任务</IonItem>
+                </IonPopover>
+              </IonButtons>
+            }
           </IonToolbar>
           <IonToolbar>
             <IonTitle size="large">{t("response.task_detail")}</IonTitle>
-            <IonButtons slot="end">
-              <IonButton onClick={() => { ShimoJudge() }}>{t("response.receive")}</IonButton>
-            </IonButtons>
+            {!task.end_time &&
+              <IonButtons slot="end">
+                <IonButton onClick={() => { ShimoJudge() }}>{t("response.receive")}</IonButton>
+              </IonButtons>
+            }
           </IonToolbar>
         </IonHeader>
         <IonContent fullscreen>

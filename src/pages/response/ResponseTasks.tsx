@@ -17,11 +17,12 @@ const ResponseTasks: React.FC = () => {
   const [showSuccessToast, setShowSuccessToast] = useState(false);
   const [showFailToast, setShowFailToast] = useState(false);
 
-  const [task_name, setTaskName] = useState("")
-  const [need_people, setNeedPeople] = useState("")
-  const [group_id, setGroupId] = useState("")
-  const [job_id, setJobId] = useState("")
-  const [description, setDescription] = useState("")
+  const [task_name, setTaskName] = useState<string>()
+  const [need_people, setNeedPeople] = useState<string>()
+  const [group_id, setGroupId] = useState<string>()
+  const [job_id, setJobId] = useState<string>()
+  const [description, setDescription] = useState<string>()
+  const [isEnd, setIsEnd] = useState<string>("false")
   const [need_shimo, setNeedShimo] = useState(false)
 
   const [groups, setGroups] = useState([{ group_id: "", group_name: "" }]);
@@ -42,15 +43,14 @@ const ResponseTasks: React.FC = () => {
 
 
   useEffect(() => {
-    axios.get(`/tasks?response_id=${localStorage.getItem("response_id")}`)
+    axios.get(`/tasks?response_id=${localStorage.getItem("response_id")}&end=${isEnd}`)
       .then(function (res) {
-
         setTasks(res.data)
       })
       .catch(function (error) {
         console.log(error);
       });
-  }, [showSuccessToast])
+  }, [showSuccessToast, isEnd])
 
   useEffect(() => {
     axios.get(`/groups?response_id=${localStorage.getItem("response_id")}`)
@@ -125,11 +125,11 @@ const ResponseTasks: React.FC = () => {
           <IonToolbar>
             <IonTitle size="large">{t("response.tasks")}</IonTitle>
             <IonButtons slot="end">
-              <IonSegment value="unfinished" onIonChange={e => console.log('Segment selected', e.detail.value)}>
-                <IonSegmentButton value="unfinished">
+              <IonSegment value={isEnd} onIonChange={e => setIsEnd(e.detail.value!)}>
+                <IonSegmentButton value="false">
                   <IonLabel>{t("response.unfinished")}</IonLabel>
                 </IonSegmentButton>
-                <IonSegmentButton value="finished">
+                <IonSegmentButton value="true">
                   <IonLabel>{t("response.finished")}</IonLabel>
                 </IonSegmentButton>
               </IonSegment>
