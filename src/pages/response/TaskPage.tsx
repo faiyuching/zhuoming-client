@@ -25,7 +25,7 @@ const TaskPage: React.FC = () => {
   const { task_id } = useParams<ParamTypes>()
   const [showSuccessToast, setShowSuccessToast] = useState(false);
   const [showFailToast, setShowFailToast] = useState(false);
-  const [description, setDescription] = useState("");
+  // const [description, setDescription] = useState("");
   const [showAlert, setShowAlert] = useState(false)
   const [task, setTask] = useState({
     response_id: "",
@@ -50,17 +50,19 @@ const TaskPage: React.FC = () => {
       });
   }, [])
 
-  const receiveTask = () => {
+  const receiveTask = (description:string) => {
     axios.post("/apply", {
       response_id: task.response_id,
       group_id: task.group_id,
       job_id: task.job_id,
       task_id,
       need_shimo: task.need_shimo,
+      description,
       user_id: localStorage.getItem("user_id")
     })
       .then(function (res) {
         setShowSuccessToast(true)
+        setValue("task_recipient")
       })
       .catch(function (error) {
         console.log(error);
@@ -68,7 +70,7 @@ const TaskPage: React.FC = () => {
       });
   }
   const ShimoJudge = () => {
-    if (need_shimo && localStorage.getItem("shimo") && localStorage.getItem("shimo") !== "null") {
+    if (need_shimo && localStorage.getItem("shimo") !== "undefined") {
       setShowAlert(true)
     } else if (!need_shimo) {
       setShowAlert(true)
@@ -159,7 +161,7 @@ const TaskPage: React.FC = () => {
               {
                 name: 'description',
                 type: 'text',
-                value: description,
+                // value: description,
                 placeholder: '申请理由'
               }
             ]}
@@ -170,9 +172,9 @@ const TaskPage: React.FC = () => {
               },
               {
                 text: 'Ok',
-                handler: (alertData) => {
-                  setDescription(alertData.description);
-                  receiveTask()
+                handler: (data) => {
+                  // setDescription(data.description);
+                  receiveTask(data.description)
                 }
               }
             ]}

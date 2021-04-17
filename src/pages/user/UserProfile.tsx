@@ -38,8 +38,10 @@ const UserProfile: React.FC = () => {
     if (user_id) {
       axios.get(`/user/${user_id}`)
         .then(function (res) {
-          console.log(res.data)
           serUserInfo(res.data)
+          localStorage.setItem("shimo", res.data.shimo)
+          localStorage.setItem("user_id", res.data.user_id)
+          localStorage.setItem("role", res.data.role)
         })
         .catch(function (error) {
           console.log(error);
@@ -64,6 +66,9 @@ const UserProfile: React.FC = () => {
   const updateUser = (key: string, value: string) => {
     axios.put(`/user/${localStorage.getItem("user_id")}`, { key, value })
       .then(function (res) {
+        localStorage.setItem("shimo", res.data.shimo)
+        localStorage.setItem("user_id", res.data.user_id)
+        localStorage.setItem("role", res.data.role)
         window.location.reload()
       })
       .catch(function (error) {

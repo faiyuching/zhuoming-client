@@ -41,6 +41,7 @@ const TaskMembers: React.FC = () => {
     axios.put(`/apply/${apply_id}`, { status: "success" })
       .then(function (res) {
         setStatus(true)
+        window.location.reload()
       })
       .catch(function (error) {
         console.log(error);
@@ -78,7 +79,7 @@ const TaskMembers: React.FC = () => {
               <IonNote slot="end">{moment(apply.created_at).startOf('hour').fromNow()}</IonNote>
             </IonItem>
             <IonItemOptions side="end">
-              <IonItemOption color="primary" onClick={() => { onSuccess(apply.apply_id) }}>同意</IonItemOption>
+              <IonItemOption color="primary" type="submit" onClick={() => { onSuccess(apply.apply_id) }}>同意</IonItemOption>
               <IonItemOption color="danger" onClick={() => { onFail(apply.apply_id) }}>拒绝</IonItemOption>
             </IonItemOptions>
           </IonItemSliding>
