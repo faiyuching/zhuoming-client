@@ -85,9 +85,11 @@ const Notice: React.FC = () => {
       <IonHeader>
         <IonToolbar>
           <IonTitle>{t("notice.notice")}</IonTitle>
-          <IonButtons slot="end">
-            <IonButton routerLink={"/notice/new"}>{t("notice.post")}</IonButton>
-          </IonButtons>
+          {localStorage.getItem("role") === "admin" &&
+            <IonButtons slot="end">
+              <IonButton routerLink={"/notice/new"}>{t("notice.post")}</IonButton>
+            </IonButtons>
+          }
         </IonToolbar>
         <IonToolbar>
           <IonSegment value={value} onIonChange={e => setValue(e.detail.value!)}>
