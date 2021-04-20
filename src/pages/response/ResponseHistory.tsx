@@ -87,7 +87,7 @@ const ResponseHistory: React.FC = () => {
           return (
             <IonCard key={index} onClick={() => { enterResponse(response.response_id, response.response_name, response.response_slogan) }}>
               <IonCardHeader>
-                <IonCardSubtitle>{response.created_at.split("T")[0] + " ｜ " + (response.end_time ? response.end_time.split("T")[0] : "正在响应") + " ｜ " + response.members + "人参与"}</IonCardSubtitle>
+                <IonCardSubtitle>{response.created_at.split("T")[0] + " ~ " + (response.end_time ? response.end_time.split("T")[0] : "正在响应") + " ｜ " + response.members + "人参与"}</IonCardSubtitle>
                 <IonCardTitle>{response.response_name}</IonCardTitle>
               </IonCardHeader>
               <IonCardContent>{}</IonCardContent>
