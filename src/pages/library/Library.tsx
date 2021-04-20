@@ -464,7 +464,7 @@ const Library: React.FC = () => {
               </IonButtons>
             </IonItem>
             <IonItem>
-              <IonLabel position="floating">主题名称<sup style={{ color: "#eb445a" }}>*</sup></IonLabel>
+              <IonLabel position="floating">专题名称<sup style={{ color: "#eb445a" }}>*</sup></IonLabel>
               <IonInput value={topic_name} onIonChange={e => setTopicName(e.detail.value!)}></IonInput>
             </IonItem>
             <IonItem>
