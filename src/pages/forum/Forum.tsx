@@ -215,7 +215,7 @@ const Forum: React.FC = () => {
                 }
               </IonButtons>
             </IonToolbar>
-            <IonSegment disabled>
+            <IonSegment disabled value={value}>
               <IonSegmentButton value="1">
                 <IonLabel>{t("library.step_one")}</IonLabel>
               </IonSegmentButton>

@@ -8,6 +8,14 @@ import {
 import { useTranslation } from "react-i18next";
 import axios from 'axios';
 
+export interface responseType {
+  response_id: string,
+  response_name: string,
+  response_slogan: string,
+  created_at: string,
+  end_time: string,
+  members: number
+}
 const ResponseHistory: React.FC = () => {
   const { t } = useTranslation();
   const [responses, setResponses] = useState([{
@@ -15,7 +23,8 @@ const ResponseHistory: React.FC = () => {
     response_name: "",
     response_slogan: "",
     created_at: "",
-    end_time: ""
+    end_time: "",
+    members: 0
   }]);
 
   const enterResponse = (response_id: string, response_name: string, response_slogan: string) => {
@@ -27,8 +36,19 @@ const ResponseHistory: React.FC = () => {
 
   useEffect(() => {
     axios.get('/responses')
-      .then(function (res) {
-        setResponses(res.data)
+      .then(function (responses) {
+        let responseList: any = []
+        responses.data.forEach((each: responseType) => {
+          axios.get(`/applies?response_id=${each.response_id}`)
+            .then(function (response) {
+              each.members = response.data.length
+              responseList.push(each)
+              setResponses(responseList)
+            })
+            .catch(function (error) {
+              console.log(error);
+            });
+        })
       })
       .catch(function (error) {
         console.log(error);
@@ -42,6 +62,7 @@ const ResponseHistory: React.FC = () => {
       window.location.href = "/response/launch"
     }
   }
+
   return (
     <IonPage>
       <IonHeader>
@@ -66,10 +87,10 @@ const ResponseHistory: React.FC = () => {
           return (
             <IonCard key={index} onClick={() => { enterResponse(response.response_id, response.response_name, response.response_slogan) }}>
               <IonCardHeader>
-                <IonCardSubtitle>{response.created_at.split("T")[0] + " - " + (response.end_time ? response.end_time.split("T")[0] : "正在响应")}｜参与人数</IonCardSubtitle>
+                <IonCardSubtitle>{response.created_at.split("T")[0] + " ｜ " + (response.end_time ? response.end_time.split("T")[0] : "正在响应") + " ｜ " + response.members + "人参与"}</IonCardSubtitle>
                 <IonCardTitle>{response.response_name}</IonCardTitle>
               </IonCardHeader>
-              <IonCardContent>完成几个任务｜产出几个产品</IonCardContent>
+              <IonCardContent>{}</IonCardContent>
             </IonCard>
           )
         })}
