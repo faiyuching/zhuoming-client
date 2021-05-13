@@ -286,36 +286,31 @@ const Library: React.FC = () => {
             <IonItem button lines="none" onClick={() => { setShowAddTopic(true); setShowPopover({ showPopover: false, event: undefined }) }}>{t("library.create_topic")}</IonItem>
           </IonList>
         </IonPopover>
-        <IonGrid>
-          <IonRow>
-            <IonCol size-lg="4" size-md="6" size-sm="12">
-              {topics.map((topic, index) => {
-                return (
-                  <IonCard key={index} routerLink={`/library/${topic.topic_id}`}>
-                    {topic.picture_url && <IonImg src={topic.picture_url} />}
-                    <IonCardHeader>
-                      <IonCardSubtitle>{t(`library.${topic.Category.category_name}`)}｜{t("library.topic")}</IonCardSubtitle>
-                      <IonCardTitle>{topic.topic_name}</IonCardTitle>
-                    </IonCardHeader>
-                    <IonCardContent>{topic.description}</IonCardContent>
-                  </IonCard>
-                )
-              })}
-              {resources.map((resource, index) => {
-                return (
-                  <IonCard key={index} href={resource.resource_link} target="blank">
-                    {resource.picture_url && <IonImg src={resource.picture_url} />}
-                    <IonCardHeader>
-                      <IonCardSubtitle>{t(`library.${resource.Category.category_name}`)}｜{t(`library.${resource.Filetype.filetype_name}`)}</IonCardSubtitle>
-                      <IonCardTitle>{resource.resource_name}</IonCardTitle>
-                    </IonCardHeader>
-                    <IonCardContent>{resource.recomment_reason}</IonCardContent>
-                  </IonCard>
-                )
-              })}
-            </IonCol>
-          </IonRow>
-        </IonGrid>
+
+        {topics.map((topic, index) => {
+          return (
+            <IonCard key={index} routerLink={`/library/${topic.topic_id}`}>
+              {topic.picture_url && <IonImg src={topic.picture_url} />}
+              <IonCardHeader>
+                <IonCardSubtitle>{t(`library.${topic.Category.category_name}`)}｜{t("library.topic")}</IonCardSubtitle>
+                <IonCardTitle>{topic.topic_name}</IonCardTitle>
+              </IonCardHeader>
+              <IonCardContent>{topic.description}</IonCardContent>
+            </IonCard>
+          )
+        })}
+        {resources.map((resource, index) => {
+          return (
+            <IonCard key={index} href={resource.resource_link} target="blank">
+              {resource.picture_url && <IonImg src={resource.picture_url} />}
+              <IonCardHeader>
+                <IonCardSubtitle>{t(`library.${resource.Category.category_name}`)}｜{t(`library.${resource.Filetype.filetype_name}`)}</IonCardSubtitle>
+                <IonCardTitle>{resource.resource_name}</IonCardTitle>
+              </IonCardHeader>
+              <IonCardContent>{resource.recomment_reason}</IonCardContent>
+            </IonCard>
+          )
+        })}
       </IonContent>
       <Toast open={showSuccessToast} message={"创建成功！"} duration={1000} color={"success"} />
       <Toast open={showFailToast} message={"创建失败！"} duration={1000} color={"danger"} />
