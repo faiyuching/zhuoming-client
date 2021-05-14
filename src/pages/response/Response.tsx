@@ -31,9 +31,9 @@ const Response: React.FC = () => {
           </IonToolbar>
           <IonToolbar>
             <IonTitle size="large">{t("response.moments")}</IonTitle>
-            <IonButtons slot="end">
+            {/* <IonButtons slot="end">
               <IonButton>新手指引</IonButton>
-            </IonButtons>
+            </IonButtons> */}
           </IonToolbar>
         </IonHeader>
         <IonContent fullscreen>

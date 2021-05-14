@@ -65,24 +65,24 @@ const ResponseMenu: React.FC = () => {
       iosIcon: peopleOutline,
       mdIcon: peopleSharp
     },
-    {
-      title: t("response.timeline"),
-      url: `/response/timeline`,
-      iosIcon: timeOutline,
-      mdIcon: timeSharp
-    },
-    {
-      title: t("response.resources"),
-      url: `/library?response_id=${localStorage.getItem("response_id")}`,
-      iosIcon: libraryOutline,
-      mdIcon: librarySharp
-    },
-    {
-      title: t("response.discussion"),
-      url: `/forum?response_id=${localStorage.getItem("response_id")}`,
-      iosIcon: chatbubblesOutline,
-      mdIcon: chatbubblesSharp
-    },
+    // {
+    //   title: t("response.timeline"),
+    //   url: `/response/timeline`,
+    //   iosIcon: timeOutline,
+    //   mdIcon: timeSharp
+    // },
+    // {
+    //   title: t("response.resources"),
+    //   url: `/library?response_id=${localStorage.getItem("response_id")}`,
+    //   iosIcon: libraryOutline,
+    //   mdIcon: librarySharp
+    // },
+    // {
+    //   title: t("response.discussion"),
+    //   url: `/forum?response_id=${localStorage.getItem("response_id")}`,
+    //   iosIcon: chatbubblesOutline,
+    //   mdIcon: chatbubblesSharp
+    // },
   ];
 
   return (

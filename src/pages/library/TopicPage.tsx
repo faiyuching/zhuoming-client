@@ -83,7 +83,7 @@ const TopicPage: React.FC = () => {
           existResourceList.push(each.resource_id);
         })
         res.data.forEach((item: any) => {
-          if(!existResourceList.includes(item.resource_id)){
+          if (!existResourceList.includes(item.resource_id)) {
             resourceList.push(item);
           }
         });
@@ -125,28 +125,22 @@ const TopicPage: React.FC = () => {
       </IonHeader>
       <IonContent fullscreen>
         {topic.picture_url && <IonImg src={topic.picture_url} />}
-        <IonGrid>
-          <IonRow>
-            <IonCol size-lg="4" size-md="6" size-sm="12">
-              {resources.length === 0 ? (
-                <IonCard>
-                  <IonCardHeader>暂无资源</IonCardHeader>
-                </IonCard>
-              ) : resources.map((resource, index) => {
-                return (
-                  <IonCard key={index} href={resource.resource_link} target="blank">
-                    {resource.picture_url && <IonImg src={resource.picture_url} />}
-                    <IonCardHeader>
-                      <IonCardSubtitle>{t(`library.${resource.Category.category_name}`)}｜{t(`library.${resource.Filetype.filetype_name}`)}</IonCardSubtitle>
-                      <IonCardTitle>{resource.resource_name}</IonCardTitle>
-                    </IonCardHeader>
-                    <IonCardContent>{resource.recomment_reason}</IonCardContent>
-                  </IonCard>
-                )
-              })}
-            </IonCol>
-          </IonRow>
-        </IonGrid>
+        {resources.length === 0 ? (
+          <IonCard>
+            <IonCardHeader>暂无资源</IonCardHeader>
+          </IonCard>
+        ) : resources.map((resource, index) => {
+          return (
+            <IonCard key={index} href={resource.resource_link} target="blank">
+              {resource.picture_url && <IonImg src={resource.picture_url} />}
+              <IonCardHeader>
+                <IonCardSubtitle>{t(`library.${resource.Category.category_name}`)}｜{t(`library.${resource.Filetype.filetype_name}`)}</IonCardSubtitle>
+                <IonCardTitle>{resource.resource_name}</IonCardTitle>
+              </IonCardHeader>
+              <IonCardContent>{resource.recomment_reason}</IonCardContent>
+            </IonCard>
+          )
+        })}
       </IonContent>
       <IonModal isOpen={showAddResource} >
         <IonHeader>
