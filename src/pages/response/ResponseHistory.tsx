@@ -73,9 +73,11 @@ const ResponseHistory: React.FC = () => {
             </IonButton>
           </IonButtons>
           <IonTitle>{t("response.history")}</IonTitle>
-          <IonButtons slot="end">
-            <IonButton onClick={() => { launchResponse() }}>{t("response.launch_response")}</IonButton>
-          </IonButtons>
+          {localStorage.getItem("role") === "admin" &&
+            <IonButtons slot="end">
+              <IonButton onClick={() => { launchResponse() }}>{t("response.launch_response")}</IonButton>
+            </IonButtons>
+          }
         </IonToolbar>
       </IonHeader>
       <IonContent fullscreen>
@@ -90,7 +92,7 @@ const ResponseHistory: React.FC = () => {
                 <IonCardSubtitle>{response.created_at.split("T")[0] + " ~ " + (response.end_time ? response.end_time.split("T")[0] : "正在响应") + " ｜ " + response.members + "人参与"}</IonCardSubtitle>
                 <IonCardTitle>{response.response_name}</IonCardTitle>
               </IonCardHeader>
-              <IonCardContent>{}</IonCardContent>
+              <IonCardContent>{ }</IonCardContent>
             </IonCard>
           )
         })}
